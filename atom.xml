@@ -5,22 +5,40 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-07T08:51:09.007Z</updated>
+  <updated>2016-10-08T09:25:21.290Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
     <name>Desperado</name>
-    
+    <email>424494431@qq.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>android</title>
+    <link href="http://yoursite.com/2016/10/08/android/"/>
+    <id>http://yoursite.com/2016/10/08/android/</id>
+    <published>2016-10-08T09:23:48.414Z</published>
+    <updated>2016-10-08T09:25:21.290Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
     <link href="http://yoursite.com/2016/10/07/hello-world/"/>
     <id>http://yoursite.com/2016/10/07/hello-world/</id>
     <published>2016-10-07T08:11:05.555Z</published>
-    <updated>2016-10-07T08:51:09.007Z</updated>
+    <updated>2016-10-08T08:02:33.239Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -39,6 +57,8 @@
     
     </summary>
     
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
