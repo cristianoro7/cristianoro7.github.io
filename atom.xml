@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-10T16:10:58.613Z</updated>
+  <updated>2016-10-10T16:23:44.725Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>android</title>
+    <title>3月9日</title>
     <link href="http://yoursite.com/2016/10/11/3%E6%9C%889%E6%97%A5/"/>
     <id>http://yoursite.com/2016/10/11/3月9日/</id>
     <published>2016-10-10T16:09:31.418Z</published>
-    <updated>2016-10-10T16:10:58.613Z</updated>
+    <updated>2016-10-10T16:23:44.725Z</updated>
     
-    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=805204&auto=0&height=66"></iframe>]]></content>
     
     <summary type="html">
     
