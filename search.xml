@@ -4,6 +4,12 @@
   
     
     <entry>
+      <title><![CDATA[android]]></title>
+      <url>http://yoursite.com/2016/10/11/3%E6%9C%889%E6%97%A5/</url>
+      <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[安卓开发艺术探索-View的事件体系-笔记]]></title>
       <url>http://yoursite.com/2016/10/10/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h4 id="第三章：View的事件体系"><a href="#第三章：View的事件体系" class="headerlink" title="第三章：View的事件体系"></a>第三章：View的事件体系</h4><h5 id="View的位置参数："><a href="#View的位置参数：" class="headerlink" title="View的位置参数："></a>View的位置参数：</h5><ul>
@@ -256,12 +262,6 @@
     <entry>
       <title><![CDATA[android]]></title>
       <url>http://yoursite.com/2016/10/08/android%20-%20%E5%89%AF%E6%9C%AC%20(4)/</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[android]]></title>
-      <url>http://yoursite.com/2016/10/08/android%20-%20%E5%89%AF%E6%9C%AC%20(2)/</url>
       <content type="html"></content>
     </entry>
     

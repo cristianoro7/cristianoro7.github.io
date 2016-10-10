@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-10T01:55:14.281Z</updated>
+  <updated>2016-10-10T16:10:58.613Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>android</title>
+    <link href="http://yoursite.com/2016/10/11/3%E6%9C%889%E6%97%A5/"/>
+    <id>http://yoursite.com/2016/10/11/3月9日/</id>
+    <published>2016-10-10T16:09:31.418Z</published>
+    <updated>2016-10-10T16:10:58.613Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;http://music.163.com/outchain/player?type=
+    
+    </summary>
+    
+      <category term="music" scheme="http://yoursite.com/categories/music/"/>
+    
+    
+      <category term="music" scheme="http://yoursite.com/tags/music/"/>
+    
+  </entry>
   
   <entry>
     <title>安卓开发艺术探索-View的事件体系-笔记</title>
@@ -376,24 +398,6 @@
     </summary>
     
       <category term="photo" scheme="http://yoursite.com/categories/photo/"/>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>android</title>
-    <link href="http://yoursite.com/2016/10/08/android%20-%20%E5%89%AF%E6%9C%AC%20(2)/"/>
-    <id>http://yoursite.com/2016/10/08/android - 副本 (2)/</id>
-    <published>2016-10-08T15:24:53.579Z</published>
-    <updated>2016-10-08T15:25:09.272Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="music" scheme="http://yoursite.com/categories/music/"/>
     
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
