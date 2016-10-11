@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-11T01:58:19.766Z</updated>
+  <updated>2016-10-11T09:09:16.074Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安卓开发艺术探索-自定义View的思想-笔记</title>
+    <link href="http://yoursite.com/2016/10/11/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/"/>
+    <id>http://yoursite.com/2016/10/11/安卓开发艺术探索-第四章笔记(二)/</id>
+    <published>2016-10-11T08:52:14.510Z</published>
+    <updated>2016-10-11T09:09:16.074Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h4><h5 id="概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理"><a href="#概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理" class="headerlink" title="概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理"></a>概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理</h5><a id="more"></a>
+<h5 id="自定义View的分类"><a href="#自定义View的分类" class="headerlink" title="自定义View的分类"></a>自定义View的分类</h5><ul>
+<li>继承View重写onDraw方法：采用这种方式需要自己支持wrap_content和padding</li>
+<li>继承ViewGroup派生出特殊的layout：需要根据需求来处理ViewGroup的测量和布局这两个过程，并且同时处理子元素的测量和布局的过程</li>
+<li>继承特定的View（比如TextView）：扩展某种View的功能</li>
+<li>继承特定的ViewGroup（比如LinearLayout）</li>
+</ul>
+<h5 id="自定义View须知："><a href="#自定义View须知：" class="headerlink" title="自定义View须知："></a>自定义View须知：</h5><ul>
+<li>让View支持wrap_content</li>
+<li>如果有必要，让你的View支持padding</li>
+<li>尽量要在View中使用Handler，没必要</li>
+<li>View中如果有线程或者动画，需要及时停止</li>
+<li>View带有滑动嵌套情形时，需要处理好滑动冲突</li>
+</ul>
+<h5 id="自定义View的实例，具体在书中P202-P216"><a href="#自定义View的实例，具体在书中P202-P216" class="headerlink" title="自定义View的实例，具体在书中P202~P216"></a>自定义View的实例，具体在书中P202~P216</h5><blockquote>
+<p>以上笔记来源于安卓开发艺术探索一书中</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;自定义View&quot;&gt;&lt;a href=&quot;#自定义View&quot; class=&quot;headerlink&quot; title=&quot;自定义View&quot;&gt;&lt;/a&gt;自定义View&lt;/h4&gt;&lt;h5 id=&quot;概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理&quot;&gt;&lt;a href=&quot;#概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理&quot; class=&quot;headerlink&quot; title=&quot;概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理&quot;&gt;&lt;/a&gt;概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理&lt;/h5&gt;
+    
+    </summary>
+    
+      <category term="booknote" scheme="http://yoursite.com/categories/booknote/"/>
+    
+    
+      <category term="安卓开发艺术探索笔记" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>3月9日</title>
@@ -413,7 +452,7 @@
     <link href="http://yoursite.com/2016/10/08/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
     <id>http://yoursite.com/2016/10/08/安卓开发艺术探索-第四章笔记(一)/</id>
     <published>2016-10-08T15:24:53.364Z</published>
-    <updated>2016-10-10T15:15:32.941Z</updated>
+    <updated>2016-10-11T08:55:07.428Z</updated>
     
     <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><hr>
 <h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><ul>
@@ -666,7 +705,7 @@
       <category term="booknote" scheme="http://yoursite.com/categories/booknote/"/>
     
     
-      <category term="安卓开发艺术探索" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2/"/>
+      <category term="安卓开发艺术探索笔记" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
