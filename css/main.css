@@ -1549,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3b95cc;
+  background: #ffffcd;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2521,7 +2521,7 @@ body {
   }
 }
 body {
-  background-image: url("/images/meitu5.jpg");
+  background-image: url("/images/meitu52.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
