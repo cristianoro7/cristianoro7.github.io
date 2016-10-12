@@ -38,7 +38,8 @@
     <entry>
       <title><![CDATA[安卓开发艺术探索-View的事件体系-笔记]]></title>
       <url>http://yoursite.com/2016/10/10/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<h4 id="第三章：View的事件体系"><a href="#第三章：View的事件体系" class="headerlink" title="第三章：View的事件体系"></a>第三章：View的事件体系</h4><h5 id="View的位置参数："><a href="#View的位置参数：" class="headerlink" title="View的位置参数："></a>View的位置参数：</h5><ul>
+      <content type="html"><![CDATA[<h4 id="第三章：View的事件体系"><a href="#第三章：View的事件体系" class="headerlink" title="第三章：View的事件体系"></a>第三章：View的事件体系</h4><h5 id="View的位置参数："><a href="#View的位置参数：" class="headerlink" title="View的位置参数："></a>View的位置参数：</h5><a id="more"></a>
+<ul>
 <li>View的位置参数left， top， right， bottom是相对于VIew的父容器来说的，因此是一种相对坐标</li>
 <li>宽高和坐标的关系：<ul>
 <li>width = right - left</li>
@@ -49,8 +50,7 @@
 <li>left = getLeft（）</li>
 <li>right = getRight（）</li>
 <li>Top = getTop（）</li>
-<li>Bottom = 个体Bottom（）<a id="more"></a>
-</li>
+<li>Bottom = 个体Bottom（）</li>
 </ul>
 </li>
 </ul>
@@ -252,14 +252,13 @@
     <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
       <url>http://yoursite.com/2016/10/08/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
-      <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><hr>
-<h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><ul>
+      <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
+<ul>
 <li><p>ViewRoot对应的实体类是ViewRootImpl类，它时连接WindowManager和DecorView的纽带</p>
 </li>
 <li><p>View的三大流程都是通过ViewRoot完成的</p>
 </li>
 <li><p>在ActivityThread中，当Activity对象被创建后，会将DecorView添加到Window中，同时会创建ViewRootImpl对象，并将ViewImpl对象和DecorView建立关联：</p>
-<a id="more"></a>
 </li>
 </ul>
 <hr>
