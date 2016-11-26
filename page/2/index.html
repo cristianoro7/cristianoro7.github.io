@@ -379,8 +379,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/01/Volley--队列控制/" itemprop="url">
-                  Volley--队列控制
+                <a class="post-title-link" href="/2016/11/13/AsyncTask源码浅析/" itemprop="url">
+                  AsyncTask源码浅析
                 </a>
               
             
@@ -393,8 +393,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T09:45:27+08:00" content="2016-11-01">
-              2016-11-01
+            <time itemprop="dateCreated" datetime="2016-11-13T10:47:38+08:00" content="2016-11-13">
+              2016-11-13
             </time>
           </span>
 
@@ -423,8 +423,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/01/Volley--队列控制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/Volley--队列控制/" itemprop="commentsCount"></span>
+                <a href="/2016/11/13/AsyncTask源码浅析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/AsyncTask源码浅析/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -448,10 +448,10 @@
 
       
         
-          <h4 id="Volley之四个队列的配合使用"><a href="#Volley之四个队列的配合使用" class="headerlink" title="Volley之四个队列的配合使用"></a>Volley之四个队列的配合使用</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
+          <h5 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h5><ul>
+<li>概述<br>AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/01/Volley--队列控制/#more" rel="contents">
+            <a class="btn" href="/2016/11/13/AsyncTask源码浅析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -502,8 +502,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/30/Volley浅读/" itemprop="url">
-                  Volley浅读
+                <a class="post-title-link" href="/2016/11/01/Volley--网络优化和缓存/" itemprop="url">
+                  Volley--网络优化和缓存
                 </a>
               
             
@@ -516,8 +516,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-30T22:31:20+08:00" content="2016-10-30">
-              2016-10-30
+            <time itemprop="dateCreated" datetime="2016-11-01T18:34:45+08:00" content="2016-11-01">
+              2016-11-01
             </time>
           </span>
 
@@ -546,8 +546,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/30/Volley浅读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/30/Volley浅读/" itemprop="commentsCount"></span>
+                <a href="/2016/11/01/Volley--网络优化和缓存/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/Volley--网络优化和缓存/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -571,9 +571,9 @@
 
       
         
-          <h4 id="Velloy浅谈"><a href="#Velloy浅谈" class="headerlink" title="Velloy浅谈"></a>Velloy浅谈</h4>
+          <h4 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h4><p>volley的特点都大家很清楚，volley适合数据量小且通信频繁的请求，但是不适合数据量大的请求。volley有这样的特点是由其内部网络优化和缓存所决定的，这次分析其中的原理。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/30/Volley浅读/#more" rel="contents">
+            <a class="btn" href="/2016/11/01/Volley--网络优化和缓存/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -607,7 +607,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -648,7 +648,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -665,7 +665,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
