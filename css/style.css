@@ -176,7 +176,7 @@ nav .brand-logo {
 }
 html,
 body {
-  font-family: "Roboto", "sans-serif", "微软雅黑", "Helvetica Neue";
+  font-family: "Lucida Sans Typewriter", "sans-serif", "微软雅黑", "Helvetica Neue";
 }
 body {
   background-color: #f5f5f5;
@@ -515,7 +515,7 @@ article .toc-child {
 a.social-link {
   display: inline-block;
   color: #f5f5f5;
-  margin-right: 10px;
+  margin-right: 30px;
 }
 a.social-link:hover {
   color: #e0e0e0;
@@ -617,7 +617,7 @@ a.social-link:hover {
   padding-left: 1em;
 }
 .toc .section {
-  margin: 2px 0;
+  margin: 2px 27px;
   padding-top: 0;
   padding-bottom: 0;
 }
