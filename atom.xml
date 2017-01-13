@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-13T08:12:37.537Z</updated>
+  <updated>2017-01-13T08:26:21.892Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>MD简单的设计规范</title>
     <link href="http://yoursite.com/2017/01/13/MD%E7%AE%80%E5%8D%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/"/>
     <id>http://yoursite.com/2017/01/13/MD简单的设计规范/</id>
-    <published>2017-01-13T08:12:37.545Z</published>
-    <updated>2017-01-13T08:12:37.537Z</updated>
+    <published>2017-01-13T08:26:21.908Z</published>
+    <updated>2017-01-13T08:26:21.892Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7VG9DQVluOFJ4Tnc/materialdesign_principles_metaphor.png" alt=""><br><a id="more"></a></p>
 <h3 id="styles规范"><a href="#styles规范" class="headerlink" title="styles规范"></a>styles规范</h3><h5 id="配色方案"><a href="#配色方案" class="headerlink" title="配色方案"></a>配色方案</h5><ul>
@@ -90,7 +90,7 @@
 <li>Navigation drawer例子</li>
 <li>水平布局:</li>
 </ul>
-<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3dGpKcTA5VlpLN28/layout_metrics_keyline_mobile14.png" alt=""></p>
+<p><img src="http://image.xlgps.com/upload/6/7e/67e5abaf6fc4ba80830f9e0f6a00f9cc_thumb.png" alt=""></p>
 <ul>
 <li>垂直布局</li>
 </ul>
@@ -110,6 +110,9 @@
 </ul>
 <p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7eEVhSW1nVjBrZnM/layout_metrics_touchtarget1.png" alt=""></p>
 <p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7dlN4cEMwWm9Tc28/layout_metrics_touchtarget3.png" alt=""></p>
+<blockquote>
+<p>参考资料: <a href="https://material.io/guidelines/motion/material-motion.html#material-motion-how-does-material-move" target="_blank" rel="external">https://material.io/guidelines/motion/material-motion.html#material-motion-how-does-material-move</a></p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
