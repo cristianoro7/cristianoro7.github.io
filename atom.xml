@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-13T07:58:41.157Z</updated>
+  <updated>2017-01-13T08:12:37.537Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,15 +19,15 @@
     <title>MD简单的设计规范</title>
     <link href="http://yoursite.com/2017/01/13/MD%E7%AE%80%E5%8D%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/"/>
     <id>http://yoursite.com/2017/01/13/MD简单的设计规范/</id>
-    <published>2017-01-13T08:04:54.533Z</published>
-    <updated>2017-01-13T07:58:41.157Z</updated>
+    <published>2017-01-13T08:12:37.545Z</published>
+    <updated>2017-01-13T08:12:37.537Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="styles规范"><a href="#styles规范" class="headerlink" title="styles规范"></a>styles规范</h4><h5 id="配色方案"><a href="#配色方案" class="headerlink" title="配色方案"></a>配色方案</h5><ul>
+    <content type="html"><![CDATA[<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7VG9DQVluOFJ4Tnc/materialdesign_principles_metaphor.png" alt=""><br><a id="more"></a></p>
+<h3 id="styles规范"><a href="#styles规范" class="headerlink" title="styles规范"></a>styles规范</h3><h5 id="配色方案"><a href="#配色方案" class="headerlink" title="配色方案"></a>配色方案</h5><ul>
 <li>根据MD的调色板,在选择适合你应用风格的配色板,选择你的应用主要的颜色,一般选三种,还有加一种强调色。</li>
 <li>例如:</li>
 </ul>
 <p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3eHpqenBOaGxjRTA/style_color_colorscheme_palette1.png" alt=""></p>
-<a id="more"></a>
 <ul>
 <li>上图的配色方案中,选择了紫色作为应用的主色调(饱和度不同的三种紫色), 一种绿色作为强调色</li>
 </ul>
@@ -53,7 +53,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><h5 id="基线与间隔"><a href="#基线与间隔" class="headerlink" title="基线与间隔:"></a>基线与间隔:</h5><ul>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><h5 id="基线与间隔"><a href="#基线与间隔" class="headerlink" title="基线与间隔:"></a>基线与间隔:</h5><ul>
 <li>列表类型例子:</li>
 </ul>
 <p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQseWRUbzJuUnpkNHM/layout_metrics_keyline_mobile2.png" alt=""></p>
@@ -114,11 +114,7 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;styles规范&quot;&gt;&lt;a href=&quot;#styles规范&quot; class=&quot;headerlink&quot; title=&quot;styles规范&quot;&gt;&lt;/a&gt;styles规范&lt;/h4&gt;&lt;h5 id=&quot;配色方案&quot;&gt;&lt;a href=&quot;#配色方案&quot; class=&quot;headerlink&quot; title=&quot;配色方案&quot;&gt;&lt;/a&gt;配色方案&lt;/h5&gt;&lt;ul&gt;
-&lt;li&gt;根据MD的调色板,在选择适合你应用风格的配色板,选择你的应用主要的颜色,一般选三种,还有加一种强调色。&lt;/li&gt;
-&lt;li&gt;例如:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3eHpqenBOaGxjRTA/style_color_colorscheme_palette1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7VG9DQVluOFJ4Tnc/materialdesign_principles_metaphor.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
     
     </summary>
     
@@ -619,6 +615,32 @@
   </entry>
   
   <entry>
+    <title>3月9日</title>
+    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
+    <id>http://yoursite.com/2017/01/13/3月9日/</id>
+    <published>2017-01-13T04:43:01.259Z</published>
+    <updated>2016-10-14T00:33:35.168Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
+    
+    </summary>
+    
+      <category term="music" scheme="http://yoursite.com/categories/music/"/>
+    
+    
+      <category term="music" scheme="http://yoursite.com/tags/music/"/>
+    
+  </entry>
+  
+  <entry>
     <title>安卓开发艺术探索-View的工作原理（一）-笔记</title>
     <link href="http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
     <id>http://yoursite.com/2017/01/13/安卓开发艺术探索-第四章笔记(一)/</id>
@@ -870,32 +892,6 @@
     
     
       <category term="安卓开发艺术探索笔记" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3月9日</title>
-    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
-    <id>http://yoursite.com/2017/01/13/3月9日/</id>
-    <published>2017-01-13T04:43:01.259Z</published>
-    <updated>2016-10-14T00:33:35.168Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
-    
-    </summary>
-    
-      <category term="music" scheme="http://yoursite.com/categories/music/"/>
-    
-    
-      <category term="music" scheme="http://yoursite.com/tags/music/"/>
     
   </entry>
   
