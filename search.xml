@@ -4,6 +4,100 @@
   
     
     <entry>
+      <title><![CDATA[MD简单的设计规范]]></title>
+      <url>http://yoursite.com/2017/01/13/MD%E7%AE%80%E5%8D%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/</url>
+      <content type="html"><![CDATA[<h4 id="styles规范"><a href="#styles规范" class="headerlink" title="styles规范"></a>styles规范</h4><h5 id="配色方案"><a href="#配色方案" class="headerlink" title="配色方案"></a>配色方案</h5><ul>
+<li>根据MD的调色板,在选择适合你应用风格的配色板,选择你的应用主要的颜色,一般选三种,还有加一种强调色。</li>
+<li>例如:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3eHpqenBOaGxjRTA/style_color_colorscheme_palette1.png" alt=""></p>
+<a id="more"></a>
+<ul>
+<li>上图的配色方案中,选择了紫色作为应用的主色调(饱和度不同的三种紫色), 一种绿色作为强调色</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3VjVncGdNZ2RKUzQ/style_color_colorscheme_palette1_example.png" alt=""></p>
+<ul>
+<li>关于配色中的主色调: 该色调应该被广泛的应用来你的app中</li>
+<li>关于配色中的强调色: 该色调应该用来fab等交互式的元素中, 例如: 文本域, 游标, 进度条, 链接等元素, 其作用是用来突出交互 </li>
+</ul>
+<h5 id="文字颜色和背景颜色的协调"><a href="#文字颜色和背景颜色的协调" class="headerlink" title="文字颜色和背景颜色的协调"></a>文字颜色和背景颜色的协调</h5><ul>
+<li>文字的不透明值应该根据北京颜色是亮色还是暗色来调节</li>
+<li><p>黑字亮色背景:</p>
+<ul>
+<li>最重要的文字不透明度87%</li>
+<li>第二重要的文字不透明度54%</li>
+<li>一些提示性的文本(editText的提示, 标签)的不透明度38%</li>
+</ul>
+</li>
+<li><p>白字暗色背景</p>
+<ul>
+<li>最重要的文字不透明度100%</li>
+<li>第二重要的文字不透明度70%</li>
+<li>一些提示性的文本(editText的提示, 标签)的不透明度50%</li>
+</ul>
+</li>
+</ul>
+<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><h5 id="基线与间隔"><a href="#基线与间隔" class="headerlink" title="基线与间隔:"></a>基线与间隔:</h5><ul>
+<li>列表类型例子:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQseWRUbzJuUnpkNHM/layout_metrics_keyline_mobile2.png" alt=""></p>
+<ul>
+<li>水平布局的基线和间距</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQsWFRSRjhiV2t2WEE/layout_metrics_keyline_mobile3.png" alt=""></p>
+<ul>
+<li>垂直布局:其中</li>
+</ul>
+<p>1.Status bar: 24dp<br>2.Toolbar: 56dp<br>3.Subtitle: 48dp<br>4.List item: 72dp</p>
+<ul>
+<li>水平布局:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQsMldpS1Bzc2R0NVk/layout_metrics_keyline_mobile5.png" alt=""></p>
+<ul>
+<li>垂直布局:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQsUXV2Z1gwVjdFS0E/layout_metrics_keyline_mobile6.png" alt=""></p>
+<p>Status bar: 24dp<br>Toolbar: 56dp<br>Title and list items: 72dp<br>Subtitle: 48dp<br>Space between content areas: 8dp</p>
+<ul>
+<li>详细布局类型例子:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQsNVlYYkdnMktUVmc/layout_metrics_keyline_mobile8.png" alt=""></p>
+<ul>
+<li>水平布局</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B6Okdz75tqQsN0hFU2wxOHNNU3M/layout_metrics_keyline_mobile9.png" alt=""></p>
+<ul>
+<li>垂直布局:其中</li>
+</ul>
+<p>1.Status bar: 24dp<br>2.Toolbar: 56dp<br>3.Space between content areas: 8dp<br>4.List item: 72dp</p>
+<ul>
+<li>Navigation drawer例子</li>
+<li>水平布局:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3dGpKcTA5VlpLN28/layout_metrics_keyline_mobile14.png" alt=""></p>
+<ul>
+<li>垂直布局</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bzhp5Z4wHba3a2M3SVNnRWlWUFE/layout_metrics_keyline_mobile15.png" alt=""></p>
+<p>1.Account menu and list items: 48dp<br>2.Space between content areas: 8dp<br>3.Navigation right margin: 56dp</p>
+<h5 id="比例边框"><a href="#比例边框" class="headerlink" title="比例边框"></a>比例边框</h5><ul>
+<li>比例推荐:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7ZjBCVzdPOENpT28/layout_metrics_ratiokeylines1.png" alt=""></p>
+<ul>
+<li>例子:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0B9msDEx00QXmR1RZZndvR2lNUDQ/layout_metrics_ratiokeylines2.png" alt=""></p>
+<h5 id="可触摸空间的大小"><a href="#可触摸空间的大小" class="headerlink" title="可触摸空间的大小"></a>可触摸空间的大小</h5><ul>
+<li>大小: 最少48 * 48 dp, 大多数情况下可触摸空间之间的间隔要大于8dp</li>
+<li>例子:</li>
+</ul>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7eEVhSW1nVjBrZnM/layout_metrics_touchtarget1.png" alt=""></p>
+<p><img src="https://storage.googleapis.com/material-design/publish/material_v_10/assets/0Bx4BSt6jniD7dlN4cEMwWm9Tc28/layout_metrics_touchtarget3.png" alt=""></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[universal-image-loader缓存策略]]></title>
       <url>http://yoursite.com/2017/01/13/universal-image-loader%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/</url>
       <content type="html"><![CDATA[<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略<br><a id="more"></a></p>
@@ -407,15 +501,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[3月9日]]></title>
-      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
       <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
@@ -652,6 +737,15 @@
 <p>以上的笔记来源于安卓开发艺术探索</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[3月9日]]></title>
+      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
