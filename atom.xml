@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-29T13:19:08.890Z</updated>
+  <updated>2017-01-29T13:20:10.600Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>Picasso基本用法及源码浅析</title>
     <link href="http://yoursite.com/2017/01/29/Picasso%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%8F%8A%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/"/>
     <id>http://yoursite.com/2017/01/29/Picasso基本用法及源码浅析/</id>
-    <published>2017-01-29T13:19:08.890Z</published>
-    <updated>2017-01-29T13:19:08.890Z</updated>
+    <published>2017-01-29T13:20:10.600Z</published>
+    <updated>2017-01-29T13:20:10.600Z</updated>
     
     <content type="html"><![CDATA[<h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><h4 id="加载图片："><a href="#加载图片：" class="headerlink" title="加载图片："></a>加载图片：</h4><ul>
 <li><p>picasso支持从Resource，MediaStore，content，contacts，url 加载图片。</p>
@@ -219,8 +219,8 @@
     <title>Picasso中值得学习的技巧</title>
     <link href="http://yoursite.com/2017/01/29/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/"/>
     <id>http://yoursite.com/2017/01/29/Picasso中值得学习的技巧/</id>
-    <published>2017-01-29T13:12:15.699Z</published>
-    <updated>2017-01-29T13:12:15.699Z</updated>
+    <published>2017-01-29T13:20:08.696Z</published>
+    <updated>2017-01-29T13:20:08.696Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Picasso中的线程池"><a href="#Picasso中的线程池" class="headerlink" title="Picasso中的线程池"></a>Picasso中的线程池</h4><ul>
 <li>Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。</li>
@@ -1031,6 +1031,32 @@
   </entry>
   
   <entry>
+    <title>3月9日</title>
+    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
+    <id>http://yoursite.com/2017/01/13/3月9日/</id>
+    <published>2017-01-13T04:43:01.259Z</published>
+    <updated>2016-10-14T00:33:35.168Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
+    
+    </summary>
+    
+      <category term="music" scheme="http://yoursite.com/categories/music/"/>
+    
+    
+      <category term="music" scheme="http://yoursite.com/tags/music/"/>
+    
+  </entry>
+  
+  <entry>
     <title>安卓开发艺术探索-View的工作原理（一）-笔记</title>
     <link href="http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
     <id>http://yoursite.com/2017/01/13/安卓开发艺术探索-第四章笔记(一)/</id>
@@ -1282,32 +1308,6 @@
     
     
       <category term="安卓开发艺术探索笔记" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3月9日</title>
-    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
-    <id>http://yoursite.com/2017/01/13/3月9日/</id>
-    <published>2017-01-13T04:43:01.259Z</published>
-    <updated>2016-10-14T00:33:35.168Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
-    
-    </summary>
-    
-      <category term="music" scheme="http://yoursite.com/categories/music/"/>
-    
-    
-      <category term="music" scheme="http://yoursite.com/tags/music/"/>
     
   </entry>
   
