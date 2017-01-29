@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-01-29T13:44:06.949Z"><a href="/2017/01/29/Picasso基本用法及源码浅析/">2017-01-29</a></time>
+            <time class="pink-link-context" datetime="2017-01-29T13:51:01.645Z"><a href="/2017/01/29/Picasso基本用法及源码浅析/">2017-01-29</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -313,11 +313,21 @@
 <li>如果不存直接创建UrlConnectionDownloader下载器</li>
 </ul>
 <h5 id="内存缓存器"><a href="#内存缓存器" class="headerlink" title="内存缓存器"></a>内存缓存器</h5><ul>
-<li>内存内存缓存器使用的是Lru,最大的缓存大小是堆内存的最大数的7分之一<h5 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h5></li>
-<li>线程池中根据网络状态动态调整了线程数量,以及包装了一个FutureTask来进行实现优先级的比较<h5 id="请求转换器"><a href="#请求转换器" class="headerlink" title="请求转换器"></a>请求转换器</h5></li>
-<li>Picasso里面并没有进行特殊的请求转换,只是原封不动返回了一个请求<h5 id="状态管理器"><a href="#状态管理器" class="headerlink" title="状态管理器"></a>状态管理器</h5></li>
-<li>对Picasso运转的情况做了记录,便于当发生oom时,打印出Picasso的运行情况<h5 id="分发器"><a href="#分发器" class="headerlink" title="分发器"></a>分发器</h5></li>
-<li>上面几个’器’最终都是在分发器中被其指挥调度<h5 id="Picasso实例"><a href="#Picasso实例" class="headerlink" title="Picasso实例"></a>Picasso实例</h5></li>
+<li>内存内存缓存器使用的是Lru,最大的缓存大小是堆内存的最大数的7分之一</li>
+</ul>
+<h5 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h5><ul>
+<li>线程池中根据网络状态动态调整了线程数量,以及包装了一个FutureTask来进行实现优先级的比较</li>
+</ul>
+<h5 id="请求转换器"><a href="#请求转换器" class="headerlink" title="请求转换器"></a>请求转换器</h5><ul>
+<li>Picasso里面并没有进行特殊的请求转换,只是原封不动返回了一个请求</li>
+</ul>
+<h5 id="状态管理器"><a href="#状态管理器" class="headerlink" title="状态管理器"></a>状态管理器</h5><ul>
+<li>对Picasso运转的情况做了记录,便于当发生oom时,打印出Picasso的运行情况</li>
+</ul>
+<h5 id="分发器"><a href="#分发器" class="headerlink" title="分发器"></a>分发器</h5><ul>
+<li>上面几个’器’最终都是在分发器中被其指挥调度</li>
+</ul>
+<h5 id="Picasso实例"><a href="#Picasso实例" class="headerlink" title="Picasso实例"></a>Picasso实例</h5><ul>
 <li>分发器指挥调度各个’器’去工作.那么分发器什么时候进行调度? 发送这个命令是就是Picasso, Picasso-&gt;Dispatcher-&gt;各个’器’</li>
 </ul>
 <h4 id="调用load方法创建RequestCreator"><a href="#调用load方法创建RequestCreator" class="headerlink" title="调用load方法创建RequestCreator"></a>调用load方法创建RequestCreator</h4><ul>

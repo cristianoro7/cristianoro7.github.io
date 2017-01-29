@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-01-29T13:44:04.942Z"><a href="/2017/01/29/Picasso中值得学习的技巧/">2017-01-29</a></time>
+            <time class="pink-link-context" datetime="2017-01-29T13:49:56.850Z"><a href="/2017/01/29/Picasso中值得学习的技巧/">2017-01-29</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -340,14 +340,16 @@
 <li>值得注意的是,当图片正在加载和暂停加载图片时,Picasso会持有tag,如果我们设置的tag是Activity或者Fragment的话,如果不Activity或者Fragment销毁时,如果不取消tag的话,就会造成内存泄露。</li>
 <li>总结:<ul>
 <li>如果我们要设置tag的话,最好就是设置为Activity或者Fragment,因为系统管理了它们的声明周期,我们只要跟随它们的生命周期来调用暂停、恢复、取消操作就行。</li>
-<li>在Activity或者Fragment暂停时,应当调用pauseTag,位于前台的时候再resumeTag,当Activity或者Fragment销毁时调用cancelTag释放持有的tag对象等一系列操作。<h4 id="Picasso中对不同类型的请求的处理"><a href="#Picasso中对不同类型的请求的处理" class="headerlink" title="Picasso中对不同类型的请求的处理"></a>Picasso中对不同类型的请求的处理</h4></li>
+<li>在Activity或者Fragment暂停时,应当调用pauseTag,位于前台的时候再resumeTag,当Activity或者Fragment销毁时调用cancelTag释放持有的tag对象等一系列操作。</li>
 </ul>
 </li>
+</ul>
+<h4 id="Picasso中对不同类型的请求的处理"><a href="#Picasso中对不同类型的请求的处理" class="headerlink" title="Picasso中对不同类型的请求的处理"></a>Picasso中对不同类型的请求的处理</h4><ul>
 <li>我们知道Picasso不仅支持从网络上加载图片,还支持从Drawable,Asset,File等中加载图片。</li>
-<li><p>那么Picasso是如何处理?</p>
-<h5 id="定义基类RequestHandler"><a href="#定义基类RequestHandler" class="headerlink" title="定义基类RequestHandler"></a>定义基类RequestHandler</h5></li>
-<li><p>Picasso中定义了抽象类RequestHandler,也就是请求处理器来。在请求处理器中,定义了canHandleRequest(Request data)方法让子类实现,同时也定义了loadload(Request request, int networkPolicy)让子类实现。</p>
-</li>
+<li>那么Picasso是如何处理?</li>
+</ul>
+<h5 id="定义基类RequestHandler"><a href="#定义基类RequestHandler" class="headerlink" title="定义基类RequestHandler"></a>定义基类RequestHandler</h5><ul>
+<li>Picasso中定义了抽象类RequestHandler,也就是请求处理器来。在请求处理器中,定义了canHandleRequest(Request data)方法让子类实现,同时也定义了loadload(Request request, int networkPolicy)让子类实现。</li>
 <li><p>请求处理器派生而来的有七种处理器,这里只分析网络请求处理器,主要分析<code>canHandleRequest(Request data)</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canHandleRequest</span><span class="params">(Request data)</span> </span>&#123;</div><div class="line">    String scheme = data.uri.getScheme();</div><div class="line">    <span class="keyword">return</span> (SCHEME_HTTP.equals(scheme) || SCHEME_HTTPS.equals(scheme));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>
