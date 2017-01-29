@@ -18,10 +18,8 @@
 <li><p>如果加载得到的Bitmap的大小不符合我们设置的ImageView的大小，我们可以调用以下代码来调整：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Picasso.with(<span class="keyword">this</span>)</div><div class="line">                .load(uri)</div><div class="line">                .fit()</div><div class="line">                .into(mImageView);</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>与fit()相似的是resize（int，int），两者都可以调整图片的大小，但是fit()只能用在ImageView上。需要注意的是两者不能同时使用。</li>
+<li><p>与fit()相似的是resize（int，int），两者都可以调整图片的大小，但是fit()只能用在ImageView上。需要注意的是两者不能同时使用。</p>
+</li>
 <li>我们还可以制定ImageView的模式<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Picasso.with(<span class="keyword">this</span>)</div><div class="line">                .load(R.drawable.cangjinyou)</div><div class="line">                .resize(<span class="number">150</span>, <span class="number">150</span>)</div><div class="line">                .centerCrop()</div><div class="line">                .into(mImageView);</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -182,12 +180,11 @@
 <li>Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。</li>
 </ul>
 <h5 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h5><ul>
-<li>首先在Picasso中,定义了一个优先级枚举类型:<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<li><p>首先在Picasso中,定义了一个优先级枚举类型:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>上面的priority就是请求优先级的类型。</li>
+<li><p>上面的priority就是请求优先级的类型。</p>
+</li>
 <li><p>有了优先级,我们就可以在创建Request的时候这只设置优先等级</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Set the priority of this request.</div><div class="line">   * &lt;p&gt;</div><div class="line">   * This will affect the order in which the requests execute but does not guarantee it.</div><div class="line">   * By default, all requests have &#123;<span class="doctag">@link</span> Priority#NORMAL&#125; priority, except for</div><div class="line">   * &#123;<span class="doctag">@link</span> #fetch()&#125; requests, which have &#123;<span class="doctag">@link</span> Priority#LOW&#125; priority by default.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> RequestCreator <span class="title">priority</span><span class="params">(Priority priority)</span> </span>&#123;</div><div class="line">    data.priority(priority);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>

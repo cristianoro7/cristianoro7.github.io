@@ -155,16 +155,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/android/">
-                    android <span class="right">9 篇</span></a>
+                <a class="no-padding" href="/categories/music/">
+                    music <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/music/">
-                    music <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/android/">
+                    android <span class="right">9 篇</span></a>
                 </a>
             </li>
 
@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-01-29T13:20:10.600Z"><a href="/2017/01/29/Picasso基本用法及源码浅析/">2017-01-29</a></time>
+            <time class="pink-link-context" datetime="2017-01-29T13:44:06.949Z"><a href="/2017/01/29/Picasso基本用法及源码浅析/">2017-01-29</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -271,10 +271,8 @@
 <li><p>如果加载得到的Bitmap的大小不符合我们设置的ImageView的大小，我们可以调用以下代码来调整：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Picasso.with(<span class="keyword">this</span>)</div><div class="line">                .load(uri)</div><div class="line">                .fit()</div><div class="line">                .into(mImageView);</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>与fit()相似的是resize（int，int），两者都可以调整图片的大小，但是fit()只能用在ImageView上。需要注意的是两者不能同时使用。</li>
+<li><p>与fit()相似的是resize（int，int），两者都可以调整图片的大小，但是fit()只能用在ImageView上。需要注意的是两者不能同时使用。</p>
+</li>
 <li>我们还可以制定ImageView的模式<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Picasso.with(<span class="keyword">this</span>)</div><div class="line">                .load(R.drawable.cangjinyou)</div><div class="line">                .resize(<span class="number">150</span>, <span class="number">150</span>)</div><div class="line">                .centerCrop()</div><div class="line">                .into(mImageView);</div></pre></td></tr></table></figure>
 </li>
 </ul>
