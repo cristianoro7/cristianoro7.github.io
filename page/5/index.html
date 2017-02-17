@@ -163,14 +163,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/design/">
-                    design <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/android/">
                     android <span class="right">9 篇</span></a>
                 </a>
@@ -179,8 +171,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/design/">
+                    design <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/booknote/">
-                    booknote <span class="right">4 篇</span></a>
+                    booknote <span class="right">7 篇</span></a>
                 </a>
             </li>
 
@@ -256,18 +256,18 @@
             <div class="article-title">
                 
     
-        <h1 class="blue-link-context"><a href="/2017/01/13/Volley--网络优化和缓存/">Volley--网络优化和缓存</a></h1>
+        <h1 class="blue-link-context"><a href="/2017/01/13/universal-image-loader内存缓存策略/">universal-image-loader缓存策略</a></h1>
     
 
 
             </div>
 
-            <time class="pink-link-context" datetime="2017-01-13T04:43:01.315Z"><a href="/2017/01/13/Volley--网络优化和缓存/">2017-01-13</a></time>
+            <time class="pink-link-context" datetime="2017-01-13T04:43:01.347Z"><a href="/2017/01/13/universal-image-loader内存缓存策略/">2017-01-13</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/网络框架-Volley/" class="chip pink lighten-1">网络框架#Volley</a>
+            <a href="/tags/图片加载框架-universal-image-loader/" class="chip pink lighten-1">图片加载框架#universal-image-loader</a>
         
     </div>
 
@@ -275,14 +275,14 @@
 
             
                 <div class="entry pink-link-context">
-                    <h4 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h4><p>volley的特点都大家很清楚，volley适合数据量小且通信频繁的请求，但是不适合数据量大的请求。volley有这样的特点是由其内部网络优化和缓存所决定的，这次分析其中的原理。<br>
+                    <h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略<br>
                 </div>
             
         </div>
 
         
         <div class="card-action pink-link-context">
-            <a href="/2017/01/13/Volley--网络优化和缓存/">阅读全文</a>
+            <a href="/2017/01/13/universal-image-loader内存缓存策略/">阅读全文</a>
         </ div>
         
     </div>
@@ -295,18 +295,18 @@
             <div class="article-title">
                 
     
-        <h1 class="blue-link-context"><a href="/2017/01/13/AsyncTask源码浅析/">AsyncTask源码浅析</a></h1>
+        <h1 class="blue-link-context"><a href="/2017/01/13/universal-image-loader源码浅析/">universal-image-loader源码浅读</a></h1>
     
 
 
             </div>
 
-            <time class="pink-link-context" datetime="2017-01-13T04:43:01.299Z"><a href="/2017/01/13/AsyncTask源码浅析/">2017-01-13</a></time>
+            <time class="pink-link-context" datetime="2017-01-13T04:43:01.335Z"><a href="/2017/01/13/universal-image-loader源码浅析/">2017-01-13</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/异步框架-AsyncTask/" class="chip pink lighten-1">异步框架#AsyncTask</a>
+            <a href="/tags/图片加载框架-universal-image-loader/" class="chip pink lighten-1">图片加载框架#universal-image-loader</a>
         
     </div>
 
@@ -314,15 +314,18 @@
 
             
                 <div class="entry pink-link-context">
-                    <h5 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h5><ul>
-<li>概述<br>AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
+                    <h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>UIL是一款经典的图片加载框架，该类库的设计运用了多种设计模式，使得它的可拓展性增加，比如缓存的策略，如果默认的缓存策略不能够满足你的需求的话，你完全可以自己定制自己的缓存策略。</li>
+<li>使用者不必关心加载图片时会发生OOM，其中发生的概率还是很小的，因为类库中对图片进行了三级缓存，其中的内存缓存使用了双级缓存（强引用和弱引用）。</li>
+<li>库中考虑到用户可能会使用ListView，GridView或者RecyclerView来展示图片，因此在库中提供了一个PauseOnScrollListener来控制滑动时是否要加载图片。</li>
+<li>这次，简单来分析类库的使用流程
                 </div>
             
         </div>
 
         
         <div class="card-action pink-link-context">
-            <a href="/2017/01/13/AsyncTask源码浅析/">阅读全文</a>
+            <a href="/2017/01/13/universal-image-loader源码浅析/">阅读全文</a>
         </ div>
         
     </div>
@@ -351,6 +354,8 @@
         <li class="waves-effect"><a href="/page/7">7</a></li>
     
         <li class="waves-effect"><a href="/page/8">8</a></li>
+    
+        <li class="waves-effect"><a href="/page/9">9</a></li>
     
     
     <li class="">
