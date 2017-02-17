@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-17T12:53:10.611Z</updated>
+  <updated>2017-02-17T12:59:22.706Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,10 +19,10 @@
     <title>图解HTTP-返回结果的状态码-笔记</title>
     <link href="http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81-%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/02/17/图解HTTP-返回结果的状态码-笔记/</id>
-    <published>2017-02-17T12:53:10.611Z</published>
-    <updated>2017-02-17T12:53:10.611Z</updated>
+    <published>2017-02-17T12:59:22.706Z</published>
+    <updated>2017-02-17T12:59:22.706Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="状态码类别："><a href="#状态码类别：" class="headerlink" title="状态码类别："></a>状态码类别：</h4><p>类别    原因短语<br>1XX    Informational(信息性状态码)    接收的请求正在处理<br>2XX    Success(成功状态码)    请求正常处理完毕<br>3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求<br>4XX    Client Error(客户端错误状态码)    服务器无法处理请求<br>5XX    Server Error(服务器错误状态码)    服务器处理请求出错</p>
+    <content type="html"><![CDATA[<h4 id="状态码类别："><a href="#状态码类别：" class="headerlink" title="状态码类别："></a>状态码类别：</h4><p>类别    原因短语<br>1XX    Informational(信息性状态码)    接收的请求正在处理<br>2XX    Success(成功状态码)    请求正常处理完毕<br>3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求<br>4XX    Client Error(客户端错误状态码)    服务器无法处理请求<br>5XX    Server Error(服务器错误状态码)    服务器处理请求出错<br><a id="more"></a></p>
 <h5 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h5><ul>
 <li>200 OK：表示客户端的请求被服务器成功处理</li>
 <li><p>204 No Content：该状态码代表服务器接收的请求已成功处理,但在返回的响应报文中不含实体的主体部分。另外,也不允许返回任何实体的主体。比如,当从浏览器发出请求处理后,返回 204 响应,那么浏览器显示的页面不发生更新。</p>
@@ -66,7 +66,7 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;状态码类别：&quot;&gt;&lt;a href=&quot;#状态码类别：&quot; class=&quot;headerlink&quot; title=&quot;状态码类别：&quot;&gt;&lt;/a&gt;状态码类别：&lt;/h4&gt;&lt;p&gt;类别    原因短语&lt;br&gt;1XX    Informational(信息性状态码)    接收的请求正在处
+      &lt;h4 id=&quot;状态码类别：&quot;&gt;&lt;a href=&quot;#状态码类别：&quot; class=&quot;headerlink&quot; title=&quot;状态码类别：&quot;&gt;&lt;/a&gt;状态码类别：&lt;/h4&gt;&lt;p&gt;类别    原因短语&lt;br&gt;1XX    Informational(信息性状态码)    接收的请求正在处理&lt;br&gt;2XX    Success(成功状态码)    请求正常处理完毕&lt;br&gt;3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求&lt;br&gt;4XX    Client Error(客户端错误状态码)    服务器无法处理请求&lt;br&gt;5XX    Server Error(服务器错误状态码)    服务器处理请求出错&lt;br&gt;
     
     </summary>
     
@@ -81,8 +81,8 @@
     <title>图解HTTP-报文信息-笔记</title>
     <link href="http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/02/17/图解HTTP-报文信息-笔记/</id>
-    <published>2017-02-17T12:52:23.182Z</published>
-    <updated>2017-02-17T12:52:23.182Z</updated>
+    <published>2017-02-17T12:58:34.814Z</published>
+    <updated>2017-02-17T12:58:34.814Z</updated>
     
     <content type="html"><![CDATA[<h3 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h3><h4 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h4><ul>
 <li>用于HTTP协议交互的信息被称为报文</li>
@@ -90,7 +90,8 @@
 <li>相应端（服务器端）的HTTP报文称为响应报文</li>
 <li>HTTP报文分为报文首部和报文主体（不一定有报文主体）</li>
 </ul>
-<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 报文信息01.jpg" alt=""><br><a id="more"></a></p>
+<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 报文信息01.jpg" alt=""></p>
+<a id="more"></a>
 <h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4><h5 id="请求报文和响应报文结构："><a href="#请求报文和响应报文结构：" class="headerlink" title="请求报文和响应报文结构："></a>请求报文和响应报文结构：</h5><p><img src="/uploads/图解HTTP/报文信息02.jpg" alt=""></p>
 <h5 id="响应的实例"><a href="#响应的实例" class="headerlink" title="响应的实例"></a>响应的实例</h5><p><img src="/uploads/图解HTTP/报文信息03.jpg" alt=""></p>
 <h4 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h4><ul>
@@ -155,7 +156,7 @@
 &lt;li&gt;相应端（服务器端）的HTTP报文称为响应报文&lt;/li&gt;
 &lt;li&gt;HTTP报文分为报文首部和报文主体（不一定有报文主体）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&quot;HTTP报文结构：&quot;&gt;&lt;a href=&quot;#HTTP报文结构：&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文结构：&quot;&gt;&lt;/a&gt;HTTP报文结构：&lt;/h5&gt;&lt;p&gt;&lt;img src=&quot;/uploads/图解HTTP/ 报文信息01.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;h5 id=&quot;HTTP报文结构：&quot;&gt;&lt;a href=&quot;#HTTP报文结构：&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文结构：&quot;&gt;&lt;/a&gt;HTTP报文结构：&lt;/h5&gt;&lt;p&gt;&lt;img src=&quot;/uploads/图解HTTP/ 报文信息01.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -170,8 +171,8 @@
     <title>图解HTTP-简单的HTTP协议-笔记</title>
     <link href="http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE-%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/02/17/图解HTTP-简单的HTTP协议-笔记/</id>
-    <published>2017-02-17T12:40:48.869Z</published>
-    <updated>2017-02-17T12:40:48.861Z</updated>
+    <published>2017-02-17T12:56:39.972Z</published>
+    <updated>2017-02-17T12:56:39.972Z</updated>
     
     <content type="html"><![CDATA[<h4 id="通过请求和响应来交换信息"><a href="#通过请求和响应来交换信息" class="headerlink" title="通过请求和响应来交换信息"></a>通过请求和响应来交换信息</h4><p><img src="/uploads/图解HTTP/简单的HTTP协议01.jpg" alt=""><br><a id="more"></a></p>
 <ul>
@@ -226,7 +227,7 @@
 <li>第 2 次以后(存有 Cookie 信息状态)的请求</li>
 </ul>
 <p><img src="/uploads/图解HTTP/简单的HTTP协议10.jpg" alt=""></p>
-<p>&lt;以上笔记来源于图解HTTP一书</p>
+<p>&lt; 以上笔记来源于图解HTTP一书</p>
 ]]></content>
     
     <summary type="html">
