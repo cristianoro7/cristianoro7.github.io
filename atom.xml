@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-17T14:06:13.096Z</updated>
+  <updated>2017-02-17T14:08:40.087Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,18 +19,18 @@
     <title>Picasso中值得学习的技巧</title>
     <link href="http://yoursite.com/2017/02/17/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/"/>
     <id>http://yoursite.com/2017/02/17/Picasso中值得学习的技巧/</id>
-    <published>2017-02-17T14:06:13.096Z</published>
-    <updated>2017-02-17T14:06:13.096Z</updated>
+    <published>2017-02-17T14:08:40.087Z</published>
+    <updated>2017-02-17T14:08:40.087Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Picasso中的线程池"><a href="#Picasso中的线程池" class="headerlink" title="Picasso中的线程池"></a>Picasso中的线程池</h4><ul>
 <li>Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。</li>
 </ul>
 <h5 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h5><ul>
-<li><p>首先在Picasso中,定义了一个优先级枚举类型:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>上面的priority就是请求优先级的类型。</p>
-</li>
+<li>首先在Picasso中,定义了一个优先级枚举类型:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>上面的priority就是请求优先级的类型。</li>
 <li><p>有了优先级,我们就可以在创建Request的时候这只设置优先等级</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Set the priority of this request.</div><div class="line">   * &lt;p&gt;</div><div class="line">   * This will affect the order in which the requests execute but does not guarantee it.</div><div class="line">   * By default, all requests have &#123;<span class="doctag">@link</span> Priority#NORMAL&#125; priority, except for</div><div class="line">   * &#123;<span class="doctag">@link</span> #fetch()&#125; requests, which have &#123;<span class="doctag">@link</span> Priority#LOW&#125; priority by default.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> RequestCreator <span class="title">priority</span><span class="params">(Priority priority)</span> </span>&#123;</div><div class="line">    data.priority(priority);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>
@@ -1610,6 +1610,32 @@
   </entry>
   
   <entry>
+    <title>3月9日</title>
+    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
+    <id>http://yoursite.com/2017/01/13/3月9日/</id>
+    <published>2017-01-13T04:43:01.259Z</published>
+    <updated>2016-10-14T00:33:35.168Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
+    
+    </summary>
+    
+      <category term="music" scheme="http://yoursite.com/categories/music/"/>
+    
+    
+      <category term="music" scheme="http://yoursite.com/tags/music/"/>
+    
+  </entry>
+  
+  <entry>
     <title>安卓开发艺术探索-View的工作原理（一）-笔记</title>
     <link href="http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
     <id>http://yoursite.com/2017/01/13/安卓开发艺术探索-第四章笔记(一)/</id>
@@ -1861,32 +1887,6 @@
     
     
       <category term="安卓开发艺术探索笔记" scheme="http://yoursite.com/tags/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3月9日</title>
-    <link href="http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/"/>
-    <id>http://yoursite.com/2017/01/13/3月9日/</id>
-    <published>2017-01-13T04:43:01.259Z</published>
-    <updated>2016-10-14T00:33:35.168Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日&lt;br&gt;
-    
-    </summary>
-    
-      <category term="music" scheme="http://yoursite.com/categories/music/"/>
-    
-    
-      <category term="music" scheme="http://yoursite.com/tags/music/"/>
     
   </entry>
   
