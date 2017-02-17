@@ -7,7 +7,7 @@
 
     
 
-    <title>categories | Desperado</title>
+    <title>图解HTTP-返回结果的状态码-笔记 | Desperado</title>
     <meta name="author" content="Desperado">
     
     <meta name="description" content="Do one thing every day that scares you.">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="categories"/>
+    <meta property="og:title" content="图解HTTP-返回结果的状态码-笔记"/>
     <meta property="og:site_name" content="Desperado"/>
 
     
@@ -214,6 +214,10 @@
         <span class="breadcrumb">当前位置（分类目录）</span>
         
             
+    
+    
+    <a class="breadcrumb" href="/categories/booknote/">booknote</a>
+
 
         
 
@@ -229,12 +233,12 @@
             <div class="article-title">
                 
     
-        <h1>categories</h1>
+        <h1>图解HTTP-返回结果的状态码-笔记</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2016-10-08T05:23:32.000Z"><a href="/categories/index.html">2016-10-08</a></time>
+            <time class="pink-link-context" datetime="2017-02-17T13:12:48.737Z"><a href="/2017/02/17/与HTTP协议的Web服务器/">2017-02-17</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -242,16 +246,61 @@
 </span>
 
             
+    <div class="tags-row">
+        
+            <a href="/tags/网络/" class="chip pink lighten-1">网络</a>
+        
+    </div>
+
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#与HTTP协作的Web服务器"><span class="section table-of-contents-text">与HTTP协作的Web服务器</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#通信数据转发程序-代理、网关、隧道"><span class="section table-of-contents-text">通信数据转发程序:代理、网关、隧道</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#代理"><span class="section table-of-contents-text">代理</span></a></li><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#网关"><span class="section table-of-contents-text">网关</span></a></li><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#隧道"><span class="section table-of-contents-text">隧道</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#保存资源的缓存"><span class="section table-of-contents-text">保存资源的缓存</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#缓存的有限期限"><span class="section table-of-contents-text">缓存的有限期限</span></a></li><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#客户端的缓存"><span class="section table-of-contents-text">客户端的缓存</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                
+                <h3 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h3><h4 id="通信数据转发程序-代理、网关、隧道"><a href="#通信数据转发程序-代理、网关、隧道" class="headerlink" title="通信数据转发程序:代理、网关、隧道"></a>通信数据转发程序:代理、网关、隧道</h4><ul>
+<li>在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作</li>
+<li>代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端</li>
+<li>网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉,自己的通信目标是一个网关。</li>
+<li>隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。</li>
+</ul>
+<h5 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg" alt=""></p>
+<ul>
+<li>每次通过代理服务器转发请求或响应时,会追加写入 Via 首部信息</li>
+<li>利用代理的作用:<ul>
+<li>利用缓存技术减少宽带流量</li>
+<li>对特定网站的控制访问,以获取访问日志为主要目的</li>
+</ul>
+</li>
+<li>代理的分类:<ul>
+<li>缓存代理(Caching Proxy):代理转发响应时,缓存代理(Caching Proxy)会预先将资源的副本(缓存)保存在代理服务器上。</li>
+<li>透明代理:转发请求或响应时,不对报文做任何加工的代理类型被称为透明代理(TransparentProxy)。反之,对报文内容进行加工的代理被称为非透明代理。</li>
+</ul>
+</li>
+</ul>
+<h5 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器02.jpg" alt=""></p>
+<ul>
+<li>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非 HTTP 协议服务。</li>
+<li>利用网关能提高通信的安全性,因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。比如,网关可以连接数据库,使用SQL 语句查询数据。另外,在 Web 购物网站上进行信用卡结算时,网关可以和信用卡结算系统联动。</li>
+</ul>
+<h5 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h5><ul>
+<li>隧道可按要求建立起一条与其他服务器的通信线路,届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。</li>
+</ul>
+<h4 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a>保存资源的缓存</h4><ul>
+<li>利用缓存技术可以减少对服务器的访问,以及通信流量和通信时间。</li>
+</ul>
+<h5 id="缓存的有限期限"><a href="#缓存的有限期限" class="headerlink" title="缓存的有限期限"></a>缓存的有限期限</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器03.jpg" alt=""></p>
+<h5 id="客户端的缓存"><a href="#客户端的缓存" class="headerlink" title="客户端的缓存"></a>客户端的缓存</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器04.jpg" alt=""></p>
+
                 
 
+
+<p class="pink-link-context">
+    <a href="/2017/02/17/图解HTTP-报文信息-笔记/" rel="next" title="图解HTTP-报文信息-笔记">
+    下一篇：图解HTTP-报文信息-笔记
+  </a>
+</p>
 
 
             </div>
@@ -262,6 +311,33 @@
 
 
 
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2017/02/17/与HTTP协议的Web服务器/" data-title="图解HTTP-返回结果的状态码-笔记" data-url="http://yoursite.com/2017/02/17/与HTTP协议的Web服务器/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'Desperado'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
 
 
 
