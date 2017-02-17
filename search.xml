@@ -4,6 +4,203 @@
   
     
     <entry>
+      <title><![CDATA[图解HTTP-确认访问用户的身份-笔记]]></title>
+      <url>http://yoursite.com/2017/02/17/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<p>﻿### HTTP使用的认证方式</p>
+<ul>
+<li>BASIC认证(基本认证)</li>
+<li>DIGEST(摘要认证)</li>
+<li>SSL客户端认证</li>
+<li>FormBase认证(基于表单认证)</li>
+</ul>
+<h4 id="BASIC认证步骤"><a href="#BASIC认证步骤" class="headerlink" title="BASIC认证步骤"></a>BASIC认证步骤</h4><p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<p>步骤1:当请求的资源需要 BASIC 认证时,服务器会随状态码 401Authorization Required,返回带 WWW-Authenticate 首部字段的响应。该字段内包含认证的方式(BASIC) 及 Request-URI 安全域字符串(realm)。</p>
+<p>步骤2:接收到状态码 401 的客户端为了通过 BASIC 认证,需要将用户 ID 及密码发送给服务器。发送的字符串内容是由用户 ID 和密码构成,两者中间以冒号(:)连接后,再经过 Base64 编码处理。</p>
+<p>步骤3:接收到包含首部字段 Authorization 请求的服务器,会对认证信息的正确性进行验证。如验证通过,则返回一条包含 Request-URI资源的响应。</p>
+<ul>
+<li>BASIC 认证虽然采用 Base64 编码方式,但这不是加密处理。不需要任何附加信息即可对其解码。换言之,由于明文解码后就是用户 ID和密码,在 HTTP 等非加密通信的线路上进行 BASIC 认证的过程中,如果被人窃听,被盗的可能性极高。</li>
+<li>另外,除此之外想再进行一次 BASIC 认证时,一般的浏览器却无法实现认证注销操作,这也是问题之一。</li>
+<li>BASIC 认证使用上不够便捷灵活,且达不到多数 Web 网站期望的安全性等级,因此它并不常用</li>
+</ul>
+<h4 id="DIGEST-认证"><a href="#DIGEST-认证" class="headerlink" title="DIGEST 认证"></a>DIGEST 认证</h4><ul>
+<li>DIGEST 认证同样使用质询 / 响应的方式(challenge/response),但不会像 BASIC 认证那样直接发送明文密码。</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<ul>
+<li>DIGEST 认证的认证步骤</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<p>步骤 1: 请求需认证的资源时,服务器会随着状态码 401Authorization Required,返 回带 WWW-Authenticate 首部字段的响应。该字段内包含质问响应方式认证所需的临时质询码(随机数,nonce)。首部字段 WWW-Authenticate 内必须包含 realm 和 nonce 这两个字段的信息。客户端就是依靠向服务器回送这两个值进行认证的。nonce 是一种每次随返回的 401 响应生成的任意随机字符串。该字符串通常推荐由 Base64 编码的十六进制数的组成形式,但实际内容依赖服务器的具体实现。</p>
+<p>步骤 2: 接收到 401 状态码的客户端,返回的响应中包含 DIGEST 认证必须的首部字段 Authorization 信息。</p>
+<p>步骤 3: 接收到包含首部字段 Authorization 请求的服务器,会确认认证信息的正确性。认证通过后则返回包含 Request-URI 资源的响应。</p>
+<h4 id="SSL-客户端认证"><a href="#SSL-客户端认证" class="headerlink" title="SSL 客户端认证"></a>SSL 客户端认证</h4><ul>
+<li>如果用户 ID 和密码被盗,就很有可能被第三者冒充。利用 SSL 客户端认证则可以避免该情况的发生。</li>
+<li>为达到 SSL 客户端认证的目的,需要事先将客户端证书分发给客户端,且客户端必须安装此证书。</li>
+</ul>
+<p>步骤1: 接收到需要认证资源的请求,服务器会发送 CertificateRequest 报文,要求客户端提供客户端证书。</p>
+<p>步骤 2: 用户选择将发送的客户端证书后,客户端会把客户端证书信息以 Client Certificate 报文方式发送给服务器。</p>
+<p>步骤 3: 服务器验证客户端证书验证通过后方可领取证书内客户端的公开密钥,然后开始 HTTPS 加密通信。</p>
+<ul>
+<li>SSL客户端认证一般会结合表单一起认证</li>
+</ul>
+<h4 id="基于表单认证"><a href="#基于表单认证" class="headerlink" title="基于表单认证"></a>基于表单认证</h4><ul>
+<li>基于表单认证的标准规范尚未有定论,一般会使用 Cookie 来管理Session(会话)。</li>
+<li>为了弥补 HTTP 协议中不存在的状态管理功能,我们会使用 Cookie 来管理 Session</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<p>步骤1: 客户端把用户 ID 和密码等登录信息放入报文的实体部分,通常是以 POST 方法把请求发送给服务器。而这时,会使用 HTTPS通信来进行 HTML 表单画面的显示和用户输入数据的发送。</p>
+<p>步骤 2: 服务器会发放用以识别用户的 Session ID。通过验证从客户端发送过来的登录信息进行身份认证,然后把用户的认证状态与Session ID 绑定后记录在服务器端。</p>
+<p>另外,为减轻跨站脚本攻击(XSS)造成的损失,建议事先在 Cookie内加上 httponly 属性。</p>
+<p>步骤 3: 客户端接收到从服务器端发来的 Session ID 后,会将其作为Cookie 保存在本地。下次向服务器发送请求时,浏览器会自动发送Cookie,所以 Session ID 也随之发送到服务器。服务器端可通过验证接收到的 Session ID 识别用户和其认证状态。</p>
+<ul>
+<li>由于服务端没有如何保存用户的密码,因此,一种安全的保存方法是,先利用给密码加盐(salt) 1 的方式增加额外信息,再使用散列(hash)函数计算出散列值后保存。</li>
+<li>salt 其实就是由服务器随机生成的一个字符串,但是要保证长度足够长,并且是真正随机生成的。然后把它和密码字符串相连接(前后都可以)生成散列值。当两个用户使用了同一个密码时,由于随机生成的 salt 值不同,对应的散列值也将是不同的。这样一来,很大程度上减少了密码特征,攻击者也就很难利用自己手中的密码特征库进行破解。</li>
+</ul>
+<blockquote>
+<p>以上笔记来源于图解HTTP一书</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[图解HTTP-确保Web安全的HTTPS-笔记]]></title>
+      <url>http://yoursite.com/2017/02/17/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</url>
+      <content type="html"><![CDATA[<h3 id="HTTP存在的不足"><a href="#HTTP存在的不足" class="headerlink" title="HTTP存在的不足"></a>HTTP存在的不足</h3><ul>
+<li>通信使用明文(不加密), 内容可能会被窃听</li>
+<li>不验证对方身份,因此有可能遭遇伪装</li>
+<li>无法证明报文的完整性,所以有可能遭到篡改</li>
+</ul>
+<h4 id="通信使用明文可能会被窃听"><a href="#通信使用明文可能会被窃听" class="headerlink" title="通信使用明文可能会被窃听"></a>通信使用明文可能会被窃听</h4><ul>
+<li>HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.</li>
+<li>如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容</li>
+</ul>
+<a id="more"></a>
+<h4 id="不验证通信对方就有可能在遇到伪装"><a href="#不验证通信对方就有可能在遇到伪装" class="headerlink" title="不验证通信对方就有可能在遇到伪装"></a>不验证通信对方就有可能在遇到伪装</h4><ul>
+<li>HTTP 协议的实现本身非常简单,不论是谁发送过来的请求都会返回响应,因此不确认通信方,会存在以下各种隐患。<ul>
+<li>无法确定请求发送至目标的 Web 服务器是否是按真实意图返回响应的那台服务器。有可能是已伪装的 Web 服务器。</li>
+<li>无法确定响应返回到的客户端是否是按真实意图接收响应的那个客户端。有可能是已伪装的客户端。</li>
+<li>无法确定正在通信的对方是否具备访问权限。因为某些Web 服务器上保存着重要的信息,只想发给特定用户通信的权限。</li>
+<li>无法判定请求是来自何方、出自谁手。</li>
+<li>即使是无意义的请求也会照单全收。无法阻止海量请求下的 DoS 攻击(Denial of Service,拒绝服务攻击)。</li>
+</ul>
+</li>
+<li>查明对手的证书<ul>
+<li>虽然使用 HTTP 协议无法确定通信方,但如果使用 SSL 则可以。SSL 不仅提供加密处理,而且还使用了一种被称为证书的手段,可用于确定方。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<h4 id="无法证明报文完整性-可能已遭篡改"><a href="#无法证明报文完整性-可能已遭篡改" class="headerlink" title="无法证明报文完整性,可能已遭篡改"></a>无法证明报文完整性,可能已遭篡改</h4><h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+ 加密 + 认证 + 完整性保护=HTTPS"></a>HTTP+ 加密 + 认证 + 完整性保护=HTTPS</h3><h4 id="HTTPS-是身披-SSL-外壳的-HTTP"><a href="#HTTPS-是身披-SSL-外壳的-HTTP" class="headerlink" title="HTTPS 是身披 SSL 外壳的 HTTP"></a>HTTPS 是身披 SSL 外壳的 HTTP</h4><ul>
+<li>HTTPS 并非是应用层的一种新协议。只是 HTTP 通信接口部分用SSL(Secure Socket Layer)和 TLS(Transport Layer Security)协议代替而已。</li>
+<li>通常,HTTP 直接和 TCP 通信。当使用 SSL 时,则演变成先和 SSL 通信,再由 SSL 和 TCP 通信了。简言之,所谓 HTTPS,其实就是身披SSL 协议这层外壳的 HTTP。</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS02.jpg" alt=""></p>
+<h4 id="相互交换密钥的公开密钥加密技术"><a href="#相互交换密钥的公开密钥加密技术" class="headerlink" title="相互交换密钥的公开密钥加密技术"></a>相互交换密钥的公开密钥加密技术</h4><h5 id="共享密钥加密的困境"><a href="#共享密钥加密的困境" class="headerlink" title="共享密钥加密的困境"></a>共享密钥加密的困境</h5><ul>
+<li>加密和解密同用一个密钥的方式称为共享密钥加密(Common keycrypto system),也被叫做对称密钥加密。</li>
+<li>以共享密钥方式加密时必须将密钥也发给对方。可究竟怎样才能安全地转交?在互联网上转发密钥时,如果通信被监听那么密钥就可会落入攻击者之手,同时也就失去了加密的意<br>义。另外还得设法安全地保管接收到的密钥。</li>
+</ul>
+<h5 id="使用两把密钥的公开密钥加密"><a href="#使用两把密钥的公开密钥加密" class="headerlink" title="使用两把密钥的公开密钥加密"></a>使用两把密钥的公开密钥加密</h5><ul>
+<li>公开密钥加密使用一对非对称的密钥。一把叫做私有密钥(private key),另一把叫做公开密钥(public key)。顾名思义,私有密钥不能让其他任何人知道,而公开密钥则可以随意发<br>布,任何人都可以获得。</li>
+<li>使用公开密钥加密方式,发送密文的一方使用对方的公开密钥进行加密处理,对方收到被加密的信息后,再使用自己的私有密钥进行解密。利用这种方式,不需要发送用来解密的私有密钥,也<br>不必担心密钥被攻击者窃听而盗走。</li>
+</ul>
+<h5 id="HTTPS-采用混合加密机制"><a href="#HTTPS-采用混合加密机制" class="headerlink" title="HTTPS 采用混合加密机制"></a>HTTPS 采用混合加密机制</h5><ul>
+<li>HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密机制。</li>
+<li>采用混合加密的机制是因为公开密钥加密的速度慢</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS03.jpg" alt=""></p>
+<h4 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a>证明公开密钥正确性的证书</h4><ul>
+<li>公开密钥加密方式还是存在一些问题的。那就是无法证明公开密钥本身就是货真价实的公开密钥。</li>
+<li>为了解决这个问题,可以使用由数字证书认证机构(CA,Certificate Authority)和其相关机关颁发的公开密钥证书</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS04.jpg" alt=""></p>
+<h4 id="HTTPS-的安全通信机制"><a href="#HTTPS-的安全通信机制" class="headerlink" title="HTTPS 的安全通信机制"></a>HTTPS 的安全通信机制</h4><p><img src="/uploads/图解HTTP/确保Web安全的HTTPS05.jpg" alt=""></p>
+<ul>
+<li><p>步骤 1: 客户端通过发送 Client Hello 报文开始 SSL 通信。报文中包含客户端支持的 SSL 的指定版本、加密组件(Cipher Suite)列表(所使用的加密算法及密钥长度等)。</p>
+</li>
+<li><p>步骤 2: 服务器可进行 SSL 通信时,会以 Server Hello 报文作为应154答。和客户端一样,在报文中包含 SSL 版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。</p>
+</li>
+<li><p>步骤 3: 之后服务器发送 Certificate 报文。报文中包含公开密钥证书。</p>
+</li>
+<li><p>步骤 4: 最后服务器发送 Server Hello Done 报文通知客户端,最初阶段的 SSL 握手协商部分结束。</p>
+</li>
+<li><p>步骤 5: SSL 第一次握手结束之后,客户端以 Client Key Exchange 报文作为回应。报文中包含通信加密中使用的一种被称为 Pre-mastersecret 的随机密码串。该报文已用步骤 3 中的公开密钥进行加密。</p>
+</li>
+<li><p>步骤 6: 接着客户端继续发送 Change Cipher Spec 报文。该报文会提示服务器,在此报文之后的通信会采用 Pre-master secret 密钥加密。</p>
+</li>
+<li><p>步骤 7: 客户端发送 Finished 报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功,要以服务器是否能够正确解密该报文作为判定标准。</p>
+</li>
+<li><p>步骤 8: 服务器同样发送 Change Cipher Spec 报文。</p>
+</li>
+<li><p>步骤 9: 服务器同样发送 Finished 报文。</p>
+</li>
+<li><p>步骤 10: 服务器和客户端的 Finished 报文交换完毕之后,SSL 连接就算建立完成。当然,通信会受到 SSL 的保护。从此处开始进行应用层协议的通信,即发送 HTTP 请求。</p>
+</li>
+<li><p>步骤 11: 应用层协议通信,即发送 HTTP 响应。</p>
+</li>
+<li><p>步骤 12: 最后由客户端断开连接。断开连接时,发送 close_notify 报文。上图做了一些省略,这步之后再发送 TCP FIN 报文来关闭与 TCP的通信。</p>
+</li>
+</ul>
+<h4 id="HTTPS存在的不足"><a href="#HTTPS存在的不足" class="headerlink" title="HTTPS存在的不足"></a>HTTPS存在的不足</h4><ul>
+<li>HTTPS使用了SSL,因此速度会变慢</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS06.jpg" alt=""></p>
+<ul>
+<li>SSL 的慢分两种。一种是指通信慢。另一种是指由于大量消耗CPU 及内存等资源,导致处理速度变慢。<ul>
+<li>和使用 HTTP 相比,网络负载可能会变慢 2 到 100 倍。除去和TCP 连接、发送 HTTP 请求 • 响应以外,还必须进行 SSL 通信,因此整体上处理通信量不可避免会增加。</li>
+</ul>
+</li>
+<li>另一点是 SSL 必须进行加密处理。在服务器和客户端都需要进行加密和解密的运算处理。因此从结果上讲,比起 HTTP 会更多地消耗服务器和客户端的硬件资源,导致负载增强。</li>
+</ul>
+<blockquote>
+<p>以上笔记来源于图解HTTP一书</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[图解HTTP-与HTTP协议的Web服务器-笔记]]></title>
+      <url>http://yoursite.com/2017/02/17/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      <content type="html"><![CDATA[<h3 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h3><h4 id="通信数据转发程序-代理、网关、隧道"><a href="#通信数据转发程序-代理、网关、隧道" class="headerlink" title="通信数据转发程序:代理、网关、隧道"></a>通信数据转发程序:代理、网关、隧道</h4><ul>
+<li>在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作</li>
+<li>代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端</li>
+<li>网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉,自己的通信目标是一个网关。</li>
+<li>隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。</li>
+</ul>
+<h5 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg" alt=""></p>
+<a id="more"></a>
+<ul>
+<li>每次通过代理服务器转发请求或响应时,会追加写入 Via 首部信息</li>
+<li>利用代理的作用:<ul>
+<li>利用缓存技术减少宽带流量</li>
+<li>对特定网站的控制访问,以获取访问日志为主要目的</li>
+</ul>
+</li>
+<li>代理的分类:<ul>
+<li>缓存代理(Caching Proxy):代理转发响应时,缓存代理(Caching Proxy)会预先将资源的副本(缓存)保存在代理服务器上。</li>
+<li>透明代理:转发请求或响应时,不对报文做任何加工的代理类型被称为透明代理(TransparentProxy)。反之,对报文内容进行加工的代理被称为非透明代理。</li>
+</ul>
+</li>
+</ul>
+<h5 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器02.jpg" alt=""></p>
+<ul>
+<li>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非 HTTP 协议服务。</li>
+<li>利用网关能提高通信的安全性,因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。比如,网关可以连接数据库,使用SQL 语句查询数据。另外,在 Web 购物网站上进行信用卡结算时,网关可以和信用卡结算系统联动。</li>
+</ul>
+<h5 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h5><ul>
+<li>隧道可按要求建立起一条与其他服务器的通信线路,届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。</li>
+</ul>
+<h4 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a>保存资源的缓存</h4><ul>
+<li>利用缓存技术可以减少对服务器的访问,以及通信流量和通信时间。</li>
+</ul>
+<h5 id="缓存的有限期限"><a href="#缓存的有限期限" class="headerlink" title="缓存的有限期限"></a>缓存的有限期限</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器03.jpg" alt=""></p>
+<h5 id="客户端的缓存"><a href="#客户端的缓存" class="headerlink" title="客户端的缓存"></a>客户端的缓存</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器04.jpg" alt=""></p>
+<blockquote>
+<p>以上笔记来源与图解HTTP一书</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[图解HTTP-报文信息-笔记]]></title>
       <url>http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h3 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h3><h4 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h4><ul>
@@ -427,54 +624,6 @@
 <li>整个框架能够井然有序的运行起来的关键是Handler,可以说Handler是整个框架能运行起来的能源。</li>
 <li>Picasso中,将Handler的作用发挥得淋漓尽致。是Handler运用的典例。</li>
 </ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title></title>
-      <url>http://yoursite.com/2017/02/17/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[图解HTTP-与HTTP协议的Web服务器-笔记]]></title>
-      <url>http://yoursite.com/2017/02/17/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-      <content type="html"><![CDATA[<h3 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h3><h4 id="通信数据转发程序-代理、网关、隧道"><a href="#通信数据转发程序-代理、网关、隧道" class="headerlink" title="通信数据转发程序:代理、网关、隧道"></a>通信数据转发程序:代理、网关、隧道</h4><ul>
-<li>在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作</li>
-<li>代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端</li>
-<li>网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉,自己的通信目标是一个网关。</li>
-<li>隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。</li>
-</ul>
-<h5 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg" alt=""></p>
-<ul>
-<li>每次通过代理服务器转发请求或响应时,会追加写入 Via 首部信息</li>
-<li>利用代理的作用:<ul>
-<li>利用缓存技术减少宽带流量</li>
-<li>对特定网站的控制访问,以获取访问日志为主要目的</li>
-</ul>
-</li>
-<li>代理的分类:<ul>
-<li>缓存代理(Caching Proxy):代理转发响应时,缓存代理(Caching Proxy)会预先将资源的副本(缓存)保存在代理服务器上。</li>
-<li>透明代理:转发请求或响应时,不对报文做任何加工的代理类型被称为透明代理(TransparentProxy)。反之,对报文内容进行加工的代理被称为非透明代理。</li>
-</ul>
-</li>
-</ul>
-<h5 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器02.jpg" alt=""></p>
-<ul>
-<li>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非 HTTP 协议服务。</li>
-<li>利用网关能提高通信的安全性,因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。比如,网关可以连接数据库,使用SQL 语句查询数据。另外,在 Web 购物网站上进行信用卡结算时,网关可以和信用卡结算系统联动。</li>
-</ul>
-<h5 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h5><ul>
-<li>隧道可按要求建立起一条与其他服务器的通信线路,届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。</li>
-</ul>
-<h4 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a>保存资源的缓存</h4><ul>
-<li>利用缓存技术可以减少对服务器的访问,以及通信流量和通信时间。</li>
-</ul>
-<h5 id="缓存的有限期限"><a href="#缓存的有限期限" class="headerlink" title="缓存的有限期限"></a>缓存的有限期限</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器03.jpg" alt=""></p>
-<h5 id="客户端的缓存"><a href="#客户端的缓存" class="headerlink" title="客户端的缓存"></a>客户端的缓存</h5><p><img src="/uploads/图解HTTP/与HTTP协议的Web服务器04.jpg" alt=""></p>
-<blockquote>
-<p>以上笔记来源与图解HTTP一书</p>
-</blockquote>
 ]]></content>
     </entry>
     
@@ -1143,15 +1292,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[3月9日]]></title>
-      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
       <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
@@ -1388,6 +1528,15 @@
 <p>以上的笔记来源于安卓开发艺术探索</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[3月9日]]></title>
+      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
