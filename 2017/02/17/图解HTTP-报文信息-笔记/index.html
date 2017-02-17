@@ -163,16 +163,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/android/">
-                    android <span class="right">9 篇</span></a>
+                <a class="no-padding" href="/categories/design/">
+                    design <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/design/">
-                    design <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/android/">
+                    android <span class="right">9 篇</span></a>
                 </a>
             </li>
 
@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-02-17T13:35:53.120Z"><a href="/2017/02/17/图解HTTP-报文信息-笔记/">2017-02-17</a></time>
+            <time class="pink-link-context" datetime="2017-02-17T14:21:11.008Z"><a href="/2017/02/17/图解HTTP-报文信息-笔记/">2017-02-17</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -265,10 +265,10 @@
 <li>相应端（服务器端）的HTTP报文称为响应报文</li>
 <li>HTTP报文分为报文首部和报文主体（不一定有报文主体）</li>
 </ul>
-<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 报文信息01.jpg" alt=""></p>
+<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 01.jpg" alt=""></p>
 <a id="more"></a>
-<h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4><h5 id="请求报文和响应报文结构："><a href="#请求报文和响应报文结构：" class="headerlink" title="请求报文和响应报文结构："></a>请求报文和响应报文结构：</h5><p><img src="/uploads/图解HTTP/报文信息02.jpg" alt=""></p>
-<h5 id="响应的实例"><a href="#响应的实例" class="headerlink" title="响应的实例"></a>响应的实例</h5><p><img src="/uploads/图解HTTP/报文信息03.jpg" alt=""></p>
+<h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4><h5 id="请求报文和响应报文结构："><a href="#请求报文和响应报文结构：" class="headerlink" title="请求报文和响应报文结构："></a>请求报文和响应报文结构：</h5><p><img src="/uploads/图解HTTP/02.jpg" alt=""></p>
+<h5 id="响应的实例"><a href="#响应的实例" class="headerlink" title="响应的实例"></a>响应的实例</h5><p><img src="/uploads/图解HTTP/03.jpg" alt=""></p>
 <h4 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h4><ul>
 <li>HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码来提升传输效率。虽然编码传输可以提升传输效率，但是编码的过程是由计算机来完成，所以会比较消耗计算机的ｃｐｕ资源</li>
 </ul>
@@ -280,7 +280,7 @@
 <h5 id="压缩传输的内容编码"><a href="#压缩传输的内容编码" class="headerlink" title="压缩传输的内容编码"></a>压缩传输的内容编码</h5><ul>
 <li>内容编码指明应用在实体内容上的编码，并保持实体信息原样压缩。内容编码后的实体由客户端接收并负责解码</li>
 </ul>
-<p><img src="/uploads/图解HTTP/报文信息04.jpg" alt=""></p>
+<p><img src="/uploads/图解HTTP/04.jpg" alt=""></p>
 <ul>
 <li>内容编码的常用格式：<ul>
 <li>gzip（GNU zip）</li>
@@ -293,7 +293,7 @@
 <h5 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h5><ul>
 <li>把实体分块的功能称为分块传输功能（Chunked Transfer Coding）。该功能适应于大数据量传输时，可以逐步的显示内容，不必让用户等待太久</li>
 </ul>
-<p><img src="/uploads/图解HTTP/报文信息05.jpg" alt=""></p>
+<p><img src="/uploads/图解HTTP/05.jpg" alt=""></p>
 <h5 id="发送多种数据的多部分集合"><a href="#发送多种数据的多部分集合" class="headerlink" title="发送多种数据的多部分集合"></a>发送多种数据的多部分集合</h5><ul>
 <li>发送报文的主体内包含多类型实体</li>
 <li>多部分对象集合包含的对象如下：<ul>
@@ -305,7 +305,7 @@
 <h5 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h5><ul>
 <li>范围请求指的是对一份字节资源，进行部分范围内的请求</li>
 </ul>
-<p><img src="/uploads/图解HTTP/报文信息06.jpg" alt=""></p>
+<p><img src="/uploads/图解HTTP/06.jpg" alt=""></p>
 <ul>
 <li>执行请求时可以根据Range首部字段来指定字节的范围：<ul>
 <li>5001~10 000 字节<br><code>Range: bytes=5001-10000</code></li>
@@ -323,17 +323,11 @@
 </blockquote>
 
                 
-<p class="pink-link-context">
-    <a href="/2017/02/17/与HTTP协议的Web服务器/" rel="next" title="图解HTTP-与HTTP协议的Web服务器-笔记">
-    上一篇：图解HTTP-与HTTP协议的Web服务器-笔记
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/" rel="next" title="图解HTTP-返回结果的状态码-笔记">
-    下一篇：图解HTTP-返回结果的状态码-笔记
+    <a href="/2017/02/17/Picasso中值得学习的技巧/" rel="next" title="Picasso中值得学习的技巧">
+    下一篇：Picasso中值得学习的技巧
   </a>
 </p>
 

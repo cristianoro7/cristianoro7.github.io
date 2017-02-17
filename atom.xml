@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-17T14:12:33.277Z</updated>
+  <updated>2017-02-17T14:21:11.008Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图解HTTP-报文信息-笔记</title>
+    <link href="http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2017/02/17/图解HTTP-报文信息-笔记/</id>
+    <published>2017-02-17T14:21:11.008Z</published>
+    <updated>2017-02-17T14:21:11.008Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h3><h4 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h4><ul>
+<li>用于HTTP协议交互的信息被称为报文</li>
+<li>请求端（客户端）的HTTP报文称为请求报文</li>
+<li>相应端（服务器端）的HTTP报文称为响应报文</li>
+<li>HTTP报文分为报文首部和报文主体（不一定有报文主体）</li>
+</ul>
+<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 01.jpg" alt=""></p>
+<a id="more"></a>
+<h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4><h5 id="请求报文和响应报文结构："><a href="#请求报文和响应报文结构：" class="headerlink" title="请求报文和响应报文结构："></a>请求报文和响应报文结构：</h5><p><img src="/uploads/图解HTTP/02.jpg" alt=""></p>
+<h5 id="响应的实例"><a href="#响应的实例" class="headerlink" title="响应的实例"></a>响应的实例</h5><p><img src="/uploads/图解HTTP/03.jpg" alt=""></p>
+<h4 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h4><ul>
+<li>HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码来提升传输效率。虽然编码传输可以提升传输效率，但是编码的过程是由计算机来完成，所以会比较消耗计算机的ｃｐｕ资源</li>
+</ul>
+<h5 id="报文主体和实体主体的差异"><a href="#报文主体和实体主体的差异" class="headerlink" title="报文主体和实体主体的差异"></a>报文主体和实体主体的差异</h5><ul>
+<li>报文（Message）：是 HTTP 通信中的基本单位,由 8 位组字节流(octet sequence,其中 octet 为 8 个比特)组成,通过 HTTP 通信传输。</li>
+<li>实体（entity）：作为请求或响应的有效载荷数据(补充项)被传输,其内容由实体首部和实体主体组成。</li>
+<li>通常情况下，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化时，才导致它和报文主体产生差异。</li>
+</ul>
+<h5 id="压缩传输的内容编码"><a href="#压缩传输的内容编码" class="headerlink" title="压缩传输的内容编码"></a>压缩传输的内容编码</h5><ul>
+<li>内容编码指明应用在实体内容上的编码，并保持实体信息原样压缩。内容编码后的实体由客户端接收并负责解码</li>
+</ul>
+<p><img src="/uploads/图解HTTP/04.jpg" alt=""></p>
+<ul>
+<li>内容编码的常用格式：<ul>
+<li>gzip（GNU zip）</li>
+<li>compress（UNIX系统的标准压缩）</li>
+<li>deflate（zlib）</li>
+<li>ide ntity（不进行编码）</li>
+</ul>
+</li>
+</ul>
+<h5 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h5><ul>
+<li>把实体分块的功能称为分块传输功能（Chunked Transfer Coding）。该功能适应于大数据量传输时，可以逐步的显示内容，不必让用户等待太久</li>
+</ul>
+<p><img src="/uploads/图解HTTP/05.jpg" alt=""></p>
+<h5 id="发送多种数据的多部分集合"><a href="#发送多种数据的多部分集合" class="headerlink" title="发送多种数据的多部分集合"></a>发送多种数据的多部分集合</h5><ul>
+<li>发送报文的主体内包含多类型实体</li>
+<li>多部分对象集合包含的对象如下：<ul>
+<li>multipart/form-data:在 Web 表单文件上传时使用。</li>
+<li>multipart/byteranges:状态码 206(Partial Content,部分内容)响应报文包含了多个范围的内容时使用。</li>
+</ul>
+</li>
+</ul>
+<h5 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h5><ul>
+<li>范围请求指的是对一份字节资源，进行部分范围内的请求</li>
+</ul>
+<p><img src="/uploads/图解HTTP/06.jpg" alt=""></p>
+<ul>
+<li>执行请求时可以根据Range首部字段来指定字节的范围：<ul>
+<li>5001~10 000 字节<br><code>Range: bytes=5001-10000</code></li>
+</ul>
+</li>
+<li>请求范围的返回状态码为206 Partial Content的响应报文。</li>
+<li>另外,对于多重范围的范围请求,响应会在首部字段 Content-Type 标明 multipart/byteranges 后返回响应报文。</li>
+<li>如果服务器端无法响应范围请求,则会返回状态码 200 OK 和完整的实体内容。</li>
+</ul>
+<h5 id="内容协商"><a href="#内容协商" class="headerlink" title="内容协商"></a>内容协商</h5><ul>
+<li>内容协商机制是指客户端和服务器端就响应的资源内容进行交涉,然后提供给客户端最为适合的资源。内容协商会以响应资源的语言、字符集、编码方式等作为判断的基准。</li>
+</ul>
+<blockquote>
+<p>以上笔记来源于图解HTTP一书</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;HTTP报文内的HTTP信息&quot;&gt;&lt;a href=&quot;#HTTP报文内的HTTP信息&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文内的HTTP信息&quot;&gt;&lt;/a&gt;HTTP报文内的HTTP信息&lt;/h3&gt;&lt;h4 id=&quot;HTTP报文&quot;&gt;&lt;a href=&quot;#HTTP报文&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文&quot;&gt;&lt;/a&gt;HTTP报文&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;用于HTTP协议交互的信息被称为报文&lt;/li&gt;
+&lt;li&gt;请求端（客户端）的HTTP报文称为请求报文&lt;/li&gt;
+&lt;li&gt;相应端（服务器端）的HTTP报文称为响应报文&lt;/li&gt;
+&lt;li&gt;HTTP报文分为报文首部和报文主体（不一定有报文主体）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;HTTP报文结构：&quot;&gt;&lt;a href=&quot;#HTTP报文结构：&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文结构：&quot;&gt;&lt;/a&gt;HTTP报文结构：&lt;/h5&gt;&lt;p&gt;&lt;img src=&quot;/uploads/图解HTTP/ 01.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="booknote" scheme="http://yoursite.com/categories/booknote/"/>
+    
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Picasso中值得学习的技巧</title>
@@ -502,96 +592,6 @@
 &lt;li&gt;隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5 id=&quot;代理&quot;&gt;&lt;a href=&quot;#代理&quot; class=&quot;headerlink&quot; title=&quot;代理&quot;&gt;&lt;/a&gt;代理&lt;/h5&gt;&lt;p&gt;&lt;img src=&quot;/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="booknote" scheme="http://yoursite.com/categories/booknote/"/>
-    
-    
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图解HTTP-报文信息-笔记</title>
-    <link href="http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2017/02/17/图解HTTP-报文信息-笔记/</id>
-    <published>2017-02-17T13:35:53.120Z</published>
-    <updated>2017-02-17T13:35:53.120Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h3><h4 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h4><ul>
-<li>用于HTTP协议交互的信息被称为报文</li>
-<li>请求端（客户端）的HTTP报文称为请求报文</li>
-<li>相应端（服务器端）的HTTP报文称为响应报文</li>
-<li>HTTP报文分为报文首部和报文主体（不一定有报文主体）</li>
-</ul>
-<h5 id="HTTP报文结构："><a href="#HTTP报文结构：" class="headerlink" title="HTTP报文结构："></a>HTTP报文结构：</h5><p><img src="/uploads/图解HTTP/ 报文信息01.jpg" alt=""></p>
-<a id="more"></a>
-<h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4><h5 id="请求报文和响应报文结构："><a href="#请求报文和响应报文结构：" class="headerlink" title="请求报文和响应报文结构："></a>请求报文和响应报文结构：</h5><p><img src="/uploads/图解HTTP/报文信息02.jpg" alt=""></p>
-<h5 id="响应的实例"><a href="#响应的实例" class="headerlink" title="响应的实例"></a>响应的实例</h5><p><img src="/uploads/图解HTTP/报文信息03.jpg" alt=""></p>
-<h4 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h4><ul>
-<li>HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码来提升传输效率。虽然编码传输可以提升传输效率，但是编码的过程是由计算机来完成，所以会比较消耗计算机的ｃｐｕ资源</li>
-</ul>
-<h5 id="报文主体和实体主体的差异"><a href="#报文主体和实体主体的差异" class="headerlink" title="报文主体和实体主体的差异"></a>报文主体和实体主体的差异</h5><ul>
-<li>报文（Message）：是 HTTP 通信中的基本单位,由 8 位组字节流(octet sequence,其中 octet 为 8 个比特)组成,通过 HTTP 通信传输。</li>
-<li>实体（entity）：作为请求或响应的有效载荷数据(补充项)被传输,其内容由实体首部和实体主体组成。</li>
-<li>通常情况下，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化时，才导致它和报文主体产生差异。</li>
-</ul>
-<h5 id="压缩传输的内容编码"><a href="#压缩传输的内容编码" class="headerlink" title="压缩传输的内容编码"></a>压缩传输的内容编码</h5><ul>
-<li>内容编码指明应用在实体内容上的编码，并保持实体信息原样压缩。内容编码后的实体由客户端接收并负责解码</li>
-</ul>
-<p><img src="/uploads/图解HTTP/报文信息04.jpg" alt=""></p>
-<ul>
-<li>内容编码的常用格式：<ul>
-<li>gzip（GNU zip）</li>
-<li>compress（UNIX系统的标准压缩）</li>
-<li>deflate（zlib）</li>
-<li>ide ntity（不进行编码）</li>
-</ul>
-</li>
-</ul>
-<h5 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h5><ul>
-<li>把实体分块的功能称为分块传输功能（Chunked Transfer Coding）。该功能适应于大数据量传输时，可以逐步的显示内容，不必让用户等待太久</li>
-</ul>
-<p><img src="/uploads/图解HTTP/报文信息05.jpg" alt=""></p>
-<h5 id="发送多种数据的多部分集合"><a href="#发送多种数据的多部分集合" class="headerlink" title="发送多种数据的多部分集合"></a>发送多种数据的多部分集合</h5><ul>
-<li>发送报文的主体内包含多类型实体</li>
-<li>多部分对象集合包含的对象如下：<ul>
-<li>multipart/form-data:在 Web 表单文件上传时使用。</li>
-<li>multipart/byteranges:状态码 206(Partial Content,部分内容)响应报文包含了多个范围的内容时使用。</li>
-</ul>
-</li>
-</ul>
-<h5 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h5><ul>
-<li>范围请求指的是对一份字节资源，进行部分范围内的请求</li>
-</ul>
-<p><img src="/uploads/图解HTTP/报文信息06.jpg" alt=""></p>
-<ul>
-<li>执行请求时可以根据Range首部字段来指定字节的范围：<ul>
-<li>5001~10 000 字节<br><code>Range: bytes=5001-10000</code></li>
-</ul>
-</li>
-<li>请求范围的返回状态码为206 Partial Content的响应报文。</li>
-<li>另外,对于多重范围的范围请求,响应会在首部字段 Content-Type 标明 multipart/byteranges 后返回响应报文。</li>
-<li>如果服务器端无法响应范围请求,则会返回状态码 200 OK 和完整的实体内容。</li>
-</ul>
-<h5 id="内容协商"><a href="#内容协商" class="headerlink" title="内容协商"></a>内容协商</h5><ul>
-<li>内容协商机制是指客户端和服务器端就响应的资源内容进行交涉,然后提供给客户端最为适合的资源。内容协商会以响应资源的语言、字符集、编码方式等作为判断的基准。</li>
-</ul>
-<blockquote>
-<p>以上笔记来源于图解HTTP一书</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;HTTP报文内的HTTP信息&quot;&gt;&lt;a href=&quot;#HTTP报文内的HTTP信息&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文内的HTTP信息&quot;&gt;&lt;/a&gt;HTTP报文内的HTTP信息&lt;/h3&gt;&lt;h4 id=&quot;HTTP报文&quot;&gt;&lt;a href=&quot;#HTTP报文&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文&quot;&gt;&lt;/a&gt;HTTP报文&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;用于HTTP协议交互的信息被称为报文&lt;/li&gt;
-&lt;li&gt;请求端（客户端）的HTTP报文称为请求报文&lt;/li&gt;
-&lt;li&gt;相应端（服务器端）的HTTP报文称为响应报文&lt;/li&gt;
-&lt;li&gt;HTTP报文分为报文首部和报文主体（不一定有报文主体）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5 id=&quot;HTTP报文结构：&quot;&gt;&lt;a href=&quot;#HTTP报文结构：&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文结构：&quot;&gt;&lt;/a&gt;HTTP报文结构：&lt;/h5&gt;&lt;p&gt;&lt;img src=&quot;/uploads/图解HTTP/ 报文信息01.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
