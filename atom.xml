@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-17T14:08:40.087Z</updated>
+  <updated>2017-02-17T14:12:33.277Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>Picasso中值得学习的技巧</title>
     <link href="http://yoursite.com/2017/02/17/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/"/>
     <id>http://yoursite.com/2017/02/17/Picasso中值得学习的技巧/</id>
-    <published>2017-02-17T14:08:40.087Z</published>
-    <updated>2017-02-17T14:08:40.087Z</updated>
+    <published>2017-02-17T14:12:33.277Z</published>
+    <updated>2017-02-17T14:12:33.277Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Picasso中的线程池"><a href="#Picasso中的线程池" class="headerlink" title="Picasso中的线程池"></a>Picasso中的线程池</h4><ul>
 <li>Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。</li>
@@ -28,7 +28,8 @@
 <h5 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h5><ul>
 <li>首先在Picasso中,定义了一个优先级枚举类型:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<a id="more"></a> 
 <ul>
 <li>上面的priority就是请求优先级的类型。</li>
 <li><p>有了优先级,我们就可以在创建Request的时候这只设置优先等级</p>
@@ -150,7 +151,12 @@
     <summary type="html">
     
       &lt;h4 id=&quot;Picasso中的线程池&quot;&gt;&lt;a href=&quot;#Picasso中的线程池&quot; class=&quot;headerlink&quot; title=&quot;Picasso中的线程池&quot;&gt;&lt;/a&gt;Picasso中的线程池&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;Picasso中的线程池主要是对对网络状态进行了
+&lt;li&gt;Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析:&quot;&gt;&lt;/a&gt;分析:&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;首先在Picasso中,定义了一个优先级枚举类型:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   * The priority of a request.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   *&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   * &lt;span class=&quot;doctag&quot;&gt;@see&lt;/span&gt; RequestCreator#priority(Priority)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;enum&lt;/span&gt; Priority &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    LOW,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NORMAL,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    HIGH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

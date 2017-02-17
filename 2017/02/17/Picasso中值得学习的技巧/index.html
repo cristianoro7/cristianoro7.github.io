@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-02-17T14:08:40.087Z"><a href="/2017/02/17/Picasso中值得学习的技巧/">2017-02-17</a></time>
+            <time class="pink-link-context" datetime="2017-02-17T14:12:33.277Z"><a href="/2017/02/17/Picasso中值得学习的技巧/">2017-02-17</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -265,7 +265,8 @@
 <h5 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h5><ul>
 <li>首先在Picasso中,定义了一个优先级枚举类型:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * The priority of a request.</div><div class="line">   *</div><div class="line">   * <span class="doctag">@see</span> RequestCreator#priority(Priority)</div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">enum</span> Priority &#123;</div><div class="line">    LOW,</div><div class="line">    NORMAL,</div><div class="line">    HIGH</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<a id="more"></a> 
 <ul>
 <li>上面的priority就是请求优先级的类型。</li>
 <li><p>有了优先级,我们就可以在创建Request的时候这只设置优先等级</p>
