@@ -4,6 +4,78 @@
   
     
     <entry>
+      <title><![CDATA[java基础]]></title>
+      <url>http://yoursite.com/2017/03/03/java%E5%9F%BA%E7%A1%80/</url>
+      <content type="html"><![CDATA[<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h4 id="使用-连接字符串"><a href="#使用-连接字符串" class="headerlink" title="使用+连接字符串"></a>使用+连接字符串</h4><ul>
+<li>使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的</li>
+</ul>
+<h4 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h4><ul>
+<li>该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。</li>
+</ul>
+<h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><ul>
+<li>StringBuilder可以保证线程安全，但是也因此效率变得低</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>如果只需要简单的拼接字符串的话，可以直接使用+号拼接</li>
+<li>如果需要频繁拼接而且无需考虑线程安全的，可以使用StringBuilder</li>
+<li>如果需要频繁拼接但要考虑到线程安全的话，可以使用StringBuffer<a id="more"></a>
+<h3 id="对象与克隆"><a href="#对象与克隆" class="headerlink" title="对象与克隆"></a>对象与克隆</h3></li>
+</ul>
+<h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><ul>
+<li>只能对类中的基本数据进行拷贝，类中的对象还是引用原对象</li>
+</ul>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><ul>
+<li>通过重写clone使得类中的子对象也能进行克隆</li>
+<li>深拷贝步骤：<ul>
+<li>实现Cloneable接口（该接口只是拷贝的标记接口）</li>
+<li>使用public访问修饰符重新定义clone方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="异常分类"><a href="#异常分类" class="headerlink" title="异常分类"></a>异常分类</h3><h4 id="Throwable"><a href="#Throwable" class="headerlink" title="Throwable"></a>Throwable</h4><ul>
+<li>异常对象都派生于Throwable类</li>
+<li>Throwable分为Error和Exception</li>
+</ul>
+<h4 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h4><ul>
+<li>Error层次结构描述了java运行时系统内部错误和资源耗尽错误，这种情况很少出现</li>
+</ul>
+<h4 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h4><ul>
+<li>Exception派生出两个分支，一个是RuntimeException，另外一个是其他异常</li>
+<li>划分规则：由程序导致的是RuntimeExeption；而程序本身没有问题，但由像I/O错误这类问题导致的异常属于其他异常</li>
+</ul>
+<h4 id="异常规范"><a href="#异常规范" class="headerlink" title="异常规范"></a>异常规范</h4><ul>
+<li>java语言规范：将派生于Error或者RuntimeException类的所有异常称为未检查异常，所有其他异常称为已检查异常。</li>
+</ul>
+<h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><ul>
+<li>final通常指的是不可改变的, 不想改变的原因往往出于两种原因：设计和效率</li>
+<li>final可能使用到的情况：数据、方法和类</li>
+</ul>
+<h4 id="final数据"><a href="#final数据" class="headerlink" title="final数据"></a>final数据</h4><ul>
+<li>一个既是static又是final的数据只占一段不能改变的内存空间，如果final定义的变量是引用类型的话，表明该引用一定被初始化指向一个对象后，就不能再更改引用，但是可以对象自身是可以被修改的</li>
+</ul>
+<h4 id="final参数"><a href="#final参数" class="headerlink" title="final参数"></a>final参数</h4><ul>
+<li>当参数被声明为final时，意味着你不能修改其值，只能读取，这一特性主要用来向匿名内部类传递数据</li>
+</ul>
+<h4 id="final方法"><a href="#final方法" class="headerlink" title="final方法"></a>final方法</h4><ul>
+<li>使用final方法有两个原因：<ul>
+<li>把方法锁定，以防止任何继承类来修改它的含义，这是处于设计的考虑</li>
+</ul>
+</li>
+<li>出于效率的考虑（由于虚拟机的优化，通常已经不需要final来进行优化）</li>
+</ul>
+<h4 id="final和private关键字"><a href="#final和private关键字" class="headerlink" title="final和private关键字"></a>final和private关键字</h4><ul>
+<li>类中所有private方法都隐式地指定为final。由于无法取用private，也就无法覆盖它</li>
+</ul>
+<h4 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h4><ul>
+<li>当一个类被定义为final时，就表明你不打算继承该类了，这是出于设计或者安全的考虑<blockquote>
+<p>参考资料：java核心技术，java编程思想</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[图解HTTP-确认访问用户的身份-笔记]]></title>
       <url>http://yoursite.com/2017/02/21/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>﻿### HTTP使用的认证方式</p>
@@ -1296,15 +1368,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[3月9日]]></title>
-      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
       <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
@@ -1541,6 +1604,15 @@
 <p>以上的笔记来源于安卓开发艺术探索</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[3月9日]]></title>
+      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
