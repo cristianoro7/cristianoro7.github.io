@@ -4,9 +4,142 @@
   
     
     <entry>
-      <title><![CDATA[图解HTTP-网络基础-笔记]]></title>
-      <url>http://yoursite.com/2017/03/05/test/</url>
-      <content type="html"><![CDATA[<p>kysniod aoixo hso x</p>
+      <title><![CDATA[大话数据结构-线性表]]></title>
+      <url>http://yoursite.com/2017/03/05/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
+      <content type="html"><![CDATA[<h2 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h2><ul>
+<li>零个或多个数据元素的有限序列</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>顺序储存结构</li>
+<li>链式储存结构<ul>
+<li>单链表</li>
+<li>静态链表</li>
+<li>循环链表</li>
+<li>双向链表</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="顺序储存结构"><a href="#顺序储存结构" class="headerlink" title="顺序储存结构"></a>顺序储存结构</h3><ul>
+<li>宏定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> OK 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ERROR 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 20</span></div><div class="line"><span class="comment">//静态链表的最大空间</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STATIC_MAXSIZE 1000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> status;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;</div></pre></td></tr></table></figure>
+<ul>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 顺序储存结构</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> length;</div><div class="line">&#125; SqList;</div></pre></td></tr></table></figure>
+<h4 id="获得元素"><a href="#获得元素" class="headerlink" title="获得元素"></a>获得元素</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">getElem</span><span class="params">(SqList L, <span class="keyword">int</span> i, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length || L.length == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = L.data[i - <span class="number">1</span>];</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="插入元素"><a href="#插入元素" class="headerlink" title="插入元素"></a>插入元素</h4><h5 id="算法思路："><a href="#算法思路：" class="headerlink" title="算法思路："></a>算法思路：</h5><ul>
+<li>如果插入位置不合理，抛出异常</li>
+<li>如果线性表长度大于等于数组长度，则抛出异常或者动态扩容</li>
+<li>从最后一个元素开始向前遍历到第ｉ的位置，分别将他们向后移动一个位置</li>
+<li>将要插入的元素填入到位置i处</li>
+<li>表长 + 1</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">insert</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> i, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (L.length == MAXSIZE) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (L.length &gt;= i) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = L.length - <span class="number">1</span>; j &gt;= i - <span class="number">1</span>; j--) &#123;</div><div class="line">            L.data[j + <span class="number">1</span>] = L.data[j];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    L.data[i - <span class="number">1</span>] = e;</div><div class="line">    L.length++;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h4><h5 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h5><ul>
+<li>如果删除的位置不合理，抛出异常</li>
+<li>去出删除的元素</li>
+<li>从删除的元素开始遍历到最后一个元素，分别将他们都向前移动一个位置<br>*表长 - 1</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">deleteElem</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> i, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(L.length == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    e = L.data[i - <span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(i &lt; L.length) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &lt;= L.length; ++j) &#123;</div><div class="line">            L.data[j] = L.data[j + <span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    L.length--;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><ul>
+<li>最好情况下，如果插入的元素是最后一个，或者删除的元素是最后一个，意味着元素不用移动，那么时间复杂度为O(1)。</li>
+<li>最坏情况，如果插入的元素在第一个，或者删除的元素在第一个，那么意味着全部元素将要向前或者向后移动，时间复杂度为O(n)。</li>
+<li>平均情况： 时间复杂度为O(n)</li>
+</ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>快速存取表中的任一元素</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>插入和删除需要大量移动元素</li>
+<li>当线性表长度变化较大时，难以确定储存空间</li>
+</ul>
+<h3 id="链式储存结构"><a href="#链式储存结构" class="headerlink" title="链式储存结构"></a>链式储存结构</h3><ul>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 链式储存结构</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Node &#123;</div><div class="line">    ElemType e;</div><div class="line">    <span class="keyword">struct</span> Node *next;</div><div class="line">    <span class="keyword">int</span> length;</div><div class="line">&#125; Node, *LinkList;</div></pre></td></tr></table></figure>
+<h4 id="单链表的读取"><a href="#单链表的读取" class="headerlink" title="单链表的读取"></a>单链表的读取</h4><h5 id="算法思路-1"><a href="#算法思路-1" class="headerlink" title="算法思路"></a>算法思路</h5><ul>
+<li>声明一个指针ｐ指向链表第一个结点，初始化ｊ从１开始 </li>
+<li>当ｊ&lt;ｉ时，就遍历链表，让ｐ的指针向后移动，不断指向下一个结点，ｊ累加１</li>
+<li>若到链表末尾ｐ为空，则说明第ｉ个结点不存在</li>
+<li>否则查找成功，返回结点ｐ的数据</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">lGetElem</span><span class="params">(LinkList L, <span class="keyword">int</span> i, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> j;</div><div class="line">    LinkList p;</div><div class="line">    p = L-&gt;next;</div><div class="line">    j = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i) &#123;</div><div class="line">        p = p-&gt;next;</div><div class="line">        j++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!p || j &gt; i) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = p-&gt;e;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div><div class="line">```　</div><div class="line"></div><div class="line">#### 单链表的插入</div><div class="line"></div><div class="line">##### 算法思路：</div><div class="line">* 声明一指针指向链表头结点，初始化ｊ从１开始</div><div class="line">* 当ｊ&lt;ｉ时，遍历链表，让ｐ的指针向后移动，不断指向下一个结点，ｊ累加１</div><div class="line">* 若到链表末尾为空，则说明第ｉ的结点不存在</div><div class="line">* 否则查找成功，在系统中生成一个空的结点ｓ</div><div class="line">* 将数据元素ｅ赋值给ｓ－&gt;data</div><div class="line">* 进行单链表插入操作</div><div class="line"></div><div class="line">```<span class="function">c</span></div><div class="line">status <span class="title">lInsertElem</span><span class="params">(LinkList &amp;L, <span class="keyword">int</span> i, ElemType e)</span> &#123;</div><div class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</div><div class="line">    LinkList p;</div><div class="line">    p = L-&gt;next;</div><div class="line">    <span class="keyword">while</span> (p &amp;&amp; j &lt; i) &#123;</div><div class="line">        p = p-&gt;next;</div><div class="line">        j++;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//第i个结点不存在</span></div><div class="line">    <span class="keyword">if</span>(!p || j &gt; i) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    LinkList s = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</div><div class="line">    <span class="keyword">if</span>(s == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    s-&gt;e = e;</div><div class="line">    s-&gt;next = p-&gt;next;</div><div class="line">    p-&gt;next = s;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="单链表的删除"><a href="#单链表的删除" class="headerlink" title="单链表的删除"></a>单链表的删除</h4><h5 id="算法思路-2"><a href="#算法思路-2" class="headerlink" title="算法思路"></a>算法思路</h5><ul>
+<li>声明一指针指向链表头结点，初始化ｊ从１开始</li>
+<li>当ｊ&lt;ｉ时，遍历链表，让ｐ的指针向后移动，不断指向下一个结点，ｊ累加１</li>
+<li>若到链表末尾为空，则说明第ｉ的结点不存在</li>
+<li>若查找成功，将欲删除的结点p-&gt;next赋值给ｑ</li>
+<li>删除结点</li>
+<li>将ｑ结点中的数据赋值给ｅ并返回</li>
+<li>释放ｑ结点</li>
+<li>返回成功</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">lDeleteElem</span><span class="params">(LinkList &amp;L, <span class="keyword">int</span> i, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</div><div class="line">    LinkList p, q;</div><div class="line"></div><div class="line">    p = L;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(p-&gt;next &amp;&amp; j &lt; i) &#123;</div><div class="line">        p = p-&gt;next;</div><div class="line">        j++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!(p-&gt;next) || j &gt; i) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    q = p-&gt;next;</div><div class="line">    p-&gt;next = q-&gt;next;</div><div class="line">    e = q-&gt;e;</div><div class="line">    <span class="built_in">free</span>(q);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建单链表"><a href="#创建单链表" class="headerlink" title="创建单链表"></a>创建单链表</h4><h5 id="算法思路-3"><a href="#算法思路-3" class="headerlink" title="算法思路"></a>算法思路</h5><ul>
+<li>声明一指针ｐ和计数器变量ｉ</li>
+<li>初始化空链表Ｌ</li>
+<li>让空链表的头结点指向ＮＵＬＬ，即建立头结点</li>
+<li>循环创建结点</li>
+<li>头插法</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">lCreateLinkListHead</span><span class="params">(LinkList &amp;L, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    LinkList p;</div><div class="line">    L = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</div><div class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == L) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    L-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</div><div class="line">        p = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</div><div class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> == p) &#123;</div><div class="line">            <span class="keyword">return</span> ERROR;</div><div class="line">        &#125;</div><div class="line">        p-&gt;e = <span class="number">0</span>;</div><div class="line">        <span class="comment">//插到表头</span></div><div class="line">        p-&gt;next = L-&gt;next;</div><div class="line">        L-&gt;next = p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>尾插法</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">lCreateLinkListTail</span><span class="params">(LinkList &amp;L, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    LinkList p,r;</div><div class="line">    L = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</div><div class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    L-&gt;next;</div><div class="line">    r = L; <span class="comment">//表尾</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</div><div class="line">        p = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</div><div class="line">        <span class="keyword">if</span>(p == <span class="literal">NULL</span>) &#123;</div><div class="line">            <span class="keyword">return</span> ERROR;</div><div class="line">        &#125;</div><div class="line">        r-&gt;next = p;</div><div class="line">        r = p;</div><div class="line">    &#125;</div><div class="line">    r-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="单链表的整体删除"><a href="#单链表的整体删除" class="headerlink" title="单链表的整体删除"></a>单链表的整体删除</h4><h5 id="算法思路-4"><a href="#算法思路-4" class="headerlink" title="算法思路"></a>算法思路</h5><ul>
+<li>声明一个结点ｐ和ｑ</li>
+<li>将第一个结点赋值给ｐ</li>
+<li>循环<ul>
+<li>将下一个结点赋值给ｑ</li>
+<li>释放ｑ</li>
+<li>将ｑ赋值给ｐ</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">lClearLinkList</span><span class="params">(LinkList &amp;L)</span> </span>&#123;</div><div class="line">    LinkList p, q;</div><div class="line">    p = L-&gt;next;</div><div class="line">    <span class="keyword">while</span>(p) &#123;</div><div class="line">        q = p-&gt;next;</div><div class="line">        <span class="built_in">free</span>(p);</div><div class="line">        p = q;</div><div class="line">    &#125;</div><div class="line">    L-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><h4 id="储存方式"><a href="#储存方式" class="headerlink" title="储存方式"></a>储存方式</h4><ul>
+<li>顺序储存结构用一端连续的储存单元储存元素</li>
+<li>单链表用链式储存元素</li>
+</ul>
+<h4 id="时间性能"><a href="#时间性能" class="headerlink" title="时间性能"></a>时间性能</h4><h5 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h5><ul>
+<li>顺序结构：O(1)</li>
+<li>链式储存结构O(n)</li>
+</ul>
+<h5 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h5><ul>
+<li>顺序储存结构需要平均移动毕表长的一半，时间为O(n)</li>
+<li>单链表在线出某个位置指针后，插入和删除为O(1)</li>
+</ul>
+<h5 id="空间性能"><a href="#空间性能" class="headerlink" title="空间性能"></a>空间性能</h5><ul>
+<li>顺序结构需要预分配储存空间，分大了浪费，分小了溢出</li>
+<li>单链表可以实时分配空间</li>
+</ul>
+<h3 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h3><ul>
+<li>用数组描述的链表，是为了解决一个语言中没有指针的问题</li>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 用数组实现的静态链表</div><div class="line"> */</div><div class="line"> <span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">     ElemType data;</div><div class="line">     <span class="keyword">int</span> cur; <span class="comment">//游标,为0时表示无指向</span></div><div class="line">     <span class="keyword">int</span> length;</div><div class="line"> &#125; StaticLinkList[STATIC_MAXSIZE];</div></pre></td></tr></table></figure>
+<ul>
+<li>通常把未被使用的数组称为备用链表</li>
+<li>数组的第一个元素的cur存放备用链表的第一个结点下标</li>
+<li>数组最后一个元素的cur存放第一个元素的下标，相当与头结点</li>
+<li>初始化：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">initStaticLinkList</span><span class="params">(StaticLinkList &amp;L)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; STATIC_MAXSIZE - <span class="number">1</span>; ++i) &#123;</div><div class="line">        L[i].cur = i + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    L[STATIC_MAXSIZE - <span class="number">1</span>].cur = <span class="number">0</span>;</div><div class="line">    L-&gt;length = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="删除操作-1"><a href="#删除操作-1" class="headerlink" title="删除操作"></a>删除操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">freeIndex</span><span class="params">(StaticLinkList &amp;L, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    L[k].cur = L[<span class="number">0</span>].cur; <span class="comment">//把第一个元素从cur赋值给要删除的cur分量</span></div><div class="line">    L[<span class="number">0</span>].cur = k;</div><div class="line">&#125;</div><div class="line"><span class="function">status <span class="title">staticDelete</span><span class="params">(StaticLinkList &amp;L, <span class="keyword">int</span> i, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L-&gt;length) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> k = STATIC_MAXSIZE - <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i - <span class="number">1</span>; ++j) &#123;</div><div class="line">        k = L[k].cur;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> j;</div><div class="line">    j = L[k].cur;</div><div class="line">    L[k].cur = L[j].cur;</div><div class="line">    freeIndex(L, j);</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">staticInsert</span><span class="params">(StaticLinkList &amp;L, <span class="keyword">int</span> i, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> k = STATIC_MAXSIZE - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L-&gt;length + <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> j = mallocFreeIndex(L);</div><div class="line">    <span class="keyword">if</span>(j) &#123;</div><div class="line">        L[j].data = e;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt;= i - <span class="number">1</span>; ++l) &#123;</div><div class="line">            k = L[k].cur;</div><div class="line">        &#125;</div><div class="line">        L[j].cur = L[k].cur;</div><div class="line">        L[k].cur = j;</div><div class="line">        <span class="keyword">return</span> OK;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ERROR;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">status <span class="title">mallocFreeIndex</span><span class="params">(StaticLinkList &amp;L)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i = L[<span class="number">0</span>].cur; <span class="comment">//当前数组第一个元素的cur值，就是返回第一个备用空闲下表</span></div><div class="line">    <span class="keyword">if</span>(L[<span class="number">0</span>].cur) &#123;</div><div class="line">        L[<span class="number">0</span>].cur = L[i].cur; <span class="comment">//设置下一个空闲下表分量</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>在插入和删除元素时，只需移动修改下标，从而改进顺序储存结构中插入和删除元素需要大量移动元素的缺点</li>
+</ul>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>没有解决难以确定表长的缺点</li>
+<li>失去了顺序储存结构中随机存取元素的特性</li>
+</ul>
+<blockquote>
+<p>以上笔记来源《大话数据结构》中<br><a href="https://github.com/cristianoro7/data-structure-practice" target="_blank" rel="external">源码</a></p>
+</blockquote>
 ]]></content>
     </entry>
     
@@ -1375,6 +1508,15 @@
     </entry>
     
     <entry>
+      <title><![CDATA[3月9日]]></title>
+      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
       <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
@@ -1611,15 +1753,6 @@
 <p>以上的笔记来源于安卓开发艺术探索</p>
 </blockquote>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[3月9日]]></title>
-      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
