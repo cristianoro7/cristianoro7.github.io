@@ -10,6 +10,7 @@
 <li>结构体</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*顺序储存结构*/</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> top;</div><div class="line">&#125;SqStack;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <ul>
 <li>入栈操作</li>
 </ul>
@@ -1570,15 +1571,6 @@
 <li>至于他们之间的配合，看看下面这张图的话，会更清晰：<br><img src="/uploads/Volley队列配合.png" alt=""></li>
 </ul>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[3月9日]]></title>
-      <url>http://yoursite.com/2017/01/13/3%E6%9C%889%E6%97%A5/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>在流动的季节里，忽然感觉到时间的长度，匆匆忙忙流逝的每一天—–3月9日<br><a id="more"></a></p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=805204&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
