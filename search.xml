@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[大话数据结构-队列]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/03/19/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</url>
+      <url>http://yoursite.com/2017/03/19/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</url>
       <content type="html"><![CDATA[<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="顺序循环队列"><a href="#顺序循环队列" class="headerlink" title="顺序循环队列"></a>顺序循环队列</h3><ul>
 <li>由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题<h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4>把队列的头尾相接的顺序储存结构称为循环队列</li>
 </ul>
@@ -71,7 +71,7 @@
     
     <entry>
       <title><![CDATA[大话数据结构-栈]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/03/18/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/</url>
+      <url>http://yoursite.com/2017/03/18/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/</url>
       <content type="html"><![CDATA[<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><h4 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h4><ul>
 <li>结构体</li>
 </ul>
@@ -128,7 +128,7 @@
     
     <entry>
       <title><![CDATA[大话数据结构-线性表]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/03/05/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
+      <url>http://yoursite.com/2017/03/05/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
       <content type="html"><![CDATA[<h2 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h2><ul>
 <li>零个或多个数据元素的有限序列</li>
 </ul>
@@ -277,7 +277,7 @@
     
     <entry>
       <title><![CDATA[java基础]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/03/03/java%E5%9F%BA%E7%A1%80/</url>
+      <url>http://yoursite.com/2017/03/03/java%E5%9F%BA%E7%A1%80/</url>
       <content type="html"><![CDATA[<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h4 id="使用-连接字符串"><a href="#使用-连接字符串" class="headerlink" title="使用+连接字符串"></a>使用+连接字符串</h4><ul>
 <li>使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的</li>
 </ul>
@@ -349,7 +349,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-确认访问用户的身份-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/21/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</url>
+      <url>http://yoursite.com/2017/02/21/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>﻿### HTTP使用的认证方式</p>
 <ul>
 <li>BASIC认证(基本认证)</li>
@@ -409,7 +409,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-报文信息-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/</url>
+      <url>http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h3 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h3><h4 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h4><ul>
 <li>用于HTTP协议交互的信息被称为报文</li>
 <li>请求端（客户端）的HTTP报文称为请求报文</li>
@@ -477,7 +477,7 @@
     
     <entry>
       <title><![CDATA[Picasso中值得学习的技巧]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
+      <url>http://yoursite.com/2017/02/17/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
       <content type="html"><![CDATA[<h4 id="Picasso中的线程池"><a href="#Picasso中的线程池" class="headerlink" title="Picasso中的线程池"></a>Picasso中的线程池</h4><ul>
 <li>Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。</li>
 </ul>
@@ -607,7 +607,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-简单的HTTP协议-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE-%E7%AC%94%E8%AE%B0/</url>
+      <url>http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h4 id="通过请求和响应来交换信息"><a href="#通过请求和响应来交换信息" class="headerlink" title="通过请求和响应来交换信息"></a>通过请求和响应来交换信息</h4><p><img src="/uploads/图解HTTP/简单的HTTP协议01.jpg" alt=""><br><a id="more"></a></p>
 <ul>
 <li>请求报文是由请求方法、请求 URI、协议版本、可选的请求首部字段和内容实体构成的。</li>
@@ -669,7 +669,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-确保Web安全的HTTPS-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</url>
+      <url>http://yoursite.com/2017/02/17/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</url>
       <content type="html"><![CDATA[<h3 id="HTTP存在的不足"><a href="#HTTP存在的不足" class="headerlink" title="HTTP存在的不足"></a>HTTP存在的不足</h3><ul>
 <li>通信使用明文(不加密), 内容可能会被窃听</li>
 <li>不验证对方身份,因此有可能遭遇伪装</li>
@@ -764,7 +764,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-与HTTP协议的Web服务器-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      <url>http://yoursite.com/2017/02/17/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
       <content type="html"><![CDATA[<h3 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h3><h4 id="通信数据转发程序-代理、网关、隧道"><a href="#通信数据转发程序-代理、网关、隧道" class="headerlink" title="通信数据转发程序:代理、网关、隧道"></a>通信数据转发程序:代理、网关、隧道</h4><ul>
 <li>在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作</li>
 <li>代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端</li>
@@ -807,7 +807,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-返回结果的状态码-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81-%E7%AC%94%E8%AE%B0/</url>
+      <url>http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81-%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h4 id="状态码类别："><a href="#状态码类别：" class="headerlink" title="状态码类别："></a>状态码类别：</h4><p>类别    原因短语<br>1XX    Informational(信息性状态码)    接收的请求正在处理<br>2XX    Success(成功状态码)    请求正常处理完毕<br>3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求<br>4XX    Client Error(客户端错误状态码)    服务器无法处理请求<br>5XX    Server Error(服务器错误状态码)    服务器处理请求出错</p>
 <a id="more"></a>
 <h5 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h5><ul>
@@ -854,7 +854,7 @@
     
     <entry>
       <title><![CDATA[Picasso基本用法及源码浅析]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/Picasso%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%8F%8A%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
+      <url>http://yoursite.com/2017/02/17/Picasso%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%8F%8A%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
       <content type="html"><![CDATA[<h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><h4 id="加载图片："><a href="#加载图片：" class="headerlink" title="加载图片："></a>加载图片：</h4><ul>
 <li><p>picasso支持从Resource，MediaStore，content，contacts，url 加载图片。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Picasso.with(<span class="keyword">this</span>)</div><div class="line">                .load(uri)</div><div class="line">                .into(mImageView);</div></pre></td></tr></table></figure>
@@ -1037,7 +1037,7 @@
     
     <entry>
       <title><![CDATA[图解HTTP-网络基础-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</url>
+      <url>http://yoursite.com/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</url>
       <content type="html"><![CDATA[<h4 id="网络基础-TCP-IP"><a href="#网络基础-TCP-IP" class="headerlink" title="网络基础 TCP/IP"></a>网络基础 TCP/IP</h4><h5 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h5><ul>
 <li>我们通常使用到的网络是在<strong>TCP/IP</strong>协议族的基础上运作的。而HTTP属于它内部的一个子集。</li>
 <li>TCP/IP是互联网各类协议族的总称, 如图:<br><img src="/uploads/图解HTTP/网络基础01.jpg" alt=""><a id="more"></a></li>
@@ -1099,7 +1099,7 @@
     
     <entry>
       <title><![CDATA[universal-image-loader缓存策略]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/universal-image-loader%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/</url>
+      <url>http://yoursite.com/2017/01/13/universal-image-loader%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/</url>
       <content type="html"><![CDATA[<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略<br><a id="more"></a></p>
 <h5 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h5><p>接口：</p>
 <ul>
@@ -1188,7 +1188,7 @@
     
     <entry>
       <title><![CDATA[universal-image-loader源码浅读]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/universal-image-loader%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
+      <url>http://yoursite.com/2017/01/13/universal-image-loader%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
       <content type="html"><![CDATA[<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
 <li>UIL是一款经典的图片加载框架，该类库的设计运用了多种设计模式，使得它的可拓展性增加，比如缓存的策略，如果默认的缓存策略不能够满足你的需求的话，你完全可以自己定制自己的缓存策略。</li>
 <li>使用者不必关心加载图片时会发生OOM，其中发生的概率还是很小的，因为类库中对图片进行了三级缓存，其中的内存缓存使用了双级缓存（强引用和弱引用）。</li>
@@ -1308,7 +1308,7 @@
     
     <entry>
       <title><![CDATA[Volley--网络优化和缓存]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/Volley--%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E5%92%8C%E7%BC%93%E5%AD%98/</url>
+      <url>http://yoursite.com/2017/01/13/Volley--%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E5%92%8C%E7%BC%93%E5%AD%98/</url>
       <content type="html"><![CDATA[<h4 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h4><p>volley的特点都大家很清楚，volley适合数据量小且通信频繁的请求，但是不适合数据量大的请求。volley有这样的特点是由其内部网络优化和缓存所决定的，这次分析其中的原理。<br><a id="more"></a></p>
 <h4 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h4><h5 id="ByteArrayPool"><a href="#ByteArrayPool" class="headerlink" title="ByteArrayPool"></a>ByteArrayPool</h5><ul>
 <li>首先Volley网络优化跟两个类息息相关，他们分别是ByteArrayPool和PoolingByteArrayOutputStream。接下来首先分析前者。</li>
@@ -1377,7 +1377,7 @@
     
     <entry>
       <title><![CDATA[AsyncTask源码浅析]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/AsyncTask%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
+      <url>http://yoursite.com/2017/01/13/AsyncTask%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</url>
       <content type="html"><![CDATA[<h5 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h5><ul>
 <li>概述<br>AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。<a id="more"></a></li>
 <li>我们知道，使用AsyncTask的要先实例化该类再调用其中的execute（）方法，那么自然先要来看其中的构造方法都初始化了哪些操作：</li>
@@ -1449,7 +1449,7 @@
     
     <entry>
       <title><![CDATA[Volley--队列控制]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/Volley--%E9%98%9F%E5%88%97%E6%8E%A7%E5%88%B6/</url>
+      <url>http://yoursite.com/2017/01/13/Volley--%E9%98%9F%E5%88%97%E6%8E%A7%E5%88%B6/</url>
       <content type="html"><![CDATA[<h4 id="Volley之四个队列的配合使用"><a href="#Volley之四个队列的配合使用" class="headerlink" title="Volley之四个队列的配合使用"></a>Volley之四个队列的配合使用</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><ul>
 <li><p>先看看源码中的四个队列，这四个队列在RequestQueue中：</p>
@@ -1502,7 +1502,7 @@
     
     <entry>
       <title><![CDATA[安卓开发艺术探索-View的工作原理（一）-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
+      <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h4 id="View的工作原理"><a href="#View的工作原理" class="headerlink" title="View的工作原理"></a>View的工作原理</h4><h5 id="初始ViewRoot和DecorView"><a href="#初始ViewRoot和DecorView" class="headerlink" title="初始ViewRoot和DecorView"></a>初始ViewRoot和DecorView</h5><a id="more"></a>
 <ul>
 <li><p>ViewRoot对应的实体类是ViewRootImpl类，它时连接WindowManager和DecorView的纽带</p>
@@ -1741,7 +1741,7 @@
     
     <entry>
       <title><![CDATA[安卓开发艺术探索-自定义View的思想-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/</url>
+      <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/</url>
       <content type="html"><![CDATA[<h4 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h4><h5 id="概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理"><a href="#概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理" class="headerlink" title="概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理"></a>概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理</h5><a id="more"></a>
 <h5 id="自定义View的分类"><a href="#自定义View的分类" class="headerlink" title="自定义View的分类"></a>自定义View的分类</h5><ul>
 <li>继承View重写onDraw方法：采用这种方式需要自己支持wrap_content和padding</li>
@@ -1764,7 +1764,7 @@
     
     <entry>
       <title><![CDATA[安卓开发艺术探索-View的事件体系-笔记]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+      <url>http://yoursite.com/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h4 id="第三章：View的事件体系"><a href="#第三章：View的事件体系" class="headerlink" title="第三章：View的事件体系"></a>第三章：View的事件体系</h4><h5 id="View的位置参数："><a href="#View的位置参数：" class="headerlink" title="View的位置参数："></a>View的位置参数：</h5><a id="more"></a>
 <ul>
 <li>View的位置参数left， top， right， bottom是相对于VIew的父容器来说的，因此是一种相对坐标</li>
@@ -1978,7 +1978,7 @@
     
     <entry>
       <title><![CDATA[Volley浅读]]></title>
-      <url>http://kaijun.rocks/hexo-theme-huxblog/2017/01/13/Volley%E6%B5%85%E8%AF%BB/</url>
+      <url>http://yoursite.com/2017/01/13/Volley%E6%B5%85%E8%AF%BB/</url>
       <content type="html"><![CDATA[<h4 id="Velloy浅谈"><a href="#Velloy浅谈" class="headerlink" title="Velloy浅谈"></a>Velloy浅谈</h4><a id="more"></a>
 <ul>
 <li>我们都知道，一般要使用Volley，先要创建该请求队列对象，我们并不是直接调用它的构造方法，而是调用Volley.newRequestQueue(COntext)来创建请求队列,那么我们下面来看看该方法“：</li>
