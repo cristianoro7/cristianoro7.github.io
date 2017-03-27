@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://cristianoro7.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-03-27T03:11:48.347Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://cristianoro7.github.io/about/index.html</loc>
     
-    <lastmod>2017-03-26T08:55:42.052Z</lastmod>
+    <lastmod>2017-03-27T03:08:41.047Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://cristianoro7.github.io/life/index.html</loc>
     
     <lastmod>2017-03-26T08:29:33.302Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://cristianoro7.github.io/categories/index.html</loc>
-    
-    <lastmod>2017-03-26T05:46:50.526Z</lastmod>
     
   </url>
   
