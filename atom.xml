@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-03-29T02:05:16.676Z</updated>
+  <updated>2017-03-29T02:12:05.253Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>重拾Dagger2-使用Dagger2</title>
     <link href="http://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/"/>
     <id>http://cristianoro7.github.io/2017/03/29/重拾Dagger2-使用Dagger2/</id>
-    <published>2017-03-29T02:05:16.680Z</published>
-    <updated>2017-03-29T02:05:16.676Z</updated>
+    <published>2017-03-29T02:12:05.257Z</published>
+    <updated>2017-03-29T02:12:05.253Z</updated>
     
     <content type="html"><![CDATA[<h2 id="常用注解解释"><a href="#常用注解解释" class="headerlink" title="常用注解解释"></a>常用注解解释</h2><p>在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括</p>
 <ul>
