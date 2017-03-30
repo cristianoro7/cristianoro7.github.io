@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,6 +188,30 @@
 
 <div class="post-preview">
 
+    <a href="/2017/01/13/Volley--队列控制/">
+        <h2 class="post-title">
+            Volley--队列控制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
+
+先看看源码中的四个队列，这四个队列在RequestQueue中：
+12345678910111213141516171819202122232425262728/** * Staging area for requests that already have a dupl......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-01-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">
         <h2 class="post-title">
             安卓开发艺术探索-View的工作原理（一）-笔记
@@ -268,32 +292,6 @@ left ......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/01/13/Volley浅读/">
-        <h2 class="post-title">
-            Volley浅读
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Velloy浅谈
-
-我们都知道，一般要使用Volley，先要创建该请求队列对象，我们并不是直接调用它的构造方法，而是调用Volley.newRequestQueue(COntext)来创建请求队列,那么我们下面来看看该方法“：
-
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -304,6 +302,10 @@ left ......
             <a href="/page/5/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/7/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -329,13 +331,9 @@ left ......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="2">Dagger2</a>
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="3">Dagger2</a>
                             
                         
-                            
-                        
-                            
-                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
@@ -345,9 +343,7 @@ left ......
                             
                         
                             
-                        
-                            
-                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
@@ -356,6 +352,12 @@ left ......
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
                             
                         
                             

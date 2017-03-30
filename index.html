@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,6 +188,31 @@
 
 <div class="post-preview">
 
+    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
+        <h2 class="post-title">
+            重拾Dagger2-理解Dagger2
+        </h2>
+        <h3 class="post-subtitle">
+            Understanding Dagger2
+        </h3>
+        <div class="post-content-preview">
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-03-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/03/29/Dagger2目录/">
         <h2 class="post-title">
             重拾Dagger2
@@ -267,35 +292,6 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/03/18/大话数据结构-栈/">
-        <h2 class="post-title">
-            大话数据结构-栈
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            栈顺序栈
-结构体
-
-12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
-
-
-入栈操作
-
-1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-18
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -331,13 +327,9 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                     <div class="tags">
                         
                             
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="2">Dagger2</a>
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="3">Dagger2</a>
                             
                         
-                            
-                        
-                            
-                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
@@ -347,9 +339,7 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                             
                         
                             
-                        
-                            
-                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
@@ -358,6 +348,12 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
                             
                         
                             
