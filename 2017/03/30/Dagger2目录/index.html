@@ -13,11 +13,11 @@
 
     <title>
         
-          Desperado的博客 | Desperado&#39;s Blog
+          重拾Dagger2 - Desperado的博客 | Desperado&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://cristianoro7.github.io/page/6/">
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/03/30/Dagger2目录/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -151,256 +151,111 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/dagger2/startdagger2.jpeg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Desperado</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Do one thing every day that scares you.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Dagger2" title="Dagger2">Dagger2</a>
+                        
+                    </div>
+                    <h1>重拾Dagger2</h1>
+                    <h2 class="subheading">meet with dagger2</h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-03-30
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
+<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
+<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
+<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
+<blockquote>
+<p><a href="https://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
+</blockquote>
 
 
-<div class="post-preview">
+                <hr>
 
-    <a href="/2017/01/13/AsyncTask源码浅析/">
-        <h2 class="post-title">
-            AsyncTask源码浅析
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            源码浅析
-概述AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
-我们知道，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
+                
 
-</div>
-<hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/30/重拾Dagger2-组织/" data-toggle="tooltip" data-placement="top" title="重拾Dagger2-组织">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-<div class="post-preview">
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/03/30/Dagger2目录/"
+                        data-title="重拾Dagger2"
+                        data-url="http://cristianoro7.github.io/2017/03/30/Dagger2目录/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
 
-    <a href="/2017/01/13/Volley--队列控制/">
-        <h2 class="post-title">
-            Volley--队列控制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
-
-先看看源码中的四个队列，这四个队列在RequestQueue中：
-12345678910111213141516171819202122232425262728/** * Staging area for requests that already have a dupl......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">
-        <h2 class="post-title">
-            安卓开发艺术探索-View的工作原理（一）-笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            View的工作原理初始ViewRoot和DecorView
-
-ViewRoot对应的实体类是ViewRootImpl类，它时连接WindowManager和DecorView的纽带
-
-View的三大流程都是通过ViewRoot完成的
-
-在ActivityThread中，当Activity对象被创建后，会将DecorView添加到Window中，同时会创建ViewRootImpl对象，并将Vi......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">
-        <h2 class="post-title">
-            安卓开发艺术探索-自定义View的思想-笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            自定义View概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理
-自定义View的分类
-继承View重写onDraw方法：采用这种方式需要自己支持wrap_content和padding
-继承ViewGroup派生出特殊的layout：需要根据需求来处理ViewGroup的测量和布局这两个过程，并且同时处理子元素的测量和布局的过程
-继承特定的V......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/5/">&larr; Newer Posts</a>
-        </li>
-    
-    
-        <li class="next">
-            <a href="/page/7/">Older Posts &rarr;</a>
-        </li>
-    
-</ul>
-
-
-
-                <!-- 如果开启评论功能 -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
-                            
-                        
-                            
-                            <a href="/tags/#网络" title="网络" rel="7">网络</a>
-                            
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
-                            
+                       
+                          <a class="tag" href="/tags/#Dagger2" title="Dagger2">Dagger2</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>Do one thing every day that scares you.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/cristianoro7">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -419,9 +274,69 @@ View的三大流程都是通过ViewRoot完成的
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
