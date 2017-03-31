@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-03-30T15:43:51.149Z</updated>
+  <updated>2017-03-30T15:45:15.403Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>重拾Dagger2</title>
     <link href="http://cristianoro7.github.io/2017/03/30/Dagger2%E7%9B%AE%E5%BD%95/"/>
     <id>http://cristianoro7.github.io/2017/03/30/Dagger2目录/</id>
-    <published>2017-03-30T15:43:51.149Z</published>
-    <updated>2017-03-30T15:43:51.149Z</updated>
+    <published>2017-03-30T15:45:15.403Z</published>
+    <updated>2017-03-30T15:45:15.403Z</updated>
     
     <content type="html"><![CDATA[<p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
 <h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
