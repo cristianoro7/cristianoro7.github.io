@@ -380,13 +380,14 @@ pre code {
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 0px;
+   height: 600px;
   /* 0 on mobile, modify by Hux */
 }
 @media only screen and (min-width: 768px) {
   .intro-header {
-    /*margin-bottom: 20px;*/
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     /* response on desktop */
+    height: 600px;
   }
 }
 .intro-header .site-heading,
