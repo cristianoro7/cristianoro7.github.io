@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-03-30T15:45:15.403Z</updated>
+  <updated>2017-04-03T16:37:50.385Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -16,41 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>重拾Dagger2</title>
-    <link href="http://cristianoro7.github.io/2017/03/30/Dagger2%E7%9B%AE%E5%BD%95/"/>
-    <id>http://cristianoro7.github.io/2017/03/30/Dagger2目录/</id>
-    <published>2017-03-30T15:45:15.403Z</published>
-    <updated>2017-03-30T15:45:15.403Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
-<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
-<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
-<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
-<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
-<blockquote>
-<p><a href="https://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      meet with dagger2
-    
-    </summary>
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
-    
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>重拾Dagger2-组织</title>
-    <link href="http://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/"/>
-    <id>http://cristianoro7.github.io/2017/03/30/重拾Dagger2-组织/</id>
-    <published>2017-03-30T15:38:47.083Z</published>
-    <updated>2017-03-30T15:38:47.083Z</updated>
+    <link href="http://cristianoro7.github.io/2017/04/04/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/"/>
+    <id>http://cristianoro7.github.io/2017/04/04/重拾Dagger2-组织/</id>
+    <published>2017-04-03T16:37:50.385Z</published>
+    <updated>2017-04-03T16:37:50.385Z</updated>
     
     <content type="html"><![CDATA[<h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>在<a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">上一篇</a>中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent</p>
 <h3 id="Component-dependencies-VS-SubComponent"><a href="#Component-dependencies-VS-SubComponent" class="headerlink" title="Component dependencies VS SubComponent"></a>Component dependencies VS SubComponent</h3><p>为了提高一个Component中代码的复用度, 我们可以利用 Component dependencies 和 SubComponent来获取Component中的依赖, 那么这两种方式有什么区别?</p>
@@ -91,7 +61,7 @@
 <h4 id="SubComponent-1"><a href="#SubComponent-1" class="headerlink" title="SubComponent"></a>SubComponent</h4><p>我们的Activity可以能会有Fragment, 那Fragment对应的Component是要依赖于AppComponent还是做为对应ActivityComponent的SubComponent?<br>由于Fragment是包含在Activity中的, 更好的做法是将FragmentComponent作为对应的ActivtyComponent的SubComponent</p>
 <h3 id="告别Dagger2"><a href="#告别Dagger2" class="headerlink" title="告别Dagger2"></a>告别Dagger2</h3><p>写了三篇Dagger2的文章, 总算对Dagger2了解多了, 现在用得了很踏实.  所以该暂时告别Dagger2的学习了, 不过, 最后我还准备了一个Dagger2的使用的Demo, 这个Demo准备用MVP + Dagger2 + RxJava实现一个知乎日报, 嘻嘻, 如果你喜欢的话, 手抖给个star咯, </p>
 <p>Demo在项目地址的RxJava+MVP+Dagger2分支中</p>
-<p><a href="https://github.com/cristianoro7/Daily" target="_blank" rel="external">项目地址</a></p>
+<p><a href="https://github.com/cristianoro7/Daily/tree/RxJava+MVP+Dagger2" target="_blank" rel="external">项目地址</a></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
 <p><a href="https://guides.codepath.com/android/Dependency-Injection-with-Dagger-2#setup" target="_blank" rel="external">https://guides.codepath.com/android/Dependency-Injection-with-Dagger-2#setup</a><br><a href="http://jellybeanssir.blogspot.jp/2015/05/component-dependency-vs-submodules-in.html" target="_blank" rel="external">http://jellybeanssir.blogspot.jp/2015/05/component-dependency-vs-submodules-in.html</a><br><a href="http://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies" target="_blank" rel="external">http://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies</a><br><a href="https://google.github.io/dagger/users-guide.html" target="_blank" rel="external">https://google.github.io/dagger/users-guide.html</a></p>
 </blockquote>
@@ -100,6 +70,36 @@
     <summary type="html">
     
       goodbye  Dagger2
+    
+    </summary>
+    
+      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
+    
+    
+      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重拾Dagger2</title>
+    <link href="http://cristianoro7.github.io/2017/03/30/Dagger2%E7%9B%AE%E5%BD%95/"/>
+    <id>http://cristianoro7.github.io/2017/03/30/Dagger2目录/</id>
+    <published>2017-03-30T15:45:15.403Z</published>
+    <updated>2017-03-30T15:45:15.403Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
+<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
+<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
+<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
+<blockquote>
+<p><a href="https://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      meet with dagger2
     
     </summary>
     
