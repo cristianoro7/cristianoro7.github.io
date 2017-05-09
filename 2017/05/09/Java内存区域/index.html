@@ -13,11 +13,11 @@
 
     <title>
         
-          大话数据结构-队列 - Desperado的博客 | Desperado&#39;s Blog
+          Java内存区域 - Desperado的博客 | Desperado&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://cristianoro7.github.io/2017/03/19/大话数据结构-队列/">
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/05/09/Java内存区域/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -159,7 +159,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home.jpg')
+        background-image: url('/img/jvm/jvm-1.jpeg')
     }
 </style>
 <header class="intro-header" >
@@ -169,14 +169,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#JVM" title="JVM">JVM</a>
                         
                     </div>
-                    <h1>大话数据结构-队列</h1>
+                    <h1>Java内存区域</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Desperado on
-                        2017-03-19
+                        2017-05-09
                     </span>
                 </div>
             </div>
@@ -195,65 +195,109 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="顺序循环队列"><a href="#顺序循环队列" class="headerlink" title="顺序循环队列"></a>顺序循环队列</h3><ul>
-<li>由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题<h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4>把队列的头尾相接的顺序储存结构称为循环队列</li>
+                <h1 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>运行时数据区<ul>
+<li>程序计数器</li>
+<li>Java虚拟机栈</li>
+<li>本地方法栈</li>
+<li>Java堆</li>
+<li>方法区</li>
+<li>运行时常量池</li>
 </ul>
-<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ul>
-<li>在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况</li>
+</li>
+<li>HotSpot虚拟机对象探秘<ul>
+<li>对象的创建</li>
+<li>对象的内存布局</li>
+<li>对象的访问定位</li>
 </ul>
-<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><ul>
-<li>设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;</li>
-<li>当队列为空时，front == rear，当队列满时，修改其条件，空出一个元素空间</li>
-</ul>
-<a id="more"></a>
-<h4 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h4><ul>
-<li>结构体</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 循环队列的顺序结构</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> front;</div><div class="line">    <span class="keyword">int</span> rear;</div><div class="line">&#125;SqQueue;</div></pre></td></tr></table></figure>
-<ul>
-<li>初始化：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">init</span><span class="params">(SqQueue &amp;Q)</span> </span>&#123;</div><div class="line">    Q.front = <span class="number">0</span>;</div><div class="line">    Q.rear = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>队列长度</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">length</span><span class="params">(SqQueue Q)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> ((Q.rear - Q.front + MAXSIZE) % MAXSIZE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>入队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">enQueue</span><span class="params">(SqQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>((Q.rear + <span class="number">1</span>) % MAXSIZE == Q.front) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    Q.data[Q.rear] = e;</div><div class="line">    Q.rear = (Q.rear + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>出队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">deQueue</span><span class="params">(SqQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = Q.data[Q.front];</div><div class="line">    Q.front = (Q.front + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="链式队列"><a href="#链式队列" class="headerlink" title="链式队列"></a>链式队列</h3><ul>
-<li>结构体：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 链队列</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> QNode &#123;</div><div class="line">    ElemType data;</div><div class="line">    <span class="keyword">struct</span> QNode *next;</div><div class="line">&#125;QNode, *QueuePrt;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    QueuePrt front, rear;</div><div class="line">&#125;LinkQueue;</div></pre></td></tr></table></figure>
-<ul>
-<li>入队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sEnQueue</span><span class="params">(LinkQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    QueuePrt p = (QueuePrt) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</div><div class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    p-&gt;data = e;</div><div class="line">    p-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    Q.rear-&gt;next = p;</div><div class="line">    Q.rear = p;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>出队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sDeQueue</span><span class="params">(LinkQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    QueuePrt p = Q.front-&gt;next;</div><div class="line">    e = p-&gt;data;</div><div class="line">    Q.front-&gt;next = p-&gt;next;</div><div class="line"></div><div class="line">    <span class="comment">/*如果被删除的结点是最后一个的话，将尾指针指向头结点*/</span></div><div class="line">    <span class="keyword">if</span>(Q.rear == p) &#123;</div><div class="line">        Q.rear = Q.front;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">free</span>(p);</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="对比："><a href="#对比：" class="headerlink" title="对比："></a>对比：</h3><h4 id="时间上："><a href="#时间上：" class="headerlink" title="时间上："></a>时间上：</h4><ul>
-<li>两者的基本操作的时间复度都是O(1)</li>
-<li>对于循环队列来说，事先申请好空间，试用期间不释放</li>
-<li>对于链队列来说，每次申请和释放结点也会存在一些时间开销</li>
-<li>如果入队频繁的话，两者还是有细微差别</li>
-</ul>
-<h4 id="空间上"><a href="#空间上" class="headerlink" title="空间上"></a>空间上</h4><ul>
-<li>循环队列需要事先确定一个长度，所以就有了储存个数和空间浪费的问题</li>
-<li>链队列则不存在上述问题，但是它需要指针域，也会在空间上产生一定的开销</li>
-<li>总体来说，链队列在空间上更加灵活</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>在确定队列长度的最大值的情况下，使用循环队列较为适宜，否则使用链队列比较适合</li>
+</li>
 </ul>
 <blockquote>
-<p>参考资料：《大话数据结构》<br><a href="https://github.com/cristianoro7/data-structure-practice" target="_blank" rel="external">源码</a></p>
+<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3></blockquote>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><ul>
+<li>程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。</li>
+<li>字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理，线程恢复等基础功能都需要依赖程序计数器来完成。</li>
+<li>如果线程正在执行的是一个Java方法，程序计数器记录的是正在执行的虚拟机字节码指令的地址;如果正在执行的方法是一个Native方法的，程序计数器的值为空（Undefine）。</li>
+<li>此内存是JVM唯一没有规定任何OOM的区域。</li>
+<li>程序计数器是线程私有的。</li>
+</ul>
+<h4 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h4><ul>
+<li>Java虚拟机栈是线程私有的。</li>
+<li>Java虚拟机栈指的是Java方法执行的内存模型：即每个方法在执行时都会创建一个栈帧（是方法运行时的一种基础数据结构），用于储存局部变量表，操作数栈，动态链接，方法出口等信息，每个方法从调用到执行完成的过程，对应着一个栈帧在虚拟机栈的入栈到出栈的过程。</li>
+<li>局部变量表存放了编译期可知的各种基本数据类型（boolean，byte，char，short，int，float，long，double），对象引用和returnAddress类型。</li>
+<li>局部变量表所需的内存空间在编译期完成分配，在方法运行期间不会改变局部变量表的大小。</li>
+<li>该区域会出现两种异常情况<ul>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常。</li>
+<li>如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError。</li>
+</ul>
+</li>
+</ul>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><ul>
+<li>发挥的作用与Java虚拟机栈相似。</li>
+<li>与Java虚拟机栈之间的区别：<ul>
+<li>虚拟机栈执行Java方法服务。</li>
+<li>本地方法栈执行本地方法服务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><ul>
+<li>Java虚拟机所管理的内存区域最大的一块。</li>
+<li>Java堆是在虚拟机启动时被创建，是被所有线程所共享。</li>
+<li>一般情况下：几乎所有对象实例和数组都是在堆上分配。</li>
+<li>如果在堆上没有内存完成实例分配，并且堆也无法扩展时，将抛出OOM。</li>
+</ul>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><ul>
+<li>与堆一样，是各个线程共享的内存区域。</li>
+<li>它用于储存已被虚拟机加载的类信息，常量，静态常量，即时编译器编译后的代码等数据。</li>
+<li>当方法区无法满足内存分配的需求时，将会抛出OOM。</li>
+</ul>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><ul>
+<li>运行时常量池是方法区的一部分。</li>
+<li>当运行时常量池无法满足内存分配的需求时，将会抛出OOM。</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="HotSpot虚拟机对象探秘"><a href="#HotSpot虚拟机对象探秘" class="headerlink" title="HotSpot虚拟机对象探秘"></a>HotSpot虚拟机对象探秘</h3></blockquote>
+<h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><ul>
+<li>当虚拟机遇到new指令时，首先检查这个指令的参数是否在常量池能定位到一个类的符号引用，并检查这个符号引用代表的类是否已经被加载，解析，初始化过。如果没有的话，那必须先进行类的加载</li>
+<li>类加载检查通过后，虚拟机将为新生对象分配内存。</li>
+<li>对象所需的内存在类加载完成后便完全可确定，为对象分配空间相当于在堆上划分一块内存出来。</li>
+<li>内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），如果使用TLAB，这一工作在TLAB分配时进行。这一步操作保证了对象的实例字段在Java代码可以不赋值就直接使用。程序能访问到这些字段的零值。</li>
+<li>接下来，虚拟机需要为对象进行必要的设置。例如：类的元数据信息，对象的哈希码，对象的GC分代年龄等信息。</li>
+</ul>
+<h4 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h4><p>在HotSpot虚拟机中，对象在内存中储存的布局可以分为3块区域：对象头，实例数据和对齐填充。</p>
+<h5 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h5><ul>
+<li>对象头包含两部分信息。</li>
+<li>第一部分用于储存对象自身的运行时数据，如哈希码，GC分代年龄，锁标记，线程持有的锁，偏向线程ID，偏向时间戳等。考虑到虚拟机的空间效率，Mark Word被设计成一个非固定的数据结构，它会根据对象的状态来复用自己的内存空间。例如，在32位的虚拟机中，如果对象处于未被锁定的情况下，那么 Mark Word的32bit空间中的25bit用于储存哈希码，4bit用于储存对象分代年龄，2bit储存锁标志，1bit固定为0。</li>
+<li>对象头的另一部分为类型指针，即对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</li>
+</ul>
+<h5 id="实例数据"><a href="#实例数据" class="headerlink" title="实例数据"></a>实例数据</h5><ul>
+<li>实例数据为对象真正储存的有效信息，也是代码中所定义的各种类型的字段内容。</li>
+</ul>
+<h5 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h5><ul>
+<li>对齐填充不是必然存在的，它仅仅起到占位符的作用</li>
+<li>由于HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍，也就是对象的大小必须是8字节的整数倍。</li>
+<li>对象头部分正好是8字节的倍数。</li>
+<li>当实例数据部分没有对齐时，就需要通过对齐填充来补全。</li>
+</ul>
+<h4 id="对象的访问定位"><a href="#对象的访问定位" class="headerlink" title="对象的访问定位"></a>对象的访问定位</h4><ul>
+<li>Java程序需要通过栈上的reference数据来操作堆上的具体对象。</li>
+<li>目前主流的访问方法有使用句柄和直接指针两种。</li>
+<li>如果使用句柄的话，那么Java堆将划分出一块内存来作为句柄池，reference中储存的就是对象的句柄地址，而句柄中包含了对象实例数据和类型数据各自的具体地址信息。</li>
+</ul>
+<p><img src="/uploads/jvm/句柄指针.png" alt=""></p>
+<ul>
+<li><p>如果使用指针访问，那么Java堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而reference中储存的直接就是对象地址。<br><img src="/uploads/jvm/直接指针.png" alt=""></p>
+</li>
+<li><p>两种访问方式的优缺：</p>
+<ul>
+<li>使用句柄的最大好处就是reference中储存的是稳定的句柄地址，在对象移动时只会改变句柄中的实例数据指针，而reference不需要修改。</li>
+<li>直接使用指针的最大好处就是速度更快，它节省了一次指针定位的时间开销。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考资料：《深入理解Java虚拟机》</p>
 </blockquote>
 
 
@@ -263,13 +307,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/03/29/重拾Dagger2-使用Dagger2/" data-toggle="tooltip" data-placement="top" title="重拾Dagger2-使用Dagger2">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/18/大话数据结构-栈/" data-toggle="tooltip" data-placement="top" title="大话数据结构-栈">Next Post &rarr;</a>
+                            <a href="/2017/04/04/重拾Dagger2-组织/" data-toggle="tooltip" data-placement="top" title="重拾Dagger2-组织">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -278,9 +318,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2017/03/19/大话数据结构-队列/"
-                        data-title="大话数据结构-队列"
-                        data-url="http://cristianoro7.github.io/2017/03/19/大话数据结构-队列/" >
+                        data-thread-key="2017/05/09/Java内存区域/"
+                        data-title="Java内存区域"
+                        data-url="http://cristianoro7.github.io/2017/05/09/Java内存区域/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -306,7 +346,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#JVM" title="JVM">JVM</a>
                         
                     </div>
                 </section>

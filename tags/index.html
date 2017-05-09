@@ -87,14 +87,14 @@
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/categories/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/categories/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -108,7 +108,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -174,15 +174,17 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
-                    <a href="#Dagger2" title="Dagger2" rel="4">Dagger2</a>
-                
                     <a href="#异步框架#AsyncTask" title="异步框架#AsyncTask" rel="1">异步框架#AsyncTask</a>
+                
+                    <a href="#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                 
                     <a href="#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
                 
+                    <a href="#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
+                
                     <a href="#java" title="java" rel="1">java</a>
                 
-                    <a href="#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
+                    <a href="#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
                 
                     <a href="#网络" title="网络" rel="7">网络</a>
                 
@@ -190,14 +192,36 @@
                 
                     <a href="#数据结构" title="数据结构" rel="3">数据结构</a>
                 
-                    <a href="#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
-                
                     <a href="#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                
+                    <a href="#JVM" title="JVM" rel="1">JVM</a>
                 
             </div>
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="异步框架#AsyncTask">
+                    <span class="tag-text">异步框架#AsyncTask</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/01/13/AsyncTask源码浅析/">
+                        <h2 class="post-title">
+                            AsyncTask源码浅析
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="Dagger2">
@@ -283,28 +307,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="异步框架#AsyncTask">
-                    <span class="tag-text">异步框架#AsyncTask</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/01/13/AsyncTask源码浅析/">
-                        <h2 class="post-title">
-                            AsyncTask源码浅析
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="图片加载框架#Picasso">
                     <span class="tag-text">图片加载框架#Picasso</span>
                 </span>
@@ -342,28 +344,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="java">
-                    <span class="tag-text">java</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/03/03/java基础/">
-                        <h2 class="post-title">
-                            java基础
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="网络框架#Volley">
                     <span class="tag-text">网络框架#Volley</span>
                 </span>
@@ -391,6 +371,65 @@
                      <a href="/2017/01/13/Volley--队列控制/">
                         <h2 class="post-title">
                             Volley--队列控制
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="java">
+                    <span class="tag-text">java</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/03/03/java基础/">
+                        <h2 class="post-title">
+                            java基础
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="图片加载框架#universal-image-loader">
+                    <span class="tag-text">图片加载框架#universal-image-loader</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/01/13/universal-image-loader内存缓存策略/">
+                        <h2 class="post-title">
+                            universal-image-loader缓存策略
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/01/13/universal-image-loader源码浅析/">
+                        <h2 class="post-title">
+                            universal-image-loader源码浅读
                         </h2>
                         
                     </a>
@@ -440,9 +479,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">
+                     <a href="/2017/02/17/图解HTTP-网络基础/">
                         <h2 class="post-title">
-                            图解HTTP-简单的HTTP协议-笔记
+                            图解HTTP-网络基础-笔记
                         </h2>
                         
                     </a>
@@ -455,9 +494,24 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/02/17/图解HTTP-网络基础/">
+                     <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
                         <h2 class="post-title">
-                            图解HTTP-网络基础-笔记
+                            图解HTTP-返回结果的状态码-笔记
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">
+                        <h2 class="post-title">
+                            图解HTTP-简单的HTTP协议-笔记
                         </h2>
                         
                     </a>
@@ -488,21 +542,6 @@
                      <a href="/2017/02/21/确认访问用户的身份-笔记/">
                         <h2 class="post-title">
                             图解HTTP-确认访问用户的身份-笔记
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
-                        <h2 class="post-title">
-                            图解HTTP-返回结果的状态码-笔记
                         </h2>
                         
                     </a>
@@ -559,21 +598,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/03/05/大话数据结构-线性表/">
-                        <h2 class="post-title">
-                            大话数据结构-线性表
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/2017/03/19/大话数据结构-队列/">
                         <h2 class="post-title">
                             大话数据结构-队列
@@ -584,36 +608,14 @@
                 </div>
                 <hr>
                 
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="图片加载框架#universal-image-loader">
-                    <span class="tag-text">图片加载框架#universal-image-loader</span>
-                </span>
-                
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/01/13/universal-image-loader内存缓存策略/">
+                     <a href="/2017/03/05/大话数据结构-线性表/">
                         <h2 class="post-title">
-                            universal-image-loader缓存策略
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/01/13/universal-image-loader源码浅析/">
-                        <h2 class="post-title">
-                            universal-image-loader源码浅读
+                            大话数据结构-线性表
                         </h2>
                         
                     </a>
@@ -627,21 +629,6 @@
                 <span class="fa fa-tag listing-seperator" id="安卓开发艺术探索笔记">
                     <span class="tag-text">安卓开发艺术探索笔记</span>
                 </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/">
-                        <h2 class="post-title">
-                            安卓开发艺术探索-View的事件体系-笔记
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
                 
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -666,6 +653,43 @@
                      <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">
                         <h2 class="post-title">
                             安卓开发艺术探索-自定义View的思想-笔记
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/">
+                        <h2 class="post-title">
+                            安卓开发艺术探索-View的事件体系-笔记
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="JVM">
+                    <span class="tag-text">JVM</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/05/09/Java内存区域/">
+                        <h2 class="post-title">
+                            Java内存区域
                         </h2>
                         
                     </a>
