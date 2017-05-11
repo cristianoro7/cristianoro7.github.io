@@ -87,14 +87,14 @@
 
                         
                         <li>
-                            <a href="/categories/">Archives</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/categories/">Archives</a>
                         </li>
                         
                     
@@ -185,6 +185,39 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/05/11/Java内存分配与回收策略/">
+        <h2 class="post-title">
+            Java内存分配与回收策略
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            内存分配与回收策略目录
+对象优先在Eden分配
+大对象直接进入老年代
+长期存活对象将进入老年代
+动态对象年龄判定
+空间分配担保
+
+对象优先在Eden分配
+大多数情况下, 对象主要分配在新生代的Eden区上.
+当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+
+大对象直接进入老年代
+大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-11
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -304,28 +337,6 @@ Component dependencies VS SubComponent为了提高一个Component中代码的复
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/03/30/Dagger2目录/">
-        <h2 class="post-title">
-            重拾Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            meet with dagger2
-        </h3>
-        <div class="post-content-preview">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Squa......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-30
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -367,7 +378,7 @@ Dagger2是什么?Dagger2是之前由Squa......
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="2">JVM</a>
+                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
                             
                         
                             
@@ -375,19 +386,19 @@ Dagger2是什么?Dagger2是之前由Squa......
                             
                         
                             
-                        
-                            
                             <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
-                            
-                            <a href="/tags/#网络" title="网络" rel="7">网络</a>
                             
                         
                             
                         
                             
                             <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
+                            
+                            <a href="/tags/#网络" title="网络" rel="7">网络</a>
                             
                         
                             
