@@ -932,6 +932,72 @@
     </entry>
     
     <entry>
+      <title><![CDATA[大话数据结构-队列]]></title>
+      <url>http://cristianoro7.github.io/2017/05/21/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</url>
+      <content type="html"><![CDATA[<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="顺序循环队列"><a href="#顺序循环队列" class="headerlink" title="顺序循环队列"></a>顺序循环队列</h3><ul>
+<li>由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题<h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4>把队列的头尾相接的顺序储存结构称为循环队列</li>
+</ul>
+<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况</li>
+</ul>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li>设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;</li>
+<li>当队列为空时，front == rear，当队列满时，修改其条件，空出一个元素空间</li>
+</ul>
+<a id="more"></a>
+<h4 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h4><ul>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 循环队列的顺序结构</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> front;</div><div class="line">    <span class="keyword">int</span> rear;</div><div class="line">&#125;SqQueue;</div></pre></td></tr></table></figure>
+<ul>
+<li>初始化：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">init</span><span class="params">(SqQueue &amp;Q)</span> </span>&#123;</div><div class="line">    Q.front = <span class="number">0</span>;</div><div class="line">    Q.rear = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>队列长度</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">length</span><span class="params">(SqQueue Q)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> ((Q.rear - Q.front + MAXSIZE) % MAXSIZE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>入队操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">enQueue</span><span class="params">(SqQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>((Q.rear + <span class="number">1</span>) % MAXSIZE == Q.front) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    Q.data[Q.rear] = e;</div><div class="line">    Q.rear = (Q.rear + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出队操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">deQueue</span><span class="params">(SqQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = Q.data[Q.front];</div><div class="line">    Q.front = (Q.front + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="链式队列"><a href="#链式队列" class="headerlink" title="链式队列"></a>链式队列</h3><ul>
+<li>结构体：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 链队列</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> QNode &#123;</div><div class="line">    ElemType data;</div><div class="line">    <span class="keyword">struct</span> QNode *next;</div><div class="line">&#125;QNode, *QueuePrt;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    QueuePrt front, rear;</div><div class="line">&#125;LinkQueue;</div></pre></td></tr></table></figure>
+<ul>
+<li>入队操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sEnQueue</span><span class="params">(LinkQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    QueuePrt p = (QueuePrt) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</div><div class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    p-&gt;data = e;</div><div class="line">    p-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    Q.rear-&gt;next = p;</div><div class="line">    Q.rear = p;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出队操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sDeQueue</span><span class="params">(LinkQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    QueuePrt p = Q.front-&gt;next;</div><div class="line">    e = p-&gt;data;</div><div class="line">    Q.front-&gt;next = p-&gt;next;</div><div class="line"></div><div class="line">    <span class="comment">/*如果被删除的结点是最后一个的话，将尾指针指向头结点*/</span></div><div class="line">    <span class="keyword">if</span>(Q.rear == p) &#123;</div><div class="line">        Q.rear = Q.front;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">free</span>(p);</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="对比："><a href="#对比：" class="headerlink" title="对比："></a>对比：</h3><h4 id="时间上："><a href="#时间上：" class="headerlink" title="时间上："></a>时间上：</h4><ul>
+<li>两者的基本操作的时间复度都是O(1)</li>
+<li>对于循环队列来说，事先申请好空间，试用期间不释放</li>
+<li>对于链队列来说，每次申请和释放结点也会存在一些时间开销</li>
+<li>如果入队频繁的话，两者还是有细微差别</li>
+</ul>
+<h4 id="空间上"><a href="#空间上" class="headerlink" title="空间上"></a>空间上</h4><ul>
+<li>循环队列需要事先确定一个长度，所以就有了储存个数和空间浪费的问题</li>
+<li>链队列则不存在上述问题，但是它需要指针域，也会在空间上产生一定的开销</li>
+<li>总体来说，链队列在空间上更加灵活</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>在确定队列长度的最大值的情况下，使用循环队列较为适宜，否则使用链队列比较适合</li>
+</ul>
+<blockquote>
+<p>参考资料：《大话数据结构》<br><a href="https://github.com/cristianoro7/data-structure-practice" target="_blank" rel="external">源码</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java内存区域]]></title>
       <url>http://cristianoro7.github.io/2017/05/18/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</url>
       <content type="html"><![CDATA[<h1 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
@@ -1665,72 +1731,6 @@
 </ul>
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>如果Modue中的Provides有标注作用域的话, 必须和对应的Component标注的作用域相同, 不然编译时会报错.</p>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>本篇文章主要讲Dagger2的最基本的使用, 目的指在熟悉Dagger2中的基本使用, 注入规则以及需要注意的地方, 关于Dagger2的实现原理和Dagger的组织方式, 准备开两篇来讲..嗯…今天就到这里了哈</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[大话数据结构-队列]]></title>
-      <url>http://cristianoro7.github.io/2017/03/19/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</url>
-      <content type="html"><![CDATA[<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="顺序循环队列"><a href="#顺序循环队列" class="headerlink" title="顺序循环队列"></a>顺序循环队列</h3><ul>
-<li>由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题<h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4>把队列的头尾相接的顺序储存结构称为循环队列</li>
-</ul>
-<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ul>
-<li>在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况</li>
-</ul>
-<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><ul>
-<li>设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;</li>
-<li>当队列为空时，front == rear，当队列满时，修改其条件，空出一个元素空间</li>
-</ul>
-<a id="more"></a>
-<h4 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h4><ul>
-<li>结构体</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 循环队列的顺序结构</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> front;</div><div class="line">    <span class="keyword">int</span> rear;</div><div class="line">&#125;SqQueue;</div></pre></td></tr></table></figure>
-<ul>
-<li>初始化：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">init</span><span class="params">(SqQueue &amp;Q)</span> </span>&#123;</div><div class="line">    Q.front = <span class="number">0</span>;</div><div class="line">    Q.rear = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>队列长度</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">length</span><span class="params">(SqQueue Q)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> ((Q.rear - Q.front + MAXSIZE) % MAXSIZE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>入队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">enQueue</span><span class="params">(SqQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>((Q.rear + <span class="number">1</span>) % MAXSIZE == Q.front) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    Q.data[Q.rear] = e;</div><div class="line">    Q.rear = (Q.rear + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>出队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">deQueue</span><span class="params">(SqQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = Q.data[Q.front];</div><div class="line">    Q.front = (Q.front + <span class="number">1</span>) % MAXSIZE;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="链式队列"><a href="#链式队列" class="headerlink" title="链式队列"></a>链式队列</h3><ul>
-<li>结构体：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 链队列</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> QNode &#123;</div><div class="line">    ElemType data;</div><div class="line">    <span class="keyword">struct</span> QNode *next;</div><div class="line">&#125;QNode, *QueuePrt;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    QueuePrt front, rear;</div><div class="line">&#125;LinkQueue;</div></pre></td></tr></table></figure>
-<ul>
-<li>入队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sEnQueue</span><span class="params">(LinkQueue &amp;Q, ElemType e)</span> </span>&#123;</div><div class="line">    QueuePrt p = (QueuePrt) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</div><div class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    p-&gt;data = e;</div><div class="line">    p-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    Q.rear-&gt;next = p;</div><div class="line">    Q.rear = p;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>出队操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sDeQueue</span><span class="params">(LinkQueue &amp;Q, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(Q.front == Q.rear) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    QueuePrt p = Q.front-&gt;next;</div><div class="line">    e = p-&gt;data;</div><div class="line">    Q.front-&gt;next = p-&gt;next;</div><div class="line"></div><div class="line">    <span class="comment">/*如果被删除的结点是最后一个的话，将尾指针指向头结点*/</span></div><div class="line">    <span class="keyword">if</span>(Q.rear == p) &#123;</div><div class="line">        Q.rear = Q.front;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">free</span>(p);</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="对比："><a href="#对比：" class="headerlink" title="对比："></a>对比：</h3><h4 id="时间上："><a href="#时间上：" class="headerlink" title="时间上："></a>时间上：</h4><ul>
-<li>两者的基本操作的时间复度都是O(1)</li>
-<li>对于循环队列来说，事先申请好空间，试用期间不释放</li>
-<li>对于链队列来说，每次申请和释放结点也会存在一些时间开销</li>
-<li>如果入队频繁的话，两者还是有细微差别</li>
-</ul>
-<h4 id="空间上"><a href="#空间上" class="headerlink" title="空间上"></a>空间上</h4><ul>
-<li>循环队列需要事先确定一个长度，所以就有了储存个数和空间浪费的问题</li>
-<li>链队列则不存在上述问题，但是它需要指针域，也会在空间上产生一定的开销</li>
-<li>总体来说，链队列在空间上更加灵活</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>在确定队列长度的最大值的情况下，使用循环队列较为适宜，否则使用链队列比较适合</li>
-</ul>
-<blockquote>
-<p>参考资料：《大话数据结构》<br><a href="https://github.com/cristianoro7/data-structure-practice" target="_blank" rel="external">源码</a></p>
-</blockquote>
 ]]></content>
     </entry>
     
