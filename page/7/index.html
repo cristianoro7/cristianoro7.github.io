@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,23 +188,31 @@
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/Volley--队列控制/">
+    <a href="/2017/02/17/确保Web安全的HTTPS/">
         <h2 class="post-title">
-            Volley--队列控制
+            图解HTTP-确保Web安全的HTTPS-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
+            HTTP存在的不足
+通信使用明文(不加密), 内容可能会被窃听
+不验证对方身份,因此有可能遭遇伪装
+无法证明报文的完整性,所以有可能遭到篡改
 
-先看看源码中的四个队列，这四个队列在RequestQueue中：
-12345678910111213141516171819202122232425262728/** * Staging area for requests that already have a dupl......
+通信使用明文可能会被窃听
+HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
+如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
+
+
+不验证通信对方就有可能在遇到伪装
+HTTP 协议的实现......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -212,26 +220,23 @@
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">
+    <a href="/2017/02/17/与HTTP协议的Web服务器/">
         <h2 class="post-title">
-            安卓开发艺术探索-View的工作原理（一）-笔记
+            图解HTTP-与HTTP协议的Web服务器-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            View的工作原理初始ViewRoot和DecorView
-
-ViewRoot对应的实体类是ViewRootImpl类，它时连接WindowManager和DecorView的纽带
-
-View的三大流程都是通过ViewRoot完成的
-
-在ActivityThread中，当Activity对象被创建后，会将DecorView添加到Window中，同时会创建ViewRootImpl对象，并将Vi......
+            与HTTP协作的Web服务器通信数据转发程序:代理、网关、隧道
+在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作
+代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端
+网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -239,24 +244,20 @@ View的三大流程都是通过ViewRoot完成的
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">
+    <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
         <h2 class="post-title">
-            安卓开发艺术探索-自定义View的思想-笔记
+            图解HTTP-返回结果的状态码-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            自定义View概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理
-自定义View的分类
-继承View重写onDraw方法：采用这种方式需要自己支持wrap_content和padding
-继承ViewGroup派生出特殊的layout：需要根据需求来处理ViewGroup的测量和布局这两个过程，并且同时处理子元素的测量和布局的过程
-继承特定的V......
+            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -264,29 +265,30 @@ View的三大流程都是通过ViewRoot完成的
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/">
+    <a href="/2017/02/17/Picasso基本用法及源码浅析/">
         <h2 class="post-title">
-            安卓开发艺术探索-View的事件体系-笔记
+            Picasso基本用法及源码浅析
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            第三章：View的事件体系View的位置参数：
+            基本用法：加载图片：
+picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
+123Picasso.with(this)                .load(uri)                .into(mImageView);
 
-View的位置参数left， top， right， bottom是相对于VIew的父容器来说的，因此是一种相对坐标
-宽高和坐标的关系：
-width = right - left
-height = bottom - top
+以上是最简单的通用加载图片的方法
 
 
-这四个参数对应于源码的mLeft， mRight， mTop， mBottom这四个成员变量，获取方式：
-left ......
+
+
+添加加载错误以及加载中的展示图片
+12345Pic......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -333,11 +335,15 @@ left ......
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -366,6 +372,10 @@ left ......
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>

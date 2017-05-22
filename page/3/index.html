@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,28 +188,41 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/18/大话数据结构-栈/">
+    <a href="/2017/05/18/Java内存区域/">
         <h2 class="post-title">
-            大话数据结构-栈
+            Java内存区域
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            栈顺序栈
-结构体
+            Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
 
-12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
 
 
-入栈操作
 
-1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-18
+        2017-05-18
     </p>
 
 </div>
@@ -217,37 +230,30 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/05/大话数据结构-线性表/">
+    <a href="/2017/05/15/子网的划分和构造超网/">
         <h2 class="post-title">
-            大话数据结构-线性表
+            子网的划分和构成超网
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            线性表的定义
-零个或多个数据元素的有限序列
+            子网的划分和构成超网
+目录
 
-分类
-顺序储存结构
-链式储存结构
-单链表
-静态链表
-循环链表
-双向链表
+划分子网
+使用子网时的分组转发
+无分类编址CIDR
 
 
-
-
-顺序储存结构
-宏定义
-
-123456789#define OK 1#define ERROR 0#define TRUE 1#define MAXSIZE 20//静态链表的最大空间#define STATIC_MAXSIZE 1000#define FALSE 0t......
+划分子网
+两级IP地址的不合理IP空间利用率低一个A类网路可容纳的主机数超过1000W, 而B类网络可容纳主机超过6W.但是有些网络对连接在网络上的主机数量是有限制的, 这就导致了地址空间的利用率低下.
+路由表变大导致网络性能低下给每个物理网络分配一个网络号的话, 会导致路由表中的项目大大增大, 同时查找路......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-05
+        2017-05-15
     </p>
 
 </div>
@@ -255,27 +261,32 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/03/java基础/">
+    <a href="/2017/05/11/Java内存分配与回收策略/">
         <h2 class="post-title">
-            java基础
+            Java内存分配与回收策略
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            字符串使用+连接字符串
-使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
+            内存分配与回收策略目录
+对象优先在Eden分配
+大对象直接进入老年代
+长期存活对象将进入老年代
+动态对象年龄判定
+空间分配担保
 
-StringBuilder
-该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
+对象优先在Eden分配
+大多数情况下, 对象主要分配在新生代的Eden区上.
+当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
 
-StringBuffer
-StringBuilder可以保证线程安全，但是也因此效率变得......
+大对象直接进入老年代
+大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-03
+        2017-05-11
     </p>
 
 </div>
@@ -283,29 +294,53 @@ StringBuilder可以保证线程安全，但是也因此效率变得......
 
 <div class="post-preview">
 
-    <a href="/2017/02/21/确认访问用户的身份-笔记/">
+    <a href="/2017/05/11/java垃圾回收器/">
         <h2 class="post-title">
-            图解HTTP-确认访问用户的身份-笔记
+            Java垃圾回收器
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            ﻿### HTTP使用的认证方式
+            垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
 
-BASIC认证(基本认证)
-DIGEST(摘要认证)
-SSL客户端认证
-FormBase认证(基于表单认证)
 
-BASIC认证步骤
+生存还是死亡
+回收方法区
 
-步骤1:当请求的资源需要 BASIC 认证时,服务器会随状态码 401Authorization Required,返回带 WWW-Authenticate 首部字段的响应。该字段内包含认证的方式(BASIC) 及 Requ......
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel O......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-21
+        2017-05-11
     </p>
 
 </div>
@@ -352,11 +387,15 @@ BASIC认证步骤
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -385,6 +424,10 @@ BASIC认证步骤
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>

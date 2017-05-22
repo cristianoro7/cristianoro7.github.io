@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,31 +188,21 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-报文信息-笔记/">
+    <a href="/2017/04/04/重拾Dagger2-组织/">
         <h2 class="post-title">
-            图解HTTP-报文信息-笔记
+            重拾Dagger2-组织
         </h2>
         <h3 class="post-subtitle">
-            
+            goodbye Dagger2
         </h3>
         <div class="post-content-preview">
-            HTTP报文内的HTTP信息HTTP报文
-用于HTTP协议交互的信息被称为报文
-请求端（客户端）的HTTP报文称为请求报文
-相应端（服务器端）的HTTP报文称为响应报文
-HTTP报文分为报文首部和报文主体（不一定有报文主体）
-
-HTTP报文结构：
-
-HTTP报文结构请求报文和响应报文结构：
-响应的实例
-编码提升传输速率
-HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码......
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component depend......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-04-04
     </p>
 
 </div>
@@ -220,26 +210,21 @@ HTT在传输数据时可以直接将数据原貌传输，但也可以在传输�
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/Picasso中值得学习的技巧/">
+    <a href="/2017/03/30/Dagger2目录/">
         <h2 class="post-title">
-            Picasso中值得学习的技巧
+            重拾Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            meet with dagger2
         </h3>
         <div class="post-content-preview">
-            Picasso中的线程池
-Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
-
-分析:
-首先在Picasso中,定义了一个优先级枚举类型:
-
-12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   *......
+            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
+Dagger2是什么?Dagger2是之前由Squa......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-30
     </p>
 
 </div>
@@ -247,32 +232,24 @@ Picasso中的线程池主要是对对网络状态进行了监听,并且包装了
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">
+    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
         <h2 class="post-title">
-            图解HTTP-简单的HTTP协议-笔记
+            重拾Dagger2-理解Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            Understanding Dagger2
         </h3>
         <div class="post-content-preview">
-            通过请求和响应来交换信息
-
-请求报文是由请求方法、请求 URI、协议版本、可选的请求首部字段和内容实体构成的。
-请求报文的构成
-
-
-
-响应报文基本上由协议版本、状态码(表示请求成功或失败的数字代码)、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。
-
-
-HTTP是不保存状态的协议
-HTTP协议自身不对请求和响应之间的状态进行保存, 也就是HTTP不对请求和响应做持久化处理
-不保......
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-30
     </p>
 
 </div>
@@ -280,31 +257,29 @@ HTTP协议自身不对请求和响应之间的状态进行保存, 也就是HTTP�
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/确保Web安全的HTTPS/">
+    <a href="/2017/03/29/重拾Dagger2-使用Dagger2/">
         <h2 class="post-title">
-            图解HTTP-确保Web安全的HTTPS-笔记
+            重拾Dagger2-使用Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            Hey, Dagger2
         </h3>
         <div class="post-content-preview">
-            HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
+            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
 
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
+Inject
+Provides
+Module
+Component
+Qualifiers
+Scope
 
-
-不验证通信对方就有可能在遇到伪装
-HTTP 协议的实现......
+InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-29
     </p>
 
 </div>
@@ -351,11 +326,15 @@ HTTP 协议的实现......
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -384,6 +363,10 @@ HTTP 协议的实现......
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>

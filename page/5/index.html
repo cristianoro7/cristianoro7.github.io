@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,23 +188,28 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/与HTTP协议的Web服务器/">
+    <a href="/2017/03/19/大话数据结构-队列/">
         <h2 class="post-title">
-            图解HTTP-与HTTP协议的Web服务器-笔记
+            大话数据结构-队列
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            与HTTP协作的Web服务器通信数据转发程序:代理、网关、隧道
-在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作
-代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端
-网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉......
+            队列顺序循环队列
+由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
+
+问题：
+在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
+
+解决：
+设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
+当队列为空时，front == rear，当队列满时，修改......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-19
     </p>
 
 </div>
@@ -212,20 +217,28 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
+    <a href="/2017/03/18/大话数据结构-栈/">
         <h2 class="post-title">
-            图解HTTP-返回结果的状态码-笔记
+            大话数据结构-栈
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务......
+            栈顺序栈
+结构体
+
+12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
+
+
+入栈操作
+
+1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-18
     </p>
 
 </div>
@@ -233,30 +246,37 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/Picasso基本用法及源码浅析/">
+    <a href="/2017/03/05/大话数据结构-线性表/">
         <h2 class="post-title">
-            Picasso基本用法及源码浅析
+            大话数据结构-线性表
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            基本用法：加载图片：
-picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
-123Picasso.with(this)                .load(uri)                .into(mImageView);
+            线性表的定义
+零个或多个数据元素的有限序列
 
-以上是最简单的通用加载图片的方法
+分类
+顺序储存结构
+链式储存结构
+单链表
+静态链表
+循环链表
+双向链表
 
 
 
 
-添加加载错误以及加载中的展示图片
-12345Pic......
+顺序储存结构
+宏定义
+
+123456789#define OK 1#define ERROR 0#define TRUE 1#define MAXSIZE 20//静态链表的最大空间#define STATIC_MAXSIZE 1000#define FALSE 0t......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-05
     </p>
 
 </div>
@@ -264,23 +284,27 @@ picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-网络基础/">
+    <a href="/2017/03/03/java基础/">
         <h2 class="post-title">
-            图解HTTP-网络基础-笔记
+            java基础
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            网络基础 TCP/IPTCP/IP协议族
-我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
-TCP/IP是互联网各类协议族的总称, 如图:
-协议中存在各式各样的内容,从电缆的规格到 IP 地址的选定方法、寻找异地用户的方法、双方建立通信的顺序,以及 Web 页面显示需要处理的步骤,等等。像这样把互联网通信的相关协议集合起来的协议族就叫做TCP/IP协......
+            字符串使用+连接字符串
+使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
+
+StringBuilder
+该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
+
+StringBuffer
+StringBuilder可以保证线程安全，但是也因此效率变得......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-03
     </p>
 
 </div>
@@ -327,11 +351,15 @@ TCP/IP是互联网各类协议族的总称, 如图:
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -360,6 +388,10 @@ TCP/IP是互联网各类协议族的总称, 如图:
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>

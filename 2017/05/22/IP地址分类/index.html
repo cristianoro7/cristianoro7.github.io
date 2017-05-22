@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+          IP地址分类 - Desperado的博客 | Desperado&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/05/22/IP地址分类/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Desperado</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/life/">Readed</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/计网/IP分类.jpeg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#计算机网络#网络层" title="计算机网络#网络层">计算机网络#网络层</a>
+                        
+                    </div>
+                    <h1>IP地址分类</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-05-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>分类</li>
+<li>特殊IP地址</li>
+<li>共有IP地址</li>
+<li>私有IP地址</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<ul>
+<li>IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地址能找到被该IP地址标识的主机.例如:我们的家地址可以看作一个IP地址, 通过这个地址,可以找到我们,也就是主机.</li>
+<li>在TCP/IP协议中, IP地址是以二进制数字形式出现, 共32Bit, 1Bit就是二进制中的1位, 由于二进制的形式不适合人们阅读.因此换用一种”点分十进制法”表示IP地址.</li>
+<li>例如:<br><br>点分十进制: 192.168.1.1<br><br>二进制: 11000000.10101000.00000001.00000001</li>
+</ul>
+<blockquote>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class A</td>
+<td>NETWORK</td>
+<td>HOST</td>
+<td>HOST</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class B</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>HOST</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class C</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class D</td>
+<td>多播</td>
+</tr>
+<tr>
+<td>Class E</td>
+<td>科研用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Class-A"><a href="#Class-A" class="headerlink" title="Class A"></a>Class A</h4><ul>
+<li>A类地址的第一个8 Bit 表示网络位, 且<code>网络位的第一个Bit为0</code>, 1-7Bit表示网络标识,格式为:0XXXXXXXX.</li>
+<li>后3个8 Bit 表示主机位.</li>
+<li>A类地址的网络范围:00000001~01111111, 用十进制表示: 1.0.0.0到126.0.0.0,一共有126个网络.</li>
+<li>主机标识为2的24次幂-2个(去掉全0和全1的地址), 全0的主机号字段表示该IP地址是”本机”连接到的单个网络地址,而1的主机号表示该网络上的所有主机.每个网络可容纳的主机数为16777214个.</li>
+<li>A类地址支持巨型网络,一般分给有大量主机的网络使用.</li>
+</ul>
+<h4 id="Class-B"><a href="#Class-B" class="headerlink" title="Class B"></a>Class B</h4><ul>
+<li>B类地址的前两个8 Bit表示网络标位, 且网络位的前两个Bit总是10, 即格式为: 10XXXXXX XXXXXXXX.</li>
+<li>B类地址可指派的网络数为: 2的14次幂-1, -1的原因是128.0.0.0是不指派的.</li>
+<li>后两个8 Bit表示主机位.</li>
+<li>B类的每个网络可容纳的主机数是2的16次幂-2, 即65534.</li>
+</ul>
+<h4 id="Class-C"><a href="#Class-C" class="headerlink" title="Class C"></a>Class C</h4><ul>
+<li>C类地址的前3个字节表示网路号, 且开头必须为<code>110</code>, 可以指派的最小网络地址为:192.0.1.0, 指派的网络范围为2的21次幂-1, -1的原因是192.0.0.0是不指派的.</li>
+<li>每个C类地址可容纳的主机数为:2的8次幂-2.</li>
+</ul>
+<blockquote>
+<h3 id="特殊地址"><a href="#特殊地址" class="headerlink" title="特殊地址"></a>特殊地址</h3></blockquote>
+<h4 id="0-0-0-0"><a href="#0-0-0-0" class="headerlink" title="0.0.0.0"></a>0.0.0.0</h4><ul>
+<li>它表示所有不清楚的主机和目的网络.</li>
+<li>不清楚的是意思是本机路由表中没有指定如何到达.</li>
+<li>如果在网络设置中设置了缺省网关, 那么系统会自动生成一个目的地址为0.0.0.0的缺省路由,所有不清楚的目的网络和主机都会被送到这里.</li>
+</ul>
+<h4 id="255-255-255-255"><a href="#255-255-255-255" class="headerlink" title="255.255.255.255"></a>255.255.255.255</h4><ul>
+<li>对本机来说, 这个地址指本网段内的所有主机. 这个地址不能被路由器所转发.</li>
+</ul>
+<h4 id="回环地址"><a href="#回环地址" class="headerlink" title="回环地址"></a>回环地址</h4><ul>
+<li>A类网络中的127是一个保留地址, 用于网络软件测试和本机进程间的通信.</li>
+<li>无论什么程序, 只要发送了该地址的数据, 就会被立刻发送回本机.</li>
+<li>127网络号的分组不能出现在网络传输上.</li>
+</ul>
+<h4 id="局域网内的IP"><a href="#局域网内的IP" class="headerlink" title="局域网内的IP"></a>局域网内的IP</h4><ul>
+<li>当主机号的全为0时,表示一个网络本身.</li>
+<li>当主机号全为1时, 表示网络中的全部主机.</li>
+<li>网络号代表一个网络本身, 同时也是一个网段的第一个地址. 广播地址是网段的最后一个地址,这两个地址是不能配在主机上的.</li>
+</ul>
+<blockquote>
+<h3 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h3></blockquote>
+<ul>
+<li>属于非注册地址, 专门为组织机构(学校,企业)内部使用, 简单来说私有地址不能直接上网.</li>
+<li>私有IP的范围:<ul>
+<li>A类私有IP地址: 10.0.0.0~10.255.255.255</li>
+<li>B类私有IP地址: 172.16.0.0~172.31.255.255</li>
+<li>C类私有地址: 192.168.0.0~192.168.255.255</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="公有IP"><a href="#公有IP" class="headerlink" title="公有IP"></a>公有IP</h3></blockquote>
+<ul>
+<li>公有地址（Public address，也可称为公网地址）由Internet NIC（Internet Network Information Center因特网信息中心）负责。这些IP地址分配给注册并向Internet NIC提出申请的组织机构。通过它直接访问因特网，它是广域网范围内的。</li>
+</ul>
+<blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="http://blog.csdn.net/tennysonsky/article/details/45337405" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45337405</a></li>
+<li><a href="http://blog.csdn.net/txx9010/article/details/7712438" target="_blank" rel="external">http://blog.csdn.net/txx9010/article/details/7712438</a></li>
+<li><a href="https://www.zhihu.com/question/27714563" target="_blank" rel="external">https://www.zhihu.com/question/27714563</a></li>
+<li><a href="http://blog.csdn.net/tennysonsky/article/details/45226275" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45226275</a></li>
+<li>计算机网络(谢仁希)</li>
+</ul>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/05/22/网际控制报文协议ICMP/" data-toggle="tooltip" data-placement="top" title="网际控制报文协议ICMP">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/22/Class类文件结构/" data-toggle="tooltip" data-placement="top" title="类文件结构">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/05/22/IP地址分类/"
+                        data-title="IP地址分类"
+                        data-url="http://cristianoro7.github.io/2017/05/22/IP地址分类/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#计算机网络#网络层" title="计算机网络#网络层">计算机网络#网络层</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.eyestide.com" target="_blank">民生斌</a></li>
+                    
+                        <li><a href="http://Yves0.github.io" target="_blank">罗总</a></li>
+                    
+                        <li><a href="http://aymaxli.cn/" target="_blank">杰神</a></li>
+                    
+                        <li><a href="http://kimZLeung.github.io" target="_blank">聪神</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cristianoro7">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Desperado 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://cristianoro7.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

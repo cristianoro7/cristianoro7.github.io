@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,32 +188,35 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/11/Java内存分配与回收策略/">
+    <a href="/2017/05/22/TCP滑动窗口/">
         <h2 class="post-title">
-            Java内存分配与回收策略
+            TCP滑动窗口
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            内存分配与回收策略目录
-对象优先在Eden分配
-大对象直接进入老年代
-长期存活对象将进入老年代
-动态对象年龄判定
-空间分配担保
+            TCP滑动窗口
+目录
 
-对象优先在Eden分配
-大多数情况下, 对象主要分配在新生代的Eden区上.
-当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+以字节流为单位的滑动窗口
+TCP数据流的类别
+接收窗口的确认机制
+窗口缩放
+超时重传时间的选择
+选择确认SACK
 
-大对象直接进入老年代
-大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
+
+以字节流为单位的滑动窗口
+现假定A收到B发来的确认报文,其中窗口是20,而确认号为31.根据这两个数据,A就构造出了自己的发送窗口:
+
+
+在没有收到B的确认的情况下,A可以连续把窗口内的数据都发送出去.凡是已经发送过去的数据,在未收到确认之前都必须暂时......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-11
+        2017-05-22
     </p>
 
 </div>
@@ -221,53 +224,25 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/11/java垃圾回收器/">
+    <a href="/2017/05/22/TCP首部/">
         <h2 class="post-title">
-            Java垃圾回收器
+            TCP首部
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            垃圾收集器目录
-判定对象存活
-引用计数法
-可达性分析算法
-再谈引用
-强引用
-软引用
-弱引用
-虚引用
-
-
-生存还是死亡
-回收方法区
-
-
-垃圾收集算法
-标记-清除算法
-复制算法
-标记-整理算法
-分代收集算法
-
-
-HotSpot的算法实现
-枚举根节点
-安全点
-安全区域
-
-
-垃圾收集器
-Serial收集器
-ParNew收集器
-Parallel收集器
-Serial Old 收集器
-Parallel O......
+            TCP首部
+概述
+TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流的,在......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-11
+        2017-05-22
     </p>
 
 </div>
@@ -275,41 +250,33 @@ Parallel O......
 
 <div class="post-preview">
 
-    <a href="/2017/05/09/Java内存区域/">
+    <a href="/2017/05/22/可靠传输的工作原理/">
         <h2 class="post-title">
-            Java内存区域
+            可靠传输的工作原理
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Java内存区域目录
-运行时数据区
-程序计数器
-Java虚拟机栈
-本地方法栈
-Java堆
-方法区
-运行时常量池
+            可靠传输的工作原理
+目录
+
+概述
+停止等待协议
+连续ARQ协议
 
 
-HotSpot虚拟机对象探秘
-对象的创建
-对象的内存布局
-对象的访问定位
+概述
+TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大努力交付的服务,也就是说网络层提供的是不可靠的传输.因此,TCP必须采用适当的措施才能使得两个运输层之间的传输信道变得可靠.
 
-
-
-
-运行时数据区
-程序计数器
-程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
+停止等待协议
+无差错情况
+上图为最简单的无差错情况. A发送分组M1,发完就暂停发送,等待B确认.当B收到了M1就向A发送确认.......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-09
+        2017-05-22
     </p>
 
 </div>
@@ -317,21 +284,38 @@ HotSpot虚拟机对象探秘
 
 <div class="post-preview">
 
-    <a href="/2017/04/04/重拾Dagger2-组织/">
+    <a href="/2017/05/22/路由器工作原理/">
         <h2 class="post-title">
-            重拾Dagger2-组织
+            路由器工作原理
         </h2>
         <h3 class="post-subtitle">
-            goodbye Dagger2
+            
         </h3>
         <div class="post-content-preview">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component depend......
+            路由器工作原理
+目录
+
+概述
+输入端口
+交换结构
+输出端口
+
+
+概述
+路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:
+
+
+输入端口
+
+
+输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.
+路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.
+转发表是由路......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-04-04
+        2017-05-22
     </p>
 
 </div>
@@ -374,11 +358,15 @@ Component dependencies VS SubComponent为了提高一个Component中代码的复
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -407,6 +395,10 @@ Component dependencies VS SubComponent为了提高一个Component中代码的复
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>

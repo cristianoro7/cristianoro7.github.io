@@ -152,7 +152,7 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home.jpg')">
+<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -188,105 +188,139 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/30/Dagger2目录/">
+    <a href="/2017/05/22/路由选择协议/">
         <h2 class="post-title">
-            重拾Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            meet with dagger2
-        </h3>
-        <div class="post-content-preview">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Squa......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
-        <h2 class="post-title">
-            重拾Dagger2-理解Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Understanding Dagger2
-        </h3>
-        <div class="post-content-preview">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/29/重拾Dagger2-使用Dagger2/">
-        <h2 class="post-title">
-            重拾Dagger2-使用Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Hey, Dagger2
-        </h3>
-        <div class="post-content-preview">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/19/大话数据结构-队列/">
-        <h2 class="post-title">
-            大话数据结构-队列
+            路由选择协议
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            队列顺序循环队列
-由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
+            路由选择协议
+目录
 
-问题：
-在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
+概述
+内部网关协议RIP
+内部网关协议OSPF
+外部网关协议BGP
 
-解决：
-设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
-当队列为空时，front == rear，当队列满时，修改......
+
+概述
+
+从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.
+静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.
+动态路由选择协议: 也叫做自适应路由选择, 其......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-19
+        2017-05-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/22/网际控制报文协议ICMP/">
+        <h2 class="post-title">
+            网际控制报文协议ICMP
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            网际控制报文协议ICMP
+目录
+
+概述
+ICMP报文种类
+ICMP应用举例
+
+
+概述
+为了更有效地转发IP数据报和提高交付成功的机会, 在网际层使用了网际控制报文协议ICMP(Internet Control Message Protocol). ICMP允许主机或者路由器报告差错情况和提供有关异常情况的报告.ICMP报文作为IP层的数据报的数据.
+
+ICMP报文种类
+
+网际报文的种类有两种......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/22/IP地址分类/">
+        <h2 class="post-title">
+            IP地址分类
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            IP地址分类
+目录
+
+概述
+分类
+特殊IP地址
+共有IP地址
+私有IP地址
+
+
+概述
+
+IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地址能找到被该IP地址标识的主机.例如:我们的家地址可以看作一个IP地址, 通过这个地址,可以找到我们,也就是主机.
+在TCP/IP协议中, IP地址是以二进制数字形式出现, 共32Bit, 1Bit就是二进制中的1位, 由于二进制的形式不适合人们......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/22/Class类文件结构/">
+        <h2 class="post-title">
+            类文件结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-22
     </p>
 
 </div>
@@ -333,11 +367,15 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                             
                         
                             
+                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
+                            
+                        
+                            
                             <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
-                            <a href="/tags/#JVM" title="JVM" rel="3">JVM</a>
+                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
                             
                         
                             
@@ -366,6 +404,10 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                         
                             
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="3">计算机网络#运输层</a>
                             
                         
                     </div>
