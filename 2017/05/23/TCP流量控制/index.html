@@ -13,11 +13,11 @@
 
     <title>
         
-          Readed - Desperado的博客 | Desperado&#39;s Blog
+          TCP流量控制 - Desperado的博客 | Desperado&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://cristianoro7.github.io/life/">
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/05/23/TCP流量控制/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -151,193 +151,145 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/read.jpeg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/计网/流量控制.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <!--<h1>Readed</h1>-->
-                    <!--<hr class="small">-->
-                    <!--<span class="subheading">Hey, look at what I had read</span>-->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#计算机网络#运输层" title="计算机网络#运输层">计算机网络#运输层</a>
+                        
+                    </div>
+                    <h1>TCP流量控制</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-05-23
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <h1 id="技术类书籍"><a href="#技术类书籍" class="headerlink" title="技术类书籍"></a>技术类书籍</h1><h2 id="《Java核心技术-卷一》"><a href="#《Java核心技术-卷一》" class="headerlink" title="《Java核心技术*卷一》"></a>《Java核心技术*卷一》</h2><p>当初做完工作室第一轮考核有对Java有一定了解后才看的,看完这本书后,比较系统的补充了自己的一些Java基础．对于零基础的初学者，建议一边看视频，一边看这本书，这样会好理解一些．</p>
-<h2 id="《Android群英传》"><a href="#《Android群英传》" class="headerlink" title="《Android群英传》"></a>《Android群英传》</h2><p>当初看这本书的时候，总感觉里面的内容讲得有点浅显，看完后，感觉对自己帮助不大，如果早点看的话帮助可能会大点。</p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>利用滑动窗口实现流量控制</li>
+<li>零窗口</li>
+<li>传输效率</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>一般来说,我们总希望数据传输得快一点, 但是如果发送方把数据发送得太快, 接收方就可能来不及接收,这就会造成数据的丢失.流量控制其实就是让发送方的发送速率不要太快, 要让接收方来得及接收.</p>
+<blockquote>
+<h3 id="利用TCP滑动窗口实现流量控制"><a href="#利用TCP滑动窗口实现流量控制" class="headerlink" title="利用TCP滑动窗口实现流量控制"></a>利用TCP滑动窗口实现流量控制</h3></blockquote>
+<p>其实TCP流量控制本质上是利用滑动窗口机制来实现的.接下来,结合例子来解释TCP的流量控制.</p>
+<p>如图:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/流量控制.png" alt=""></p>
+<p>现在假设A向B发送数据. 在连接建立时, B告诉A:我的接收窗口为400.因此A的发送窗口不能超过B的发送窗口不能超过接收方窗口的数值.现在假设每个报文段的字节为100, 而报文段的初始值为1.</p>
+<p>仔细观察上图, 接收方B进行了3次的流量控制. 第一次吧窗口值缩小到了300.第二次又减到100.最后减到0.即不允许对方再发送数据了.</p>
+<blockquote>
+<h3 id="零窗口"><a href="#零窗口" class="headerlink" title="零窗口"></a>零窗口</h3></blockquote>
+<p>现在考虑一种情况. B向A发送了0窗口报文段不久后, B的接收缓存又有了一些空间.于是B向A发送了rwnd = 400的报文段. 然而这个报文在传送的过程中丢失了. 于是A只能一直等待B发送非零窗口的通知,而B一直等待A发送数据.此时如果没有其他措施,这种相互等待的局面会一直持续下去.</p>
+<p>为了解决这个问题, TCP为每个连接设有一个持续计时器.只要TCP连接接收到零窗口,就启动持续计时器.若持续计时器时间一到,就发送一个零窗口探测报文段.而对方就在确认这个探测报文段时给出现在的窗口值.如果窗口值不是零的话,那么死索界面将会被打破,否则就重新启动持续计时器.</p>
+<blockquote>
+<h3 id="传输效率"><a href="#传输效率" class="headerlink" title="传输效率"></a>传输效率</h3></blockquote>
+<h4 id="发送效率"><a href="#发送效率" class="headerlink" title="发送效率"></a>发送效率</h4><p>应用程序把数据传送给TCP的发送缓存后, 剩下的任务就由TCP来控制了.此时,TCP可以采用不同的机制来控制发送的时机.例如:</p>
+<ul>
+<li>TCP维护一个变量,它等于最大报文长度MSS.只要缓存中存放的数据达到MSS字节时,就组装成一个报文发送出去.</li>
+<li>由发送方的应用程序指明要求发送报文段,也就是TCP的PSH操作.</li>
+<li><p>第三种机制是发送方的计时器期限到了,就把当前已缓存的数据组装成报文发送出去.</p>
+<p>在TCP的实现中, 广泛是使用Nagle算法.该算法如下:若发送应用程序把要发送的数据逐个字节都送到TCP缓存中, 则发送方会把第一个字节先发送出去,把后面到达的字节缓存起来.当发送方收到对第一个数据的确认时,再把缓存的字节组装成报文段发送出去,同时继续对后来到达的数据进行缓存.这样做,可以有效的提高网络的吞吐量.</p>
+</li>
+</ul>
+<h4 id="接收效率"><a href="#接收效率" class="headerlink" title="接收效率"></a>接收效率</h4><p>现在假设TCP接收方的缓存已经满了,而应用进程一次只从接收缓存中读取1个字节,然后向发送方发送确认, 并把窗口值设置为1.如此循环下去, 会使网络的效率很低.</p>
+<p>要解决上面的问题,可以有下面两种方法:</p>
+<ol>
+<li>让接收方等待一段时间,使得接收缓存有足够空间容纳一个MSS再发送确认.</li>
+<li>让接收方等待一段时间,使得接收缓存已有一半的空闲的空间.</li>
+</ol>
+<p>上面的两种方法可以交替使用.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络</p>
+</blockquote>
 
 
-                <!-- 如果开启评论功能 -->
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-                    <!-- 多说评论框 start -->
-                    <div class="comment">
-                        <div class="ds-thread"
-                            data-thread-key="life/index.html"
-                            data-title="Readed"
-                            data-url="http://cristianoro7.github.io/life/index.html" >
-                        </div>
+                    
+                        <li class="next">
+                            <a href="/2017/05/23/TCP滑动窗口/" data-toggle="tooltip" data-placement="top" title="TCP滑动窗口">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/05/23/TCP流量控制/"
+                        data-title="TCP流量控制"
+                        data-url="http://cristianoro7.github.io/2017/05/23/TCP流量控制/" >
                     </div>
-                    <!-- 多说评论框 end -->
-                    
-
-                    
-
-
-                    
-                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        // dynamic User by Hux
-                        var _user = 'Desperado';
-
-                        // duoshuo comment query.
-                        var duoshuoQuery = {short_name: _user };
-                        (function() {
-                            var ds = document.createElement('script');
-                            ds.type = 'text/javascript';ds.async = true;
-                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                            ds.charset = 'UTF-8';
-                            (document.getElementsByTagName('head')[0]
-                             || document.getElementsByTagName('body')[0]).appendChild(ds);
-                        })();
-                    </script>
-                    <!-- 多说公共JS代码 end -->
-                    
-
-                    
-
-
+                </div>
+                <!-- 多说评论框 end -->
+                
 
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
-                            
-                        
-                            
-                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
-                            
-                        
-                            
-                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="4">计算机网络#运输层</a>
-                            
-                        
-                            
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
-                            
-                        
-                            
-                            <a href="/tags/#网络" title="网络" rel="7">网络</a>
-                            
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
-                            
+                       
+                          <a class="tag" href="/tags/#计算机网络#运输层" title="计算机网络#运输层">计算机网络#运输层</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>Do one thing every day that scares you.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/cristianoro7">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -356,9 +308,69 @@
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

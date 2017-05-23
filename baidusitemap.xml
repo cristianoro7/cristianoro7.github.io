@@ -3,16 +3,13 @@
 
 
     
-    
-    
-    
   <url>
-    <loc>http://cristianoro7.github.io/2017/05/22/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</loc>
-    <lastmod>2017-05-22T09:31:54.210Z</lastmod>
+    <loc>http://cristianoro7.github.io/2017/05/23/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/</loc>
+    <lastmod>2017-05-23T14:35:49.905Z</lastmod>
     <data>
         <display>
-        <title>TCP滑动窗口</title>
-        <pubTime>2017-05-22T09:31:54.210Z</pubTime>
+        <title>TCP流量控制</title>
+        <pubTime>2017-05-23T14:35:49.905Z</pubTime>
         
         <tag>计算机网络#运输层</tag>
          
@@ -25,6 +22,29 @@
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/05/23/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</loc>
+    <lastmod>2017-05-23T09:33:18.310Z</lastmod>
+    <data>
+        <display>
+        <title>TCP滑动窗口</title>
+        <pubTime>2017-05-23T09:33:18.310Z</pubTime>
+        
+        <tag>计算机网络#运输层</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
     
   <url>
     <loc>http://cristianoro7.github.io/2017/05/22/TCP%E9%A6%96%E9%83%A8/</loc>
