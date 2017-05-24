@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://cristianoro7.github.io/page/2/">
+    <link rel="canonical" href="http://cristianoro7.github.io/page/11/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -188,132 +188,25 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/22/TCP首部/">
+    <a href="/2017/01/13/Volley浅读/">
         <h2 class="post-title">
-            TCP首部
+            Volley浅读
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            TCP首部
-概述
-TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
-TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.
-源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
-序号占4个字节.TCP是面向字节流的,在......
+            Velloy浅谈
+
+我们都知道，一般要使用Volley，先要创建该请求队列对象，我们并不是直接调用它的构造方法，而是调用Volley.newRequestQueue(COntext)来创建请求队列,那么我们下面来看看该方法“：
+
+
+123456789101112131415161718192021222324252627282930313233343536373839404142434445......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/22/可靠传输的工作原理/">
-        <h2 class="post-title">
-            可靠传输的工作原理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            可靠传输的工作原理
-目录
-
-概述
-停止等待协议
-连续ARQ协议
-
-
-概述
-TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大努力交付的服务,也就是说网络层提供的是不可靠的传输.因此,TCP必须采用适当的措施才能使得两个运输层之间的传输信道变得可靠.
-
-停止等待协议
-无差错情况
-上图为最简单的无差错情况. A发送分组M1,发完就暂停发送,等待B确认.当B收到了M1就向A发送确认.......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/22/路由器工作原理/">
-        <h2 class="post-title">
-            路由器工作原理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            路由器工作原理
-目录
-
-概述
-输入端口
-交换结构
-输出端口
-
-
-概述
-路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:
-
-
-输入端口
-
-
-输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.
-路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.
-转发表是由路......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/22/路由选择协议/">
-        <h2 class="post-title">
-            路由选择协议
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            路由选择协议
-目录
-
-概述
-内部网关协议RIP
-内部网关协议OSPF
-外部网关协议BGP
-
-
-概述
-
-从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.
-静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.
-动态路由选择协议: 也叫做自适应路由选择, 其......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-22
+        2017-01-13
     </p>
 
 </div>
@@ -326,13 +219,9 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
 <ul class="pager">
     
         <li class="previous">
-            <a href="/">&larr; Newer Posts</a>
+            <a href="/page/10/">&larr; Newer Posts</a>
         </li>
     
-    
-        <li class="next">
-            <a href="/page/3/">Older Posts &rarr;</a>
-        </li>
     
 </ul>
 
