@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-05-24T10:57:37.640Z</updated>
+  <updated>2017-05-24T11:59:50.575Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -14,6 +14,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络-运输层</title>
+    <link href="http://cristianoro7.github.io/2017/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    <id>http://cristianoro7.github.io/2017/05/24/计算机网络-运输层/</id>
+    <published>2017-05-24T11:59:50.575Z</published>
+    <updated>2017-05-24T11:59:50.575Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="计算机网络-运输层"><a href="#计算机网络-运输层" class="headerlink" title="计算机网络-运输层"></a>计算机网络-运输层</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>分用和复用</li>
+<li>UDP协议</li>
+<li>运输层梳理</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.</p>
+<p>网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.</p>
+<p>在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在运输层中, 应当进行首部和数据的差错检验.</p>
+<blockquote>
+<h3 id="分用和复用"><a href="#分用和复用" class="headerlink" title="分用和复用"></a>分用和复用</h3></blockquote>
+<p>复用是指发送方不同的应用程序都可以使用同一个运输层协议传送数据.</p>
+<p>分用是指接收方的运输层去掉报文的首部后能够把数据正确交付到目的进程中.</p>
+<blockquote>
+<h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3></blockquote>
+<h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>UDP协议只在IP数据报服务上增加了很少的功能,这些功能是分用和复用还有差错检验.</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>UDP是无连接的,因此减少了开销和发送数据之前的时延</li>
+<li>UDP使用尽最大努力交付,即不保证可靠交付.</li>
+<li>UDP是面向报文的.应用层交给UDP多长的报文,UDP就照样发送,一次发一个报文.</li>
+<li>UDP没有拥塞控制.</li>
+<li>UDP支持1对1,1对多,多对1,多对多的交互通信.</li>
+<li>UDP的首部开销小,只有8字节.</li>
+</ol>
+<blockquote>
+<h3 id="运输层梳理"><a href="#运输层梳理" class="headerlink" title="运输层梳理"></a>运输层梳理</h3></blockquote>
+<p>运输层主要有两个协议:</p>
+<ol>
+<li>UDP</li>
+<li>TCP</li>
+</ol>
+<p>UDP是面向无连接的协议,只是在IP数据报上添加复用,分用和差错检验的功能,UDP协议本身比较简单.</p>
+<p>TCP协议是面向连接的一种协议,在进程之间的通信中提供一种可靠交付的服务.相比于UDP协议, TCP协议比较复杂.</p>
+<p>下面给出运输层的知识梳理图:</p>
+<p><img src="/uploads/计网/运输层/运输层梳理.png" alt=""></p>
+<p>其中TCP协议涉及的内容比较多,归纳起来可以分为:</p>
+<p><a href="https://cristianoro7.github.io/2017/05/22/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">可靠传输的工作原理</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/22/TCP%E9%A6%96%E9%83%A8/">TCP首部</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">TCP滑动窗口</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/">TCP流量控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">TCP拥塞控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">TCP连接管理</a></p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;计算机网络-运输层&quot;&gt;&lt;a href=&quot;#计算机网络-运输层&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-运输层&quot;&gt;&lt;/a&gt;计算机网络-运输层&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    
+  </entry>
   
   <entry>
     <title>TCP拥塞控制</title>
@@ -2139,103 +2211,6 @@
     <summary type="html">
     
       Understanding  Dagger2
-    
-    </summary>
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
-    
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重拾Dagger2-使用Dagger2</title>
-    <link href="http://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/"/>
-    <id>http://cristianoro7.github.io/2017/03/29/重拾Dagger2-使用Dagger2/</id>
-    <published>2017-03-29T02:12:05.257Z</published>
-    <updated>2017-03-29T02:12:05.253Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="常用注解解释"><a href="#常用注解解释" class="headerlink" title="常用注解解释"></a>常用注解解释</h2><p>在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括</p>
-<ul>
-<li>Inject</li>
-<li>Provides</li>
-<li>Module</li>
-<li>Component</li>
-<li>Qualifiers</li>
-<li>Scope</li>
-</ul>
-<h3 id="Inject"><a href="#Inject" class="headerlink" title="Inject"></a>Inject</h3><p>Inject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当Inject是标注在类的属性域时,那么它代表Dagger会给我们提供被Inject标注的实例; 当Inject标注的是类的构造方法时,它表示Dagger会帮我们实例化这个类并提供给需要这个类的地方</p>
-<h3 id="Provides"><a href="#Provides" class="headerlink" title="Provides"></a>Provides</h3><p>Provides提供一种通过注解方法来提供依赖的机制, 它主要是用来弥补Inject的缺陷, 如果类的方法被Provides标注后, 它相当于告诉Dagger, 通过方法可以提供项目中所需要的依赖</p>
-<h3 id="Modue"><a href="#Modue" class="headerlink" title="Modue"></a>Modue</h3><p>Module的作用是来管理被Provides标注的方法, 有点类似工厂</p>
-<h3 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h3><p>通过上面介绍的三个注解, 我们可以归纳出: 在Dagger2中可以有两种方式进行依赖注入,一种是利用Inject来进行注解, 另一种是通过在被Module标注的类中,将Provides注解标注方法,并在方法中返回需要被依赖的实例．Component的作用就是将被依赖的对象提供给需要依赖的对象，也就是说Component其实就是连接依赖方和被依赖方的桥梁,只有通过Component，依赖方和被依赖方才能联系在一起．</p>
-<h3 id="Qualifiers"><a href="#Qualifiers" class="headerlink" title="Qualifiers"></a>Qualifiers</h3><p>在Dagger2中, 如果在被Module标注的类中, 有两个方法都是返回相同类型的实例时，此时，Dagger并不知道要调用哪个方法才好，因此Dagger干脆就不干了，直接在编译时就报错．这种情况叫做依赖注入迷失．而Qualifiers的作用正是来解决依赖注入迷失的问题, 具体的看代码咯</p>
-<h3 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h3><p>Scope代表作用域，Scope常常用于管理依赖对象的生命周期，Dagger中提供的Singleton注解被Scope标注，用于实现单例，不过这个单例的实现跟我们平时所写的单例不一样,具体的我会在下篇中讲到．</p>
-<p>其实只看上面的几个注解可能会让你很蒙, 那下面我们来结合代码开始来使用Dagger2</p>
-<h3 id="Inject注入"><a href="#Inject注入" class="headerlink" title="Inject注入"></a>Inject注入</h3><p>我们先来看看如何用Inject实现注入</p>
-<ul>
-<li><p>首先新建Student类, 并在其构造方法添加Inject注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name = <span class="string">"xiaoming"</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;&#125; </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>接着新建StudentComponent, 用于连接依赖方和被依赖方</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span></span>; <span class="comment">//表示需要被注入依赖的地方为StudentActivity</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>最后实现依赖注入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    Student mStudent; </div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="comment">//连接依赖方和被依赖方</span></div><div class="line">        DaggerStudentComponent.builder()</div><div class="line">                .build()</div><div class="line">                .inject(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">        <span class="comment">//之后就可以mStudent实例了</span></div><div class="line">        Toast.makeText(<span class="keyword">this</span>, mStudent.name(), Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>经过这三个步骤我们就完成了一次 依赖注入．在StudentActivity中，我们需要用到Stduent类，因此我们用Inject注解标注Student属性域, 接着在Student的构造函数上标注Inject，表示当需要Student依赖时，Dagger会帮我们实例化出Student类, 现在依赖方和被依赖方都有了，就剩下最后连接彼此，而连接彼此需要在StudentComponent中添加需要注入到哪个类中,在这个例子中, 需要被注入的类是StudentActivity, 最后调用inject方法实现注入．</p>
-<h3 id="Inject注入的缺陷"><a href="#Inject注入的缺陷" class="headerlink" title="Inject注入的缺陷"></a>Inject注入的缺陷</h3><p>使用Inject注入有一个缺点: 当我们需要注入的是第三方库的类时，我们无法直接在其构造方法标注Inject，最简单的解决办法就是新建一个类并继承我们需要的第三方库中的类．但是这种解决方法太笨拙了，如果我们需要注入的类有很多的话，我们岂不是要新建很多类? 显然这种体力活不适合程序员．关于这个问题，Dagger早就帮我们考虑好了，Dagger针对这种情况给我们提供了Provides注解来解决这种问题． </p>
-<h3 id="Provides实现注入"><a href="#Provides实现注入" class="headerlink" title="Provides实现注入"></a>Provides实现注入</h3><p>我们来看看Provides怎么解决Inject的缺陷</p>
-<ul>
-<li><p>首先定义StudentModule类, 用来管理提供的依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>接着在StudentComponent中添加moule = StudentModule.class, 相当于告诉Dagger. 可以到该类中找依赖</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(modules = StudentModule.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>最后连接彼此</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    Student mStudent;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="comment">//连接依赖方和被依赖方</span></div><div class="line">        DaggerStudentComponent.builder()</div><div class="line">                .studentModule(<span class="keyword">new</span> StudentModule())</div><div class="line">                .build();</div><div class="line"></div><div class="line">        <span class="comment">//之后就可以mStudent实例了</span></div><div class="line">        Toast.makeText(<span class="keyword">this</span>, mStudent.name(), Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>在StudentModule中, 我们通过Provides标注告诉Dagger, 这个方法返回的实例是被依赖的, 而我们在StudentComponent中添加modules = StudentModule.class, 相当于在StduentComponent注入StudentActivity时, 让Dagger去StudentModule类中找提供依赖的方法．</li>
-</ul>
-<h3 id="Qualifiers解决依赖迷失"><a href="#Qualifiers解决依赖迷失" class="headerlink" title="Qualifiers解决依赖迷失"></a>Qualifiers解决依赖迷失</h3><p>如果我们在StudentModule中提供两个返回类型相同的实例方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">proStudnet</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的代码在编译时会报错, 原因是我们之前讲的依赖注入迷失. 为了解决这个问题, 我们可以用Qualifiers注解. Dagger2中已经给我们提供了一个Named注解, Named注解是被Qualifiers修饰的一个注解, 使用Named就可以解决依赖迷失, 我们先来看看Named源码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Qualifier</span></div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Named &#123;</div><div class="line">    <span class="comment">/** The name. */</span></div><div class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们可以根据我们业务需求仿照Named来自定义注解. 看完Named注解,  我们来瞧瞧怎么用, 由于使用比较简单, 我只贴代码咯</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student1"</span>)</div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student2"</span>)</div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">proStudnet</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student1"</span>)</div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    Student mStudent;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student2"</span>)</div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    Student mStudent2;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="comment">//连接依赖方和被依赖方</span></div><div class="line">        DaggerStudentComponent.builder()</div><div class="line">                .studentModule(<span class="keyword">new</span> StudentModule())</div><div class="line">                .build();</div><div class="line"></div><div class="line">        <span class="comment">//之后就可以mStudent实例了</span></div><div class="line">        Toast.makeText(<span class="keyword">this</span>, mStudent.name(), Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="依赖注入优先级"><a href="#依赖注入优先级" class="headerlink" title="依赖注入优先级"></a>依赖注入优先级</h3><p>试想一下, 如果同时提供了Inject和Module依赖注入, Dagger会优先注入哪个? 答案是 Module. 在依赖注入时, Dagger会优先从Module查找, 如果没的话, 在从Inject构造函数, 两者只有其中一者会提供依赖</p>
-<h3 id="Dagger依赖查找策略"><a href="#Dagger依赖查找策略" class="headerlink" title="Dagger依赖查找策略"></a>Dagger依赖查找策略</h3><p>当我们需要依赖注入时, Dagger会采取以下策略来查找依赖:</p>
-<ol>
-<li>首先从Module中查找, 如果查找得到的并且Provides方法中没有参数的话, 直接提供依赖返回, 如果Module中查找不到时, 如果被依赖的对象的构造函数有Inject标注并且没有参数的话, 提供依赖并且返回</li>
-<li>步骤一的都是在Provides标注的方法或Inject标注的构造函数中没有参数的情况下,  现在讨论有参数的情况</li>
-<li>首先先从Module查找, 如果Module有提供对应的依赖并且方法中有参数, Dagger会按照先Module后Inject的顺序去查找参数的依赖, 然后重复步骤一递归查找, 查不到的话再从Inject查, 如果Inject标注的构造函数有参数的话, 也是递归步骤1进行查找</li>
-</ol>
-<h3 id="Scope实现生命周期的管理"><a href="#Scope实现生命周期的管理" class="headerlink" title="Scope实现生命周期的管理"></a>Scope实现生命周期的管理</h3><p>Dagger中采用Scope来实现被依赖对象的生命周期管理, 最直接的一个标注就是Singleton. 被Singleton标注的对象可以实现单例, 但是这种单例跟我们平常写的不太一样, 具体实现下篇我会分析, 现在我们把重点放在怎么使用上</p>
-<ul>
-<li>首先在Component标注Singleton</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Singleton</span></div><div class="line"><span class="meta">@Component</span>(modules = &#123;AppModule.class&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>接着在Modue中的Provides方法中标注Singleton</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Application application;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppModule</span><span class="params">(Application application)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.application = application;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@Singleton</span></div><div class="line">    <span class="function">Application <span class="title">providesApplication</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> application;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@Singleton</span></div><div class="line">    <span class="function">Student <span class="title">providesData</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>最后在Application实现注入就可以实现单例了, 具体代码不贴了. </li>
-<li>Scope由于比较特殊, 关于它的实现原理和具体是使用, 准备留到源码篇和组织篇的时候再分析</li>
-</ul>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>如果Modue中的Provides有标注作用域的话, 必须和对应的Component标注的作用域相同, 不然编译时会报错.</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>本篇文章主要讲Dagger2的最基本的使用, 目的指在熟悉Dagger2中的基本使用, 注入规则以及需要注意的地方, 关于Dagger2的实现原理和Dagger的组织方式, 准备开两篇来讲..嗯…今天就到这里了哈</p>
-]]></content>
-    
-    <summary type="html">
-    
-      Hey, Dagger2
     
     </summary>
     

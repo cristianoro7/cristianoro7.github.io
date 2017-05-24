@@ -13,11 +13,11 @@
 
     <title>
         
-          Desperado的博客 | Desperado&#39;s Blog
+          计算机网络-运输层 - Desperado的博客 | Desperado&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://cristianoro7.github.io/page/6/">
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/05/24/计算机网络-运输层/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -151,294 +151,152 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/newhome.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/计网/拥塞控制.jpeg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <!--<h1>Desperado</h1>-->
-                    <!--<hr class="small">-->
-                    <!--<span class="subheading">Do one thing every day that scares you.</span>-->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#计算机网络#运输层" title="计算机网络#运输层">计算机网络#运输层</a>
+                        
+                    </div>
+                    <h1>计算机网络-运输层</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-05-24
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/2017/03/29/重拾Dagger2-使用Dagger2/">
-        <h2 class="post-title">
-            重拾Dagger2-使用Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Hey, Dagger2
-        </h3>
-        <div class="post-content-preview">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/18/大话数据结构-栈/">
-        <h2 class="post-title">
-            大话数据结构-栈
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            栈顺序栈
-结构体
-
-12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
-
-
-入栈操作
-
-1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-18
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/05/大话数据结构-线性表/">
-        <h2 class="post-title">
-            大话数据结构-线性表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            线性表的定义
-零个或多个数据元素的有限序列
-
-分类
-顺序储存结构
-链式储存结构
-单链表
-静态链表
-循环链表
-双向链表
-
-
-
-
-顺序储存结构
-宏定义
-
-123456789#define OK 1#define ERROR 0#define TRUE 1#define MAXSIZE 20//静态链表的最大空间#define STATIC_MAXSIZE 1000#define FALSE 0t......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/03/java基础/">
-        <h2 class="post-title">
-            java基础
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            字符串使用+连接字符串
-使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
-
-StringBuilder
-该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
-
-StringBuffer
-StringBuilder可以保证线程安全，但是也因此效率变得......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-03
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/5/">&larr; Newer Posts</a>
-        </li>
-    
-    
-        <li class="next">
-            <a href="/page/7/">Older Posts &rarr;</a>
-        </li>
-    
+                <h1 id="计算机网络-运输层"><a href="#计算机网络-运输层" class="headerlink" title="计算机网络-运输层"></a>计算机网络-运输层</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>分用和复用</li>
+<li>UDP协议</li>
+<li>运输层梳理</li>
 </ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.</p>
+<p>网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.</p>
+<p>在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在运输层中, 应当进行首部和数据的差错检验.</p>
+<blockquote>
+<h3 id="分用和复用"><a href="#分用和复用" class="headerlink" title="分用和复用"></a>分用和复用</h3></blockquote>
+<p>复用是指发送方不同的应用程序都可以使用同一个运输层协议传送数据.</p>
+<p>分用是指接收方的运输层去掉报文的首部后能够把数据正确交付到目的进程中.</p>
+<blockquote>
+<h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3></blockquote>
+<h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>UDP协议只在IP数据报服务上增加了很少的功能,这些功能是分用和复用还有差错检验.</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>UDP是无连接的,因此减少了开销和发送数据之前的时延</li>
+<li>UDP使用尽最大努力交付,即不保证可靠交付.</li>
+<li>UDP是面向报文的.应用层交给UDP多长的报文,UDP就照样发送,一次发一个报文.</li>
+<li>UDP没有拥塞控制.</li>
+<li>UDP支持1对1,1对多,多对1,多对多的交互通信.</li>
+<li>UDP的首部开销小,只有8字节.</li>
+</ol>
+<blockquote>
+<h3 id="运输层梳理"><a href="#运输层梳理" class="headerlink" title="运输层梳理"></a>运输层梳理</h3></blockquote>
+<p>运输层主要有两个协议:</p>
+<ol>
+<li>UDP</li>
+<li>TCP</li>
+</ol>
+<p>UDP是面向无连接的协议,只是在IP数据报上添加复用,分用和差错检验的功能,UDP协议本身比较简单.</p>
+<p>TCP协议是面向连接的一种协议,在进程之间的通信中提供一种可靠交付的服务.相比于UDP协议, TCP协议比较复杂.</p>
+<p>下面给出运输层的知识梳理图:</p>
+<p><img src="/uploads/计网/运输层/运输层梳理.png" alt=""></p>
+<p>其中TCP协议涉及的内容比较多,归纳起来可以分为:</p>
+<p><a href="https://cristianoro7.github.io/2017/05/22/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">可靠传输的工作原理</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/22/TCP%E9%A6%96%E9%83%A8/">TCP首部</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">TCP滑动窗口</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/">TCP流量控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">TCP拥塞控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">TCP连接管理</a></p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络</p>
+</blockquote>
 
 
+                <hr>
 
-                <!-- 如果开启评论功能 -->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/24/TCP拥塞控制/" data-toggle="tooltip" data-placement="top" title="TCP拥塞控制">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/05/24/计算机网络-运输层/"
+                        data-title="计算机网络-运输层"
+                        data-url="http://cristianoro7.github.io/2017/05/24/计算机网络-运输层/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
-                            
-                        
-                            
-                            <a href="/tags/#计算机网络#网络层" title="计算机网络#网络层" rel="5">计算机网络#网络层</a>
-                            
-                        
-                            
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                            <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="7">计算机网络#运输层</a>
-                            
-                        
-                            
-                            <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
-                            
-                        
-                            
-                            <a href="/tags/#网络" title="网络" rel="7">网络</a>
-                            
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
-                            
+                       
+                          <a class="tag" href="/tags/#计算机网络#运输层" title="计算机网络#运输层">计算机网络#运输层</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>Do one thing every day that scares you.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/cristianoro7">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -457,9 +315,69 @@ StringBuilder可以保证线程安全，但是也因此效率变得......
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
