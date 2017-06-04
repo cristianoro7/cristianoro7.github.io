@@ -4,6 +4,70 @@
   
     
     <entry>
+      <title><![CDATA[计算机组成原理概述]]></title>
+      <url>http://cristianoro7.github.io/2017/06/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/</url>
+      <content type="html"><![CDATA[<h1 id="计算机组成原理概述"><a href="#计算机组成原理概述" class="headerlink" title="计算机组成原理概述"></a>计算机组成原理概述</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>储存程序概念</li>
+<li>计算机硬件的组成</li>
+<li>储存器的设计思想</li>
+<li>计算机的主要性能指标</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>最近,突然对操作系统感兴趣,于是提前看了网上关于操作系统的视频. 但是在看的过程中对操作系统启动时从实模式到保护模式的切换,分段机制和分页机制, CPU的工作模型和总线等概念不怎么熟悉. 于是Google了一番, 发现这些大都是涉及到计算机组成原理的知识,刚好这学期学校有开设计算机组成原理课程.于是乎, 系统的学习了一波计算机组成原理的知识.</p>
+<p>由于自己的方向是偏软件开发的, 因此,在学习的过程中,主要理解计算机的工作原理以及设计思想, 对于硬件的设计和工作原理就基本没深入了解. 接下来关于计算机组成原理的文章,都是偏向与理论并且不涉及到硬件的具体工作原理等.</p>
+<blockquote>
+<h3 id="储存程序概念"><a href="#储存程序概念" class="headerlink" title="储存程序概念"></a>储存程序概念</h3></blockquote>
+<p>储存程序是由冯*诺依曼为首的研究小组提出来的概念.储存程序的诞生主要是为了解决使用线路连接编程的缺点.</p>
+<p>储存程序的要点可以概括为下面三点:</p>
+<ul>
+<li>计算机应由运算器,储存器,控制器,输入设备和输出设备5大基本部件组成.</li>
+<li>计算机内部统一使用二进制表示指令和数据.</li>
+<li>将编好的程序和原始数据事先存入储存器中,然后再启动计算机工作.</li>
+</ul>
+<p>但是随着计算机的高速发展, 访问CPU的速度远远快于访问主存的速度.因此,储存器的访问成为了计算机性能的瓶颈.</p>
+<blockquote>
+<h3 id="计算机硬件的组成"><a href="#计算机硬件的组成" class="headerlink" title="计算机硬件的组成"></a>计算机硬件的组成</h3></blockquote>
+<h4 id="主要部件"><a href="#主要部件" class="headerlink" title="主要部件"></a>主要部件</h4><h5 id="输入设备"><a href="#输入设备" class="headerlink" title="输入设备"></a>输入设备</h5><p>输入设备的作用是将编好的程序和数据输入到计算机,并且将他们转换为计算机内部能够识别和接受的信息.</p>
+<h5 id="输出设备"><a href="#输出设备" class="headerlink" title="输出设备"></a>输出设备</h5><p>输出设备的任务是将计算机内部处理的结果以数字,字符,图像等方式展示给人们看.</p>
+<h5 id="储存器"><a href="#储存器" class="headerlink" title="储存器"></a>储存器</h5><p>储存器是用来存放程序和数据的部件,是实现”储存程序”的基础.</p>
+<h5 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h5><p>运算器是对信息进行处理和运算的部件.进行的运算有:算术运算和逻辑运算.</p>
+<h5 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h5><p>控制器的主要工作是指挥各个部件工作.</p>
+<h4 id="连接各个部件的总线"><a href="#连接各个部件的总线" class="headerlink" title="连接各个部件的总线"></a>连接各个部件的总线</h4><p>总线可以实现各个部件之间的信息共享.例如:主存中的数据通过总线传递到CPU.</p>
+<p>最简单的总线结构为单总线结构,也称为系统总线:</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Computer_system_bus.svg/350px-Computer_system_bus.svg.png" alt=""></p>
+<p>各个部件都连接在总线上, CPU与主存,CPU与外部设备之间可以直接通信.主存与外部设备,外部设备和外部设备之间可以直接通信,而无须经过CPU的干预.</p>
+<p>系统总线的结构限定了同一时刻只允许一对设备之间传递信息.</p>
+<p>系统总线按传递信息的不同,可以细分为:</p>
+<ul>
+<li>数据总线: CPU可以沿数据总线从主存或者外部设备读入信息,也可以向主存或者外部设备写入信息.</li>
+<li>地址总线: 用于CPU向主存,外部设备传输地址信息.</li>
+<li>控制总线: 传递CPU发出的控制命令和主存返回给CPU的信号.</li>
+</ul>
+<blockquote>
+<h3 id="储存器的设计思想"><a href="#储存器的设计思想" class="headerlink" title="储存器的设计思想"></a>储存器的设计思想</h3></blockquote>
+<p>储存器的设计思想可以分为:冯*诺依曼结构和哈佛结构.</p>
+<h4 id="冯-诺依曼结构"><a href="#冯-诺依曼结构" class="headerlink" title="冯*诺依曼结构"></a>冯*诺依曼结构</h4><p>在冯诺依曼结构下的储存器结构,指令和数据是不加以区分地储存在储存器中,并共享数据总线.</p>
+<p><img src="/uploads/计算机组成原理/冯诺依曼.png" alt=""></p>
+<p>由于指令和数据存放在同一储存器中,因此,在这种结构下,不能同时进行取指令和取操作数.</p>
+<p>又由于储存器的访问速度远远慢于CPU的运算速度,从而使得计算机运算速度受到了很大的影响.</p>
+<h4 id="哈佛结构"><a href="#哈佛结构" class="headerlink" title="哈佛结构"></a>哈佛结构</h4><p>哈佛结构的指令和数据是分开的.储存器分为两部分:程序储存器和数据储存器.前者是用来存放指令,而后者则是存放数据.</p>
+<p><img src="/uploads/计算机组成原理/哈佛结构.png" alt=""></p>
+<blockquote>
+<h3 id="计算机的主要性能指标"><a href="#计算机的主要性能指标" class="headerlink" title="计算机的主要性能指标"></a>计算机的主要性能指标</h3></blockquote>
+<h4 id="机器字长"><a href="#机器字长" class="headerlink" title="机器字长"></a>机器字长</h4><p>机器字长是指运算器进行一次运算所处理的位数,它通常是由寄存器,加法器的位数决定的,所以机器字长一般等于寄存器的位数.</p>
+<h4 id="数据通路宽度"><a href="#数据通路宽度" class="headerlink" title="数据通路宽度"></a>数据通路宽度</h4><p>数据总线一次并行传送信息的位数,称为数据通路宽度.它影响到信息传送能力,从而影响到计算机的有效处理速度.</p>
+<h4 id="储存容量"><a href="#储存容量" class="headerlink" title="储存容量"></a>储存容量</h4><p>一个主储存器所能储存的全部信息量成为主存容量.计算机的主存容量越大,存放的信息就越多,处理问题的能力就越强.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机组成原理<br><a href="https://zh.wikipedia.org/wiki/%E7%B3%BB%E7%B5%B1%E5%8C%AF%E6%B5%81%E6%8E%92" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E7%B3%BB%E7%B5%B1%E5%8C%AF%E6%B5%81%E6%8E%92</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[计算机网络-运输层]]></title>
       <url>http://cristianoro7.github.io/2017/05/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/</url>
       <content type="html"><![CDATA[<h1 id="计算机网络-运输层"><a href="#计算机网络-运输层" class="headerlink" title="计算机网络-运输层"></a>计算机网络-运输层</h1><blockquote>
