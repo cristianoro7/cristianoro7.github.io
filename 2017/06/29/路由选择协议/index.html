@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+          路由选择协议 - Desperado的博客 | Desperado&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/06/29/路由选择协议/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Desperado</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/life/">Readed</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/计网/路由选择协议.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#计算机网络#网络层" title="计算机网络#网络层">计算机网络#网络层</a>
+                        
+                    </div>
+                    <h1>路由选择协议</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-06-29
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>内部网关协议RIP</li>
+<li>内部网关协议OSPF</li>
+<li>外部网关协议BGP</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<ul>
+<li>从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.<ul>
+<li>静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.</li>
+<li>动态路由选择协议: 也叫做自适应路由选择, 其特点是能较好地适应网络状态的变化, 但实现起来复杂, 开销也较大. 因此, 动态路由选择适合复杂的大型网络.</li>
+</ul>
+</li>
+<li>因特网采用的路由选择协议主要是自适应的分布式路由选择协议.</li>
+<li>因特网采用分层次的路由选择协议的两个原因:<ul>
+<li>因特网的规模宏大. 如果让所有的路由器知道所有的网络应怎么样到达,则这种路由表非常大, 处理起来也花费很多时间.</li>
+<li>许多单位不愿意让外界了解自己单位网络的布局细节和本部门所采用的路由选择协议,同时还希望能接上因特网.</li>
+</ul>
+</li>
+<li>基于上面的两个原因, 因特网将整个互联网划分为许多较小的自治系统(autonomous system),一般称为AS.</li>
+<li>一个AS对外表现出是一个单一的和一致的路由选择策略.</li>
+<li>一个大的ISP就是一个自治系统, 因特网把路由选择协议分为两大类:<ul>
+<li>内部网关协议IGP: 在一个自治系统内使用的路由选择协议,而这与互联网中的其他自治系统选用什么路由选择协议无关,目前用得最多的内部网关协议有:RIP, OSPF.</li>
+<li>外部网关协议EGP: 若元源主机和目的主机处于两个不同的自治系统内, 当数据报传到一个自治系统的边界时, 就需要使用一种协议将路由选择信息传递到另外一个自治系统中. 目前使用得最多的外部网关协议: BGP</li>
+</ul>
+</li>
+<li>自治系统之间的路由选择也叫做域间路由选择, 而在自治系统内的路由选择叫做域间内部选择.</li>
+</ul>
+<blockquote>
+<h3 id="内部网关协议RIP"><a href="#内部网关协议RIP" class="headerlink" title="内部网关协议RIP"></a>内部网关协议RIP</h3></blockquote>
+<p>RIP是一种分布式,异步,收敛,迭代的基于距离向量的路由选择协议.</p>
+<ol>
+<li>分布: 每个节点将自己的路由表发给自己直接相邻的节点.</li>
+<li>异步: 节点不需要在某个固定的时间同时发送和交换信息.</li>
+<li>收敛: 在有限次的信息交换次数内, 不管初始值是多少, 路由表中的每一项一定会收敛成某个固定值, 也就是真正的最短路径.</li>
+</ol>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
+<li>从一个路由器到直接连接的网络距离定义为1.</li>
+<li>从路由器到非直接连接的网络距离定义为所经过的路由器数+1,</li>
+<li>RIP允许一条路径只能包含15个路由器,因此,当距离等于16时,相当于不可达.</li>
+<li>RIP不能在两个网络之间同时使用多条路由, RIP只会选择一条具有最少路由器的路径.</li>
+</ul>
+<p>RIP协议下的路由器都需要不断和其他的路由器交换路由信息,那么,是和哪些路由器交换信息?交换什么信息?在什么时候交换信息?</p>
+<h5 id="RIP协议的特点"><a href="#RIP协议的特点" class="headerlink" title="RIP协议的特点:"></a>RIP协议的特点:</h5><ul>
+<li>仅和相邻路由器交换信息</li>
+<li>路由器交换的信息是当前本路由器所知道的全部信息,即自己的路由表.也就是,交换的信息是: 一个路由器到本自治系统内所有网络的最短距离,以及到每个网络应经过的下一个路由器.</li>
+<li>按固定时间交换路由信息.路由表中的最主要信息:到某个网络的距离,以及经过的下一跳地址和下一跳路由的地址.</li>
+</ul>
+<h4 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h4><p>对每个相邻路由器发来的RIP报文, 将进行一下步骤:</p>
+<ol>
+<li>对地址为X的相邻路由器发送过来的RIP报文, 先修改此报文中的所有项目, 把下一跳字段中的地址改为X, 把所有距离都+1.每个项目都有三个关键数据:到目的网络N, 距离d, 下一跳路由器X.</li>
+<li>对修改的RIP报文中的每一个项目,进行一下步骤:<br><br>若原来的路由表没有目的网络N, 则把该项目添加到路由表.<br><br>否则,若下一跳路由器地址为X, 则把收到项目替换掉原来路由表中的项目.否则什么也不做</li>
+<li>若3分钟还没有收到相邻路由器的更新路由表,则把此相邻路由器记录为不可到达网络,即把距离设置为16.</li>
+<li>返回.</li>
+</ol>
+<h5 id="“坏消息传得慢”"><a href="#“坏消息传得慢”" class="headerlink" title="“坏消息传得慢”"></a>“坏消息传得慢”</h5><p>RIP存在一个缺点是当网络发生故障时, 要经过比较长的时间才能将信息传送到所有的路由器.例如:</p>
+<p><img src="/uploads/计网/路由选择协议/RIP缺点.png" alt=""></p>
+<p>假定路由器1到网1的链路出了故障, R1无法到达网1. 于是路由器R1把到网1的距离设置为16, 因而在R1的路由表中相应的项目变为”1, 16, 直接”. 但是很可能要经过30秒后才能把更新信息发给R2.然而R2可能已经先把自己的路由信息”1, 2, R1”发给R1, R1收到这个报文后,误认为可以通过R2到达网1, 于是更新”1, 2, R1”修改为”1, 3, R2”,并发给R2.同理,R2接着又更新自己的路由表信息为”1, 4, R1”.这样的更新一直持续到R1,R2到网1的距离都增大到16,R1, R2才知道网1原来不可达.</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>RIP最大的优点是实现简单,开销小.</li>
+<li>RIP只能使用的最大距离为15, 这样限制了网络的规模.</li>
+<li>路由器之间的路由交换信息是路由器中完整的路由表,因而随着网络规模的扩大, 开销也就增加.</li>
+<li>坏消息传播得慢,使得更新过程的收敛时间过长.</li>
+<li>对于较大规模的网络应该换用OSPF协议.</li>
+</ul>
+<blockquote>
+<h3 id="内部网关协议OSPF"><a href="#内部网关协议OSPF" class="headerlink" title="内部网关协议OSPF"></a>内部网关协议OSPF</h3></blockquote>
+<p>OSPF最主要的特征是使用了分布式的链路状态协议.</p>
+<h4 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h4><h5 id="向本自治系统中的所有路由器发送信息"><a href="#向本自治系统中的所有路由器发送信息" class="headerlink" title="向本自治系统中的所有路由器发送信息"></a>向本自治系统中的所有路由器发送信息</h5><p>路由器通过所有输出端口向所有相邻路由器发送信息,也就是端口洪泛.而每个相邻路由器又再将此信息发往其所有的相邻路由器.这样整个区域中所有路由器都得到了这个信息的一个副本.</p>
+<h5 id="发送的信息"><a href="#发送的信息" class="headerlink" title="发送的信息"></a>发送的信息</h5><p>发送的信息是与本路由器相邻的所有路由器的链路状态.所谓”链路状态”是本路由器都和哪些路由器相邻,以及该链路的度量.</p>
+<h5 id="何时发送信息"><a href="#何时发送信息" class="headerlink" title="何时发送信息"></a>何时发送信息</h5><p>只有当链路状态发生改变时,路由器才向所有路由器洪泛此信息.</p>
+<h5 id="链路状态数据库"><a href="#链路状态数据库" class="headerlink" title="链路状态数据库"></a>链路状态数据库</h5><p>由于各个路由器之间频繁进行链路状态交换,因此所有路由器最终都能建立一个链路状态数据库.这个数据库实际上就是全网的拓扑结构.链路状态数据库能较快地进行更新,使各个路由器能及时更新路由表.</p>
+<h5 id="链路状态更新"><a href="#链路状态更新" class="headerlink" title="链路状态更新"></a>链路状态更新</h5><p>只有当链路状态发生变化时, 路由器才向所有路由器用洪泛法发送此消息.</p>
+<h4 id="划分区域"><a href="#划分区域" class="headerlink" title="划分区域"></a>划分区域</h4><p>OFPS将一个自治系统再划分为几个更小的范围,叫作区域.划分区域的好处就是把利用洪泛法交换链路状态信息的范围局限于每一个区域而不是一个完整的自治系统.</p>
+<blockquote>
+<h3 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h3></blockquote>
+<p>不同自治系统之间的路由选择不使用RIP或者OSPF的原因:</p>
+<ol>
+<li>因特网的规模太大,使得AS之间的路由变得非常困难.如果使用链路状态协议, 则每个路由器需要维持一个很大的链路状态数据库.另外,不同的自治系统各自运行着自己选定的内部路由选择协议, 并使用本AS指明的路径度量.因此当一条路径通过不同的自治系统时,路径的度量可能会出歧义.例如:对某AS来说, 代价为1000可能表示一条比较长的路由, 但对另外一AS代价为1000, 可能表示不可接受的坏路由.</li>
+<li>AS之间的路由选择必须考虑策略. 由于相连的网络性能相差很大, 如果根据最少跳数找出来的路径, 可能并不合适.也有的代价啊很高或不安全.</li>
+</ol>
+<p>基于上述的情况, 边界网关协议BGP只能力求寻找一条能够到达目的网络比较好的路由,而非寻找一条最佳路由.BGP采用了路径向量路由选择协议.</p>
+<h4 id="BGP发言人"><a href="#BGP发言人" class="headerlink" title="BGP发言人"></a>BGP发言人</h4><ul>
+<li><p>在配置BGP时, 每个自治系统的管理员要选择至少一个路由器作为该自治系统的BGP发言人.一般来说,这两个BGP发言人都是通过一个网络共享连接在一起的,而BGP发言人往往是边界路由器.</p>
+</li>
+<li><p>一个BGP发言人与其他AS的BGP发言人要交换路由信息,就要先建立TCP连接,然后在此连接上交换BGP报文以建立BGP会话,利用BGP会话交换路由信息,如增加了新的路由,或者撤销过时的路由,以及报告差错等.使用TCP连接交换路由信息的两个BGP发言人,彼此成为对方的邻站或对等站.</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)</p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/29/路由器工作原理/" data-toggle="tooltip" data-placement="top" title="路由器工作原理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/29/网际控制报文协议ICMP/" data-toggle="tooltip" data-placement="top" title="网际控制报文协议ICMP">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/06/29/路由选择协议/"
+                        data-title="路由选择协议"
+                        data-url="http://cristianoro7.github.io/2017/06/29/路由选择协议/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#计算机网络#网络层" title="计算机网络#网络层">计算机网络#网络层</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.eyestide.com" target="_blank">民生斌</a></li>
+                    
+                        <li><a href="http://Yves0.github.io" target="_blank">罗总</a></li>
+                    
+                        <li><a href="http://aymaxli.cn/" target="_blank">杰神</a></li>
+                    
+                        <li><a href="http://kimZLeung.github.io" target="_blank">聪神</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cristianoro7">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Desperado 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://cristianoro7.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

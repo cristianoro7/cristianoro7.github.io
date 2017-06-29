@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/life/">Readed</a>
                         </li>
                         
@@ -95,13 +102,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/categories/">Archives</a>
                         </li>
                         
                     
@@ -188,33 +188,96 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/22/IP地址分类/">
+    <a href="/2017/05/24/TCP拥塞控制/">
         <h2 class="post-title">
-            IP地址分类
+            TCP拥塞控制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            IP地址分类
+            TCP拥塞控制
 目录
 
 概述
-分类
-特殊IP地址
-共有IP地址
-私有IP地址
+慢开始和拥塞避免
+快重传和快恢复
 
 
 概述
-
-IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地址能找到被该IP地址标识的主机.例如:我们的家地址可以看作一个IP地址, 通过这个地址,可以找到我们,也就是主机.
-在TCP/IP协议中, IP地址是以二进制数字形式出现, 共32Bit, 1Bit就是二进制中的1位, 由于二进制的形式不适合人们......
+在计算机网络中, 链路的容量,交换节点中的缓存和处理机等都是网络的资源.在某段时间内,若对网络中的某一资源的需求超过本身能提供的资源,这时网络性能就会变差.这种情况成为网络拥塞.
+所谓拥塞控制就是要防止过多的数据注入到网络中,这样可以使网络的路由器或者链路不致于过载.拥塞控制是一个全局性的过程,涉及到所有主机,所有的链......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-22
+        2017-05-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/24/TCP连接管理/">
+        <h2 class="post-title">
+            TCP连接管理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            TCP连接管理
+目录
+
+TCP连接
+TCP连接释放
+
+
+TCP连接
+
+上图为TCP连接建立的过程
+B的TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
+A的TCP客户端进程首先创建传输控制块, 然后向B发送连接请求的报文段,此时首部SYN = 1,同时选择一个seq = x. TCP规定,SYN报文段不能携带数据,但要也要消耗一个序号.这次TCP客户端进程进入SYN-SEN......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/23/TCP流量控制/">
+        <h2 class="post-title">
+            TCP流量控制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            TCP流量控制
+目录
+
+概述
+利用滑动窗口实现流量控制
+零窗口
+传输效率
+
+
+概述
+一般来说,我们总希望数据传输得快一点, 但是如果发送方把数据发送得太快, 接收方就可能来不及接收,这就会造成数据的丢失.流量控制其实就是让发送方的发送速率不要太快, 要让接收方来得及接收.
+
+利用TCP滑动窗口实现流量控制
+其实TCP流量控制本质上是利用滑动窗口机制来实现的.接下来,结合例子来解释TCP的流量......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-23
     </p>
 
 </div>
@@ -253,77 +316,6 @@ Class文件结构只有两种数据类型:无符号和表.无符号数属于基�
     <p class="post-meta">
         Posted by Desperado on
         2017-05-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/21/大话数据结构-队列/">
-        <h2 class="post-title">
-            大话数据结构-队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            队列顺序循环队列
-由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
-
-问题：
-在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
-
-解决：
-设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
-当队列为空时，front == rear，当队列满时，修改......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/18/Java内存区域/">
-        <h2 class="post-title">
-            Java内存区域
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Java内存区域目录
-运行时数据区
-程序计数器
-Java虚拟机栈
-本地方法栈
-Java堆
-方法区
-运行时常量池
-
-
-HotSpot虚拟机对象探秘
-对象的创建
-对象的内存布局
-对象的访问定位
-
-
-
-
-运行时数据区
-程序计数器
-程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-18
     </p>
 
 </div>
@@ -390,15 +382,15 @@ HotSpot虚拟机对象探秘
                             
                         
                             
+                        
+                            
                             <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
-                        
-                            
-                        
-                            
                             <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
                             
                         
                             

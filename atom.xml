@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-06-06T14:18:59.681Z</updated>
+  <updated>2017-06-29T14:40:50.497Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -16,11 +16,957 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>大话数据结构-栈</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/大话数据结构-栈/</id>
+    <published>2017-06-29T14:40:50.497Z</published>
+    <updated>2017-06-29T14:40:50.497Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><h4 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h4><ul>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*顺序储存结构*/</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> top;</div><div class="line">&#125;SqStack;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>入栈操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">push</span><span class="params">(SqStack &amp;S, ElemType elemType)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (S.top == MAXSIZE - <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    S.data[++S.top] = elemType;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出栈</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">pop</span><span class="params">(SqStack &amp;S, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (S.top == <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    e = S.data[S.top - <span class="number">1</span>];</div><div class="line">    S.top--;</div><div class="line">    <span class="keyword">return</span> e;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出栈和入栈都没有涉及到循环语句,因此时间复杂度为0(1)</li>
+</ul>
+<h4 id="两栈共享空间"><a href="#两栈共享空间" class="headerlink" title="两栈共享空间"></a>两栈共享空间</h4><ul>
+<li>适合一个栈同增加的同时另一个栈在减少</li>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 共享栈结构体</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    ElemType data[MAXSIZE];</div><div class="line">    <span class="keyword">int</span> top1;</div><div class="line">    <span class="keyword">int</span> top2;</div><div class="line">&#125;SqShareStack;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>当top1 + 1 == top2时视为栈满</p>
+</li>
+<li><p>入栈</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sharePush</span><span class="params">(SqShareStack &amp;S, ElemType e, <span class="keyword">int</span> stackNumber)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (S.top1 + <span class="number">1</span> == S.top2) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (stackNumber == <span class="number">1</span>) &#123;</div><div class="line">        S.data[++S.top1] = e;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stackNumber == <span class="number">2</span>) &#123;</div><div class="line">        S.data[--S.top2] = e;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出栈</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sharePop</span><span class="params">(SqShareStack &amp;S, ElemType &amp;e, <span class="keyword">int</span> stackNumber)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(stackNumber == <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">if</span>(S.top1 == <span class="number">-1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> ERROR;</div><div class="line">        &#125;</div><div class="line">        e = S.data[S.top1--];</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(stackNumber == <span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">if</span>(S.top2 == MAXSIZE) &#123;</div><div class="line">            <span class="keyword">return</span> ERROR;</div><div class="line">        &#125;</div><div class="line">        e = S.data[S.top2++];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="链栈"><a href="#链栈" class="headerlink" title="链栈"></a>链栈</h4><ul>
+<li>结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//链式储存结构</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> StackNode &#123;</div><div class="line">    ElemType data;</div><div class="line">    <span class="keyword">struct</span> StackNode *next;</div><div class="line">&#125;StackNode, *LinkStackPtr;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> LinkStack &#123;</div><div class="line">    LinkStackPtr top;</div><div class="line">    <span class="keyword">int</span> count;</div><div class="line">&#125;LinkStack;</div></pre></td></tr></table></figure>
+<ul>
+<li>入栈</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sPush</span><span class="params">(LinkStack &amp;S, ElemType e)</span> </span>&#123;</div><div class="line">    LinkStackPtr ptr = (LinkStackPtr) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(StackNode));</div><div class="line">    <span class="keyword">if</span>(ptr == <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">return</span> ERROR;</div><div class="line">    &#125;</div><div class="line">    ptr-&gt;data = e;</div><div class="line">    ptr-&gt;next = S.top;</div><div class="line">    S.top = ptr;</div><div class="line">    S.count++;</div><div class="line">    <span class="keyword">return</span> OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出栈</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">status <span class="title">sPop</span><span class="params">(LinkStack &amp;S, ElemType &amp;e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(S.top != <span class="literal">NULL</span>) &#123;</div><div class="line">        LinkStackPtr ptr;</div><div class="line">        ptr = S.top;</div><div class="line">        S.top = ptr-&gt;next;</div><div class="line">        e = ptr-&gt;data;</div><div class="line">        <span class="built_in">free</span>(ptr);</div><div class="line">        S.count--;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ERROR;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><ul>
+<li>顺序栈与链栈的时间复杂度都是O(1)</li>
+<li>空间上链栈没有空间限制,但是链栈要求每个元素都要有指针域,者也一定程度上增加了内存的开销.顺序栈需要事先规定一个固定长度，可能会造成内存浪费,但是它对于存取时定位很方便</li>
+</ul>
+<blockquote>
+<p>参考资料:《大话数据结构》<br><a href="https://github.com/cristianoro7/data-structure-practice" target="_blank" rel="external">源码</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;栈&quot;&gt;&lt;a href=&quot;#栈&quot; class=&quot;headerlink&quot; title=&quot;栈&quot;&gt;&lt;/a&gt;栈&lt;/h3&gt;&lt;h4 id=&quot;顺序栈&quot;&gt;&lt;a href=&quot;#顺序栈&quot; class=&quot;headerlink&quot; title=&quot;顺序栈&quot;&gt;&lt;/a&gt;顺序栈&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;结构体&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/*顺序储存结构*/&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ElemType data[MAXSIZE];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; top;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;SqStack;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://cristianoro7.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://cristianoro7.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>可靠传输的工作原理</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/可靠传输的工作原理/</id>
+    <published>2017-06-29T14:39:49.337Z</published>
+    <updated>2017-06-29T14:39:49.337Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="可靠传输的工作原理"><a href="#可靠传输的工作原理" class="headerlink" title="可靠传输的工作原理"></a>可靠传输的工作原理</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>可靠运输的实现</li>
+<li>停止等待协议</li>
+<li>连续ARQ协议</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大努力交付的服务,也就是说网络层提供的是不可靠的传输.因此,TCP必须采用适当的措施才能使得两个运输层之间的传输信道变得可靠.</p>
+<blockquote>
+<h3 id="可靠运输的实现"><a href="#可靠运输的实现" class="headerlink" title="可靠运输的实现"></a>可靠运输的实现</h3></blockquote>
+<p>怎么样的运输才算是可靠运输? 要回答这个问题,可以从三方面入手:</p>
+<ol>
+<li>保证传输的分组无出错,也就是二进制比特流没有出现差错.</li>
+<li>保证分组在传输的过程中没有丢失.</li>
+<li>分组能够按序达到.</li>
+</ol>
+<p>既然知道了怎么样才能实现可靠运输,那么下面,我们来一步一步实现可靠运输原理.</p>
+<h4 id="可靠运输1-0"><a href="#可靠运输1-0" class="headerlink" title="可靠运输1.0"></a>可靠运输1.0</h4><p>现在我们假设分组的传输是在一个可靠的信道上面传输的,也就是二进制比特流在这条通道上传输是不会出现比特流差错的.如下图:</p>
+<p><img src="/uploads/计网/运输层/TCP/无差错情况.png" alt=""></p>
+<p>但是,实际环境中,由于信道会受到声噪等因素影响,会使得传输的信道变得不可靠, 那么这时也就不能保证比特流的无差错.有没有什么办法能够解决这个问题?</p>
+<h4 id="可靠运输2-0"><a href="#可靠运输2-0" class="headerlink" title="可靠运输2.0"></a>可靠运输2.0</h4><p>如何保证接收方接收到的比特流的无出错的? 关于这个问题,我们在可靠运输2.0版本中,通过使用一个比特流的检验和方法来检验接收方接收到的比特是否产生了差错.</p>
+<p>我们引入了比特的差错检验来查看接收方收到的比特流的情况. 如果检验得比特流无差错,那么接收方可以直接接收.但是检验的结果是出现错误的话,那么这时接收方应该怎么做?</p>
+<p>分析到这里, 我们需要引入另外的一种机制来解决这个问题. 这里我们引入确认机制,即接收方应该在接收到比特流后,应该向发送方确认,确认收到的比特流是否出现错误,可以使用ACK代表无差错,NACK代表有差错.</p>
+<p>如果发送方接收到接收方发送的NACK,代表比特流出现了错误,那么发送方该怎么做?</p>
+<p>这个时候,我们得引入重传机制, 也就是当发送方接收到NACK时,发送方应该重传分组.</p>
+<p>整个过程如下图:</p>
+<p><img src="/uploads/计网/运输层/TCP/可靠运输2.0.png" alt=""></p>
+<p>为了在不可靠的信道上实现比特无差错,我们引入了检验和,确认(ACK/NACK)和重传机制来保证.但是我们如何解决ACK或NACK出现错误?</p>
+<h4 id="可靠运输2-1"><a href="#可靠运输2-1" class="headerlink" title="可靠运输2.1"></a>可靠运输2.1</h4><p>为了应对ACK/NACK被破坏的情况,我们可以在ACK/NACK增加检验和机制来保证ACK/NACK不出现差错.</p>
+<p>我们在2.0中引入了重传机制.因此,有可能出现分组的重复.在2.1中,我们将每个分组进行编号,保证分组不会因为重传而出现重复.</p>
+<h4 id="可靠运输2-2"><a href="#可靠运输2-2" class="headerlink" title="可靠运输2.2"></a>可靠运输2.2</h4><p>为了提高确认机制的效率,我们采用累计确认机制.</p>
+<p>所谓的累计确认是这样的: 收到分组后,需要给发送方发送一个ACK来表示已经收到分组.在发送分组的同时,附加上该分组的编号,来表示小于该编号之前的分组都已经被成功接收了.</p>
+<p>既然引入了累计确认机制,NACK也就显得有点多余,在2.2中,我们把NACK去掉.</p>
+<h4 id="可靠传输3-0"><a href="#可靠传输3-0" class="headerlink" title="可靠传输3.0"></a>可靠传输3.0</h4><p>前面的2.0~2.2版本都是针对如何解决保证分组在传输的过程中不出错,在3.0中,我们来考虑如何保证传输的分组不丢失?</p>
+<p>为了保证分组在传输的时候不丢失,我们可以为每个传输的分组设置一个定时器,如果在定时器期限到达之前,没有收到ACK的话,就认为分组在传输的过程中丢失了,于是我们就重传该分组.</p>
+<p>现在,我们基本可以保证分组不丢失了.但是,我们仔细想一下,会发现传输的信道利用率很低,因为,每次发送完一个分组,都得等待收到接收方的ACK后才能发送另外一个分组.由此看来,信道大部分时间都是处于等待状态的.</p>
+<h4 id="可靠运输3-1"><a href="#可靠运输3-1" class="headerlink" title="可靠运输3.1"></a>可靠运输3.1</h4><p>为了解决3.0中信道利用率低的问题.我们可以采用流水线机制.即:每次发送完一个分组不必等待接收方的ACK才发送下一个分组.也就是可以连续发送多个分组.</p>
+<p>由于我们引入了连续发送分组的这种协议,我们不得不面临多一个问题:如何解决分组乱序到达的情况?</p>
+<h4 id="可靠运输3-2"><a href="#可靠运输3-2" class="headerlink" title="可靠运输3.2"></a>可靠运输3.2</h4><p>我们可以使用回退N步或者选择重传这两种机制来解决分组乱序的问题.</p>
+<p>回退N步,本文下面会讲到,这里不多说.<br>选择重传: 对于乱序到达的分组,选择重传机制会将它们缓存起来,等待失序的分组到达后再发送ACK.</p>
+<blockquote>
+<h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3></blockquote>
+<h4 id="无差错情况"><a href="#无差错情况" class="headerlink" title="无差错情况"></a>无差错情况</h4><p><img src="/uploads/计网/运输层/TCP/无差错情况.png" alt=""></p>
+<p>上图为最简单的无差错情况. A发送分组M1,发完就暂停发送,等待B确认.当B收到了M1就向A发送确认.A收到了M1的确认后,就再次发送M2分组.同样, 在收到B对M2的确认后, A再发送M3.</p>
+<h4 id="出现差错"><a href="#出现差错" class="headerlink" title="出现差错"></a>出现差错</h4><p><img src="/uploads/计网/运输层/TCP/出现差错.png" alt=""></p>
+<p>上图为分组在传输的过程中出现差错的情况. B接收M1时检测出了差错, 就丢弃M1,其他什么都不做.也可能是M1在传输的过程中丢失了. 这两种情况下, B都不会发送任何信息. 可靠传输协议是这样设计: A只要超过一段时间仍然没有接收到确认, 就认为刚才发送的分组丢失了, 因此重传前面发送过的分组,这叫做超时重传.为了实现超时重传, 要在每发送完一个分组设置一个超时计时器. 如果在超时计时器到期之前收到了对方的确认, 就撤销计时器.</p>
+<p>注意:</p>
+<ol>
+<li>A发送完一个分组后, 必须暂时保存已发送的分组的副本.只有在收到相应的确认后才能清除暂时保留的分组副本.</li>
+<li>分组和确认分组都必须进行编号. 这样才能明确是哪一个发送出去的分组收到了确认, 而哪一个分组没收到确认.</li>
+<li>超时计时器设置的重传时间应当比数据在分组传送的平均往返时间更长一些.</li>
+</ol>
+<h4 id="确认丢失和确认迟到"><a href="#确认丢失和确认迟到" class="headerlink" title="确认丢失和确认迟到"></a>确认丢失和确认迟到</h4><p><img src="/uploads/计网/运输层/TCP/确认丢失.png" alt=""></p>
+<p>上图为B发送的确认分组丢失的情况. A在设定的超时重传时间内没有收到确认, 但无法知道是自己发送的分组出错,丢失,或者是B发送的确认丢失了. 此时A必须重传M1分组. 假定B收到了重传M1,此时应采取两个行动.</p>
+<ol>
+<li>丢弃这个重复的分组M1,不向上层交付.</li>
+<li>向A发送确认.</li>
+</ol>
+<p><img src="/uploads/计网/运输层/TCP/确认迟到.png" alt=""></p>
+<p>上图为确认迟到的情况. 传输过程没有出错, 但B对M1的确认迟到了. A会收到重复的确认. 这时, A只要收下后丢弃.</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>上述的确认和重传机制, 可以在不可靠的传输网路上实现可靠的通信. 这种可靠传输协议称为自动重传请求ARQ(Automatic Repeat Request).ARQ协议的优点是简单, 但是缺点是信道利用率太低了.</p>
+<blockquote>
+<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3></blockquote>
+<p>为了提高信道的利用率, 发送方可以采用流水线传输.流水线传输就是发送方可连续发送多个分组,不必每发完一个分组就停顿下来等待对方的确认.</p>
+<p><img src="/uploads/计网/运输层/TCP/发送窗口.png" alt=""></p>
+<p>上图为发送方维护的发送窗口, 它表示位于发送窗口内的3个分组都可以连续发送出去,而不需要对方等待. 这样信道利用率就提高了.</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口.png" alt=""></p>
+<p>发送方每接收到一个确认,就把滑动窗口向前滑动一个分组的位置.接收方一般都是采取累计确认的方式.也就是说, 接收方不必对收到的分组逐个发送确认,而是在收到几个分组后,对按序到达的最后一个分组发送确认, 这就表示: 到这个分组为止的所有分组都已经正确收到.</p>
+<p>累计确认的缺点是不能向发送方反映接收方已经正确接收的所有分组信息.例如,如果发送了5个分组,而中间的3个分组丢失了. 这时接收方只能前两个分组发出确认.发送方无法知道后面三个分组的下落, 只好把后面三个分组都再传一次, 这叫做回退N步(Go Back N).</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)<br>计算机网络-自顶向下</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;可靠传输的工作原理&quot;&gt;&lt;a href=&quot;#可靠传输的工作原理&quot; class=&quot;headerlink&quot; title=&quot;可靠传输的工作原理&quot;&gt;&lt;/a&gt;可靠传输的工作原理&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>路由器工作原理</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/路由器工作原理/</id>
+    <published>2017-06-29T14:39:37.889Z</published>
+    <updated>2017-06-29T14:39:37.889Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>输入端口</li>
+<li>交换结构</li>
+<li>输出端口</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:</p>
+<p><img src="/uploads/计网/路由选择协议/路由器工作原理.png" alt=""></p>
+<blockquote>
+<h3 id="输入端口"><a href="#输入端口" class="headerlink" title="输入端口"></a>输入端口</h3></blockquote>
+<p><img src="/uploads/计网/路由选择协议/输入端口.png" alt=""></p>
+<ul>
+<li>输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.</li>
+<li>路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.</li>
+<li>转发表是由路由器处理和更新的,但转发表的一份影子副本通常会被存放在每个输入端口, 有了影子副本,转发决策能在每个输入端口本地做出,无须调用中央路由选择处理器, 因此也避免了集中式处理的瓶颈.</li>
+</ul>
+<blockquote>
+<h3 id="交换结构"><a href="#交换结构" class="headerlink" title="交换结构"></a>交换结构</h3></blockquote>
+<p>交换结构位于一台路由器的核心部位.正是通过这种交换结构,分组才能实际从一个输入端口交换到一个输出端口.交换可以由下面的三种交换技术完成.</p>
+<p><img src="/uploads/计网/路由选择协议/内存交换结构.png" alt=""><br><img src="/uploads/计网/路由选择协议/纵横式交换结构.png" alt=""><br><img src="/uploads/计网/路由选择协议/总线交换结构.png" alt=""></p>
+<h4 id="内存交换结构"><a href="#内存交换结构" class="headerlink" title="内存交换结构"></a>内存交换结构</h4><ul>
+<li>在输入端口和输出之间交换是在CPU的直接控制下完成的.</li>
+<li>一个分组到达一个输入端口时, 该端口会先通过中断方式向路由选择处理器发送信号.于是,该分组从输入端口处被复制到处理器内存中.路由器选择处理器从其首部提取目的地址,在转发表中找出合适的输出端口,并将该分组复制到输出端口的缓存中.需要注意的是:不能同时发送两个分组,即使他们有不同的端口,因为经过共享系统总线一次仅能执行一次内存读/写.</li>
+</ul>
+<h4 id="总线交换"><a href="#总线交换" class="headerlink" title="总线交换"></a>总线交换</h4><ul>
+<li>输入端口经过一根共享总线将分组直接传送到输出端口,不需要路由选择处理器的干预.</li>
+<li>当一个分组到达路由器时, 输入端口为分组预先计划一个交换机内部标签, 用于指示本地输出端口,是分组在总线上传送和传输到输出端口.该分组能由所有输出端口收到, 但只有与该标签匹配的端口才能保存该分组.</li>
+<li>如果多个分组同时到达路由器,每个位于不同的输出端口,除了正在总线上传输的分组外,其他分组必须等待,因为一次只有一个分组能够跨越总线.</li>
+</ul>
+<h4 id="纵横式交换结构"><a href="#纵横式交换结构" class="headerlink" title="纵横式交换结构"></a>纵横式交换结构</h4><ul>
+<li>纵横式交换机是一种由2N条总线组成的互联网络.网络互联使得它能克服单一,共享式总宽带限制的缺点.</li>
+<li>当某个分组到达A端口时, 需要转发到端口Y,交换机控制器闭合总线A和Y交叉部位的叉点,然后端口A在其总线上发送该分组, 该分组仅由总线Y安排接收.注意:来自端口B的一个分组在同一时间能够转发到端口X,因为A到Y和B到X的分组使用不同的输入和输出总线.然而,如果来自不同端口的两个分组其目的地为相同的输出端口,那么其中一个分组必须等待, 因为在某个时刻,总线上仅有一个分组能被传送.</li>
+</ul>
+<blockquote>
+<h3 id="输出端口"><a href="#输出端口" class="headerlink" title="输出端口"></a>输出端口</h3></blockquote>
+<p>输出端口处理取出存放在输出端口内存中的分组并将其发送到输出链路上.这包括选择和取出排队的分组进行传输,执行所需的链路层和物理层传输功能.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络自顶向下<br>计算机网络(谢希仁)</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;路由器工作原理&quot;&gt;&lt;a href=&quot;#路由器工作原理&quot; class=&quot;headerlink&quot; title=&quot;路由器工作原理&quot;&gt;&lt;/a&gt;路由器工作原理&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerl
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>路由选择协议</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/路由选择协议/</id>
+    <published>2017-06-29T14:39:27.777Z</published>
+    <updated>2017-06-29T14:39:27.777Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>内部网关协议RIP</li>
+<li>内部网关协议OSPF</li>
+<li>外部网关协议BGP</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<ul>
+<li>从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.<ul>
+<li>静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.</li>
+<li>动态路由选择协议: 也叫做自适应路由选择, 其特点是能较好地适应网络状态的变化, 但实现起来复杂, 开销也较大. 因此, 动态路由选择适合复杂的大型网络.</li>
+</ul>
+</li>
+<li>因特网采用的路由选择协议主要是自适应的分布式路由选择协议.</li>
+<li>因特网采用分层次的路由选择协议的两个原因:<ul>
+<li>因特网的规模宏大. 如果让所有的路由器知道所有的网络应怎么样到达,则这种路由表非常大, 处理起来也花费很多时间.</li>
+<li>许多单位不愿意让外界了解自己单位网络的布局细节和本部门所采用的路由选择协议,同时还希望能接上因特网.</li>
+</ul>
+</li>
+<li>基于上面的两个原因, 因特网将整个互联网划分为许多较小的自治系统(autonomous system),一般称为AS.</li>
+<li>一个AS对外表现出是一个单一的和一致的路由选择策略.</li>
+<li>一个大的ISP就是一个自治系统, 因特网把路由选择协议分为两大类:<ul>
+<li>内部网关协议IGP: 在一个自治系统内使用的路由选择协议,而这与互联网中的其他自治系统选用什么路由选择协议无关,目前用得最多的内部网关协议有:RIP, OSPF.</li>
+<li>外部网关协议EGP: 若元源主机和目的主机处于两个不同的自治系统内, 当数据报传到一个自治系统的边界时, 就需要使用一种协议将路由选择信息传递到另外一个自治系统中. 目前使用得最多的外部网关协议: BGP</li>
+</ul>
+</li>
+<li>自治系统之间的路由选择也叫做域间路由选择, 而在自治系统内的路由选择叫做域间内部选择.</li>
+</ul>
+<blockquote>
+<h3 id="内部网关协议RIP"><a href="#内部网关协议RIP" class="headerlink" title="内部网关协议RIP"></a>内部网关协议RIP</h3></blockquote>
+<p>RIP是一种分布式,异步,收敛,迭代的基于距离向量的路由选择协议.</p>
+<ol>
+<li>分布: 每个节点将自己的路由表发给自己直接相邻的节点.</li>
+<li>异步: 节点不需要在某个固定的时间同时发送和交换信息.</li>
+<li>收敛: 在有限次的信息交换次数内, 不管初始值是多少, 路由表中的每一项一定会收敛成某个固定值, 也就是真正的最短路径.</li>
+</ol>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
+<li>从一个路由器到直接连接的网络距离定义为1.</li>
+<li>从路由器到非直接连接的网络距离定义为所经过的路由器数+1,</li>
+<li>RIP允许一条路径只能包含15个路由器,因此,当距离等于16时,相当于不可达.</li>
+<li>RIP不能在两个网络之间同时使用多条路由, RIP只会选择一条具有最少路由器的路径.</li>
+</ul>
+<p>RIP协议下的路由器都需要不断和其他的路由器交换路由信息,那么,是和哪些路由器交换信息?交换什么信息?在什么时候交换信息?</p>
+<h5 id="RIP协议的特点"><a href="#RIP协议的特点" class="headerlink" title="RIP协议的特点:"></a>RIP协议的特点:</h5><ul>
+<li>仅和相邻路由器交换信息</li>
+<li>路由器交换的信息是当前本路由器所知道的全部信息,即自己的路由表.也就是,交换的信息是: 一个路由器到本自治系统内所有网络的最短距离,以及到每个网络应经过的下一个路由器.</li>
+<li>按固定时间交换路由信息.路由表中的最主要信息:到某个网络的距离,以及经过的下一跳地址和下一跳路由的地址.</li>
+</ul>
+<h4 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h4><p>对每个相邻路由器发来的RIP报文, 将进行一下步骤:</p>
+<ol>
+<li>对地址为X的相邻路由器发送过来的RIP报文, 先修改此报文中的所有项目, 把下一跳字段中的地址改为X, 把所有距离都+1.每个项目都有三个关键数据:到目的网络N, 距离d, 下一跳路由器X.</li>
+<li>对修改的RIP报文中的每一个项目,进行一下步骤:<br><br>若原来的路由表没有目的网络N, 则把该项目添加到路由表.<br><br>否则,若下一跳路由器地址为X, 则把收到项目替换掉原来路由表中的项目.否则什么也不做</li>
+<li>若3分钟还没有收到相邻路由器的更新路由表,则把此相邻路由器记录为不可到达网络,即把距离设置为16.</li>
+<li>返回.</li>
+</ol>
+<h5 id="“坏消息传得慢”"><a href="#“坏消息传得慢”" class="headerlink" title="“坏消息传得慢”"></a>“坏消息传得慢”</h5><p>RIP存在一个缺点是当网络发生故障时, 要经过比较长的时间才能将信息传送到所有的路由器.例如:</p>
+<p><img src="/uploads/计网/路由选择协议/RIP缺点.png" alt=""></p>
+<p>假定路由器1到网1的链路出了故障, R1无法到达网1. 于是路由器R1把到网1的距离设置为16, 因而在R1的路由表中相应的项目变为”1, 16, 直接”. 但是很可能要经过30秒后才能把更新信息发给R2.然而R2可能已经先把自己的路由信息”1, 2, R1”发给R1, R1收到这个报文后,误认为可以通过R2到达网1, 于是更新”1, 2, R1”修改为”1, 3, R2”,并发给R2.同理,R2接着又更新自己的路由表信息为”1, 4, R1”.这样的更新一直持续到R1,R2到网1的距离都增大到16,R1, R2才知道网1原来不可达.</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>RIP最大的优点是实现简单,开销小.</li>
+<li>RIP只能使用的最大距离为15, 这样限制了网络的规模.</li>
+<li>路由器之间的路由交换信息是路由器中完整的路由表,因而随着网络规模的扩大, 开销也就增加.</li>
+<li>坏消息传播得慢,使得更新过程的收敛时间过长.</li>
+<li>对于较大规模的网络应该换用OSPF协议.</li>
+</ul>
+<blockquote>
+<h3 id="内部网关协议OSPF"><a href="#内部网关协议OSPF" class="headerlink" title="内部网关协议OSPF"></a>内部网关协议OSPF</h3></blockquote>
+<p>OSPF最主要的特征是使用了分布式的链路状态协议.</p>
+<h4 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h4><h5 id="向本自治系统中的所有路由器发送信息"><a href="#向本自治系统中的所有路由器发送信息" class="headerlink" title="向本自治系统中的所有路由器发送信息"></a>向本自治系统中的所有路由器发送信息</h5><p>路由器通过所有输出端口向所有相邻路由器发送信息,也就是端口洪泛.而每个相邻路由器又再将此信息发往其所有的相邻路由器.这样整个区域中所有路由器都得到了这个信息的一个副本.</p>
+<h5 id="发送的信息"><a href="#发送的信息" class="headerlink" title="发送的信息"></a>发送的信息</h5><p>发送的信息是与本路由器相邻的所有路由器的链路状态.所谓”链路状态”是本路由器都和哪些路由器相邻,以及该链路的度量.</p>
+<h5 id="何时发送信息"><a href="#何时发送信息" class="headerlink" title="何时发送信息"></a>何时发送信息</h5><p>只有当链路状态发生改变时,路由器才向所有路由器洪泛此信息.</p>
+<h5 id="链路状态数据库"><a href="#链路状态数据库" class="headerlink" title="链路状态数据库"></a>链路状态数据库</h5><p>由于各个路由器之间频繁进行链路状态交换,因此所有路由器最终都能建立一个链路状态数据库.这个数据库实际上就是全网的拓扑结构.链路状态数据库能较快地进行更新,使各个路由器能及时更新路由表.</p>
+<h5 id="链路状态更新"><a href="#链路状态更新" class="headerlink" title="链路状态更新"></a>链路状态更新</h5><p>只有当链路状态发生变化时, 路由器才向所有路由器用洪泛法发送此消息.</p>
+<h4 id="划分区域"><a href="#划分区域" class="headerlink" title="划分区域"></a>划分区域</h4><p>OFPS将一个自治系统再划分为几个更小的范围,叫作区域.划分区域的好处就是把利用洪泛法交换链路状态信息的范围局限于每一个区域而不是一个完整的自治系统.</p>
+<blockquote>
+<h3 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h3></blockquote>
+<p>不同自治系统之间的路由选择不使用RIP或者OSPF的原因:</p>
+<ol>
+<li>因特网的规模太大,使得AS之间的路由变得非常困难.如果使用链路状态协议, 则每个路由器需要维持一个很大的链路状态数据库.另外,不同的自治系统各自运行着自己选定的内部路由选择协议, 并使用本AS指明的路径度量.因此当一条路径通过不同的自治系统时,路径的度量可能会出歧义.例如:对某AS来说, 代价为1000可能表示一条比较长的路由, 但对另外一AS代价为1000, 可能表示不可接受的坏路由.</li>
+<li>AS之间的路由选择必须考虑策略. 由于相连的网络性能相差很大, 如果根据最少跳数找出来的路径, 可能并不合适.也有的代价啊很高或不安全.</li>
+</ol>
+<p>基于上述的情况, 边界网关协议BGP只能力求寻找一条能够到达目的网络比较好的路由,而非寻找一条最佳路由.BGP采用了路径向量路由选择协议.</p>
+<h4 id="BGP发言人"><a href="#BGP发言人" class="headerlink" title="BGP发言人"></a>BGP发言人</h4><ul>
+<li><p>在配置BGP时, 每个自治系统的管理员要选择至少一个路由器作为该自治系统的BGP发言人.一般来说,这两个BGP发言人都是通过一个网络共享连接在一起的,而BGP发言人往往是边界路由器.</p>
+</li>
+<li><p>一个BGP发言人与其他AS的BGP发言人要交换路由信息,就要先建立TCP连接,然后在此连接上交换BGP报文以建立BGP会话,利用BGP会话交换路由信息,如增加了新的路由,或者撤销过时的路由,以及报告差错等.使用TCP连接交换路由信息的两个BGP发言人,彼此成为对方的邻站或对等站.</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;路由选择协议&quot;&gt;&lt;a href=&quot;#路由选择协议&quot; class=&quot;headerlink&quot; title=&quot;路由选择协议&quot;&gt;&lt;/a&gt;路由选择协议&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot;
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网际控制报文协议ICMP</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E7%BD%91%E9%99%85%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AEICMP/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/网际控制报文协议ICMP/</id>
+    <published>2017-06-29T14:39:15.533Z</published>
+    <updated>2017-06-29T14:39:15.533Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="网际控制报文协议ICMP"><a href="#网际控制报文协议ICMP" class="headerlink" title="网际控制报文协议ICMP"></a>网际控制报文协议ICMP</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>ICMP报文种类</li>
+<li>ICMP应用举例</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<p>为了更有效地转发IP数据报和提高交付成功的机会, 在网际层使用了网际控制报文协议ICMP(Internet Control Message Protocol). ICMP允许主机或者路由器报告差错情况和提供有关异常情况的报告.ICMP报文作为IP层的数据报的数据.</p>
+<blockquote>
+<h3 id="ICMP报文种类"><a href="#ICMP报文种类" class="headerlink" title="ICMP报文种类"></a>ICMP报文种类</h3></blockquote>
+<ul>
+<li>网际报文的种类有两种, 即ICMP差错报告报文和ICMP询问报文.</li>
+<li>几种常用的ICMP报文类型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ICMP报文类型</th>
+<th>类型的值</th>
+<th>ICMP报文的类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>差错报告报文</td>
+<td>3</td>
+<td>终点不可达</td>
+</tr>
+<tr>
+<td>差错报告报文</td>
+<td>4</td>
+<td>源点抑制</td>
+</tr>
+<tr>
+<td>差错报告报文</td>
+<td>11</td>
+<td>时间超过</td>
+</tr>
+<tr>
+<td>差错报告报文</td>
+<td>12</td>
+<td>参数问题</td>
+</tr>
+<tr>
+<td>差错报告报文</td>
+<td>5</td>
+<td>改变路由</td>
+</tr>
+<tr>
+<td>询问报文</td>
+<td>8或0</td>
+<td>回送请求或回答</td>
+</tr>
+<tr>
+<td>询问报文</td>
+<td>13或14</td>
+<td>时间戳请求或回答</td>
+</tr>
+</tbody>
+</table>
+<h4 id="终点不可达"><a href="#终点不可达" class="headerlink" title="终点不可达"></a>终点不可达</h4><p>当路由器或者主机不能交付数据报时就向源点发送终点不可达报文</p>
+<h4 id="源点抑制"><a href="#源点抑制" class="headerlink" title="源点抑制"></a>源点抑制</h4><p>当路由器或者主机因拥塞而丢弃数据报时, 就向源点发送源点抑制报文, 使源点知道应当把数据报的发送速率放慢.</p>
+<h4 id="时间超过"><a href="#时间超过" class="headerlink" title="时间超过"></a>时间超过</h4><p>当路由器收到生存时间为0的数据报时, 除了丢弃数据报外, 还要向源点发送时间超过报文.</p>
+<h4 id="参数问题"><a href="#参数问题" class="headerlink" title="参数问题"></a>参数问题</h4><p>当路由器或者目的主机收到的数据报的首部中有的字段的值不正确时, 就丢弃该数据报,并向源点发送参数问题报文.</p>
+<h4 id="改变路由-路由重定向"><a href="#改变路由-路由重定向" class="headerlink" title="改变路由(路由重定向)"></a>改变路由(路由重定向)</h4><p>路由器把改变路由报文发送给主机, 让主机知道下次应该将数据报发送给另外的路由器.</p>
+<h4 id="回送请求和回答"><a href="#回送请求和回答" class="headerlink" title="回送请求和回答"></a>回送请求和回答</h4><p>ICMP回送请求报文是由主机或者路由器向一个特定的目的主机发送询问. 收到此报文的主机必须给源主机或者路由发送ICMP回送回答报文.</p>
+<h4 id="时间戳请求和回答"><a href="#时间戳请求和回答" class="headerlink" title="时间戳请求和回答"></a>时间戳请求和回答</h4><p>ICMP时间戳请求报文是请某个主机或者路由器回答当前的日期和时间.</p>
+<blockquote>
+<h3 id="ICMP的应用举例"><a href="#ICMP的应用举例" class="headerlink" title="ICMP的应用举例"></a>ICMP的应用举例</h3></blockquote>
+<h4 id="PING"><a href="#PING" class="headerlink" title="PING"></a>PING</h4><ul>
+<li>ICMP一个重要应用就是分组网间探测PING, 用来测试两个主机之间的连通性.</li>
+<li>PING使用了ICMP的回送请求和回送回答报文.</li>
+<li>PING是应用层直接使用网络层ICMP的例子, 它没有通过运输层的TCP或UDP.</li>
+</ul>
+<h4 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h4><ul>
+<li>traceroute是用来跟踪一个分组从源点到终点的路径.</li>
+<li>traceroute从源主机向目的主机发送一连串IP数据报, 数据报中封装的是无法交付的UDP用户数据报.第一个数据报P1的生存时间为TTL设置为1.当P1到达路径上的第一个路由器R1时, 路由器R1先收下它, 接着把TTL的值减1.由于TTL等于0了, R1就把P1丢弃了, 并向源主机发送一个ICMP时间超过的差错报告报文.</li>
+<li>如此循环下去, 当最后一个数据报刚刚达到目的主机时, 数据报的TTL是1, 主机不转发数据, 也不把TTL减1.但因IP数据报封装的是无法交付的运输层UDP用户数据报, 因此目的主机要向源主机发送ICMP终点不可达差错报告报文.</li>
+</ul>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>计算机网络(谢希仁)</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网际控制报文协议ICMP&quot;&gt;&lt;a href=&quot;#网际控制报文协议ICMP&quot; class=&quot;headerlink&quot; title=&quot;网际控制报文协议ICMP&quot;&gt;&lt;/a&gt;网际控制报文协议ICMP&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>子网的划分和构成超网</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/%E5%AD%90%E7%BD%91%E7%9A%84%E5%88%92%E5%88%86%E5%92%8C%E6%9E%84%E9%80%A0%E8%B6%85%E7%BD%91/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/子网的划分和构造超网/</id>
+    <published>2017-06-29T14:39:04.513Z</published>
+    <updated>2017-06-29T14:39:04.513Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="子网的划分和构成超网"><a href="#子网的划分和构成超网" class="headerlink" title="子网的划分和构成超网"></a>子网的划分和构成超网</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>划分子网</li>
+<li>使用子网时的分组转发</li>
+<li>无分类编址CIDR</li>
+</ul>
+<blockquote>
+<h2 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h2></blockquote>
+<h3 id="两级IP地址的不合理"><a href="#两级IP地址的不合理" class="headerlink" title="两级IP地址的不合理"></a>两级IP地址的不合理</h3><h4 id="IP空间利用率低"><a href="#IP空间利用率低" class="headerlink" title="IP空间利用率低"></a>IP空间利用率低</h4><p>一个A类网路可容纳的主机数超过1000W, 而B类网络可容纳主机超过6W.但是有些网络对连接在网络上的主机数量是有限制的, 这就导致了地址空间的利用率低下.</p>
+<h4 id="路由表变大导致网络性能低下"><a href="#路由表变大导致网络性能低下" class="headerlink" title="路由表变大导致网络性能低下"></a>路由表变大导致网络性能低下</h4><p>给每个物理网络分配一个网络号的话, 会导致路由表中的项目大大增大, 同时查找路由的耗时也就变得更长.</p>
+<p>为了解决二级IP带来的问题,从1985年起,将IP地址中增加了一个”子网号字段”, 使得二级IP地址变成三级IP地址.这种做法叫做划分子网.</p>
+<blockquote>
+<h3 id="划分子网的基本思路"><a href="#划分子网的基本思路" class="headerlink" title="划分子网的基本思路"></a>划分子网的基本思路</h3></blockquote>
+<ul>
+<li>一个拥有许多物理地址的单位, 可将所属的物理网络划分为多个子网.划分子网属于单位内部的事情,对外还是表现为一个网络.</li>
+<li>划分子网的方法是从网路的主机号借用若干位作为子网号,于是二级IP地址在单位内部就变成了三级IP地址,即 network-id:subnet-id-host-id</li>
+</ul>
+<blockquote>
+<h3 id="子网划分实例"><a href="#子网划分实例" class="headerlink" title="子网划分实例"></a>子网划分实例</h3></blockquote>
+<p><img src="/uploads/计网/划分子网/子网.png" alt=""></p>
+<p>上图的网络被划分为三个子网, 整个网络对外表现为一个网络, 其网络地址为145.13.0.0.但是网络145.13.0.0上的路由器R1在收到外来的数据报后, 再根据数据报的目的地址将它转发到对应的子网.</p>
+<blockquote>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3></blockquote>
+<p>我们知道, 从IP数据报的首部无法看出源主机或目的主机是否进行了子网的划分,路由器是如何将数据报转发到子网?使用子网掩码可以解决这个问题.</p>
+<h4 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h4><ul>
+<li>子网掩码是一个32位2进制数, 对应的网络地址全为1,主机地址全为0.</li>
+<li>A类网络的默认子网掩码为:255.0.0.0, B类为255.255.0.0, C类为255.255.255.0</li>
+</ul>
+<h4 id="通过目的IP地址和子网掩码计算子网的网络地址"><a href="#通过目的IP地址和子网掩码计算子网的网络地址" class="headerlink" title="通过目的IP地址和子网掩码计算子网的网络地址"></a>通过目的IP地址和子网掩码计算子网的网络地址</h4><ul>
+<li>将数据报的目的IP地址与子网掩码逐位相”与”.</li>
+</ul>
+<p>例如: IP地址为141.14.72.24, 子网掩码为255.255.192.0,求网络地址<br>解析: 子网掩码为11111111 11111111 11000000 00000000, 由于子网掩码的前两个字节的位全为1, 最后一个字节的位全为0,因此, 可暂时推断网络地址为: 141.14.X.0. 此时, 只需要将72对应的二进制数与11000000逐位相”与”,就可得出完整的网络地址: 141.14.64.0.</p>
+<h4 id="利用子网数来计算子网掩码"><a href="#利用子网数来计算子网掩码" class="headerlink" title="利用子网数来计算子网掩码"></a>利用子网数来计算子网掩码</h4><p>在求子网掩码时, 必须弄清楚划分子网的数目,以及每个子网内所需的主机数目.<br><br><br>1)将子数目转为二进制<br><br>2)取得二进制的位数N<br><br>3)取得该IP地址的类子网掩码, 将其主机号的前N位置1,即可得该IP地址划分子网的子网掩码<br></p>
+<p>eg: 将B类IP地址168.192.0.0划分为27个子网.<br><br>1) 27 = 11011<br><br>2) N = 5<br><br>3) B类子网掩码: 255.255.0.0<br><br>4) 该IP地址划分的子网掩码: 255.255.248.0.</p>
+<h4 id="子网的划分选择"><a href="#子网的划分选择" class="headerlink" title="子网的划分选择"></a>子网的划分选择</h4><p>下面给出B类子网的划分选择(使用固定的长度子网)</p>
+<table>
+<thead>
+<tr>
+<th>子网号位数</th>
+<th>子网掩码</th>
+<th>子网数</th>
+<th>每个子网的主机数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>255.255.192.0</td>
+<td>2^2-2</td>
+<td>2^14-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>255.255.224.0</td>
+<td>2^3-2</td>
+<td>2^13-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>255.255.240.0</td>
+<td>2^4-2</td>
+<td>2^12 -2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>255.255.248.0</td>
+<td>2^5-2</td>
+<td>2^11-2</td>
+</tr>
+<tr>
+<td>6</td>
+<td>255.255.252.0</td>
+<td>2^6-2</td>
+<td>2^10-2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>255.255.254.0</td>
+<td>2^7-2</td>
+<td>2^9-2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>255.255.255.0</td>
+<td>2^8-2</td>
+<td>2^8-2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>255.255.255.128</td>
+<td>2^9-2</td>
+<td>2^7-2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>255.255.248.192</td>
+<td>2^10-2</td>
+<td>2^6-2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>255.255.252.224</td>
+<td>2^11-2</td>
+<td>2^5-2</td>
+</tr>
+<tr>
+<td>12</td>
+<td>255.255.254.240</td>
+<td>2^12-2</td>
+<td>2^4-2</td>
+</tr>
+<tr>
+<td>13</td>
+<td>255.255.255.248</td>
+<td>2^13-2</td>
+<td>2^3-2</td>
+</tr>
+<tr>
+<td>14</td>
+<td>255.255.255.252</td>
+<td>2^14-2</td>
+<td>2^2-2</td>
+</tr>
+</tbody>
+</table>
+<p><br><br>上面-2是因为去掉全0和全1的情况, 子网号位数没有0,1,15,16这四种情况是因为这几种情况没有意义.</p>
+<blockquote>
+<h3 id="使用子网时分组的转发"><a href="#使用子网时分组的转发" class="headerlink" title="使用子网时分组的转发"></a>使用子网时分组的转发</h3></blockquote>
+<p>使用子网划分后, 路由表必须包含这三项内容:目的网络地址,子网掩码和下一跳地址.</p>
+<h4 id="路由转发算法"><a href="#路由转发算法" class="headerlink" title="路由转发算法"></a>路由转发算法</h4><ol>
+<li>从收到的数据报的首部提取目的IP地址D.</li>
+<li>先判断是否可以直接交付. 对路由器相连的网络逐个检查:用各个网络的子网掩码与D逐位相”与”, 看结果是否和相应的网络地址匹配.若匹配,则把分组直接交付, 否则执行(3).</li>
+<li>若路由器表中有目的地址为D的特定主机路由, 则把数据报传送给下一跳的路由器,否则执行(4)</li>
+<li>对路由表中的每一行,用其中的子网掩码和D逐位相”与”,若结果与目的网络地址匹配,把数据报传送下一跳的路由器, 否则执行(5).</li>
+<li>若路由表中有一个默认的路由, 则把数据报传给默认路由, 否则执行(6)</li>
+<li>报告转发分组时出错.</li>
+</ol>
+<h4 id="转发实例"><a href="#转发实例" class="headerlink" title="转发实例"></a>转发实例</h4><p><img src="/uploads/计网/划分子网/子网转发分组.png" alt=""></p>
+<p>讨论R1收到H1向H2发送分组后,查找路由表的过程</p>
+<ol>
+<li>H1把本子网的子网掩码 255.255.255.128 与目的主机的ip地址逐位相”与”, 得出 128.30.33.128,它不等于H1的网络地址,说明H1与H2不在同一个子网内, 因此H1不能把分组直接交付给H2,必须交给子网上的默认路由器R1,由R1来进行转发</li>
+<li>R1收到一个分组后, 就在路由表中寻找有无匹配的网络地址.(1)计算出目的网络地址为128.30.33.128, 与路由表中的第二行的目的网络地址匹配, 说明这个网络就是分组想要寻找的目的网络, 于是R1将分组从接口1,直接交付给主机H2.</li>
+</ol>
+<blockquote>
+<h2 id="无分类编址CIDR-构成超网"><a href="#无分类编址CIDR-构成超网" class="headerlink" title="无分类编址CIDR(构成超网)"></a>无分类编址CIDR(构成超网)</h2></blockquote>
+<p>无分类域间路由选择CIDR解决的问题:</p>
+<ol>
+<li>B类地址眼看就快要分配完了</li>
+<li>因特网主干网上的路由表项目数急剧增长.</li>
+</ol>
+<blockquote>
+<h3 id="CIDR的两个主要的特点"><a href="#CIDR的两个主要的特点" class="headerlink" title="CIDR的两个主要的特点"></a>CIDR的两个主要的特点</h3></blockquote>
+<ul>
+<li>CIDR消除了传统的A类,B类,C类地址以及子网的划分的概念,把32位的IP地址划分了两个部分.前一部分用来表示网络前缀,以表示网络. 后一部分则用来表主机.</li>
+<li>CIDR把网络前缀相同的连续IP地址组成一块”CIDR地址块”.</li>
+</ul>
+<blockquote>
+<h3 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h3></blockquote>
+<ul>
+<li><strong>由于一个CIDR地址块中有很多地址,所以在路由表中就利用CIDR地址块来查找目的网络. 这种地址的聚合称为路由聚合.</strong></li>
+<li>它使得一个路由表可以表示更多地址. 路由聚合也称为构成子网.</li>
+</ul>
+<blockquote>
+<h3 id="最长前缀匹配"><a href="#最长前缀匹配" class="headerlink" title="最长前缀匹配"></a>最长前缀匹配</h3></blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>在使用CIDR时, 由于采用了网络前缀这种记法, 因此在路由表中的项目也要有相应的改变.在查找路由表时, 可能会得到不止一个匹配结果, 那么我们应该选择哪条结果?</p>
+<h4 id="最长匹配"><a href="#最长匹配" class="headerlink" title="最长匹配"></a>最长匹配</h4><p>为了解决上述问题, 应该从匹配结果中选择具有最长网络前缀的路由, 这叫做最长前缀匹配.</p>
+<h4 id="使用二叉线索查找路由表"><a href="#使用二叉线索查找路由表" class="headerlink" title="使用二叉线索查找路由表"></a>使用二叉线索查找路由表</h4><p>使用CIDR后, 由于要查找最长前缀匹配, 使路由表的查找过程变得更加复杂.为了更有效的查找, 通常是把无分类编址的路由表存放在一种层次的数据结构中, 然后,自上而下进行查找.这里最常用的是二叉线索.为了提高二叉线索的查找速度,可以使用压缩技术.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://www.360doc.com/content/10/0205/11/276520_15184122.shtml" target="_blank" rel="external">http://www.360doc.com/content/10/0205/11/276520_15184122.shtml</a></li>
+<li>计算机网络(谢希仁)</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;子网的划分和构成超网&quot;&gt;&lt;a href=&quot;#子网的划分和构成超网&quot; class=&quot;headerlink&quot; title=&quot;子网的划分和构成超网&quot;&gt;&lt;/a&gt;子网的划分和构成超网&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; cl
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IP地址分类</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/IP%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/IP地址分类/</id>
+    <published>2017-06-29T14:38:02.913Z</published>
+    <updated>2017-06-29T14:38:02.913Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>概述</li>
+<li>分类</li>
+<li>特殊IP地址</li>
+<li>共有IP地址</li>
+<li>私有IP地址</li>
+</ul>
+<blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
+<ul>
+<li>IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地址能找到被该IP地址标识的主机.例如:我们的家地址可以看作一个IP地址, 通过这个地址,可以找到我们,也就是主机.</li>
+<li>在TCP/IP协议中, IP地址是以二进制数字形式出现, 共32Bit, 1Bit就是二进制中的1位, 由于二进制的形式不适合人们阅读.因此换用一种”点分十进制法”表示IP地址.</li>
+<li>例如:<br><br>点分十进制: 192.168.1.1<br><br>二进制: 11000000.10101000.00000001.00000001</li>
+</ul>
+<blockquote>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+<th>8 Bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class A</td>
+<td>NETWORK</td>
+<td>HOST</td>
+<td>HOST</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class B</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>HOST</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class C</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>NETWORK</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Class D</td>
+<td>多播</td>
+</tr>
+<tr>
+<td>Class E</td>
+<td>科研用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Class-A"><a href="#Class-A" class="headerlink" title="Class A"></a>Class A</h4><ul>
+<li>A类地址的第一个8 Bit 表示网络位, 且<code>网络位的第一个Bit为0</code>, 1-7Bit表示网络标识,格式为:0XXXXXXXX.</li>
+<li>后3个8 Bit 表示主机位.</li>
+<li>A类地址的网络范围:00000001~01111111, 用十进制表示: 1.0.0.0到126.0.0.0,一共有126个网络.</li>
+<li>主机标识为2的24次幂-2个(去掉全0和全1的地址), 全0的主机号字段表示该IP地址是”本机”连接到的单个网络地址,而1的主机号表示该网络上的所有主机.每个网络可容纳的主机数为16777214个.</li>
+<li>A类地址支持巨型网络,一般分给有大量主机的网络使用.</li>
+</ul>
+<h4 id="Class-B"><a href="#Class-B" class="headerlink" title="Class B"></a>Class B</h4><ul>
+<li>B类地址的前两个8 Bit表示网络标位, 且网络位的前两个Bit总是10, 即格式为: 10XXXXXX XXXXXXXX.</li>
+<li>B类地址可指派的网络数为: 2的14次幂-1, -1的原因是128.0.0.0是不指派的.</li>
+<li>后两个8 Bit表示主机位.</li>
+<li>B类的每个网络可容纳的主机数是2的16次幂-2, 即65534.</li>
+</ul>
+<h4 id="Class-C"><a href="#Class-C" class="headerlink" title="Class C"></a>Class C</h4><ul>
+<li>C类地址的前3个字节表示网路号, 且开头必须为<code>110</code>, 可以指派的最小网络地址为:192.0.1.0, 指派的网络范围为2的21次幂-1, -1的原因是192.0.0.0是不指派的.</li>
+<li>每个C类地址可容纳的主机数为:2的8次幂-2.</li>
+</ul>
+<blockquote>
+<h3 id="特殊地址"><a href="#特殊地址" class="headerlink" title="特殊地址"></a>特殊地址</h3></blockquote>
+<h4 id="0-0-0-0"><a href="#0-0-0-0" class="headerlink" title="0.0.0.0"></a>0.0.0.0</h4><ul>
+<li>它表示所有不清楚的主机和目的网络.</li>
+<li>不清楚的是意思是本机路由表中没有指定如何到达.</li>
+<li>如果在网络设置中设置了缺省网关, 那么系统会自动生成一个目的地址为0.0.0.0的缺省路由,所有不清楚的目的网络和主机都会被送到这里.</li>
+</ul>
+<h4 id="255-255-255-255"><a href="#255-255-255-255" class="headerlink" title="255.255.255.255"></a>255.255.255.255</h4><ul>
+<li>对本机来说, 这个地址指本网段内的所有主机. 这个地址不能被路由器所转发.</li>
+</ul>
+<h4 id="回环地址"><a href="#回环地址" class="headerlink" title="回环地址"></a>回环地址</h4><ul>
+<li>A类网络中的127是一个保留地址, 用于网络软件测试和本机进程间的通信.</li>
+<li>无论什么程序, 只要发送了该地址的数据, 就会被立刻发送回本机.</li>
+<li>127网络号的分组不能出现在网络传输上.</li>
+</ul>
+<h4 id="局域网内的IP"><a href="#局域网内的IP" class="headerlink" title="局域网内的IP"></a>局域网内的IP</h4><ul>
+<li>当主机号的全为0时,表示一个网络本身.</li>
+<li>当主机号全为1时, 表示网络中的全部主机.</li>
+<li>网络号代表一个网络本身, 同时也是一个网段的第一个地址. 广播地址是网段的最后一个地址,这两个地址是不能配在主机上的.</li>
+</ul>
+<blockquote>
+<h3 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h3></blockquote>
+<ul>
+<li>属于非注册地址, 专门为组织机构(学校,企业)内部使用, 简单来说私有地址不能直接上网.</li>
+<li>私有IP的范围:<ul>
+<li>A类私有IP地址: 10.0.0.0~10.255.255.255</li>
+<li>B类私有IP地址: 172.16.0.0~172.31.255.255</li>
+<li>C类私有地址: 192.168.0.0~192.168.255.255</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="公有IP"><a href="#公有IP" class="headerlink" title="公有IP"></a>公有IP</h3></blockquote>
+<ul>
+<li>公有地址（Public address，也可称为公网地址）由Internet NIC（Internet Network Information Center因特网信息中心）负责。这些IP地址分配给注册并向Internet NIC提出申请的组织机构。通过它直接访问因特网，它是广域网范围内的。</li>
+</ul>
+<blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="http://blog.csdn.net/tennysonsky/article/details/45337405" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45337405</a></li>
+<li><a href="http://blog.csdn.net/txx9010/article/details/7712438" target="_blank" rel="external">http://blog.csdn.net/txx9010/article/details/7712438</a></li>
+<li><a href="https://www.zhihu.com/question/27714563" target="_blank" rel="external">https://www.zhihu.com/question/27714563</a></li>
+<li><a href="http://blog.csdn.net/tennysonsky/article/details/45226275" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45226275</a></li>
+<li>计算机网络(谢希仁)</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;IP地址分类&quot;&gt;&lt;a href=&quot;#IP地址分类&quot; class=&quot;headerlink&quot; title=&quot;IP地址分类&quot;&gt;&lt;/a&gt;IP地址分类&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot;
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP滑动窗口</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/TCP滑动窗口/</id>
+    <published>2017-06-29T14:37:18.384Z</published>
+    <updated>2017-06-29T14:37:18.384Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="TCP滑动窗口"><a href="#TCP滑动窗口" class="headerlink" title="TCP滑动窗口"></a>TCP滑动窗口</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>以字节流为单位的滑动窗口</li>
+<li>TCP数据流的类别</li>
+<li>接收窗口的确认机制</li>
+<li>窗口缩放</li>
+<li>缓冲区</li>
+<li>超时重传时间的选择</li>
+<li>选择确认SACK</li>
+</ul>
+<blockquote>
+<h3 id="以字节流为单位的滑动窗口"><a href="#以字节流为单位的滑动窗口" class="headerlink" title="以字节流为单位的滑动窗口"></a>以字节流为单位的滑动窗口</h3></blockquote>
+<p>现假定A收到B发来的确认报文,其中窗口是20,而确认号为31.根据这两个数据,A就构造出了自己的发送窗口:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/滑动窗口.png" alt=""></p>
+<ul>
+<li>在没有收到B的确认的情况下,A可以连续把窗口内的数据都发送出去.凡是已经发送过去的数据,在未收到确认之前都必须暂时保留,以便在超时重传时使用.</li>
+<li>窗口后沿的后面部分表示已经确认接收.这些数据不需要再保留了.</li>
+<li>窗口的前沿部分表示不允许发送,因为接收方都没有为这部分数据保留缓存空间.</li>
+</ul>
+<blockquote>
+<h3 id="TCP数据流的类别"><a href="#TCP数据流的类别" class="headerlink" title="TCP数据流的类别"></a>TCP数据流的类别</h3></blockquote>
+<p>现在假定A发送序号为31到41的数据.此时, 发送窗口位置并未改变,如图:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/数据流分类.png" alt=""></p>
+<p>从上图,可以得来的信息:</p>
+<p>小于P1的是已经发送并已经收到确认的部分.而大于P3的是不允许发送的部分.<br>P3-P1 = A 的发送窗口.</p>
+<p>P2-P1 = 已发送但尚未确认的字节数</p>
+<p>P3-P2 = 允许发送但尚未发送的字节数.又称为可用窗口.</p>
+<blockquote>
+<h3 id="接收窗口的确认机制"><a href="#接收窗口的确认机制" class="headerlink" title="接收窗口的确认机制"></a>接收窗口的确认机制</h3></blockquote>
+<p>B的接收窗口大小是20. 在接收窗口外面,到30号为止的数据是已经发送过确认.接收窗口内的序号31~50是允许接收的. 下图:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/接收窗口确认机制.png" alt=""></p>
+<p>B收到了序号为32和33的数据.这些数据没有按序到达,因为序号31还没有到达.此时,B只能对按序到达的数据中的最高序号给出确认,因此B发送的确认报文段中的确认号仍然为31.</p>
+<blockquote>
+<h3 id="窗口缩放"><a href="#窗口缩放" class="headerlink" title="窗口缩放"></a>窗口缩放</h3></blockquote>
+<p>现在假定B收到了序号为31的数据,并把序号为31~33的数据交付主机,然后B删除这些数据.接着把接收窗口向前移动3个序号,如下图:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/B的接收窗口.png" alt=""></p>
+<p>同时给A发送确认,其中窗口值为20,但确认号为34.我们注意到, B收到了序号为37,38,40的数据,但这些数据没有按序到达,只能暂时存放在接收窗口中.</p>
+<p>A收到B的确认后,就可以把发送窗口向前移动3个序号,但指针P2不动.可以看出,现在A的可用窗口增大了.</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/A的可用窗口增大.png" alt=""></p>
+<p>A在继续发送完序号42~53的数据后,指针P2和P3重合.发送窗口内的序号已经用完,但还没有收到确认.这时A必须停止发送.如果一段时间后,A还没有收到B发来的确认,那么A必须重传这部分数据.</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/发送窗口满.png" alt=""></p>
+<blockquote>
+<h3 id="缓冲区"><a href="#缓冲区" class="headerlink" title="缓冲区"></a>缓冲区</h3></blockquote>
+<p><img src="http://coolshell.cn//wp-content/uploads/2014/05/sliding_window-900x358.jpg" alt=""></p>
+<p>上图中，我们可以看到：</p>
+<ul>
+<li><p>接收端LastByteRead指向了TCP缓冲区中读到的位置，NextByteExpected指向的地方是收到的连续包的最后一个位置，LastByteRcved指向的是收到的包的最后一个位置，我们可以看到中间有些数据还没有到达，所以有数据空白区。</p>
+</li>
+<li><p>发送端的LastByteAcked指向了被接收端Ack过的位置（表示成功发送确认），LastByteSent表示发出去了，但还没有收到成功确认的Ack，LastByteWritten指向的是上层应用正在写的地方。</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="超时重传时间的选择"><a href="#超时重传时间的选择" class="headerlink" title="超时重传时间的选择"></a>超时重传时间的选择</h3></blockquote>
+<p>由于TCP的下层是互联网环境, 发送的报文段可能经过一个高速率的局域网, 也可能经过多个低速率的网络.如果把超时重传时间设置得太短, 就会引起很多报文的不必要重传. 如果把超时重传的时间设置得过长, 则会使得网络的空闲时间太长,从而降低了传输效率.</p>
+<p>TCP采用了一种自适应的算法, 它记录一个报文段的发出时间, 以及收到相应的确认时间.这两个时间之差就是报文段的往返时间 RTT. TCP保留了RTT的一个加权平均往返时间RTTs.每当第一次测量到样本RTT样本时,RTTs的值就取为所测量到的RTT样本值.但以后每测量到一个新的RTT样本时,就按照下面的公式计算RTTs:</p>
+<p>新的RTTs = (1 - a) <em> (旧的RTTs) + a </em> (新的RTT样本)</p>
+<p>RFC推荐a的值为1/8.用这种方法测出的加权平均往返时间RTTs会比测量的RTT值更加平滑.</p>
+<p>显然超时重传时间应略大于RTTs. RCF推荐使用下面公式计算:</p>
+<p>RTO = RTTs+= + 4 * RTTD</p>
+<p>RTTD是RTT的偏差加权平均值,它与RTTs和新的RTT样本的差有关.当第一次测量时, RTTD取为测量到的RTT样本值的一半.在以后的测量中,可以使用下面的公式计算出RTTD</p>
+<p>新的RTTD = (1 - B) <em> (旧的RTTD) + B </em> |RTTs - 新的RTT样本 |</p>
+<blockquote>
+<h3 id="选择确认SACK"><a href="#选择确认SACK" class="headerlink" title="选择确认SACK"></a>选择确认SACK</h3></blockquote>
+<p>现在假设接收方收到的报文段无差错, 只是未按序号,中间还缺少一些序号的数据,通过选择确认SACK可以实现只传送缺少的数据而不重传已经正确到达接收方的数据.下面使用一个例子来理解SACK的工作原理.</p>
+<p>TCP接收方在接收对方发送过来的数据字节流的序号不连续,结果就形成了不连续的字节块:</p>
+<p><img src="/uploads/计网/运输层/TCP/滑动窗口/SACK.png" alt=""></p>
+<p>从上图可以看出, 序号1~1000收到了,但序号1001~1500没有收到,接下来的字节又收到了,但是缺少3001~3500.后面序号4501起也没有收到.换句话说,接收方收到了和前面的字节流不连续的两个字节块.如果这些字节块都在接收窗口的范围内,那么接收方就先收下这些数据,但要把这些信息发给发送方,防止发送方重传接收方已经接收到的数据.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)<br><a href="http://coolshell.cn/articles/11609.html" target="_blank" rel="external">http://coolshell.cn/articles/11609.html</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;TCP滑动窗口&quot;&gt;&lt;a href=&quot;#TCP滑动窗口&quot; class=&quot;headerlink&quot; title=&quot;TCP滑动窗口&quot;&gt;&lt;/a&gt;TCP滑动窗口&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerl
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP首部</title>
+    <link href="http://cristianoro7.github.io/2017/06/29/TCP%E9%A6%96%E9%83%A8/"/>
+    <id>http://cristianoro7.github.io/2017/06/29/TCP首部/</id>
+    <published>2017-06-29T14:36:59.572Z</published>
+    <updated>2017-06-29T14:36:59.572Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
+<p>TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
+<p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.</p>
+<h3 id="源端口和目的端口"><a href="#源端口和目的端口" class="headerlink" title="源端口和目的端口"></a>源端口和目的端口</h3><p>各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.</p>
+<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><p>占4个字节.TCP是面向字节流的,在一个TCP连接中传送的字节流中的每一个字节都按顺序编号.序号字段值是用来指定本报文段所发送的数据的第一个字节的序号.</p>
+<h3 id="确认号"><a href="#确认号" class="headerlink" title="确认号"></a>确认号</h3><p>占4字节.是接收方期望收到发送方下一个报文段的第一个数据字节序号.例如:B正确接收了A发送过来的一个报文段,其序号字段为501,数据长度为200字节,表明B正确接收了501~700的序号的数据.因此,B期望收到A的下一个数据序号是701, 于是B在发送给A的确认报文中把确认号置为701.</p>
+<h3 id="数据偏移"><a href="#数据偏移" class="headerlink" title="数据偏移"></a>数据偏移</h3><p>占4位, 它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远.这个字段实际上是指出TCP首部的长度.</p>
+<h3 id="保留"><a href="#保留" class="headerlink" title="保留"></a>保留</h3><p>占6位, 保留为今后使用, 但目前应置为0</p>
+<h3 id="紧急URG"><a href="#紧急URG" class="headerlink" title="紧急URG"></a>紧急URG</h3><p>当URG = 1时, 表明紧急指针字段有效.它告诉系统,当前报文段有紧急数据,应当尽快传送.</p>
+<h3 id="确认ACK"><a href="#确认ACK" class="headerlink" title="确认ACK"></a>确认ACK</h3><p>仅当ACK = 1时确认号字段才有效.当ACK = 0时,确认号无效. TCP规定,在连接建立后所有传送的报文段都必须把ACK置为1.</p>
+<h3 id="推送PSH"><a href="#推送PSH" class="headerlink" title="推送PSH"></a>推送PSH</h3><p>当发送方将PSH置为1,并立即创建一个报文段发送出去.接收方TCP收到PSH = 1的报文段时,就尽快地交付接收应用程序,而不再等到整个缓存填满了再向上交付.</p>
+<h3 id="复位-RST"><a href="#复位-RST" class="headerlink" title="复位(RST)"></a>复位(RST)</h3><p>当RST = 1 时, 表明TCP连接出现严重错误,必须释放连接,然后再重新建立连接.</p>
+<h3 id="同步SYN"><a href="#同步SYN" class="headerlink" title="同步SYN"></a>同步SYN</h3><p>在连接建立时用来同步序号. 当SYN = 1 时而ACK = 0 时表示这是一个连接请求报文段.若对方同意连接后, 则应在响应报文中使SYN = 1和ACK = 1.实际上SYN = 1 时表示这是一个连接请求或接受报文.</p>
+<h3 id="终止FIN"><a href="#终止FIN" class="headerlink" title="终止FIN"></a>终止FIN</h3><p>用来释放一个连接. 当FIN = 1 时, 表明此报文段的发送数据已发送完毕,并要求释放连接.</p>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>占2字节.窗口指的是发送报文段一方的接收窗口.窗口值告诉对方:接收方目前允许对方发送的数据量.</p>
+<h3 id="检验和"><a href="#检验和" class="headerlink" title="检验和"></a>检验和</h3><p>检验和字段检验的范围包括首部和数据这两部分.</p>
+<h3 id="紧急指针"><a href="#紧急指针" class="headerlink" title="紧急指针"></a>紧急指针</h3><p>占2字节. 当URG = 1 时才有意义, 它指出本报文段中的紧急数据字节数.</p>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;TCP首部&quot;&gt;&lt;a href=&quot;#TCP首部&quot; class=&quot;headerlink&quot; title=&quot;TCP首部&quot;&gt;&lt;/a&gt;TCP首部&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; tit
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
     <title>计算机组成原理-储存系统和结构</title>
-    <link href="http://cristianoro7.github.io/2017/06/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E5%82%A8%E5%AD%98%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%BB%93%E6%9E%84/"/>
-    <id>http://cristianoro7.github.io/2017/06/06/计算机组成原理-储存系统和结构/</id>
-    <published>2017-06-06T14:18:59.681Z</published>
-    <updated>2017-06-06T14:18:59.681Z</updated>
+    <link href="http://cristianoro7.github.io/2017/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E5%82%A8%E5%AD%98%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%BB%93%E6%9E%84/"/>
+    <id>http://cristianoro7.github.io/2017/06/07/计算机组成原理-储存系统和结构/</id>
+    <published>2017-06-06T16:20:46.280Z</published>
+    <updated>2017-06-06T16:20:46.280Z</updated>
     
     <content type="html"><![CDATA[<h1 id="储存系统和结构"><a href="#储存系统和结构" class="headerlink" title="储存系统和结构"></a>储存系统和结构</h1><blockquote>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
@@ -255,104 +1201,6 @@
   </entry>
   
   <entry>
-    <title>可靠传输的工作原理</title>
-    <link href="http://cristianoro7.github.io/2017/05/30/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
-    <id>http://cristianoro7.github.io/2017/05/30/可靠传输的工作原理/</id>
-    <published>2017-05-30T15:08:25.697Z</published>
-    <updated>2017-05-30T15:08:25.697Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="可靠传输的工作原理"><a href="#可靠传输的工作原理" class="headerlink" title="可靠传输的工作原理"></a>可靠传输的工作原理</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>概述</li>
-<li>可靠运输的实现</li>
-<li>停止等待协议</li>
-<li>连续ARQ协议</li>
-</ul>
-<blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
-<p>TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大努力交付的服务,也就是说网络层提供的是不可靠的传输.因此,TCP必须采用适当的措施才能使得两个运输层之间的传输信道变得可靠.</p>
-<blockquote>
-<h3 id="可靠运输的实现"><a href="#可靠运输的实现" class="headerlink" title="可靠运输的实现"></a>可靠运输的实现</h3></blockquote>
-<p>怎么样的运输才算是可靠运输? 要回答这个问题,可以从三方面入手:</p>
-<ol>
-<li>保证传输的分组无出错,也就是二进制比特流没有出现差错.</li>
-<li>保证分组在传输的过程中没有丢失.</li>
-<li>分组能够按序达到.</li>
-</ol>
-<p>既然知道了怎么样才能实现可靠运输,那么下面,我们来一步一步实现可靠运输原理.</p>
-<h4 id="可靠运输1-0"><a href="#可靠运输1-0" class="headerlink" title="可靠运输1.0"></a>可靠运输1.0</h4><p>现在我们假设分组的传输是在一个可靠的信道上面传输的,也就是二进制比特流在这条通道上传输是不会出现比特流差错的.如下图:</p>
-<p><img src="/uploads/计网/运输层/TCP/无差错情况.png" alt=""></p>
-<p>但是,实际环境中,由于信道会受到声噪等因素影响,会使得传输的信道变得不可靠, 那么这时也就不能保证比特流的无差错.有没有什么办法能够解决这个问题?</p>
-<h4 id="可靠运输2-0"><a href="#可靠运输2-0" class="headerlink" title="可靠运输2.0"></a>可靠运输2.0</h4><p>如何保证接收方接收到的比特流的无出错的? 关于这个问题,我们在可靠运输2.0版本中,通过使用一个比特流的检验和方法来检验接收方接收到的比特是否产生了差错.</p>
-<p>我们引入了比特的差错检验来查看接收方收到的比特流的情况. 如果检验得比特流无差错,那么接收方可以直接接收.但是检验的结果是出现错误的话,那么这时接收方应该怎么做?</p>
-<p>分析到这里, 我们需要引入另外的一种机制来解决这个问题. 这里我们引入确认机制,即接收方应该在接收到比特流后,应该向发送方确认,确认收到的比特流是否出现错误,可以使用ACK代表无差错,NACK代表有差错.</p>
-<p>如果发送方接收到接收方发送的NACK,代表比特流出现了错误,那么发送方该怎么做?</p>
-<p>这个时候,我们得引入重传机制, 也就是当发送方接收到NACK时,发送方应该重传分组.</p>
-<p>整个过程如下图:</p>
-<p><img src="/uploads/计网/运输层/TCP/可靠运输2.0.png" alt=""></p>
-<p>为了在不可靠的信道上实现比特无差错,我们引入了检验和,确认(ACK/NACK)和重传机制来保证.但是我们如何解决ACK或NACK出现错误?</p>
-<h4 id="可靠运输2-1"><a href="#可靠运输2-1" class="headerlink" title="可靠运输2.1"></a>可靠运输2.1</h4><p>为了应对ACK/NACK被破坏的情况,我们可以在ACK/NACK增加检验和机制来保证ACK/NACK不出现差错.</p>
-<p>我们在2.0中引入了重传机制.因此,有可能出现分组的重复.在2.1中,我们将每个分组进行编号,保证分组不会因为重传而出现重复.</p>
-<h4 id="可靠运输2-2"><a href="#可靠运输2-2" class="headerlink" title="可靠运输2.2"></a>可靠运输2.2</h4><p>为了提高确认机制的效率,我们采用累计确认机制.</p>
-<p>所谓的累计确认是这样的: 收到分组后,需要给发送方发送一个ACK来表示已经收到分组.在发送分组的同时,附加上该分组的编号,来表示小于该编号之前的分组都已经被成功接收了.</p>
-<p>既然引入了累计确认机制,NACK也就显得有点多余,在2.2中,我们把NACK去掉.</p>
-<h4 id="可靠传输3-0"><a href="#可靠传输3-0" class="headerlink" title="可靠传输3.0"></a>可靠传输3.0</h4><p>前面的2.0~2.2版本都是针对如何解决保证分组在传输的过程中不出错,在3.0中,我们来考虑如何保证传输的分组不丢失?</p>
-<p>为了保证分组在传输的时候不丢失,我们可以为每个传输的分组设置一个定时器,如果在定时器期限到达之前,没有收到ACK的话,就认为分组在传输的过程中丢失了,于是我们就重传该分组.</p>
-<p>现在,我们基本可以保证分组不丢失了.但是,我们仔细想一下,会发现传输的信道利用率很低,因为,每次发送完一个分组,都得等待收到接收方的ACK后才能发送另外一个分组.由此看来,信道大部分时间都是处于等待状态的.</p>
-<h4 id="可靠运输3-1"><a href="#可靠运输3-1" class="headerlink" title="可靠运输3.1"></a>可靠运输3.1</h4><p>为了解决3.0中信道利用率低的问题.我们可以采用流水线机制.即:每次发送完一个分组不必等待接收方的ACK才发送下一个分组.也就是可以连续发送多个分组.</p>
-<p>由于我们引入了连续发送分组的这种协议,我们不得不面临多一个问题:如何解决分组乱序到达的情况?</p>
-<h4 id="可靠运输3-2"><a href="#可靠运输3-2" class="headerlink" title="可靠运输3.2"></a>可靠运输3.2</h4><p>我们可以使用回退N步或者选择重传这两种机制来解决分组乱序的问题.</p>
-<p>回退N步,本文下面会讲到,这里不多说.<br>选择重传: 对于乱序到达的分组,选择重传机制会将它们缓存起来,等待失序的分组到达后再发送ACK.</p>
-<blockquote>
-<h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3></blockquote>
-<h4 id="无差错情况"><a href="#无差错情况" class="headerlink" title="无差错情况"></a>无差错情况</h4><p><img src="/uploads/计网/运输层/TCP/无差错情况.png" alt=""></p>
-<p>上图为最简单的无差错情况. A发送分组M1,发完就暂停发送,等待B确认.当B收到了M1就向A发送确认.A收到了M1的确认后,就再次发送M2分组.同样, 在收到B对M2的确认后, A再发送M3.</p>
-<h4 id="出现差错"><a href="#出现差错" class="headerlink" title="出现差错"></a>出现差错</h4><p><img src="/uploads/计网/运输层/TCP/出现差错.png" alt=""></p>
-<p>上图为分组在传输的过程中出现差错的情况. B接收M1时检测出了差错, 就丢弃M1,其他什么都不做.也可能是M1在传输的过程中丢失了. 这两种情况下, B都不会发送任何信息. 可靠传输协议是这样设计: A只要超过一段时间仍然没有接收到确认, 就认为刚才发送的分组丢失了, 因此重传前面发送过的分组,这叫做超时重传.为了实现超时重传, 要在每发送完一个分组设置一个超时计时器. 如果在超时计时器到期之前收到了对方的确认, 就撤销计时器.</p>
-<p>注意:</p>
-<ol>
-<li>A发送完一个分组后, 必须暂时保存已发送的分组的副本.只有在收到相应的确认后才能清除暂时保留的分组副本.</li>
-<li>分组和确认分组都必须进行编号. 这样才能明确是哪一个发送出去的分组收到了确认, 而哪一个分组没收到确认.</li>
-<li>超时计时器设置的重传时间应当比数据在分组传送的平均往返时间更长一些.</li>
-</ol>
-<h4 id="确认丢失和确认迟到"><a href="#确认丢失和确认迟到" class="headerlink" title="确认丢失和确认迟到"></a>确认丢失和确认迟到</h4><p><img src="/uploads/计网/运输层/TCP/确认丢失.png" alt=""></p>
-<p>上图为B发送的确认分组丢失的情况. A在设定的超时重传时间内没有收到确认, 但无法知道是自己发送的分组出错,丢失,或者是B发送的确认丢失了. 此时A必须重传M1分组. 假定B收到了重传M1,此时应采取两个行动.</p>
-<ol>
-<li>丢弃这个重复的分组M1,不向上层交付.</li>
-<li>向A发送确认.</li>
-</ol>
-<p><img src="/uploads/计网/运输层/TCP/确认迟到.png" alt=""></p>
-<p>上图为确认迟到的情况. 传输过程没有出错, 但B对M1的确认迟到了. A会收到重复的确认. 这时, A只要收下后丢弃.</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>上述的确认和重传机制, 可以在不可靠的传输网路上实现可靠的通信. 这种可靠传输协议称为自动重传请求ARQ(Automatic Repeat Request).ARQ协议的优点是简单, 但是缺点是信道利用率太低了.</p>
-<blockquote>
-<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3></blockquote>
-<p>为了提高信道的利用率, 发送方可以采用流水线传输.流水线传输就是发送方可连续发送多个分组,不必每发完一个分组就停顿下来等待对方的确认.</p>
-<p><img src="/uploads/计网/运输层/TCP/发送窗口.png" alt=""></p>
-<p>上图为发送方维护的发送窗口, 它表示位于发送窗口内的3个分组都可以连续发送出去,而不需要对方等待. 这样信道利用率就提高了.</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口.png" alt=""></p>
-<p>发送方每接收到一个确认,就把滑动窗口向前滑动一个分组的位置.接收方一般都是采取累计确认的方式.也就是说, 接收方不必对收到的分组逐个发送确认,而是在收到几个分组后,对按序到达的最后一个分组发送确认, 这就表示: 到这个分组为止的所有分组都已经正确收到.</p>
-<p>累计确认的缺点是不能向发送方反映接收方已经正确接收的所有分组信息.例如,如果发送了5个分组,而中间的3个分组丢失了. 这时接收方只能前两个分组发出确认.发送方无法知道后面三个分组的下落, 只好把后面三个分组都再传一次, 这叫做回退N步(Go Back N).</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢仁希)<br>计算机网络-自顶向下</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;可靠传输的工作原理&quot;&gt;&lt;a href=&quot;#可靠传输的工作原理&quot; class=&quot;headerlink&quot; title=&quot;可靠传输的工作原理&quot;&gt;&lt;/a&gt;可靠传输的工作原理&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
     <title>TCP拥塞控制</title>
     <link href="http://cristianoro7.github.io/2017/05/24/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/"/>
     <id>http://cristianoro7.github.io/2017/05/24/TCP拥塞控制/</id>
@@ -529,581 +1377,6 @@
     
     
       <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TCP滑动窗口</title>
-    <link href="http://cristianoro7.github.io/2017/05/23/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
-    <id>http://cristianoro7.github.io/2017/05/23/TCP滑动窗口/</id>
-    <published>2017-05-23T09:33:48.102Z</published>
-    <updated>2017-05-23T09:33:48.102Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="TCP滑动窗口"><a href="#TCP滑动窗口" class="headerlink" title="TCP滑动窗口"></a>TCP滑动窗口</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>以字节流为单位的滑动窗口</li>
-<li>TCP数据流的类别</li>
-<li>接收窗口的确认机制</li>
-<li>窗口缩放</li>
-<li>缓冲区</li>
-<li>超时重传时间的选择</li>
-<li>选择确认SACK</li>
-</ul>
-<blockquote>
-<h3 id="以字节流为单位的滑动窗口"><a href="#以字节流为单位的滑动窗口" class="headerlink" title="以字节流为单位的滑动窗口"></a>以字节流为单位的滑动窗口</h3></blockquote>
-<p>现假定A收到B发来的确认报文,其中窗口是20,而确认号为31.根据这两个数据,A就构造出了自己的发送窗口:</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/滑动窗口.png" alt=""></p>
-<ul>
-<li>在没有收到B的确认的情况下,A可以连续把窗口内的数据都发送出去.凡是已经发送过去的数据,在未收到确认之前都必须暂时保留,以便在超时重传时使用.</li>
-<li>窗口后沿的后面部分表示已经确认接收.这些数据不需要再保留了.</li>
-<li>窗口的前沿部分表示不允许发送,因为接收方都没有为这部分数据保留缓存空间.</li>
-</ul>
-<blockquote>
-<h3 id="TCP数据流的类别"><a href="#TCP数据流的类别" class="headerlink" title="TCP数据流的类别"></a>TCP数据流的类别</h3></blockquote>
-<p>现在假定A发送序号为31到41的数据.此时, 发送窗口位置并未改变,如图:</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/数据流分类.png" alt=""></p>
-<p>从上图,可以得来的信息:</p>
-<p>小于P1的是已经发送并已经收到确认的部分.而大于P3的是不允许发送的部分.<br>P3-P1 = A 的发送窗口.</p>
-<p>P2-P1 = 已发送但尚未确认的字节数</p>
-<p>P3-P2 = 允许发送但尚未发送的字节数.又称为可用窗口.</p>
-<blockquote>
-<h3 id="接收窗口的确认机制"><a href="#接收窗口的确认机制" class="headerlink" title="接收窗口的确认机制"></a>接收窗口的确认机制</h3></blockquote>
-<p>B的接收窗口大小是20. 在接收窗口外面,到30号为止的数据是已经发送过确认.接收窗口内的序号31~50是允许接收的. 下图:</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/接收窗口确认机制.png" alt=""></p>
-<p>B收到了序号为32和33的数据.这些数据没有按序到达,因为序号31还没有到达.此时,B只能对按序到达的数据中的最高序号给出确认,因此B发送的确认报文段中的确认号仍然为31.</p>
-<blockquote>
-<h3 id="窗口缩放"><a href="#窗口缩放" class="headerlink" title="窗口缩放"></a>窗口缩放</h3></blockquote>
-<p>现在假定B收到了序号为31的数据,并把序号为31~33的数据交付主机,然后B删除这些数据.接着把接收窗口向前移动3个序号,如下图:</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/B的接收窗口.png" alt=""></p>
-<p>同时给A发送确认,其中窗口值为20,但确认号为34.我们注意到, B收到了序号为37,38,40的数据,但这些数据没有按序到达,只能暂时存放在接收窗口中.</p>
-<p>A收到B的确认后,就可以把发送窗口向前移动3个序号,但指针P2不动.可以看出,现在A的可用窗口增大了.</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/A的可用窗口增大.png" alt=""></p>
-<p>A在继续发送完序号42~53的数据后,指针P2和P3重合.发送窗口内的序号已经用完,但还没有收到确认.这时A必须停止发送.如果一段时间后,A还没有收到B发来的确认,那么A必须重传这部分数据.</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/发送窗口满.png" alt=""></p>
-<blockquote>
-<h3 id="缓冲区"><a href="#缓冲区" class="headerlink" title="缓冲区"></a>缓冲区</h3></blockquote>
-<p><img src="http://coolshell.cn//wp-content/uploads/2014/05/sliding_window-900x358.jpg" alt=""></p>
-<p>上图中，我们可以看到：</p>
-<ul>
-<li><p>接收端LastByteRead指向了TCP缓冲区中读到的位置，NextByteExpected指向的地方是收到的连续包的最后一个位置，LastByteRcved指向的是收到的包的最后一个位置，我们可以看到中间有些数据还没有到达，所以有数据空白区。</p>
-</li>
-<li><p>发送端的LastByteAcked指向了被接收端Ack过的位置（表示成功发送确认），LastByteSent表示发出去了，但还没有收到成功确认的Ack，LastByteWritten指向的是上层应用正在写的地方。</p>
-</li>
-</ul>
-<blockquote>
-<h3 id="超时重传时间的选择"><a href="#超时重传时间的选择" class="headerlink" title="超时重传时间的选择"></a>超时重传时间的选择</h3></blockquote>
-<p>由于TCP的下层是互联网环境, 发送的报文段可能经过一个高速率的局域网, 也可能经过多个低速率的网络.如果把超时重传时间设置得太短, 就会引起很多报文的不必要重传. 如果把超时重传的时间设置得过长, 则会使得网络的空闲时间太长,从而降低了传输效率.</p>
-<p>TCP采用了一种自适应的算法, 它记录一个报文段的发出时间, 以及收到相应的确认时间.这两个时间之差就是报文段的往返时间 RTT. TCP保留了RTT的一个加权平均往返时间RTTs.每当第一次测量到样本RTT样本时,RTTs的值就取为所测量到的RTT样本值.但以后每测量到一个新的RTT样本时,就按照下面的公式计算RTTs:</p>
-<p>新的RTTs = (1 - a) <em> (旧的RTTs) + a </em> (新的RTT样本)</p>
-<p>RFC推荐a的值为1/8.用这种方法测出的加权平均往返时间RTTs会比测量的RTT值更加平滑.</p>
-<p>显然超时重传时间应略大于RTTs. RCF推荐使用下面公式计算:</p>
-<p>RTO = RTTs+= + 4 * RTTD</p>
-<p>RTTD是RTT的偏差加权平均值,它与RTTs和新的RTT样本的差有关.当第一次测量时, RTTD取为测量到的RTT样本值的一半.在以后的测量中,可以使用下面的公式计算出RTTD</p>
-<p>新的RTTD = (1 - B) <em> (旧的RTTD) + B </em> |RTTs - 新的RTT样本 |</p>
-<blockquote>
-<h3 id="选择确认SACK"><a href="#选择确认SACK" class="headerlink" title="选择确认SACK"></a>选择确认SACK</h3></blockquote>
-<p>现在假设接收方收到的报文段无差错, 只是未按序号,中间还缺少一些序号的数据,通过选择确认SACK可以实现只传送缺少的数据而不重传已经正确到达接收方的数据.下面使用一个例子来理解SACK的工作原理.</p>
-<p>TCP接收方在接收对方发送过来的数据字节流的序号不连续,结果就形成了不连续的字节块:</p>
-<p><img src="/uploads/计网/运输层/TCP/滑动窗口/SACK.png" alt=""></p>
-<p>从上图可以看出, 序号1~1000收到了,但序号1001~1500没有收到,接下来的字节又收到了,但是缺少3001~3500.后面序号4501起也没有收到.换句话说,接收方收到了和前面的字节流不连续的两个字节块.如果这些字节块都在接收窗口的范围内,那么接收方就先收下这些数据,但要把这些信息发给发送方,防止发送方重传接收方已经接收到的数据.</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢仁希)<br><a href="http://coolshell.cn/articles/11609.html" target="_blank" rel="external">http://coolshell.cn/articles/11609.html</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;TCP滑动窗口&quot;&gt;&lt;a href=&quot;#TCP滑动窗口&quot; class=&quot;headerlink&quot; title=&quot;TCP滑动窗口&quot;&gt;&lt;/a&gt;TCP滑动窗口&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerl
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TCP首部</title>
-    <link href="http://cristianoro7.github.io/2017/05/22/TCP%E9%A6%96%E9%83%A8/"/>
-    <id>http://cristianoro7.github.io/2017/05/22/TCP首部/</id>
-    <published>2017-05-22T09:28:31.148Z</published>
-    <updated>2017-05-22T09:28:31.148Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
-<p>TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
-<p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.</p>
-<h3 id="源端口和目的端口"><a href="#源端口和目的端口" class="headerlink" title="源端口和目的端口"></a>源端口和目的端口</h3><p>各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.</p>
-<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><p>占4个字节.TCP是面向字节流的,在一个TCP连接中传送的字节流中的每一个字节都按顺序编号.序号字段值是用来指定本报文段所发送的数据的第一个字节的序号.</p>
-<h3 id="确认号"><a href="#确认号" class="headerlink" title="确认号"></a>确认号</h3><p>占4字节.是接收方期望收到发送方下一个报文段的第一个数据字节序号.例如:B正确接收了A发送过来的一个报文段,其序号字段为501,数据长度为200字节,表明B正确接收了501~700的序号的数据.因此,B期望收到A的下一个数据序号是701, 于是B在发送给A的确认报文中把确认号置为701.</p>
-<h3 id="数据偏移"><a href="#数据偏移" class="headerlink" title="数据偏移"></a>数据偏移</h3><p>占4位, 它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远.这个字段实际上是指出TCP首部的长度.</p>
-<h3 id="保留"><a href="#保留" class="headerlink" title="保留"></a>保留</h3><p>占6位, 保留为今后使用, 但目前应置为0</p>
-<h3 id="紧急URG"><a href="#紧急URG" class="headerlink" title="紧急URG"></a>紧急URG</h3><p>当URG = 1时, 表明紧急指针字段有效.它告诉系统,当前报文段有紧急数据,应当尽快传送.</p>
-<h3 id="确认ACK"><a href="#确认ACK" class="headerlink" title="确认ACK"></a>确认ACK</h3><p>仅当ACK = 1时确认号字段才有效.当ACK = 0时,确认号无效. TCP规定,在连接建立后所有传送的报文段都必须把ACK置为1.</p>
-<h3 id="推送PSH"><a href="#推送PSH" class="headerlink" title="推送PSH"></a>推送PSH</h3><p>当发送方将PSH置为1,并立即创建一个报文段发送出去.接收方TCP收到PSH = 1的报文段时,就尽快地交付接收应用程序,而不再等到整个缓存填满了再向上交付.</p>
-<h3 id="复位-RST"><a href="#复位-RST" class="headerlink" title="复位(RST)"></a>复位(RST)</h3><p>当RST = 1 时, 表明TCP连接出现严重错误,必须释放连接,然后再重新建立连接.</p>
-<h3 id="同步SYN"><a href="#同步SYN" class="headerlink" title="同步SYN"></a>同步SYN</h3><p>在连接建立时用来同步序号. 当SYN = 1 时而ACK = 0 时表示这是一个连接请求报文段.若对方同意连接后, 则应在响应报文中使SYN = 1和ACK = 1.实际上SYN = 1 时表示这是一个连接请求或接受报文.</p>
-<h3 id="终止FIN"><a href="#终止FIN" class="headerlink" title="终止FIN"></a>终止FIN</h3><p>用来释放一个连接. 当FIN = 1 时, 表明此报文段的发送数据已发送完毕,并要求释放连接.</p>
-<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>占2字节.窗口指的是发送报文段一方的接收窗口.窗口值告诉对方:接收方目前允许对方发送的数据量.</p>
-<h3 id="检验和"><a href="#检验和" class="headerlink" title="检验和"></a>检验和</h3><p>检验和字段检验的范围包括首部和数据这两部分.</p>
-<h3 id="紧急指针"><a href="#紧急指针" class="headerlink" title="紧急指针"></a>紧急指针</h3><p>占2字节. 当URG = 1 时才有意义, 它指出本报文段中的紧急数据字节数.</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢仁希)</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;TCP首部&quot;&gt;&lt;a href=&quot;#TCP首部&quot; class=&quot;headerlink&quot; title=&quot;TCP首部&quot;&gt;&lt;/a&gt;TCP首部&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; tit
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>路由器工作原理</title>
-    <link href="http://cristianoro7.github.io/2017/05/22/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
-    <id>http://cristianoro7.github.io/2017/05/22/路由器工作原理/</id>
-    <published>2017-05-22T09:20:13.340Z</published>
-    <updated>2017-05-22T09:20:13.340Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>概述</li>
-<li>输入端口</li>
-<li>交换结构</li>
-<li>输出端口</li>
-</ul>
-<blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
-<p>路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:</p>
-<p><img src="/uploads/计网/路由选择协议/路由器工作原理.png" alt=""></p>
-<blockquote>
-<h3 id="输入端口"><a href="#输入端口" class="headerlink" title="输入端口"></a>输入端口</h3></blockquote>
-<p><img src="/uploads/计网/路由选择协议/输入端口.png" alt=""></p>
-<ul>
-<li>输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.</li>
-<li>路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.</li>
-<li>转发表是由路由器处理和更新的,但转发表的一份影子副本通常会被存放在每个输入端口, 有了影子副本,转发决策能在每个输入端口本地做出,无须调用中央路由选择处理器, 因此也避免了集中式处理的瓶颈.</li>
-</ul>
-<blockquote>
-<h3 id="交换结构"><a href="#交换结构" class="headerlink" title="交换结构"></a>交换结构</h3></blockquote>
-<p>交换结构位于一台路由器的核心部位.正是通过这种交换结构,分组才能实际从一个输入端口交换到一个输出端口.交换可以由下面的三种交换技术完成.</p>
-<p><img src="/uploads/计网/路由选择协议/内存交换结构.png" alt=""><br><img src="/uploads/计网/路由选择协议/纵横式交换结构.png" alt=""><br><img src="/uploads/计网/路由选择协议/总线交换结构.png" alt=""></p>
-<h4 id="内存交换结构"><a href="#内存交换结构" class="headerlink" title="内存交换结构"></a>内存交换结构</h4><ul>
-<li>在输入端口和输出之间交换是在CPU的直接控制下完成的.</li>
-<li>一个分组到达一个输入端口时, 该端口会先通过中断方式向路由选择处理器发送信号.于是,该分组从输入端口处被复制到处理器内存中.路由器选择处理器从其首部提取目的地址,在转发表中找出合适的输出端口,并将该分组复制到输出端口的缓存中.需要注意的是:不能同时发送两个分组,即使他们有不同的端口,因为经过共享系统总线一次仅能执行一次内存读/写.</li>
-</ul>
-<h4 id="总线交换"><a href="#总线交换" class="headerlink" title="总线交换"></a>总线交换</h4><ul>
-<li>输入端口经过一根共享总线将分组直接传送到输出端口,不需要路由选择处理器的干预.</li>
-<li>当一个分组到达路由器时, 输入端口为分组预先计划一个交换机内部标签, 用于指示本地输出端口,是分组在总线上传送和传输到输出端口.该分组能由所有输出端口收到, 但只有与该标签匹配的端口才能保存该分组.</li>
-<li>如果多个分组同时到达路由器,每个位于不同的输出端口,除了正在总线上传输的分组外,其他分组必须等待,因为一次只有一个分组能够跨越总线.</li>
-</ul>
-<h4 id="纵横式交换结构"><a href="#纵横式交换结构" class="headerlink" title="纵横式交换结构"></a>纵横式交换结构</h4><ul>
-<li>纵横式交换机是一种由2N条总线组成的互联网络.网络互联使得它能克服单一,共享式总宽带限制的缺点.</li>
-<li>当某个分组到达A端口时, 需要转发到端口Y,交换机控制器闭合总线A和Y交叉部位的叉点,然后端口A在其总线上发送该分组, 该分组仅由总线Y安排接收.注意:来自端口B的一个分组在同一时间能够转发到端口X,因为A到Y和B到X的分组使用不同的输入和输出总线.然而,如果来自不同端口的两个分组其目的地为相同的输出端口,那么其中一个分组必须等待, 因为在某个时刻,总线上仅有一个分组能被传送.</li>
-</ul>
-<blockquote>
-<h3 id="输出端口"><a href="#输出端口" class="headerlink" title="输出端口"></a>输出端口</h3></blockquote>
-<p>输出端口处理取出存放在输出端口内存中的分组并将其发送到输出链路上.这包括选择和取出排队的分组进行传输,执行所需的链路层和物理层传输功能.</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络自顶向下<br>计算机网络(谢仁希)</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;路由器工作原理&quot;&gt;&lt;a href=&quot;#路由器工作原理&quot; class=&quot;headerlink&quot; title=&quot;路由器工作原理&quot;&gt;&lt;/a&gt;路由器工作原理&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerl
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>路由选择协议</title>
-    <link href="http://cristianoro7.github.io/2017/05/22/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE/"/>
-    <id>http://cristianoro7.github.io/2017/05/22/路由选择协议/</id>
-    <published>2017-05-22T09:16:47.133Z</published>
-    <updated>2017-05-22T09:16:47.133Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>概述</li>
-<li>内部网关协议RIP</li>
-<li>内部网关协议OSPF</li>
-<li>外部网关协议BGP</li>
-</ul>
-<blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
-<ul>
-<li>从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.<ul>
-<li>静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.</li>
-<li>动态路由选择协议: 也叫做自适应路由选择, 其特点是能较好地适应网络状态的变化, 但实现起来复杂, 开销也较大. 因此, 动态路由选择适合复杂的大型网络.</li>
-</ul>
-</li>
-<li>因特网采用的路由选择协议主要是自适应的分布式路由选择协议.</li>
-<li>因特网采用分层次的路由选择协议的两个原因:<ul>
-<li>因特网的规模宏大. 如果让所有的路由器知道所有的网络应怎么样到达,则这种路由表非常大, 处理起来也花费很多时间.</li>
-<li>许多单位不愿意让外界了解自己单位网络的布局细节和本部门所采用的路由选择协议,同时还希望能接上因特网.</li>
-</ul>
-</li>
-<li>基于上面的两个原因, 因特网将整个互联网划分为许多较小的自治系统(autonomous system),一般称为AS.</li>
-<li>一个AS对外表现出是一个单一的和一致的路由选择策略.</li>
-<li>一个大的ISP就是一个自治系统, 因特网把路由选择协议分为两大类:<ul>
-<li>内部网关协议IGP: 在一个自治系统内使用的路由选择协议,而这与互联网中的其他自治系统选用什么路由选择协议无关,目前用得最多的内部网关协议有:RIP, OSPF.</li>
-<li>外部网关协议EGP: 若元源主机和目的主机处于两个不同的自治系统内, 当数据报传到一个自治系统的边界时, 就需要使用一种协议将路由选择信息传递到另外一个自治系统中. 目前使用得最多的外部网关协议: BGP</li>
-</ul>
-</li>
-<li>自治系统之间的路由选择也叫做域间路由选择, 而在自治系统内的路由选择叫做域间内部选择.</li>
-</ul>
-<blockquote>
-<h3 id="内部网关协议RIP"><a href="#内部网关协议RIP" class="headerlink" title="内部网关协议RIP"></a>内部网关协议RIP</h3></blockquote>
-<p>RIP是一种分布式,异步,收敛,迭代的基于距离向量的路由选择协议.</p>
-<ol>
-<li>分布: 每个节点将自己的路由表发给自己直接相邻的节点.</li>
-<li>异步: 节点不需要在某个固定的时间同时发送和交换信息.</li>
-<li>收敛: 在有限次的信息交换次数内, 不管初始值是多少, 路由表中的每一项一定会收敛成某个固定值, 也就是真正的最短路径.</li>
-</ol>
-<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
-<li>从一个路由器到直接连接的网络距离定义为1.</li>
-<li>从路由器到非直接连接的网络距离定义为所经过的路由器数+1,</li>
-<li>RIP允许一条路径只能包含15个路由器,因此,当距离等于16时,相当于不可达.</li>
-<li>RIP不能在两个网络之间同时使用多条路由, RIP只会选择一条具有最少路由器的路径.</li>
-</ul>
-<p>RIP协议下的路由器都需要不断和其他的路由器交换路由信息,那么,是和哪些路由器交换信息?交换什么信息?在什么时候交换信息?</p>
-<h5 id="RIP协议的特点"><a href="#RIP协议的特点" class="headerlink" title="RIP协议的特点:"></a>RIP协议的特点:</h5><ul>
-<li>仅和相邻路由器交换信息</li>
-<li>路由器交换的信息是当前本路由器所知道的全部信息,即自己的路由表.也就是,交换的信息是: 一个路由器到本自治系统内所有网络的最短距离,以及到每个网络应经过的下一个路由器.</li>
-<li>按固定时间交换路由信息.路由表中的最主要信息:到某个网络的距离,以及经过的下一跳地址和下一跳路由的地址.</li>
-</ul>
-<h4 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h4><p>对每个相邻路由器发来的RIP报文, 将进行一下步骤:</p>
-<ol>
-<li>对地址为X的相邻路由器发送过来的RIP报文, 先修改此报文中的所有项目, 把下一跳字段中的地址改为X, 把所有距离都+1.每个项目都有三个关键数据:到目的网络N, 距离d, 下一跳路由器X.</li>
-<li>对修改的RIP报文中的每一个项目,进行一下步骤:<br><br>若原来的路由表没有目的网络N, 则把该项目添加到路由表.<br><br>否则,若下一跳路由器地址为X, 则把收到项目替换掉原来路由表中的项目.否则什么也不做</li>
-<li>若3分钟还没有收到相邻路由器的更新路由表,则把此相邻路由器记录为不可到达网络,即把距离设置为16.</li>
-<li>返回.</li>
-</ol>
-<h5 id="“坏消息传得慢”"><a href="#“坏消息传得慢”" class="headerlink" title="“坏消息传得慢”"></a>“坏消息传得慢”</h5><p>RIP存在一个缺点是当网络发生故障时, 要经过比较长的时间才能将信息传送到所有的路由器.例如:</p>
-<p><img src="/uploads/计网/路由选择协议/RIP缺点.png" alt=""></p>
-<p>假定路由器1到网1的链路出了故障, R1无法到达网1. 于是路由器R1把到网1的距离设置为16, 因而在R1的路由表中相应的项目变为”1, 16, 直接”. 但是很可能要经过30秒后才能把更新信息发给R2.然而R2可能已经先把自己的路由信息”1, 2, R1”发给R1, R1收到这个报文后,误认为可以通过R2到达网1, 于是更新”1, 2, R1”修改为”1, 3, R2”,并发给R2.同理,R2接着又更新自己的路由表信息为”1, 4, R1”.这样的更新一直持续到R1,R2到网1的距离都增大到16,R1, R2才知道网1原来不可达.</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
-<li>RIP最大的优点是实现简单,开销小.</li>
-<li>RIP只能使用的最大距离为15, 这样限制了网络的规模.</li>
-<li>路由器之间的路由交换信息是路由器中完整的路由表,因而随着网络规模的扩大, 开销也就增加.</li>
-<li>坏消息传播得慢,使得更新过程的收敛时间过长.</li>
-<li>对于较大规模的网络应该换用OSPF协议.</li>
-</ul>
-<blockquote>
-<h3 id="内部网关协议OSPF"><a href="#内部网关协议OSPF" class="headerlink" title="内部网关协议OSPF"></a>内部网关协议OSPF</h3></blockquote>
-<p>OSPF最主要的特征是使用了分布式的链路状态协议.</p>
-<h4 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h4><h5 id="向本自治系统中的所有路由器发送信息"><a href="#向本自治系统中的所有路由器发送信息" class="headerlink" title="向本自治系统中的所有路由器发送信息"></a>向本自治系统中的所有路由器发送信息</h5><p>路由器通过所有输出端口向所有相邻路由器发送信息,也就是端口洪泛.而每个相邻路由器又再将此信息发往其所有的相邻路由器.这样整个区域中所有路由器都得到了这个信息的一个副本.</p>
-<h5 id="发送的信息"><a href="#发送的信息" class="headerlink" title="发送的信息"></a>发送的信息</h5><p>发送的信息是与本路由器相邻的所有路由器的链路状态.所谓”链路状态”是本路由器都和哪些路由器相邻,以及该链路的度量.</p>
-<h5 id="何时发送信息"><a href="#何时发送信息" class="headerlink" title="何时发送信息"></a>何时发送信息</h5><p>只有当链路状态发生改变时,路由器才向所有路由器洪泛此信息.</p>
-<h5 id="链路状态数据库"><a href="#链路状态数据库" class="headerlink" title="链路状态数据库"></a>链路状态数据库</h5><p>由于各个路由器之间频繁进行链路状态交换,因此所有路由器最终都能建立一个链路状态数据库.这个数据库实际上就是全网的拓扑结构.链路状态数据库能较快地进行更新,使各个路由器能及时更新路由表.</p>
-<h5 id="链路状态更新"><a href="#链路状态更新" class="headerlink" title="链路状态更新"></a>链路状态更新</h5><p>只有当链路状态发生变化时, 路由器才向所有路由器用洪泛法发送此消息.</p>
-<h4 id="划分区域"><a href="#划分区域" class="headerlink" title="划分区域"></a>划分区域</h4><p>OFPS将一个自治系统再划分为几个更小的范围,叫作区域.划分区域的好处就是把利用洪泛法交换链路状态信息的范围局限于每一个区域而不是一个完整的自治系统.</p>
-<blockquote>
-<h3 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h3></blockquote>
-<p>不同自治系统之间的路由选择不使用RIP或者OSPF的原因:</p>
-<ol>
-<li>因特网的规模太大,使得AS之间的路由变得非常困难.如果使用链路状态协议, 则每个路由器需要维持一个很大的链路状态数据库.另外,不同的自治系统各自运行着自己选定的内部路由选择协议, 并使用本AS指明的路径度量.因此当一条路径通过不同的自治系统时,路径的度量可能会出歧义.例如:对某AS来说, 代价为1000可能表示一条比较长的路由, 但对另外一AS代价为1000, 可能表示不可接受的坏路由.</li>
-<li>AS之间的路由选择必须考虑策略. 由于相连的网络性能相差很大, 如果根据最少跳数找出来的路径, 可能并不合适.也有的代价啊很高或不安全.</li>
-</ol>
-<p>基于上述的情况, 边界网关协议BGP只能力求寻找一条能够到达目的网络比较好的路由,而非寻找一条最佳路由.BGP采用了路径向量路由选择协议.</p>
-<h4 id="BGP发言人"><a href="#BGP发言人" class="headerlink" title="BGP发言人"></a>BGP发言人</h4><ul>
-<li><p>在配置BGP时, 每个自治系统的管理员要选择至少一个路由器作为该自治系统的BGP发言人.一般来说,这两个BGP发言人都是通过一个网络共享连接在一起的,而BGP发言人往往是边界路由器.</p>
-</li>
-<li><p>一个BGP发言人与其他AS的BGP发言人要交换路由信息,就要先建立TCP连接,然后在此连接上交换BGP报文以建立BGP会话,利用BGP会话交换路由信息,如增加了新的路由,或者撤销过时的路由,以及报告差错等.使用TCP连接交换路由信息的两个BGP发言人,彼此成为对方的邻站或对等站.</p>
-</li>
-</ul>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢仁希)</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;路由选择协议&quot;&gt;&lt;a href=&quot;#路由选择协议&quot; class=&quot;headerlink&quot; title=&quot;路由选择协议&quot;&gt;&lt;/a&gt;路由选择协议&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot;
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网际控制报文协议ICMP</title>
-    <link href="http://cristianoro7.github.io/2017/05/22/%E7%BD%91%E9%99%85%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AEICMP/"/>
-    <id>http://cristianoro7.github.io/2017/05/22/网际控制报文协议ICMP/</id>
-    <published>2017-05-22T09:11:06.591Z</published>
-    <updated>2017-05-22T09:11:06.591Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="网际控制报文协议ICMP"><a href="#网际控制报文协议ICMP" class="headerlink" title="网际控制报文协议ICMP"></a>网际控制报文协议ICMP</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>概述</li>
-<li>ICMP报文种类</li>
-<li>ICMP应用举例</li>
-</ul>
-<blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
-<p>为了更有效地转发IP数据报和提高交付成功的机会, 在网际层使用了网际控制报文协议ICMP(Internet Control Message Protocol). ICMP允许主机或者路由器报告差错情况和提供有关异常情况的报告.ICMP报文作为IP层的数据报的数据.</p>
-<blockquote>
-<h3 id="ICMP报文种类"><a href="#ICMP报文种类" class="headerlink" title="ICMP报文种类"></a>ICMP报文种类</h3></blockquote>
-<ul>
-<li>网际报文的种类有两种, 即ICMP差错报告报文和ICMP询问报文.</li>
-<li>几种常用的ICMP报文类型</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>ICMP报文类型</th>
-<th>类型的值</th>
-<th>ICMP报文的类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>差错报告报文</td>
-<td>3</td>
-<td>终点不可达</td>
-</tr>
-<tr>
-<td>差错报告报文</td>
-<td>4</td>
-<td>源点抑制</td>
-</tr>
-<tr>
-<td>差错报告报文</td>
-<td>11</td>
-<td>时间超过</td>
-</tr>
-<tr>
-<td>差错报告报文</td>
-<td>12</td>
-<td>参数问题</td>
-</tr>
-<tr>
-<td>差错报告报文</td>
-<td>5</td>
-<td>改变路由</td>
-</tr>
-<tr>
-<td>询问报文</td>
-<td>8或0</td>
-<td>回送请求或回答</td>
-</tr>
-<tr>
-<td>询问报文</td>
-<td>13或14</td>
-<td>时间戳请求或回答</td>
-</tr>
-</tbody>
-</table>
-<h4 id="终点不可达"><a href="#终点不可达" class="headerlink" title="终点不可达"></a>终点不可达</h4><p>当路由器或者主机不能交付数据报时就向源点发送终点不可达报文</p>
-<h4 id="源点抑制"><a href="#源点抑制" class="headerlink" title="源点抑制"></a>源点抑制</h4><p>当路由器或者主机因拥塞而丢弃数据报时, 就向源点发送源点抑制报文, 使源点知道应当把数据报的发送速率放慢.</p>
-<h4 id="时间超过"><a href="#时间超过" class="headerlink" title="时间超过"></a>时间超过</h4><p>当路由器收到生存时间为0的数据报时, 除了丢弃数据报外, 还要向源点发送时间超过报文.</p>
-<h4 id="参数问题"><a href="#参数问题" class="headerlink" title="参数问题"></a>参数问题</h4><p>当路由器或者目的主机收到的数据报的首部中有的字段的值不正确时, 就丢弃该数据报,并向源点发送参数问题报文.</p>
-<h4 id="改变路由-路由重定向"><a href="#改变路由-路由重定向" class="headerlink" title="改变路由(路由重定向)"></a>改变路由(路由重定向)</h4><p>路由器把改变路由报文发送给主机, 让主机知道下次应该将数据报发送给另外的路由器.</p>
-<h4 id="回送请求和回答"><a href="#回送请求和回答" class="headerlink" title="回送请求和回答"></a>回送请求和回答</h4><p>ICMP回送请求报文是由主机或者路由器向一个特定的目的主机发送询问. 收到此报文的主机必须给源主机或者路由发送ICMP回送回答报文.</p>
-<h4 id="时间戳请求和回答"><a href="#时间戳请求和回答" class="headerlink" title="时间戳请求和回答"></a>时间戳请求和回答</h4><p>ICMP时间戳请求报文是请某个主机或者路由器回答当前的日期和时间.</p>
-<blockquote>
-<h3 id="ICMP的应用举例"><a href="#ICMP的应用举例" class="headerlink" title="ICMP的应用举例"></a>ICMP的应用举例</h3></blockquote>
-<h4 id="PING"><a href="#PING" class="headerlink" title="PING"></a>PING</h4><ul>
-<li>ICMP一个重要应用就是分组网间探测PING, 用来测试两个主机之间的连通性.</li>
-<li>PING使用了ICMP的回送请求和回送回答报文.</li>
-<li>PING是应用层直接使用网络层ICMP的例子, 它没有通过运输层的TCP或UDP.</li>
-</ul>
-<h4 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h4><ul>
-<li>traceroute是用来跟踪一个分组从源点到终点的路径.</li>
-<li>traceroute从源主机向目的主机发送一连串IP数据报, 数据报中封装的是无法交付的UDP用户数据报.第一个数据报P1的生存时间为TTL设置为1.当P1到达路径上的第一个路由器R1时, 路由器R1先收下它, 接着把TTL的值减1.由于TTL等于0了, R1就把P1丢弃了, 并向源主机发送一个ICMP时间超过的差错报告报文.</li>
-<li>如此循环下去, 当最后一个数据报刚刚达到目的主机时, 数据报的TTL是1, 主机不转发数据, 也不把TTL减1.但因IP数据报封装的是无法交付的运输层UDP用户数据报, 因此目的主机要向源主机发送ICMP终点不可达差错报告报文.</li>
-</ul>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>计算机网络(谢仁希)</li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;网际控制报文协议ICMP&quot;&gt;&lt;a href=&quot;#网际控制报文协议ICMP&quot; class=&quot;headerlink&quot; title=&quot;网际控制报文协议ICMP&quot;&gt;&lt;/a&gt;网际控制报文协议ICMP&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IP地址分类</title>
-    <link href="http://cristianoro7.github.io/2017/05/22/IP%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB/"/>
-    <id>http://cristianoro7.github.io/2017/05/22/IP地址分类/</id>
-    <published>2017-05-22T09:06:15.761Z</published>
-    <updated>2017-05-22T09:06:15.761Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>概述</li>
-<li>分类</li>
-<li>特殊IP地址</li>
-<li>共有IP地址</li>
-<li>私有IP地址</li>
-</ul>
-<blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3></blockquote>
-<ul>
-<li>IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地址能找到被该IP地址标识的主机.例如:我们的家地址可以看作一个IP地址, 通过这个地址,可以找到我们,也就是主机.</li>
-<li>在TCP/IP协议中, IP地址是以二进制数字形式出现, 共32Bit, 1Bit就是二进制中的1位, 由于二进制的形式不适合人们阅读.因此换用一种”点分十进制法”表示IP地址.</li>
-<li>例如:<br><br>点分十进制: 192.168.1.1<br><br>二进制: 11000000.10101000.00000001.00000001</li>
-</ul>
-<blockquote>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3></blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>8 Bit</th>
-<th>8 Bit</th>
-<th>8 Bit</th>
-<th>8 Bit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Class A</td>
-<td>NETWORK</td>
-<td>HOST</td>
-<td>HOST</td>
-<td>HOST</td>
-</tr>
-<tr>
-<td>Class B</td>
-<td>NETWORK</td>
-<td>NETWORK</td>
-<td>HOST</td>
-<td>HOST</td>
-</tr>
-<tr>
-<td>Class C</td>
-<td>NETWORK</td>
-<td>NETWORK</td>
-<td>NETWORK</td>
-<td>HOST</td>
-</tr>
-<tr>
-<td>Class D</td>
-<td>多播</td>
-</tr>
-<tr>
-<td>Class E</td>
-<td>科研用</td>
-</tr>
-</tbody>
-</table>
-<h4 id="Class-A"><a href="#Class-A" class="headerlink" title="Class A"></a>Class A</h4><ul>
-<li>A类地址的第一个8 Bit 表示网络位, 且<code>网络位的第一个Bit为0</code>, 1-7Bit表示网络标识,格式为:0XXXXXXXX.</li>
-<li>后3个8 Bit 表示主机位.</li>
-<li>A类地址的网络范围:00000001~01111111, 用十进制表示: 1.0.0.0到126.0.0.0,一共有126个网络.</li>
-<li>主机标识为2的24次幂-2个(去掉全0和全1的地址), 全0的主机号字段表示该IP地址是”本机”连接到的单个网络地址,而1的主机号表示该网络上的所有主机.每个网络可容纳的主机数为16777214个.</li>
-<li>A类地址支持巨型网络,一般分给有大量主机的网络使用.</li>
-</ul>
-<h4 id="Class-B"><a href="#Class-B" class="headerlink" title="Class B"></a>Class B</h4><ul>
-<li>B类地址的前两个8 Bit表示网络标位, 且网络位的前两个Bit总是10, 即格式为: 10XXXXXX XXXXXXXX.</li>
-<li>B类地址可指派的网络数为: 2的14次幂-1, -1的原因是128.0.0.0是不指派的.</li>
-<li>后两个8 Bit表示主机位.</li>
-<li>B类的每个网络可容纳的主机数是2的16次幂-2, 即65534.</li>
-</ul>
-<h4 id="Class-C"><a href="#Class-C" class="headerlink" title="Class C"></a>Class C</h4><ul>
-<li>C类地址的前3个字节表示网路号, 且开头必须为<code>110</code>, 可以指派的最小网络地址为:192.0.1.0, 指派的网络范围为2的21次幂-1, -1的原因是192.0.0.0是不指派的.</li>
-<li>每个C类地址可容纳的主机数为:2的8次幂-2.</li>
-</ul>
-<blockquote>
-<h3 id="特殊地址"><a href="#特殊地址" class="headerlink" title="特殊地址"></a>特殊地址</h3></blockquote>
-<h4 id="0-0-0-0"><a href="#0-0-0-0" class="headerlink" title="0.0.0.0"></a>0.0.0.0</h4><ul>
-<li>它表示所有不清楚的主机和目的网络.</li>
-<li>不清楚的是意思是本机路由表中没有指定如何到达.</li>
-<li>如果在网络设置中设置了缺省网关, 那么系统会自动生成一个目的地址为0.0.0.0的缺省路由,所有不清楚的目的网络和主机都会被送到这里.</li>
-</ul>
-<h4 id="255-255-255-255"><a href="#255-255-255-255" class="headerlink" title="255.255.255.255"></a>255.255.255.255</h4><ul>
-<li>对本机来说, 这个地址指本网段内的所有主机. 这个地址不能被路由器所转发.</li>
-</ul>
-<h4 id="回环地址"><a href="#回环地址" class="headerlink" title="回环地址"></a>回环地址</h4><ul>
-<li>A类网络中的127是一个保留地址, 用于网络软件测试和本机进程间的通信.</li>
-<li>无论什么程序, 只要发送了该地址的数据, 就会被立刻发送回本机.</li>
-<li>127网络号的分组不能出现在网络传输上.</li>
-</ul>
-<h4 id="局域网内的IP"><a href="#局域网内的IP" class="headerlink" title="局域网内的IP"></a>局域网内的IP</h4><ul>
-<li>当主机号的全为0时,表示一个网络本身.</li>
-<li>当主机号全为1时, 表示网络中的全部主机.</li>
-<li>网络号代表一个网络本身, 同时也是一个网段的第一个地址. 广播地址是网段的最后一个地址,这两个地址是不能配在主机上的.</li>
-</ul>
-<blockquote>
-<h3 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h3></blockquote>
-<ul>
-<li>属于非注册地址, 专门为组织机构(学校,企业)内部使用, 简单来说私有地址不能直接上网.</li>
-<li>私有IP的范围:<ul>
-<li>A类私有IP地址: 10.0.0.0~10.255.255.255</li>
-<li>B类私有IP地址: 172.16.0.0~172.31.255.255</li>
-<li>C类私有地址: 192.168.0.0~192.168.255.255</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<h3 id="公有IP"><a href="#公有IP" class="headerlink" title="公有IP"></a>公有IP</h3></blockquote>
-<ul>
-<li>公有地址（Public address，也可称为公网地址）由Internet NIC（Internet Network Information Center因特网信息中心）负责。这些IP地址分配给注册并向Internet NIC提出申请的组织机构。通过它直接访问因特网，它是广域网范围内的。</li>
-</ul>
-<blockquote>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a href="http://blog.csdn.net/tennysonsky/article/details/45337405" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45337405</a></li>
-<li><a href="http://blog.csdn.net/txx9010/article/details/7712438" target="_blank" rel="external">http://blog.csdn.net/txx9010/article/details/7712438</a></li>
-<li><a href="https://www.zhihu.com/question/27714563" target="_blank" rel="external">https://www.zhihu.com/question/27714563</a></li>
-<li><a href="http://blog.csdn.net/tennysonsky/article/details/45226275" target="_blank" rel="external">http://blog.csdn.net/tennysonsky/article/details/45226275</a></li>
-<li>计算机网络(谢仁希)</li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;IP地址分类&quot;&gt;&lt;a href=&quot;#IP地址分类&quot; class=&quot;headerlink&quot; title=&quot;IP地址分类&quot;&gt;&lt;/a&gt;IP地址分类&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot;
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
     
   </entry>
   
@@ -1779,203 +2052,6 @@
   </entry>
   
   <entry>
-    <title>子网的划分和构成超网</title>
-    <link href="http://cristianoro7.github.io/2017/05/15/%E5%AD%90%E7%BD%91%E7%9A%84%E5%88%92%E5%88%86%E5%92%8C%E6%9E%84%E9%80%A0%E8%B6%85%E7%BD%91/"/>
-    <id>http://cristianoro7.github.io/2017/05/15/子网的划分和构造超网/</id>
-    <published>2017-05-15T04:32:44.950Z</published>
-    <updated>2017-05-15T04:32:44.950Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="子网的划分和构成超网"><a href="#子网的划分和构成超网" class="headerlink" title="子网的划分和构成超网"></a>子网的划分和构成超网</h1><blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
-<ul>
-<li>划分子网</li>
-<li>使用子网时的分组转发</li>
-<li>无分类编址CIDR</li>
-</ul>
-<blockquote>
-<h2 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h2></blockquote>
-<h3 id="两级IP地址的不合理"><a href="#两级IP地址的不合理" class="headerlink" title="两级IP地址的不合理"></a>两级IP地址的不合理</h3><h4 id="IP空间利用率低"><a href="#IP空间利用率低" class="headerlink" title="IP空间利用率低"></a>IP空间利用率低</h4><p>一个A类网路可容纳的主机数超过1000W, 而B类网络可容纳主机超过6W.但是有些网络对连接在网络上的主机数量是有限制的, 这就导致了地址空间的利用率低下.</p>
-<h4 id="路由表变大导致网络性能低下"><a href="#路由表变大导致网络性能低下" class="headerlink" title="路由表变大导致网络性能低下"></a>路由表变大导致网络性能低下</h4><p>给每个物理网络分配一个网络号的话, 会导致路由表中的项目大大增大, 同时查找路由的耗时也就变得更长.</p>
-<p>为了解决二级IP带来的问题,从1985年起,将IP地址中增加了一个”子网号字段”, 使得二级IP地址变成三级IP地址.这种做法叫做划分子网.</p>
-<blockquote>
-<h3 id="划分子网的基本思路"><a href="#划分子网的基本思路" class="headerlink" title="划分子网的基本思路"></a>划分子网的基本思路</h3></blockquote>
-<ul>
-<li>一个拥有许多物理地址的单位, 可将所属的物理网络划分为多个子网.划分子网属于单位内部的事情,对外还是表现为一个网络.</li>
-<li>划分子网的方法是从网路的主机号借用若干位作为子网号,于是二级IP地址在单位内部就变成了三级IP地址,即 network-id:subnet-id-host-id</li>
-</ul>
-<blockquote>
-<h3 id="子网划分实例"><a href="#子网划分实例" class="headerlink" title="子网划分实例"></a>子网划分实例</h3></blockquote>
-<p><img src="/uploads/计网/划分子网/子网.png" alt=""></p>
-<p>上图的网络被划分为三个子网, 整个网络对外表现为一个网络, 其网络地址为145.13.0.0.但是网络145.13.0.0上的路由器R1在收到外来的数据报后, 再根据数据报的目的地址将它转发到对应的子网.</p>
-<blockquote>
-<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3></blockquote>
-<p>我们知道, 从IP数据报的首部无法看出源主机或目的主机是否进行了子网的划分,路由器是如何将数据报转发到子网?使用子网掩码可以解决这个问题.</p>
-<h4 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h4><ul>
-<li>子网掩码是一个32位2进制数, 对应的网络地址全为1,主机地址全为0.</li>
-<li>A类网络的默认子网掩码为:255.0.0.0, B类为255.255.0.0, C类为255.255.255.0</li>
-</ul>
-<h4 id="通过目的IP地址和子网掩码计算子网的网络地址"><a href="#通过目的IP地址和子网掩码计算子网的网络地址" class="headerlink" title="通过目的IP地址和子网掩码计算子网的网络地址"></a>通过目的IP地址和子网掩码计算子网的网络地址</h4><ul>
-<li>将数据报的目的IP地址与子网掩码逐位相”与”.</li>
-</ul>
-<p>例如: IP地址为141.14.72.24, 子网掩码为255.255.192.0,求网络地址<br>解析: 子网掩码为11111111 11111111 11000000 00000000, 由于子网掩码的前两个字节的位全为1, 最后一个字节的位全为0,因此, 可暂时推断网络地址为: 141.14.X.0. 此时, 只需要将72对应的二进制数与11000000逐位相”与”,就可得出完整的网络地址: 141.14.64.0.</p>
-<h4 id="利用子网数来计算子网掩码"><a href="#利用子网数来计算子网掩码" class="headerlink" title="利用子网数来计算子网掩码"></a>利用子网数来计算子网掩码</h4><p>在求子网掩码时, 必须弄清楚划分子网的数目,以及每个子网内所需的主机数目.<br><br><br>1)将子数目转为二进制<br><br>2)取得二进制的位数N<br><br>3)取得该IP地址的类子网掩码, 将其主机号的前N位置1,即可得该IP地址划分子网的子网掩码<br></p>
-<p>eg: 将B类IP地址168.192.0.0划分为27个子网.<br><br>1) 27 = 11011<br><br>2) N = 5<br><br>3) B类子网掩码: 255.255.0.0<br><br>4) 该IP地址划分的子网掩码: 255.255.248.0.</p>
-<h4 id="子网的划分选择"><a href="#子网的划分选择" class="headerlink" title="子网的划分选择"></a>子网的划分选择</h4><p>下面给出B类子网的划分选择(使用固定的长度子网)</p>
-<table>
-<thead>
-<tr>
-<th>子网号位数</th>
-<th>子网掩码</th>
-<th>子网数</th>
-<th>每个子网的主机数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>255.255.192.0</td>
-<td>2^2-2</td>
-<td>2^14-2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>255.255.224.0</td>
-<td>2^3-2</td>
-<td>2^13-2</td>
-</tr>
-<tr>
-<td>4</td>
-<td>255.255.240.0</td>
-<td>2^4-2</td>
-<td>2^12 -2</td>
-</tr>
-<tr>
-<td>5</td>
-<td>255.255.248.0</td>
-<td>2^5-2</td>
-<td>2^11-2</td>
-</tr>
-<tr>
-<td>6</td>
-<td>255.255.252.0</td>
-<td>2^6-2</td>
-<td>2^10-2</td>
-</tr>
-<tr>
-<td>7</td>
-<td>255.255.254.0</td>
-<td>2^7-2</td>
-<td>2^9-2</td>
-</tr>
-<tr>
-<td>8</td>
-<td>255.255.255.0</td>
-<td>2^8-2</td>
-<td>2^8-2</td>
-</tr>
-<tr>
-<td>9</td>
-<td>255.255.255.128</td>
-<td>2^9-2</td>
-<td>2^7-2</td>
-</tr>
-<tr>
-<td>10</td>
-<td>255.255.248.192</td>
-<td>2^10-2</td>
-<td>2^6-2</td>
-</tr>
-<tr>
-<td>11</td>
-<td>255.255.252.224</td>
-<td>2^11-2</td>
-<td>2^5-2</td>
-</tr>
-<tr>
-<td>12</td>
-<td>255.255.254.240</td>
-<td>2^12-2</td>
-<td>2^4-2</td>
-</tr>
-<tr>
-<td>13</td>
-<td>255.255.255.248</td>
-<td>2^13-2</td>
-<td>2^3-2</td>
-</tr>
-<tr>
-<td>14</td>
-<td>255.255.255.252</td>
-<td>2^14-2</td>
-<td>2^2-2</td>
-</tr>
-</tbody>
-</table>
-<p><br><br>上面-2是因为去掉全0和全1的情况, 子网号位数没有0,1,15,16这四种情况是因为这几种情况没有意义.</p>
-<blockquote>
-<h3 id="使用子网时分组的转发"><a href="#使用子网时分组的转发" class="headerlink" title="使用子网时分组的转发"></a>使用子网时分组的转发</h3></blockquote>
-<p>使用子网划分后, 路由表必须包含这三项内容:目的网络地址,子网掩码和下一跳地址.</p>
-<h4 id="路由转发算法"><a href="#路由转发算法" class="headerlink" title="路由转发算法"></a>路由转发算法</h4><ol>
-<li>从收到的数据报的首部提取目的IP地址D.</li>
-<li>先判断是否可以直接交付. 对路由器相连的网络逐个检查:用各个网络的子网掩码与D逐位相”与”, 看结果是否和相应的网络地址匹配.若匹配,则把分组直接交付, 否则执行(3).</li>
-<li>若路由器表中有目的地址为D的特定主机路由, 则把数据报传送给下一跳的路由器,否则执行(4)</li>
-<li>对路由表中的每一行,用其中的子网掩码和D逐位相”与”,若结果与目的网络地址匹配,把数据报传送下一跳的路由器, 否则执行(5).</li>
-<li>若路由表中有一个默认的路由, 则把数据报传给默认路由, 否则执行(6)</li>
-<li>报告转发分组时出错.</li>
-</ol>
-<h4 id="转发实例"><a href="#转发实例" class="headerlink" title="转发实例"></a>转发实例</h4><p><img src="/uploads/计网/划分子网/子网转发分组.png" alt=""></p>
-<p>讨论R1收到H1向H2发送分组后,查找路由表的过程</p>
-<ol>
-<li>H1把本子网的子网掩码 255.255.255.128 与目的主机的ip地址逐位相”与”, 得出 128.30.33.128,它不等于H1的网络地址,说明H1与H2不在同一个子网内, 因此H1不能把分组直接交付给H2,必须交给子网上的默认路由器R1,由R1来进行转发</li>
-<li>R1收到一个分组后, 就在路由表中寻找有无匹配的网络地址.(1)计算出目的网络地址为128.30.33.128, 与路由表中的第二行的目的网络地址匹配, 说明这个网络就是分组想要寻找的目的网络, 于是R1将分组从接口1,直接交付给主机H2.</li>
-</ol>
-<blockquote>
-<h2 id="无分类编址CIDR-构成超网"><a href="#无分类编址CIDR-构成超网" class="headerlink" title="无分类编址CIDR(构成超网)"></a>无分类编址CIDR(构成超网)</h2></blockquote>
-<p>无分类域间路由选择CIDR解决的问题:</p>
-<ol>
-<li>B类地址眼看就快要分配完了</li>
-<li>因特网主干网上的路由表项目数急剧增长.</li>
-</ol>
-<blockquote>
-<h3 id="CIDR的两个主要的特点"><a href="#CIDR的两个主要的特点" class="headerlink" title="CIDR的两个主要的特点"></a>CIDR的两个主要的特点</h3></blockquote>
-<ul>
-<li>CIDR消除了传统的A类,B类,C类地址以及子网的划分的概念,把32位的IP地址划分了两个部分.前一部分用来表示网络前缀,以表示网络. 后一部分则用来表主机.</li>
-<li>CIDR把网络前缀相同的连续IP地址组成一块”CIDR地址块”.</li>
-</ul>
-<blockquote>
-<h3 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h3></blockquote>
-<ul>
-<li><strong>由于一个CIDR地址块中有很多地址,所以在路由表中就利用CIDR地址块来查找目的网络. 这种地址的聚合称为路由聚合.</strong></li>
-<li>它使得一个路由表可以表示更多地址. 路由聚合也称为构成子网.</li>
-</ul>
-<blockquote>
-<h3 id="最长前缀匹配"><a href="#最长前缀匹配" class="headerlink" title="最长前缀匹配"></a>最长前缀匹配</h3></blockquote>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>在使用CIDR时, 由于采用了网络前缀这种记法, 因此在路由表中的项目也要有相应的改变.在查找路由表时, 可能会得到不止一个匹配结果, 那么我们应该选择哪条结果?</p>
-<h4 id="最长匹配"><a href="#最长匹配" class="headerlink" title="最长匹配"></a>最长匹配</h4><p>为了解决上述问题, 应该从匹配结果中选择具有最长网络前缀的路由, 这叫做最长前缀匹配.</p>
-<h4 id="使用二叉线索查找路由表"><a href="#使用二叉线索查找路由表" class="headerlink" title="使用二叉线索查找路由表"></a>使用二叉线索查找路由表</h4><p>使用CIDR后, 由于要查找最长前缀匹配, 使路由表的查找过程变得更加复杂.为了更有效的查找, 通常是把无分类编址的路由表存放在一种层次的数据结构中, 然后,自上而下进行查找.这里最常用的是二叉线索.为了提高二叉线索的查找速度,可以使用压缩技术.</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://www.360doc.com/content/10/0205/11/276520_15184122.shtml" target="_blank" rel="external">http://www.360doc.com/content/10/0205/11/276520_15184122.shtml</a></li>
-<li>计算机网络(谢仁希)</li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;子网的划分和构成超网&quot;&gt;&lt;a href=&quot;#子网的划分和构成超网&quot; class=&quot;headerlink&quot; title=&quot;子网的划分和构成超网&quot;&gt;&lt;/a&gt;子网的划分和构成超网&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; cl
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java内存分配与回收策略</title>
     <link href="http://cristianoro7.github.io/2017/05/11/Java%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/"/>
     <id>http://cristianoro7.github.io/2017/05/11/Java内存分配与回收策略/</id>
@@ -2248,71 +2324,6 @@
     
     
       <category term="JVM" scheme="http://cristianoro7.github.io/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重拾Dagger2-组织</title>
-    <link href="http://cristianoro7.github.io/2017/04/04/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/"/>
-    <id>http://cristianoro7.github.io/2017/04/04/重拾Dagger2-组织/</id>
-    <published>2017-04-03T16:37:50.385Z</published>
-    <updated>2017-04-03T16:37:50.385Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>在<a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">上一篇</a>中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent</p>
-<h3 id="Component-dependencies-VS-SubComponent"><a href="#Component-dependencies-VS-SubComponent" class="headerlink" title="Component dependencies VS SubComponent"></a>Component dependencies VS SubComponent</h3><p>为了提高一个Component中代码的复用度, 我们可以利用 Component dependencies 和 SubComponent来获取Component中的依赖, 那么这两种方式有什么区别?</p>
-<h4 id="Component-dependencies"><a href="#Component-dependencies" class="headerlink" title="Component dependencies"></a>Component dependencies</h4><p>我们还是用前两篇中的Demo来讲解, 首先我们定义一个AppComponent和AppModule, 并且在AppModule提供一个Student的实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Singleton</span></div><div class="line"><span class="meta">@Component</span>(modules = &#123;AppModule.class&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">Application <span class="title">providesApp</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Application application;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppModule</span><span class="params">(Application application)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.application = application;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@Singleton</span></div><div class="line">    <span class="function">Application <span class="title">providesApplication</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> application;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@Singleton</span></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>现在我们有另外一个StudentComponent和StudentModule, 其中StudentModule需要Student实例, 由于我们在AppModule已经提供了Student实例, 我们可以在StudentComponent中定义dependencies, 这样就可以实现复用Student实例了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@PerActivity</span></div><div class="line"><span class="meta">@Component</span>(dependencies = AppComponent.class, modules = StudentModule.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@PerActivity</span></div><div class="line">    <span class="function">Data <span class="title">providesData</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Data();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这就是Component dependencies的使用</p>
-<h4 id="SubComponent"><a href="#SubComponent" class="headerlink" title="SubComponent"></a>SubComponent</h4><p>SubComponent也可以实现Component的代码复用, 我们具体来看看怎么使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Singleton</span></div><div class="line"><span class="meta">@Component</span>(modules = &#123;AppModule.class&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">StudentComponent <span class="title">getComponent</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function">Application <span class="title">providesApp</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">//    Student providesSyudent();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@PerActivity</span></div><div class="line"><span class="meta">@Subcomponent</span>(modules = StudentModule.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别?"></a>两者区别?</h4><p>既然两者都可以实现Component代码的复用, 那么他们的区别的是什么? </p>
-<ul>
-<li>Component dependencies方式的代码复用, 父Component必须显式暴露依赖给 dependencies的Component, 如上面的AppComponent</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Student <span class="title">providesStudent</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
-<p>显式暴露了Student依赖给dependencies的Component, 而对于SubComponent不用显式暴露, 直接在父Component定义一个返回SubComponent的方法, 并在对应的类标注SubComponent注解</p>
-<ul>
-<li>从设计的角度来看, SubComponent是为了让两个Component更具有内聚性. 而Component dependencies则是让两个Component彼此独立</li>
-</ul>
-<h3 id="源码读解"><a href="#源码读解" class="headerlink" title="源码读解"></a>源码读解</h3><p>为什么 Component dependencies方式必须要显式暴露? 且听我道来</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Application <span class="title">providesApp</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> providesApplicationProvider.get();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Student <span class="title">providesSyudent</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> providesStudentProvider.get();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面两个方法是AppComponent具体实现类的重写的两个方法, 在AppComponent暴露方法的主要目的是在对应的实现类提供依赖, 而在依赖于AppComponent的StudentComponent中,</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DaggerStudentComponent</span> <span class="keyword">implements</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Provider&lt;Student&gt; providesSyudentProvider;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Provider&lt;Data&gt; providesDataProvider;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> MembersInjector&lt;StudentActivity&gt; studentActivityMembersInjector;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">DaggerStudentComponent</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> builder != <span class="keyword">null</span>;</div><div class="line">    initialize(builder);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">final</span> Builder builder)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.providesSyudentProvider =</div><div class="line">        <span class="keyword">new</span> dagger.internal.Factory&lt;Student&gt;() &#123;</div><div class="line">          <span class="keyword">private</span> <span class="keyword">final</span> AppComponent appComponent = builder.appComponent;</div><div class="line"></div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> Preconditions.checkNotNull(</div><div class="line">                appComponent.providesSyudent(),</div><div class="line">                <span class="string">"Cannot return null from a non-@Nullable component method"</span>);</div><div class="line">          &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.providesDataProvider =</div><div class="line">        DoubleCheck.provider(StudentModule_ProvidesDataFactory.create(builder.studentModule));</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.studentActivityMembersInjector =</div><div class="line">        StudentActivity_MembersInjector.create(providesSyudentProvider, providesDataProvider);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span> </span>&#123;</div><div class="line">    studentActivityMembersInjector.injectMembers(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> StudentModule studentModule;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> AppComponent appComponent;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> StudentComponent <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (studentModule == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.studentModule = <span class="keyword">new</span> StudentModule();</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (appComponent == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(AppComponent.class.getCanonicalName() + <span class="string">" must be set"</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> DaggerStudentComponent(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Builder <span class="title">studentModule</span><span class="params">(StudentModule studentModule)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.studentModule = Preconditions.checkNotNull(studentModule);</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Builder <span class="title">appComponent</span><span class="params">(AppComponent appComponent)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.appComponent = Preconditions.checkNotNull(appComponent);</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们看看内部类Builder中, 有AppComponent成员变量, 因为我们依赖了AppComponent, 所以在创建StudentComponent的实例时, Builder强制要求我们调用 appComponent(AppComponent)方法时把StudentComponent依赖的AppComponent实例传递进来, 接下来, Student实例会通过传递进来的appComponent实例, 进行赋值</p>
-<p>我们来看看SubComponent为什么不用显式暴露</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentComponentImpl</span> <span class="keyword">implements</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> StudentModule studentModule;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Provider&lt;Data&gt; providesDataProvider;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> MembersInjector&lt;StudentActivity&gt; studentActivityMembersInjector;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">StudentComponentImpl</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.studentModule = <span class="keyword">new</span> StudentModule();</div><div class="line">    initialize();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.providesDataProvider =</div><div class="line">        DoubleCheck.provider(StudentModule_ProvidesDataFactory.create(studentModule));</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.studentActivityMembersInjector =</div><div class="line">        StudentActivity_MembersInjector.create(</div><div class="line">            DaggerAppComponent.<span class="keyword">this</span>.providesStudentProvider, providesDataProvider);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span> </span>&#123;</div><div class="line">    studentActivityMembersInjector.injectMembers(activity);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的StudentComponentImpl是StudentComponent具体实现类, 它是AppComponent实现类的内部类, 这样要实现复用就不用显式暴露接口了, 利用内部类的特性直接访问</p>
-<p>经过我们上面分析, 我们也可以回答设计的区别了,  因为SubComponent对应的实现类会作为父Component的内部类, 这样两个Component的内聚性也就增强了, 而dependencies则会生成两个对应的分开的两个类, 通过暴露接口和传递实例进行沟通, 从而达到两个Component独立分离的目的</p>
-<h3 id="两者的使用场景"><a href="#两者的使用场景" class="headerlink" title="两者的使用场景"></a>两者的使用场景</h3><ul>
-<li>如果你想让两个Component的内聚性更强, 你应该用SubComponent</li>
-<li>如果你想让两个Component彼此独立分离, 你应该用dependencies</li>
-</ul>
-<h3 id="组织方式"><a href="#组织方式" class="headerlink" title="组织方式"></a>组织方式</h3><h4 id="利用Singleton标注AppComponent"><a href="#利用Singleton标注AppComponent" class="headerlink" title="利用Singleton标注AppComponent"></a>利用Singleton标注AppComponent</h4><p>Singleton实现单例必须保证Component只会被初始化一次, 那么我们可以把需要定义成单例的类都定义在AppModule, 并且在AppComponent暴露对应单例给依赖的Component, 并在Application初始化AppComponent, 这样就保证了AppComponent只初始化一次</p>
-<h4 id="自定义Scope标注Activity"><a href="#自定义Scope标注Activity" class="headerlink" title="自定义Scope标注Activity"></a>自定义Scope标注Activity</h4><p>为了更好的组织项目结构, 我们可以定义PerAc(名字随意)注解, 标注基类ActivityComponent并且依赖与AppComponent, 接下来, 每个Activity可以定义对应的XXActivityComponent, 都让每个XXXActivity继承基类ActivityComponent, 并且依赖于AppComponent</p>
-<h4 id="SubComponent-1"><a href="#SubComponent-1" class="headerlink" title="SubComponent"></a>SubComponent</h4><p>我们的Activity可以能会有Fragment, 那Fragment对应的Component是要依赖于AppComponent还是做为对应ActivityComponent的SubComponent?<br>由于Fragment是包含在Activity中的, 更好的做法是将FragmentComponent作为对应的ActivtyComponent的SubComponent</p>
-<h3 id="告别Dagger2"><a href="#告别Dagger2" class="headerlink" title="告别Dagger2"></a>告别Dagger2</h3><p>写了三篇Dagger2的文章, 总算对Dagger2了解多了, 现在用得了很踏实.  所以该暂时告别Dagger2的学习了, 不过, 最后我还准备了一个Dagger2的使用的Demo, 这个Demo准备用MVP + Dagger2 + RxJava实现一个知乎日报, 嘻嘻, 如果你喜欢的话, 手抖给个star咯, </p>
-<p>Demo在项目地址的RxJava+MVP+Dagger2分支中</p>
-<p><a href="https://github.com/cristianoro7/Daily/tree/RxJava+MVP+Dagger2" target="_blank" rel="external">项目地址</a></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
-<p><a href="https://guides.codepath.com/android/Dependency-Injection-with-Dagger-2#setup" target="_blank" rel="external">https://guides.codepath.com/android/Dependency-Injection-with-Dagger-2#setup</a><br><a href="http://jellybeanssir.blogspot.jp/2015/05/component-dependency-vs-submodules-in.html" target="_blank" rel="external">http://jellybeanssir.blogspot.jp/2015/05/component-dependency-vs-submodules-in.html</a><br><a href="http://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies" target="_blank" rel="external">http://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies</a><br><a href="https://google.github.io/dagger/users-guide.html" target="_blank" rel="external">https://google.github.io/dagger/users-guide.html</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      goodbye  Dagger2
-    
-    </summary>
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
-    
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
     
   </entry>
   

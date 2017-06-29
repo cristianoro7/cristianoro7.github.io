@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/life/">Readed</a>
                         </li>
                         
@@ -95,13 +102,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/categories/">Archives</a>
                         </li>
                         
                     
@@ -188,30 +188,70 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/15/子网的划分和构造超网/">
+    <a href="/2017/05/21/大话数据结构-队列/">
         <h2 class="post-title">
-            子网的划分和构成超网
+            大话数据结构-队列
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            子网的划分和构成超网
-目录
+            队列顺序循环队列
+由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
 
-划分子网
-使用子网时的分组转发
-无分类编址CIDR
+问题：
+在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
 
-
-划分子网
-两级IP地址的不合理IP空间利用率低一个A类网路可容纳的主机数超过1000W, 而B类网络可容纳主机超过6W.但是有些网络对连接在网络上的主机数量是有限制的, 这就导致了地址空间的利用率低下.
-路由表变大导致网络性能低下给每个物理网络分配一个网络号的话, 会导致路由表中的项目大大增大, 同时查找路......
+解决：
+设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
+当队列为空时，front == rear，当队列满时，修改......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-15
+        2017-05-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/18/Java内存区域/">
+        <h2 class="post-title">
+            Java内存区域
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
+
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-18
     </p>
 
 </div>
@@ -304,28 +344,6 @@ Parallel O......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/04/重拾Dagger2-组织/">
-        <h2 class="post-title">
-            重拾Dagger2-组织
-        </h2>
-        <h3 class="post-subtitle">
-            goodbye Dagger2
-        </h3>
-        <div class="post-content-preview">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component depend......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-04-04
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -387,15 +405,15 @@ Component dependencies VS SubComponent为了提高一个Component中代码的复
                             
                         
                             
+                        
+                            
                             <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
-                        
-                            
-                        
-                            
                             <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
                             
                         
                             

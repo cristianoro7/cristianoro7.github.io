@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/life/">Readed</a>
                         </li>
                         
@@ -95,13 +102,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/categories/">Archives</a>
                         </li>
                         
                     
@@ -188,32 +188,28 @@
 
 <div class="post-preview">
 
-    <a href="/2017/06/06/计算机组成原理-储存系统和结构/">
+    <a href="/2017/06/29/大话数据结构-栈/">
         <h2 class="post-title">
-            计算机组成原理-储存系统和结构
+            大话数据结构-栈
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            储存系统和结构
-目录
+            栈顺序栈
+结构体
 
-储存器的分类
-随机储存器
-高速储存缓冲器
-虚拟储存器
+12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
 
 
-储存器的分类
-下面针对常见的储存器分类进行讨论
-按储存器在计算机系统中的作用分类高速缓冲储存器位于CPU和主储存器之间, 用来缓存正在执行的程序段和数据,以便CPU能高速使用它们.高速缓冲器的速度与CPU匹配.
-主储存器用来存放正在运行的程序和数据,CPU可以直接随机地进行访问主存.由于访问主存的速度与CPU运......
+入栈操作
+
+1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-06
+        2017-06-29
     </p>
 
 </div>
@@ -221,72 +217,7 @@
 
 <div class="post-preview">
 
-    <a href="/2017/06/04/计算机组成原理概述/">
-        <h2 class="post-title">
-            计算机组成原理概述
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            计算机组成原理概述
-目录
-
-概述
-储存程序概念
-计算机硬件的组成
-储存器的设计思想
-计算机的主要性能指标
-
-
-概述
-最近,突然对操作系统感兴趣,于是提前看了网上关于操作系统的视频. 但是在看的过程中对操作系统启动时从实模式到保护模式的切换,分段机制和分页机制, CPU的工作模型和总线等概念不怎么熟悉. 于是Google了一番, 发现这些大都是涉及到计算机组成原理的知识,刚好这学期学校有开设计......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-06-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/30/计算机网络-运输层/">
-        <h2 class="post-title">
-            计算机网络-运输层
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            计算机网络-运输层
-目录
-
-概述
-分用和复用
-UDP协议
-运输层梳理
-
-
-概述
-当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.
-网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.
-在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/30/可靠传输的工作原理/">
+    <a href="/2017/06/29/可靠传输的工作原理/">
         <h2 class="post-title">
             可靠传输的工作原理
         </h2>
@@ -314,7 +245,80 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-30
+        2017-06-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/06/29/路由器工作原理/">
+        <h2 class="post-title">
+            路由器工作原理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            路由器工作原理
+目录
+
+概述
+输入端口
+交换结构
+输出端口
+
+
+概述
+路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:
+
+
+输入端口
+
+
+输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.
+路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.
+转发表是由路......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-06-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/06/29/路由选择协议/">
+        <h2 class="post-title">
+            路由选择协议
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            路由选择协议
+目录
+
+概述
+内部网关协议RIP
+内部网关协议OSPF
+外部网关协议BGP
+
+
+概述
+
+从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.
+静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.
+动态路由选择协议: 也叫做自适应路由选择, 其......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-06-29
     </p>
 
 </div>
@@ -377,15 +381,15 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
                             
                         
                             
+                        
+                            
                             <a href="/tags/#网络框架#Volley" title="网络框架#Volley" rel="2">网络框架#Volley</a>
                             
                         
                             
-                        
-                            
-                        
-                            
                             <a href="/tags/#图片加载框架#universal-image-loader" title="图片加载框架#universal-image-loader" rel="2">图片加载框架#universal-image-loader</a>
+                            
+                        
                             
                         
                             
