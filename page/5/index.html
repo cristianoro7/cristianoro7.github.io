@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/life/">Readed</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -101,14 +101,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/life/">Readed</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -185,6 +185,40 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/05/23/TCP流量控制/">
+        <h2 class="post-title">
+            TCP流量控制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            TCP流量控制
+目录
+
+概述
+利用滑动窗口实现流量控制
+零窗口
+传输效率
+
+
+概述
+一般来说,我们总希望数据传输得快一点, 但是如果发送方把数据发送得太快, 接收方就可能来不及接收,这就会造成数据的丢失.流量控制其实就是让发送方的发送速率不要太快, 要让接收方来得及接收.
+
+利用TCP滑动窗口实现流量控制
+其实TCP流量控制本质上是利用滑动窗口机制来实现的.接下来,结合例子来解释TCP的流量......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-23
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -295,39 +329,6 @@ HotSpot虚拟机对象探秘
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/05/11/Java内存分配与回收策略/">
-        <h2 class="post-title">
-            Java内存分配与回收策略
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            内存分配与回收策略目录
-对象优先在Eden分配
-大对象直接进入老年代
-长期存活对象将进入老年代
-动态对象年龄判定
-空间分配担保
-
-对象优先在Eden分配
-大多数情况下, 对象主要分配在新生代的Eden区上.
-当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
-
-大对象直接进入老年代
-大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-11
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -367,13 +368,9 @@ HotSpot虚拟机对象探秘
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
@@ -381,13 +378,17 @@ HotSpot虚拟机对象探秘
                             
                         
                             
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="7">计算机网络#运输层</a>
+                            
+                        
+                            
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
                             
                         
                             
@@ -408,6 +409,8 @@ HotSpot虚拟机对象探秘
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
                             
                         
                             

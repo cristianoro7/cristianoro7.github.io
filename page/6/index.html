@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/life/">Readed</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -101,14 +101,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/life/">Readed</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -185,6 +185,39 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/05/11/Java内存分配与回收策略/">
+        <h2 class="post-title">
+            Java内存分配与回收策略
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            内存分配与回收策略目录
+对象优先在Eden分配
+大对象直接进入老年代
+长期存活对象将进入老年代
+动态对象年龄判定
+空间分配担保
+
+对象优先在Eden分配
+大多数情况下, 对象主要分配在新生代的Eden区上.
+当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+
+大对象直接进入老年代
+大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-11
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -284,31 +317,6 @@ Dagger2是什么?Dagger2是之前由Squa......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
-        <h2 class="post-title">
-            重拾Dagger2-理解Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Understanding Dagger2
-        </h3>
-        <div class="post-content-preview">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-30
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -348,13 +356,9 @@ MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
@@ -362,13 +366,17 @@ MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
                             
                         
                             
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="7">计算机网络#运输层</a>
+                            
+                        
+                            
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
                             
                         
                             
@@ -389,6 +397,8 @@ MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
                             
                         
                             

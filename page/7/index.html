@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/life/">Readed</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -101,14 +101,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/life/">Readed</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -185,6 +185,31 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
+        <h2 class="post-title">
+            重拾Dagger2-理解Dagger2
+        </h2>
+        <h3 class="post-subtitle">
+            Understanding Dagger2
+        </h3>
+        <div class="post-content-preview">
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-03-30
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -282,36 +307,6 @@ StringBuilder可以保证线程安全，但是也因此效率变得......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/02/21/确认访问用户的身份-笔记/">
-        <h2 class="post-title">
-            图解HTTP-确认访问用户的身份-笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ﻿### HTTP使用的认证方式
-
-BASIC认证(基本认证)
-DIGEST(摘要认证)
-SSL客户端认证
-FormBase认证(基于表单认证)
-
-BASIC认证步骤
-
-步骤1:当请求的资源需要 BASIC 认证时,服务器会随状态码 401Authorization Required,返回带 WWW-Authenticate 首部字段的响应。该字段内包含认证的方式(BASIC) 及 Requ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-02-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -351,13 +346,9 @@ BASIC认证步骤
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
@@ -365,13 +356,17 @@ BASIC认证步骤
                             
                         
                             
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="7">计算机网络#运输层</a>
+                            
+                        
+                            
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
                             
                         
                             
@@ -392,6 +387,8 @@ BASIC认证步骤
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
                             
                         
                             

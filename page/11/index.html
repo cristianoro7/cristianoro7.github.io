@@ -87,7 +87,7 @@
 
                         
                         <li>
-                            <a href="/life/">Readed</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -101,14 +101,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/life/">Readed</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -188,6 +188,29 @@
 
 <div class="post-preview">
 
+    <a href="/2017/01/13/AsyncTask源码浅析/">
+        <h2 class="post-title">
+            AsyncTask源码浅析
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            源码浅析
+概述AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
+我们知道，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-01-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/01/13/Volley--队列控制/">
         <h2 class="post-title">
             Volley--队列控制
@@ -262,36 +285,6 @@ View的三大流程都是通过ViewRoot完成的
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/">
-        <h2 class="post-title">
-            安卓开发艺术探索-View的事件体系-笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            第三章：View的事件体系View的位置参数：
-
-View的位置参数left， top， right， bottom是相对于VIew的父容器来说的，因此是一种相对坐标
-宽高和坐标的关系：
-width = right - left
-height = bottom - top
-
-
-这四个参数对应于源码的mLeft， mRight， mTop， mBottom这四个成员变量，获取方式：
-left ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-01-13
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -331,13 +324,9 @@ left ......
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#JVM" title="JVM" rel="4">JVM</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
                             
                         
                             
@@ -345,13 +334,17 @@ left ......
                             
                         
                             
-                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#计算机网络#运输层" title="计算机网络#运输层" rel="7">计算机网络#运输层</a>
+                            
+                        
+                            
+                            <a href="/tags/#Dagger2" title="Dagger2" rel="4">Dagger2</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#图片加载框架#Picasso" title="图片加载框架#Picasso" rel="2">图片加载框架#Picasso</a>
                             
                         
                             
@@ -372,6 +365,8 @@ left ......
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+                            
+                        
                             
                         
                             
