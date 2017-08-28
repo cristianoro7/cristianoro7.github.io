@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+          深入理解Java集合-HashMap - Desperado的博客 | Desperado&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://cristianoro7.github.io/2017/08/28/深入理解Java集合-HashMap/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Desperado</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/life/">Readed</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/collection.jpeg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Java集合框架" title="Java集合框架">Java集合框架</a>
+                        
+                    </div>
+                    <h1>深入理解Java集合-HashMap</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Desperado on
+                        2017-08-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>前两篇文章分别介绍了<code>ArrayList</code>和<code>LinkedList</code>, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看<code>HashMap</code>的UML</p>
+<blockquote>
+<h2 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h2></blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fimu0do73tj30ii0cv3z0.jpg" alt=""></p>
+<p><code>HashMap</code>实现了<code>Cloneable</code>, <code>Serializable</code>, 所以<code>HashMap</code>支持克隆(浅克隆)和序列化. <code>Map</code>接口提供了一系列接口和三个视图. <code>AbstractMap</code>则是实现了<code>Map</code>接口, 并且实现了<code>Map</code>接口中的一些方法, 换句话说<code>AbstractMap</code>是<code>Map</code>家族里面的一个基本骨架, 具体的子类根据需要重写<code>AbstractMap</code>中的方法即可.</p>
+<blockquote>
+<h2 id="回顾Hash表"><a href="#回顾Hash表" class="headerlink" title="回顾Hash表"></a>回顾Hash表</h2></blockquote>
+<p>学过数据结构的都应该清楚, Hash表是将一个key的hash值取模后映射到一个数组中的特定位置. 但是, 随着Hash表中的键值对的增多, 会出现冲突. 所谓的冲突是两个key的hash值取模后得到的数定位到了数组中的相同位置.对于冲突这种情况, 常用的解决方法有:开放地址法和链地址法.</p>
+<blockquote>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2></blockquote>
+<p>回顾完了Hash表的基础知识后, 我们来讲讲<code>HashMap</code>的实现方式.</p>
+<p>总体来说, <code>HashMap</code>的实现为: 数组+链表+红黑树. 当出现冲突时, <code>HashMap</code>是使用链地址法来解决冲突.但是如果冲突越来越多, 链表就会变得越来越长.这样导致的结果是:原本访问一个Key对应的value的时间复杂度会从O(1)退化为O(n).因此, <code>HashMap</code>使用一种名为红黑树的数据结构来解决时间复杂度退化的这个问题.红黑树查找key值对应的value的时间复杂度为O(log n)(优于O(n)).</p>
+<p>下面, 先来看看<code>HashMap</code>中的字段, 我们将重点介绍两个字段. 这两个字段影响着<code>HashMap</code>的性能.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * The table, initialized on first use, and resized as</div><div class="line"> * necessary. When allocated, length is always a power of two.</div><div class="line"> * (We also tolerate length zero in some operations to allow</div><div class="line"> * bootstrapping mechanics that are currently not needed.)</div><div class="line"> */</div><div class="line"><span class="keyword">transient</span> Node&lt;K,V&gt;[] table; <span class="comment">//内部的数组</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Holds cached entrySet(). Note that AbstractMap fields are used</div><div class="line"> * for keySet() and values().</div><div class="line"> */</div><div class="line"><span class="keyword">transient</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet; <span class="comment">//返回包含key-value的视图</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * The number of key-value mappings contained in this map.</div><div class="line"> */</div><div class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size; <span class="comment">//内部储存的key-value的个数</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * The number of times this HashMap has been structurally modified</div><div class="line"> * Structural modifications are those that change the number of mappings in</div><div class="line"> * the HashMap or otherwise modify its internal structure (e.g.,</div><div class="line"> * rehash).  This field is used to make iterators on Collection-views of</div><div class="line"> * the HashMap fail-fast.  (See ConcurrentModificationException).</div><div class="line"> */</div><div class="line"><span class="keyword">transient</span> <span class="keyword">int</span> modCount; <span class="comment">//记录内部数据结构发生变化的次数, 主要用来实现fail-fast</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * The next size value at which to resize (capacity * load factor).</div><div class="line"> *</div><div class="line"> * <span class="doctag">@serial</span></div><div class="line"> */</div><div class="line"><span class="comment">// (The javadoc description is true upon serialization.</span></div><div class="line"><span class="comment">// Additionally, if the table array has not been allocated, this</span></div><div class="line"><span class="comment">// field holds the initial array capacity, or zero signifying</span></div><div class="line"><span class="comment">// DEFAULT_INITIAL_CAPACITY.)</span></div><div class="line"><span class="keyword">int</span> threshold;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * The load factor for the hash table.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@serial</span></div><div class="line"> */</div><div class="line"><span class="keyword">final</span> <span class="keyword">float</span> loadFactor;</div></pre></td></tr></table></figure>
+<p>loadFactor是负载因子, 这个字段表示<code>HashMap</code>内部容量满载的一个界限. threshold为扩容的界限,它的计算公式为: threshold = capacity * loadFactor.当size &gt; threshold时, <code>HashMap</code>内部就会扩容.</p>
+<p><code>loadFactor</code>内部默认实现为0.75. 这个数值是时间和空间的一个折中值.<code>loadFactor</code>如果设置为比较大, 也就是<code>threshold</code>会比较大, 那么空间的利用率就会变大, 但是空间利用率变大的代价是查找速度变慢了, 因因为冲突率会提高. 如果<code>loadFactor</code>设置为比较小的话, <code>threshold</code>会比较小, 虽然冲突率会变小, 因为会频繁扩容.但这也一定程度上浪费空间内存.</p>
+<blockquote>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3></blockquote>
+<p><code>HashMap</code>的构造函数有几个重载, 我们既可以使用无参的构造方法, 使用内部默认指定的<code>capacity</code>和<code>loadFactor</code>.也可以调用指定这两个参数的构造函数.</p>
+<p>如果没有特殊情况.我们一般调用无参的构造函数.它会帮我们指定默认的<code>loadFactor</code>.</p>
+<blockquote>
+<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>put</code>函数是往<code>HashMap</code>中添加元素, 在分析添加元素的实现之前, 我们先来看看<code>hash(key)</code>函数,得到的hash值.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> h;</div><div class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="hash函数"><a href="#hash函数" class="headerlink" title="hash函数"></a>hash函数</h4></blockquote>
+<p><code>hash</code>函数的实现思路: 将key的hashCode的高16位和低16位作异或操作.至于为什么是要这样操作?</p>
+<p>一般而言, 哈希表的长度设置为一个素数的话, 发生冲突的次数会比较少.但是为了优化<code>HashMap</code>的扩容和<code>rehash</code>操作, <code>HashMap</code>的长度被设置为总是为2的次方(不是一个素数).既然被设置为一个合数, 那么冲突的次数肯定会还比较多. <code>hash</code>函数通过再次散列来减少冲突率. 但 <code>HashMap</code>内部的hash函数没有被设置得很复杂,<code>HashMap</code>内部的<code>hash</code>函数只是简单的高低16位进行异或操作. 面对冲突的情况, <code>HashMap</code>内部的优化有红黑树,并且本来key的hashCode已经挺分散了. 从质量和系统消耗的角度出发, 没有必要设置复杂的<code>hash</code>函数.</p>
+<p>分析完了<code>hash(int key)</code>函数, 我们回到<code>put(K key)</code>, 来看看真正的添加操作.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></div><div class="line">               <span class="keyword">boolean</span> evict) &#123;</div><div class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</div><div class="line">    <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>) <span class="comment">//检查HashMap是否为空</span></div><div class="line">        n = (tab = resize()).length; <span class="comment">//空的话, 先进行扩容</span></div><div class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>) <span class="comment">//判断HashMap中有没有存该Key</span></div><div class="line">        tab[i] = newNode(hash, key, value, <span class="keyword">null</span>); <span class="comment">//没有存该值, 直接赋值.</span></div><div class="line">    <span class="keyword">else</span> &#123; <span class="comment">//HashMap不为空的情况.</span></div><div class="line">        Node&lt;K,V&gt; e; K k;</div><div class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</div><div class="line">            ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k)))) <span class="comment">//判断HashMap有没存该Key</span></div><div class="line">            e = p; <span class="comment">//没有的话直接赋值</span></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode) <span class="comment">//判断这个结点是不是红黑树结点</span></div><div class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value); 是的话, 插入到红黑树结构中</div><div class="line">        <span class="keyword">else</span> &#123; <span class="comment">//插入到链表结构中</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</div><div class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</div><div class="line">                    p.next = newNode(hash, key, value, <span class="keyword">null</span>);</div><div class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></div><div class="line">                        treeifyBin(tab, hash); <span class="comment">//如果链表的结点个数为8的话, 将链表转化为红黑树, 这样提高查找的速度</span></div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</div><div class="line">                    ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                p = e;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></div><div class="line">            V oldValue = e.value;</div><div class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</div><div class="line">                e.value = value;</div><div class="line">            afterNodeAccess(e); <span class="comment">//hock函数, 用于LinkHashMap中</span></div><div class="line">            <span class="keyword">return</span> oldValue;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    ++modCount;</div><div class="line">    <span class="keyword">if</span> (++size &gt; threshold) <span class="comment">//如果size &gt; threshold的话, 需要进行扩容</span></div><div class="line">        resize();</div><div class="line">    afterNodeInsertion(evict);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面注释已经将函数解析得挺清楚了, 下面主要介绍这个<code>hash &amp; (n - 1)</code>操作. <code>hash &amp; (n - 1)</code>其实等价于取模操作, 但是比普通的 % 操作高效, 因为<code>hash &amp; (n - 1)</code>运用的位运算.</p>
+<p>一个数和2的n次方进行去模操作, 余数是由这个数的低n决定,所以<code>hash &amp; (n - 1)</code>就是取得hash的底n位,也就是余数.如下图:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fimz01cbwzj30d60dm74h.jpg" alt=""></p>
+<p>前面说过<code>HashMap</code>内部的长度总是为2的次方, <code>n</code>为<code>HashMap</code>的长度,所以跟上面的例子原理一样.</p>
+<p><code>afterNodeAccess(e);</code>和<code>afterNodeInsertion(evict);</code>是hock函数, 是预留给<code>LinkedHashMap</code>使用的.</p>
+<p>链表的构造使用的是头插法, 后插入的会在链表头.</p>
+<p>如果一直向<code>HashMap</code>中添加元素的话, 其内部会扩容, 扩容通俗地说就是用更大的数组来代替之前的小数组以装下更多的元素.1.8的<code>HashMap</code>内部的扩容机制做了一些优化, 接下来, 我们来详细分析其中的优化.</p>
+<blockquote>
+<h4 id="扩容机制"><a href="#扩容机制" class="headerlink" title="扩容机制"></a>扩容机制</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</div><div class="line">    Node&lt;K,V&gt;[] oldTab = table;</div><div class="line">    <span class="keyword">int</span> oldCap = (oldTab == <span class="keyword">null</span>) ? <span class="number">0</span> : oldTab.length;</div><div class="line">    <span class="keyword">int</span> oldThr = threshold;</div><div class="line">    <span class="keyword">int</span> newCap, newThr = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</div><div class="line">            threshold = Integer.MAX_VALUE;</div><div class="line">            <span class="keyword">return</span> oldTab;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</div><div class="line">                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</div><div class="line">            newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// 扩大为原来的两倍</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></div><div class="line">        newCap = oldThr;</div><div class="line">    <span class="keyword">else</span> &#123;               <span class="comment">// zero initial threshold signifies using defaults</span></div><div class="line">        newCap = DEFAULT_INITIAL_CAPACITY;</div><div class="line">        newThr = (<span class="keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</div><div class="line">        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?</div><div class="line">                  (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</div><div class="line">    &#125;</div><div class="line">    threshold = newThr;</div><div class="line">    <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"rawtypes"</span>,<span class="string">"unchecked"</span>&#125;)</div><div class="line">        Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[newCap];</div><div class="line">    table = newTab;</div><div class="line">    <span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</div><div class="line">            Node&lt;K,V&gt; e;</div><div class="line">            <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</div><div class="line">                oldTab[j] = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</div><div class="line">                    newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</div><div class="line">                    ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap);</div><div class="line">                <span class="keyword">else</span> &#123; <span class="comment">// preserve order</span></div><div class="line">                    Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>;</div><div class="line">                    Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>;</div><div class="line">                    Node&lt;K,V&gt; next;</div><div class="line">                    do &#123;</div><div class="line">                        next = e.next;</div><div class="line">                        <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</div><div class="line">                            <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</div><div class="line">                                loHead = e;</div><div class="line">                            <span class="keyword">else</span></div><div class="line">                                loTail.next = e;</div><div class="line">                            loTail = e;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">else</span> &#123;</div><div class="line">                            <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</div><div class="line">                                hiHead = e;</div><div class="line">                            <span class="keyword">else</span></div><div class="line">                                hiTail.next = e;</div><div class="line">                            hiTail = e;</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</div><div class="line">                    <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</div><div class="line">                        loTail.next = <span class="keyword">null</span>;</div><div class="line">                        newTab[j] = loHead;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</div><div class="line">                        hiTail.next = <span class="keyword">null</span>;</div><div class="line">                        newTab[j + oldCap] = hiHead;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newTab;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>resize()</code>函数为<code>HashMap</code>的扩容机制,扩容的情况有两种, 一种的初始化默认的容量, 另外一种是扩大为原来的两倍.</p>
+<p>扩大容量后, 还需要把原来的数据搬到新的数组中.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</div><div class="line">        Node&lt;K,V&gt; e;</div><div class="line">        <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</div><div class="line">            oldTab[j] = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</div><div class="line">                newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e; <span class="comment">//定位到新的位置, 并且赋值</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</div><div class="line">                ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap); <span class="comment">//如果结点是红黑树的结点的话, 会进行修剪树的操作</span></div><div class="line">            <span class="keyword">else</span> &#123; <span class="comment">// preserve order 头结点后面有元素,且为链表的结构</span></div><div class="line">              <span class="comment">//重新定位链表的策略: 定义两条链表, 构造完链条链表后, 再将他们的头结点定位到数组对应的index</span></div><div class="line">                Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>; <span class="comment">//留在原来的位置的链表</span></div><div class="line">                Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>; <span class="comment">//移动在原来位置+2的n次方位置的链表</span></div><div class="line">                Node&lt;K,V&gt; next;</div><div class="line">                do &#123;</div><div class="line">                    next = e.next;</div><div class="line">                    <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123; <span class="comment">//新增位为0</span></div><div class="line">                        <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</div><div class="line">                            loHead = e;</div><div class="line">                        <span class="keyword">else</span></div><div class="line">                            loTail.next = e;</div><div class="line">                        loTail = e;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> &#123; <span class="comment">//新增位为1</span></div><div class="line">                        <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</div><div class="line">                            hiHead = e;</div><div class="line">                        <span class="keyword">else</span></div><div class="line">                            hiTail.next = e;</div><div class="line">                        hiTail = e;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</div><div class="line">                <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</div><div class="line">                    loTail.next = <span class="keyword">null</span>;</div><div class="line">                    newTab[j] = loHead; <span class="comment">//将链表定位到原来的位置</span></div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</div><div class="line">                    hiTail.next = <span class="keyword">null</span>;</div><div class="line">                    newTab[j + oldCap] = hiHead; <span class="comment">//将链表定位到原来的位置 + 2的n次方</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结合代码中的注释, 我们来解析这个扩容机制, 首先遍历原来的数组, 然后拿到每个位置的头结点, 再判断头结点后面有没有元素, 没有的话, 直接用<code>&amp;</code>运算定位到新的位置.如果有的话, 先判断这个结点是不是红黑树的结点, 是的话做修剪树的操作.不是的话, 说明后面的结点的结构是链表.</p>
+<p>前面说过, <code>HashMap</code>的每次扩容为原来的2倍, 这样的话, 原来的元素不是定位到原地, 就是在原地移动2的次幂.我们结合扩容前和扩容后的图来解释:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fin22vrzufj30nb0c50tb.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fin27c3g43j30o10bpmxq.jpg" alt=""></p>
+<p>扩容后,决定位置的位数多了一位, 拿16扩容到32来说, 16的时候, 决定位置是由结果的后4位来决定, 如果扩容为32位后, 决定位置是由结果的后5位.如果新增的那一位为0的话,表示新的位置是原来的位置, 如果为1的话, 新的位置为原来的位置 + 原来的容量(原来的容量为2的n次方).</p>
+<p>所以代码中<code>e.hash &amp; oldCap</code>就是为了取得新增的那一位, 如果为0的话, 说明新的位置为原来的位置, 如果为1的话,则需要移动2的n次幂(也就是 原来的位置 + 旧的容量).</p>
+<p>上面重新组装链表的时候, 思路是这样的: 因为新的位置不是在原来的位置, 就是需要在原来的位置上移动2的次幂.所以, 定义两条链表, 一条表示新位置是原来的位置的链表(简称L1), 另外一条表示新的位置在原来的位置移动2的次幂(简称L2). 接着会先遍历原来的链表, 再进行<code>e.hash &amp; oldCap</code>, 如果为0的话, 将该结点插入到L1, 如果为1的话, 插入到L2. 插入的方法为尾插法, 这样重构后的链表不会乱序(1.7之前的版本是会乱序的). 最后,将新构造的两条链表定位到对应的位置,也就是下面的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</div><div class="line">    loTail.next = <span class="keyword">null</span>;</div><div class="line">    newTab[j] = loHead; <span class="comment">//将链表定位到原来的位置</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</div><div class="line">    hiTail.next = <span class="keyword">null</span>;</div><div class="line">    newTab[j + oldCap] = hiHead; <span class="comment">//将链表定位到原来的位置 + 2的n次方</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.8的扩容机制的优化主要是不需要再重新计算hash值, 只是做个<code>&amp;</code>操作就行了, 并且重构后的链表不会乱序. 这种优化的一个重要的前提是容量为2的n次幂. 因此 <code>HashMap</code>内部的容量为什么不定义为素数而是定义为2的n次幂. 这样做是为了减少扩容时的<code>rehash</code>操作.</p>
+<p>到这里, 我们已经把<code>HashMap</code>内部的精华都分析完了, 其他操作都挺简单的, 也没什么好讲的.最后, 做个总结</p>
+<blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></blockquote>
+<ul>
+<li><code>hash</code>函数</li>
+<li>扩容机制</li>
+<li>冲突优化</li>
+<li>其他</li>
+</ul>
+<blockquote>
+<h3 id="hash函数-1"><a href="#hash函数-1" class="headerlink" title="hash函数"></a><code>hash</code>函数</h3></blockquote>
+<p>一般而言, 哈希表的长度设置为一个素数的话, 发生冲突的次数会比较少.但是为了优化<code>HashMap</code>的扩容和<code>rehash</code>操作, <code>HashMap</code>的长度被设置为总是为2的次方(不是一个素数).既然被设置为一个合数, 那么冲突的次数肯定会还比较多. <code>hash</code>函数通过再次散列来减少冲突率. 但 <code>HashMap</code>内部的hash函数没有被设置得很复杂,<code>HashMap</code>内部的<code>hash</code>函数只是简单的高低16位进行异或操作. 面对冲突的情况, <code>HashMap</code>内部的优化有红黑树,并且本来key的hashCode已经挺分散了. 从质量和系统消耗的角度出发, 没有必要设置复杂的<code>hash</code>函数.</p>
+<blockquote>
+<h3 id="扩容机制-1"><a href="#扩容机制-1" class="headerlink" title="扩容机制"></a>扩容机制</h3></blockquote>
+<ul>
+<li><p><code>HashMap</code>的扩容后的长度总是2的次幂, 这个设置主要是为了优化扩容机制. <code>HashMap</code>内部扩容时,不需要重新计算hash值,并且链表的顺序还是保持原来的顺序.</p>
+</li>
+<li><p>频繁进行扩容会一定程度上影响<code>HashMap</code>性能.因此,如果预先知道需要储存的数据有很多的话, 可以直接设置一个较大的容量来减少扩容的次数.</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="冲突优化"><a href="#冲突优化" class="headerlink" title="冲突优化"></a>冲突优化</h3></blockquote>
+<p>对于hash冲突的情况, 如果冲突的链表结点个数大于8的话, <code>HashMap</code>会将链表转化为红黑树的结构, 将查找的复杂度从O(N)优化为O(logN).</p>
+<blockquote>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3></blockquote>
+<ul>
+<li><p><code>HashMap</code>既支持<code>Key</code>为<code>null</code>, 也支持<code>value</code>为<code>null</code>.</p>
+</li>
+<li><p>遍历<code>HashMap</code>时, 顺序是不保证的, 如果需要有序的遍历, 应该使用<code>LinkedHashMap</code></p>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/08/28/深入理解Java集合框架-LinkHashMap/" data-toggle="tooltip" data-placement="top" title="深入理解Java集合框架-LinkHashMap">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/28/深入理解Java集合框架-ArrayList/" data-toggle="tooltip" data-placement="top" title="深入理解Java集合框架-ArrayList">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/08/28/深入理解Java集合-HashMap/"
+                        data-title="深入理解Java集合-HashMap"
+                        data-url="http://cristianoro7.github.io/2017/08/28/深入理解Java集合-HashMap/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java集合框架" title="Java集合框架">Java集合框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.eyestide.com" target="_blank">民生斌</a></li>
+                    
+                        <li><a href="http://Yves0.github.io" target="_blank">罗总</a></li>
+                    
+                        <li><a href="http://aymaxli.cn/" target="_blank">杰神</a></li>
+                    
+                        <li><a href="http://kimZLeung.github.io" target="_blank">聪神</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Desperado';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cristianoro7">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Desperado 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://cristianoro7.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://cristianoro7.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

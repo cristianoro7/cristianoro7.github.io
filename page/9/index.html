@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,31 +188,37 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/确保Web安全的HTTPS/">
+    <a href="/2017/03/05/大话数据结构-线性表/">
         <h2 class="post-title">
-            图解HTTP-确保Web安全的HTTPS-笔记
+            大话数据结构-线性表
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
+            线性表的定义
+零个或多个数据元素的有限序列
 
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
+分类
+顺序储存结构
+链式储存结构
+单链表
+静态链表
+循环链表
+双向链表
 
 
-不验证通信对方就有可能在遇到伪装
-HTTP 协议的实现......
+
+
+顺序储存结构
+宏定义
+
+123456789#define OK 1#define ERROR 0#define TRUE 1#define MAXSIZE 20//静态链表的最大空间#define STATIC_MAXSIZE 1000#define FALSE 0t......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-05
     </p>
 
 </div>
@@ -220,23 +226,27 @@ HTTP 协议的实现......
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/与HTTP协议的Web服务器/">
+    <a href="/2017/03/03/java基础/">
         <h2 class="post-title">
-            图解HTTP-与HTTP协议的Web服务器-笔记
+            java基础
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            与HTTP协作的Web服务器通信数据转发程序:代理、网关、隧道
-在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作
-代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端
-网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉......
+            字符串使用+连接字符串
+使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
+
+StringBuilder
+该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
+
+StringBuffer
+StringBuilder可以保证线程安全，但是也因此效率变得......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-03
     </p>
 
 </div>
@@ -244,20 +254,29 @@ HTTP 协议的实现......
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
+    <a href="/2017/02/21/确认访问用户的身份-笔记/">
         <h2 class="post-title">
-            图解HTTP-返回结果的状态码-笔记
+            图解HTTP-确认访问用户的身份-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务......
+            ﻿### HTTP使用的认证方式
+
+BASIC认证(基本认证)
+DIGEST(摘要认证)
+SSL客户端认证
+FormBase认证(基于表单认证)
+
+BASIC认证步骤
+
+步骤1:当请求的资源需要 BASIC 认证时,服务器会随状态码 401Authorization Required,返回带 WWW-Authenticate 首部字段的响应。该字段内包含认证的方式(BASIC) 及 Requ......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-02-21
     </p>
 
 </div>
@@ -265,25 +284,26 @@ HTTP 协议的实现......
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/Picasso基本用法及源码浅析/">
+    <a href="/2017/02/17/图解HTTP-报文信息-笔记/">
         <h2 class="post-title">
-            Picasso基本用法及源码浅析
+            图解HTTP-报文信息-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            基本用法：加载图片：
-picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
-123Picasso.with(this)                .load(uri)                .into(mImageView);
+            HTTP报文内的HTTP信息HTTP报文
+用于HTTP协议交互的信息被称为报文
+请求端（客户端）的HTTP报文称为请求报文
+相应端（服务器端）的HTTP报文称为响应报文
+HTTP报文分为报文首部和报文主体（不一定有报文主体）
 
-以上是最简单的通用加载图片的方法
+HTTP报文结构：
 
-
-
-
-添加加载错误以及加载中的展示图片
-12345Pic......
+HTTP报文结构请求报文和响应报文结构：
+响应的实例
+编码提升传输速率
+HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码......
         </div>
     </a>
     <p class="post-meta">
@@ -380,6 +400,8 @@ picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

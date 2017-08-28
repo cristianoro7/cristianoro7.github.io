@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,92 +188,28 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
+    <a href="/2017/05/21/大话数据结构-队列/">
         <h2 class="post-title">
-            重拾Dagger2-理解Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Understanding Dagger2
-        </h3>
-        <div class="post-content-preview">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/29/重拾Dagger2-使用Dagger2/">
-        <h2 class="post-title">
-            重拾Dagger2-使用Dagger2
-        </h2>
-        <h3 class="post-subtitle">
-            Hey, Dagger2
-        </h3>
-        <div class="post-content-preview">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-03-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/05/大话数据结构-线性表/">
-        <h2 class="post-title">
-            大话数据结构-线性表
+            大话数据结构-队列
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            线性表的定义
-零个或多个数据元素的有限序列
+            队列顺序循环队列
+由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
 
-分类
-顺序储存结构
-链式储存结构
-单链表
-静态链表
-循环链表
-双向链表
+问题：
+在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
 
-
-
-
-顺序储存结构
-宏定义
-
-123456789#define OK 1#define ERROR 0#define TRUE 1#define MAXSIZE 20//静态链表的最大空间#define STATIC_MAXSIZE 1000#define FALSE 0t......
+解决：
+设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
+当队列为空时，front == rear，当队列满时，修改......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-05
+        2017-05-21
     </p>
 
 </div>
@@ -281,27 +217,128 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
 
 <div class="post-preview">
 
-    <a href="/2017/03/03/java基础/">
+    <a href="/2017/05/18/Java内存区域/">
         <h2 class="post-title">
-            java基础
+            Java内存区域
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            字符串使用+连接字符串
-使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
+            Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
 
-StringBuilder
-该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
 
-StringBuffer
-StringBuilder可以保证线程安全，但是也因此效率变得......
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-03
+        2017-05-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/11/Java内存分配与回收策略/">
+        <h2 class="post-title">
+            Java内存分配与回收策略
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            内存分配与回收策略目录
+对象优先在Eden分配
+大对象直接进入老年代
+长期存活对象将进入老年代
+动态对象年龄判定
+空间分配担保
+
+对象优先在Eden分配
+大多数情况下, 对象主要分配在新生代的Eden区上.
+当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+
+大对象直接进入老年代
+大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/11/java垃圾回收器/">
+        <h2 class="post-title">
+            Java垃圾回收器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
+
+
+生存还是死亡
+回收方法区
+
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel O......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-05-11
     </p>
 
 </div>
@@ -393,6 +430,8 @@ StringBuilder可以保证线程安全，但是也因此效率变得......
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

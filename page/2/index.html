@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,38 +188,24 @@
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/路由器工作原理/">
+    <a href="/2017/08/28/深入理解Java集合-HashMap/">
         <h2 class="post-title">
-            路由器工作原理
+            深入理解Java集合-HashMap
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            路由器工作原理
-目录
+            前两篇文章分别介绍了ArrayList和LinkedList, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看HashMap的UML
 
-概述
-输入端口
-交换结构
-输出端口
+UML
 
-
-概述
-路由器是一种具有多个输入和输出端口的专用计算机,其任务是转发分组.路由器的转发分组是网络层的主要工作之一. 下面给出典型的路由器构成图:
-
-
-输入端口
-
-
-输入端口的线路端接功能与链路层处理实现了用于各个输入链路的物理层和链路层.
-路由器使用转发表来查找输出端口,使得到达的分组将能经过交换结构转发到输出端口.
-转发表是由路......
+HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和序列化. Map接口提供了一系列接口和三个视图. AbstractMap则是实现了M......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -227,33 +213,23 @@
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/路由选择协议/">
+    <a href="/2017/08/28/深入理解Java集合框架-ArrayList/">
         <h2 class="post-title">
-            路由选择协议
+            深入理解Java集合框架-ArrayList
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            路由选择协议
-目录
+            
+UML
 
-概述
-内部网关协议RIP
-内部网关协议OSPF
-外部网关协议BGP
-
-
-概述
-
-从路由算法能否随网络的通信或者拓扑自适应地进行调整变化来划分, 可将路由选择分为两大类:静态路由选择策略和动态路由选择策略.
-静态路由选择策略: 也叫做非自适应路由选择, 其特点是简单和开销较小, 但不能及时适应网络状态变化, 适用于小型网络.
-动态路由选择协议: 也叫做自适应路由选择, 其......
+从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化.......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -261,33 +237,26 @@
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/网际控制报文协议ICMP/">
+    <a href="/2017/08/28/深入理解Java集合框架-LinkedList/">
         <h2 class="post-title">
-            网际控制报文协议ICMP
+            深入理解Java集合框架-LinkedList
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            网际控制报文协议ICMP
-目录
+            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
 
-概述
-ICMP报文种类
-ICMP应用举例
+UML
 
+我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
 
-概述
-为了更有效地转发IP数据报和提高交付成功的机会, 在网际层使用了网际控制报文协议ICMP(Internet Control Message Protocol). ICMP允许主机或者路由器报告差错情况和提供有关异常情况的报告.ICMP报文作为IP层的数据报的数据.
-
-ICMP报文种类
-
-网际报文的种类有两种......
+LinkedList继承Abstra......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -295,30 +264,25 @@ ICMP报文种类
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/子网的划分和构造超网/">
+    <a href="/2017/08/28/CustomView总结/">
         <h2 class="post-title">
-            子网的划分和构成超网
+            CustomView总结
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            子网的划分和构成超网
-目录
+            ﻿# CustomView总结
 
-划分子网
-使用子网时的分组转发
-无分类编址CIDR
-
-
-划分子网
-两级IP地址的不合理IP空间利用率低一个A类网路可容纳的主机数超过1000W, 而B类网络可容纳主机超过6W.但是有些网络对连接在网络上的主机数量是有限制的, 这就导致了地址空间的利用率低下.
-路由表变大导致网络性能低下给每个物理网络分配一个网络号的话, 会导致路由表中的项目大大增大, 同时查找路......
+LayoutParams认知
+Q: 什么是LayoutParams? 它跟view的关系是什么?
+什么是LayoutParams?
+我们在XML布局中定义的layout_xx属性,最终都会以Java代码的形式展现出来, 而LayoutParams就是这些layout_xx属性在Java层的映射, 也就是说LayoutParams是view在xml布局中lay......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -410,6 +374,8 @@ ICMP报文种类
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

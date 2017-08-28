@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,29 +188,21 @@
 
 <div class="post-preview">
 
-    <a href="/2017/02/21/确认访问用户的身份-笔记/">
+    <a href="/2017/04/04/重拾Dagger2-组织/">
         <h2 class="post-title">
-            图解HTTP-确认访问用户的身份-笔记
+            重拾Dagger2-组织
         </h2>
         <h3 class="post-subtitle">
-            
+            goodbye Dagger2
         </h3>
         <div class="post-content-preview">
-            ﻿### HTTP使用的认证方式
-
-BASIC认证(基本认证)
-DIGEST(摘要认证)
-SSL客户端认证
-FormBase认证(基于表单认证)
-
-BASIC认证步骤
-
-步骤1:当请求的资源需要 BASIC 认证时,服务器会随状态码 401Authorization Required,返回带 WWW-Authenticate 首部字段的响应。该字段内包含认证的方式(BASIC) 及 Requ......
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component depend......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-21
+        2017-04-04
     </p>
 
 </div>
@@ -218,31 +210,21 @@ BASIC认证步骤
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-报文信息-笔记/">
+    <a href="/2017/03/30/Dagger2目录/">
         <h2 class="post-title">
-            图解HTTP-报文信息-笔记
+            重拾Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            meet with dagger2
         </h3>
         <div class="post-content-preview">
-            HTTP报文内的HTTP信息HTTP报文
-用于HTTP协议交互的信息被称为报文
-请求端（客户端）的HTTP报文称为请求报文
-相应端（服务器端）的HTTP报文称为响应报文
-HTTP报文分为报文首部和报文主体（不一定有报文主体）
-
-HTTP报文结构：
-
-HTTP报文结构请求报文和响应报文结构：
-响应的实例
-编码提升传输速率
-HTT在传输数据时可以直接将数据原貌传输，但也可以在传输的过程中通过编码......
+            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
+Dagger2是什么?Dagger2是之前由Squa......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-30
     </p>
 
 </div>
@@ -250,26 +232,24 @@ HTT在传输数据时可以直接将数据原貌传输，但也可以在传输�
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/Picasso中值得学习的技巧/">
+    <a href="/2017/03/30/重拾Dagger2-理解Dagger2/">
         <h2 class="post-title">
-            Picasso中值得学习的技巧
+            重拾Dagger2-理解Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            Understanding Dagger2
         </h3>
         <div class="post-content-preview">
-            Picasso中的线程池
-Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
-
-分析:
-首先在Picasso中,定义了一个优先级枚举类型:
-
-12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   *......
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-30
     </p>
 
 </div>
@@ -277,32 +257,29 @@ Picasso中的线程池主要是对对网络状态进行了监听,并且包装了
 
 <div class="post-preview">
 
-    <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">
+    <a href="/2017/03/29/重拾Dagger2-使用Dagger2/">
         <h2 class="post-title">
-            图解HTTP-简单的HTTP协议-笔记
+            重拾Dagger2-使用Dagger2
         </h2>
         <h3 class="post-subtitle">
-            
+            Hey, Dagger2
         </h3>
         <div class="post-content-preview">
-            通过请求和响应来交换信息
+            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
 
-请求报文是由请求方法、请求 URI、协议版本、可选的请求首部字段和内容实体构成的。
-请求报文的构成
+Inject
+Provides
+Module
+Component
+Qualifiers
+Scope
 
-
-
-响应报文基本上由协议版本、状态码(表示请求成功或失败的数字代码)、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。
-
-
-HTTP是不保存状态的协议
-HTTP协议自身不对请求和响应之间的状态进行保存, 也就是HTTP不对请求和响应做持久化处理
-不保......
+InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-02-17
+        2017-03-29
     </p>
 
 </div>
@@ -394,6 +371,8 @@ HTTP协议自身不对请求和响应之间的状态进行保存, 也就是HTTP�
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

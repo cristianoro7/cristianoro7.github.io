@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,18 +188,19 @@
 
 <div class="post-preview">
 
-    <a href="/2017/08/28/深入理解Java集合框架-ArrayList/">
+    <a href="/2017/08/28/深入理解Java集合框架-set家族/">
         <h2 class="post-title">
-            深入理解Java集合框架-ArrayList
+            深入理解Java集合框架-set家族
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
+            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
 UML
 
-从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化.......
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为......
         </div>
     </a>
     <p class="post-meta">
@@ -212,20 +213,19 @@ UML
 
 <div class="post-preview">
 
-    <a href="/2017/08/28/CustomView总结/">
+    <a href="/2017/08/28/深入理解Java集合框架-TreeMap/">
         <h2 class="post-title">
-            CustomView总结
+            深入理解Java集合框架-TreeMap
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            ﻿# CustomView总结
+            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
 
-LayoutParams认知
-Q: 什么是LayoutParams? 它跟view的关系是什么?
-什么是LayoutParams?
-我们在XML布局中定义的layout_xx属性,最终都会以Java代码的形式展现出来, 而LayoutParams就是这些layout_xx属性在Java层的映射, 也就是说LayoutParams是view在xml布局中lay......
+UML
+
+跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(......
         </div>
     </a>
     <p class="post-meta">
@@ -238,28 +238,25 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/大话数据结构-栈/">
+    <a href="/2017/08/28/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">
         <h2 class="post-title">
-            大话数据结构-栈
+            深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            栈顺序栈
-结构体
+            
+WeakHashMap
+WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key是弱引用类型, WeakHashMap内部的Key是会被自动回收的. 另外需要关注的是, WeakHashMap并没有向HashMap那样, 在1.8做了优化.
 
-12345/*顺序储存结构*/typedef struct &#123;    ElemType data[MAXSIZE];    int top;&#125;SqStack;
-
-
-入栈操作
-
-1234567status push(SqStack &amp;S, ElemType elemType) &#123;    if (S.top == MAXSIZE - 1)......
+弱引用Key
+123456789101112131415161718192021222324252627......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -267,35 +264,24 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
 
 <div class="post-preview">
 
-    <a href="/2017/06/29/可靠传输的工作原理/">
+    <a href="/2017/08/28/深入理解Java集合框架-LinkHashMap/">
         <h2 class="post-title">
-            可靠传输的工作原理
+            深入理解Java集合框架-LinkHashMap
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            可靠传输的工作原理
-目录
+            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
 
-概述
-可靠运输的实现
-停止等待协议
-连续ARQ协议
+UML
 
-
-概述
-TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大努力交付的服务,也就是说网络层提供的是不可靠的传输.因此,TCP必须采用适当的措施才能使得两个运输层之间的传输信道变得可靠.
-
-可靠运输的实现
-怎么样的运输才算是可靠运输? 要回答这个问题,可以从三方面入手:
-
-保证传输的分组无出错,也就是......
+从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-06-29
+        2017-08-28
     </p>
 
 </div>
@@ -383,6 +369,8 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

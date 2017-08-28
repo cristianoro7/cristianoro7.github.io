@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,33 +188,90 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/23/TCP流量控制/">
+    <a href="/2017/06/29/TCP首部/">
         <h2 class="post-title">
-            TCP流量控制
+            TCP首部
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            TCP流量控制
+            TCP首部
+概述
+TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流的,在......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-06-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/06/07/计算机组成原理-储存系统和结构/">
+        <h2 class="post-title">
+            计算机组成原理-储存系统和结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            储存系统和结构
+目录
+
+储存器的分类
+随机储存器
+高速储存缓冲器
+虚拟储存器
+
+
+储存器的分类
+下面针对常见的储存器分类进行讨论
+按储存器在计算机系统中的作用分类高速缓冲储存器位于CPU和主储存器之间, 用来缓存正在执行的程序段和数据,以便CPU能高速使用它们.高速缓冲器的速度与CPU匹配.
+主储存器用来存放正在运行的程序和数据,CPU可以直接随机地进行访问主存.由于访问主存的速度与CPU运......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Desperado on
+        2017-06-07
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/06/04/计算机组成原理概述/">
+        <h2 class="post-title">
+            计算机组成原理概述
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            计算机组成原理概述
 目录
 
 概述
-利用滑动窗口实现流量控制
-零窗口
-传输效率
+储存程序概念
+计算机硬件的组成
+储存器的设计思想
+计算机的主要性能指标
 
 
 概述
-一般来说,我们总希望数据传输得快一点, 但是如果发送方把数据发送得太快, 接收方就可能来不及接收,这就会造成数据的丢失.流量控制其实就是让发送方的发送速率不要太快, 要让接收方来得及接收.
-
-利用TCP滑动窗口实现流量控制
-其实TCP流量控制本质上是利用滑动窗口机制来实现的.接下来,结合例子来解释TCP的流量......
+最近,突然对操作系统感兴趣,于是提前看了网上关于操作系统的视频. 但是在看的过程中对操作系统启动时从实模式到保护模式的切换,分段机制和分页机制, CPU的工作模型和总线等概念不怎么熟悉. 于是Google了一番, 发现这些大都是涉及到计算机组成原理的知识,刚好这学期学校有开设计......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-23
+        2017-06-04
     </p>
 
 </div>
@@ -222,108 +279,32 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/22/Class类文件结构/">
+    <a href="/2017/05/30/计算机网络-运输层/">
         <h2 class="post-title">
-            类文件结构
+            计算机网络-运输层
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            类文件结构
+            计算机网络-运输层
 目录
 
-Class类文件结构
-特殊字符串概念
-魔数与Class文件的版本
-常量池
-访问标志
-类索引,父类索引与接口索引集合
-字段表集合
-方法表集合
-属性表集合
+概述
+分用和复用
+UDP协议
+运输层梳理
 
 
-
-
-类文件结构
-Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-......
+概述
+当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.
+网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.
+在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/21/大话数据结构-队列/">
-        <h2 class="post-title">
-            大话数据结构-队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            队列顺序循环队列
-由于队列的顺序储存本身会由于删除等操作而发生假溢出.因此使用循环队列可以解决这个问题定义：把队列的头尾相接的顺序储存结构称为循环队列
-
-问题：
-在使用循环队列时,会出现front == rear 对应队列为空或者队列满的情况
-
-解决：
-设置一个标志位： 当队列为空时，flag = 0，当队列满时，flag = 1;
-当队列为空时，front == rear，当队列满时，修改......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/18/Java内存区域/">
-        <h2 class="post-title">
-            Java内存区域
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Java内存区域目录
-运行时数据区
-程序计数器
-Java虚拟机栈
-本地方法栈
-Java堆
-方法区
-运行时常量池
-
-
-HotSpot虚拟机对象探秘
-对象的创建
-对象的内存布局
-对象的访问定位
-
-
-
-
-运行时数据区
-程序计数器
-程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Desperado on
-        2017-05-18
+        2017-05-30
     </p>
 
 </div>
@@ -415,6 +396,8 @@ HotSpot虚拟机对象探秘
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

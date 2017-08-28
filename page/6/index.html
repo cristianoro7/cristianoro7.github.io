@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,32 +188,30 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/11/Java内存分配与回收策略/">
+    <a href="/2017/05/24/TCP拥塞控制/">
         <h2 class="post-title">
-            Java内存分配与回收策略
+            TCP拥塞控制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            内存分配与回收策略目录
-对象优先在Eden分配
-大对象直接进入老年代
-长期存活对象将进入老年代
-动态对象年龄判定
-空间分配担保
+            TCP拥塞控制
+目录
 
-对象优先在Eden分配
-大多数情况下, 对象主要分配在新生代的Eden区上.
-当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+概述
+慢开始和拥塞避免
+快重传和快恢复
 
-大对象直接进入老年代
-大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及......
+
+概述
+在计算机网络中, 链路的容量,交换节点中的缓存和处理机等都是网络的资源.在某段时间内,若对网络中的某一资源的需求超过本身能提供的资源,这时网络性能就会变差.这种情况成为网络拥塞.
+所谓拥塞控制就是要防止过多的数据注入到网络中,这样可以使网络的路由器或者链路不致于过载.拥塞控制是一个全局性的过程,涉及到所有主机,所有的链......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-11
+        2017-05-24
     </p>
 
 </div>
@@ -221,53 +219,31 @@
 
 <div class="post-preview">
 
-    <a href="/2017/05/11/java垃圾回收器/">
+    <a href="/2017/05/24/TCP连接管理/">
         <h2 class="post-title">
-            Java垃圾回收器
+            TCP连接管理
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            垃圾收集器目录
-判定对象存活
-引用计数法
-可达性分析算法
-再谈引用
-强引用
-软引用
-弱引用
-虚引用
+            TCP连接管理
+目录
+
+TCP连接
+TCP连接释放
 
 
-生存还是死亡
-回收方法区
+TCP连接
 
-
-垃圾收集算法
-标记-清除算法
-复制算法
-标记-整理算法
-分代收集算法
-
-
-HotSpot的算法实现
-枚举根节点
-安全点
-安全区域
-
-
-垃圾收集器
-Serial收集器
-ParNew收集器
-Parallel收集器
-Serial Old 收集器
-Parallel O......
+上图为TCP连接建立的过程
+B的TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
+A的TCP客户端进程首先创建传输控制块, 然后向B发送连接请求的报文段,此时首部SYN = 1,同时选择一个seq = x. TCP规定,SYN报文段不能携带数据,但要也要消耗一个序号.这次TCP客户端进程进入SYN-SEN......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-05-11
+        2017-05-24
     </p>
 
 </div>
@@ -275,21 +251,33 @@ Parallel O......
 
 <div class="post-preview">
 
-    <a href="/2017/04/04/重拾Dagger2-组织/">
+    <a href="/2017/05/23/TCP流量控制/">
         <h2 class="post-title">
-            重拾Dagger2-组织
+            TCP流量控制
         </h2>
         <h3 class="post-subtitle">
-            goodbye Dagger2
+            
         </h3>
         <div class="post-content-preview">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component depend......
+            TCP流量控制
+目录
+
+概述
+利用滑动窗口实现流量控制
+零窗口
+传输效率
+
+
+概述
+一般来说,我们总希望数据传输得快一点, 但是如果发送方把数据发送得太快, 接收方就可能来不及接收,这就会造成数据的丢失.流量控制其实就是让发送方的发送速率不要太快, 要让接收方来得及接收.
+
+利用TCP滑动窗口实现流量控制
+其实TCP流量控制本质上是利用滑动窗口机制来实现的.接下来,结合例子来解释TCP的流量......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-04-04
+        2017-05-23
     </p>
 
 </div>
@@ -297,21 +285,37 @@ Component dependencies VS SubComponent为了提高一个Component中代码的复
 
 <div class="post-preview">
 
-    <a href="/2017/03/30/Dagger2目录/">
+    <a href="/2017/05/22/Class类文件结构/">
         <h2 class="post-title">
-            重拾Dagger2
+            类文件结构
         </h2>
         <h3 class="post-subtitle">
-            meet with dagger2
+            
         </h3>
         <div class="post-content-preview">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Squa......
+            类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-03-30
+        2017-05-22
     </p>
 
 </div>
@@ -403,6 +407,8 @@ Dagger2是什么?Dagger2是之前由Squa......
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             

@@ -87,6 +87,13 @@
 
                         
                         <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">Archives</a>
                         </li>
                         
@@ -102,13 +109,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -188,22 +188,20 @@
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/AsyncTask源码浅析/">
+    <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">
         <h2 class="post-title">
-            AsyncTask源码浅析
+            图解HTTP-返回结果的状态码-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            源码浅析
-概述AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
-我们知道，......
+            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -211,23 +209,30 @@
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/Volley--队列控制/">
+    <a href="/2017/02/17/Picasso基本用法及源码浅析/">
         <h2 class="post-title">
-            Volley--队列控制
+            Picasso基本用法及源码浅析
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
+            基本用法：加载图片：
+picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
+123Picasso.with(this)                .load(uri)                .into(mImageView);
 
-先看看源码中的四个队列，这四个队列在RequestQueue中：
-12345678910111213141516171819202122232425262728/** * Staging area for requests that already have a dupl......
+以上是最简单的通用加载图片的方法
+
+
+
+
+添加加载错误以及加载中的展示图片
+12345Pic......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -235,26 +240,23 @@
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">
+    <a href="/2017/02/17/图解HTTP-网络基础/">
         <h2 class="post-title">
-            安卓开发艺术探索-View的工作原理（一）-笔记
+            图解HTTP-网络基础-笔记
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            View的工作原理初始ViewRoot和DecorView
-
-ViewRoot对应的实体类是ViewRootImpl类，它时连接WindowManager和DecorView的纽带
-
-View的三大流程都是通过ViewRoot完成的
-
-在ActivityThread中，当Activity对象被创建后，会将DecorView添加到Window中，同时会创建ViewRootImpl对象，并将Vi......
+            网络基础 TCP/IPTCP/IP协议族
+我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
+TCP/IP是互联网各类协议族的总称, 如图:
+协议中存在各式各样的内容,从电缆的规格到 IP 地址的选定方法、寻找异地用户的方法、双方建立通信的顺序,以及 Web 页面显示需要处理的步骤,等等。像这样把互联网通信的相关协议集合起来的协议族就叫做TCP/IP协......
         </div>
     </a>
     <p class="post-meta">
         Posted by Desperado on
-        2017-01-13
+        2017-02-17
     </p>
 
 </div>
@@ -262,19 +264,23 @@ View的三大流程都是通过ViewRoot完成的
 
 <div class="post-preview">
 
-    <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">
+    <a href="/2017/01/13/universal-image-loader内存缓存策略/">
         <h2 class="post-title">
-            安卓开发艺术探索-自定义View的思想-笔记
+            universal-image-loader缓存策略
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            自定义View概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理
-自定义View的分类
-继承View重写onDraw方法：采用这种方式需要自己支持wrap_content和padding
-继承ViewGroup派生出特殊的layout：需要根据需求来处理ViewGroup的测量和布局这两个过程，并且同时处理子元素的测量和布局的过程
-继承特定的V......
+            概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略
+内存缓存接口：
+
+MemoryCacheAware：底层接口，里面定义了基本的缓存操作方法
+MemoryCache：单纯继承了MemoryCacheAware接口
+
+抽象类：
+
+BaseMemoryCache：实现了MemoryCahce，运用弱引用包装Bitmap后缓存存......
         </div>
     </a>
     <p class="post-meta">
@@ -371,6 +377,8 @@ View的三大流程都是通过ViewRoot完成的
                             <a href="/tags/#安卓开发艺术探索笔记" title="安卓开发艺术探索笔记" rel="3">安卓开发艺术探索笔记</a>
                             
                         
+                            
+                            <a href="/tags/#Java集合框架" title="Java集合框架" rel="7">Java集合框架</a>
                             
                         
                             
