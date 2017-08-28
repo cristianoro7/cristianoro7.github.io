@@ -4,10 +4,9 @@
   
     
     <entry>
-      <title><![CDATA[路由器工作原理]]></title>
+      <title><![CDATA[深入理解Java集合框架-ArrayList]]></title>
       <url>http://cristianoro7.github.io/2017/08/28/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-ArrayList/</url>
-      <content type="html"><![CDATA[<p>﻿# 深入理解Java集合框架-ArrayList</p>
-<blockquote>
+      <content type="html"><![CDATA[<blockquote>
 <h2 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h2></blockquote>
 <p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1filh3gnlr2j30n90iw75f.jpg" alt=""></p>
 <p>从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cloneable接口说明ArrayList可以被克隆(内部实现为浅克隆).</p>
