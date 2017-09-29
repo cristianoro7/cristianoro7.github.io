@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>类文件结构 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JVM" />
+    
+    <meta name="description" content="类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类文件结构">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/09/29/Class类文件结构/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码">
+<meta property="og:image" content="http://cristianoro7.github.io/img/jvm/内存分配策略.jpg">
+<meta property="og:updated_time" content="2017-09-29T15:31:08.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类文件结构">
+<meta name="twitter:description" content="类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/jvm/内存分配策略.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JVM/">JVM</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Class类文件结构" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        类文件结构
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/29/Class类文件结构/" class="article-date">
+            <time datetime="2017-09-29T15:31:08.566Z" itemprop="datePublished">2017-09-29</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JVM/">JVM</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>Class类文件结构<ul>
+<li>特殊字符串概念</li>
+<li>魔数与Class文件的版本</li>
+<li>常量池</li>
+<li>访问标志</li>
+<li>类索引,父类索引与接口索引集合</li>
+<li>字段表集合</li>
+<li>方法表集合</li>
+<li>属性表集合</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="类文件结构-1"><a href="#类文件结构-1" class="headerlink" title="类文件结构"></a>类文件结构</h3></blockquote>
+<p>Class文件结构只有两种数据类型:无符号和表.<br>无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码构成字符串值.<br>表是由多个无符号数或者其他表作为数据项构成的复合数据类型,所有表都习惯以”_info” 结尾<br>整个class文件本质就是一张表:</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u4</td>
+<td>magic</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>minor_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>major_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>constant_pool_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>cp_info</td>
+<td>constant_pool</td>
+<td>constant_pool_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>access_flag</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>this_class</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>super_class</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interface_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interface</td>
+<td>interface_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>fields_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>field_info</td>
+<td>fields</td>
+<td>fields_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>methods_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>method_info</td>
+<td>methods</td>
+<td>methods_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>attributes_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>attribute_info</td>
+<td>attributes</td>
+<td>attributes_count</td>
+</tr>
+</tbody>
+</table>
+<h4 id="特殊字符串的概念"><a href="#特殊字符串的概念" class="headerlink" title="特殊字符串的概念"></a>特殊字符串的概念</h4><ul>
+<li>全限定名: 把类的全名中的”.”替换成”/“,最后再加上”;”</li>
+<li>简单名称: 没有类型和参数修饰的方法或者字段名称.</li>
+<li>方法和字段的描述符: 描述符的作用是用来描述字段的数据类型,方法参数列表和返回值.</li>
+<li>描述符标识字符含义:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标识字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>基本类型byte</td>
+</tr>
+<tr>
+<td>C</td>
+<td>基本类型char</td>
+</tr>
+<tr>
+<td>D</td>
+<td>基本类型double</td>
+</tr>
+<tr>
+<td>F</td>
+<td>基本类型float</td>
+</tr>
+<tr>
+<td>I</td>
+<td>基本类型int</td>
+</tr>
+<tr>
+<td>J</td>
+<td>基本类型long</td>
+</tr>
+<tr>
+<td>S</td>
+<td>基本类型short</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>基本类型boolean</td>
+</tr>
+<tr>
+<td>V</td>
+<td>特殊类型void</td>
+</tr>
+<tr>
+<td>L</td>
+<td>对象类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="魔数与Class文件版本"><a href="#魔数与Class文件版本" class="headerlink" title="魔数与Class文件版本"></a>魔数与Class文件版本</h4><ul>
+<li>每个Class文件的头4个字节称为魔数,它的唯一作用是确定这个文件是否为一个能被虚拟机接受的class文件.</li>
+<li>紧接魔数后面的4个字节储存的是Class文件的版本号: 第5,6个字节是此版本号(Minor Version),第7和第8个字节是主版本号.JDK的版本号是从45开始的.</li>
+</ul>
+<h4 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h4><ul>
+<li>常量池可以理解为Class文件之中的资源仓库,它同时是Class文件关联其他项目最多的数据类型,也是占用Class文件空间最大的数据项目之一.</li>
+<li>由于常量池中的常量是不固定的,所以需要在常量池入口放置一项u2类型的数据,代表常量池容量计数值.</li>
+<li>常量池中主要储存两大类常量:字面量和符号引用．字面量比较接近Java语言层面的常量概念,如字符串,声明为final常量值等. 而符号引用则属于编译原理方面的概念,主要包含了下面三类常量:<ul>
+<li>类和接口的全称限定名</li>
+<li>字段的名称和描述符</li>
+<li>方法的名称和描述符</li>
+</ul>
+</li>
+<li>常量池的项目类型:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>标志</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONSTANT_Utf_info</td>
+<td>1</td>
+<td>UTF-8编码的字符串</td>
+</tr>
+<tr>
+<td>CONSTANT_Integer_info</td>
+<td>3</td>
+<td>整型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Float_info</td>
+<td>4</td>
+<td>浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Long_info</td>
+<td>5</td>
+<td>长整类型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Double_info</td>
+<td>6</td>
+<td>双精度浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Class_info</td>
+<td>7</td>
+<td>类或接口的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_String_info</td>
+<td>8</td>
+<td>字符串类型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Fieldref_info</td>
+<td>9</td>
+<td>字段的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_Methodref_info</td>
+<td>10</td>
+<td>类中方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_InterfaceMethodref_info</td>
+<td>11</td>
+<td>接口中方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_NameAndType_info</td>
+<td>12</td>
+<td>字段或者方法的部分符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_MethodHandle_info</td>
+<td>15</td>
+<td>表示方法句柄</td>
+</tr>
+<tr>
+<td>CONSTANT_MethodType_info</td>
+<td>16</td>
+<td>标识方法类型</td>
+</tr>
+<tr>
+<td>CONSTANT_InvokeType_info</td>
+<td>18</td>
+<td>表示一个动态方法调用点</td>
+</tr>
+</tbody>
+</table>
+<h4 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h4><ul>
+<li>access_flags用于识别一些类或者接口层次的访问信息.例如:这个class是类还是接口;是否定义为public类型;是否定义为abstract类型等. 具体标记:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标志名称</th>
+<th>标志值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>是否为public类型</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>是否被声明为final,只有类可设置</td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td>是否允许使用invokespecial字节码指令心新语意</td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td>标识这是一个接口</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>是否为abstact类型, 对于接口或者抽象类来说, 这个标志为真,其他值为假</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>标识这个类并非由用户代码生成</td>
+</tr>
+<tr>
+<td>ACC_ANNOTION</td>
+<td>0x2000</td>
+<td>标识这是一个注解</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>标识这个一个枚举</td>
+</tr>
+</tbody>
+</table>
+<h4 id="类索引-父类索引与接口索引集合"><a href="#类索引-父类索引与接口索引集合" class="headerlink" title="类索引,父类索引与接口索引集合"></a>类索引,父类索引与接口索引集合</h4><ul>
+<li>类索引用于确定这个类的全限定名</li>
+<li>父类索引用于确定这个类的父类的全限定名</li>
+<li>接口索引集合用于描述这个类实现了哪些接口</li>
+</ul>
+<h4 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h4><ul>
+<li>字段表集合用于描述接口或者类中声明的变量.</li>
+<li>字段包括类级变量和实例级变量, 但不包括在方法内的局部变量</li>
+</ul>
+<h4 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h4><ul>
+<li>方法表结构:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u2</td>
+<td>access_flags</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>name_index</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>descriptor</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>attributes_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>attribute_info</td>
+<td>attributes</td>
+<td>attributes_count</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法表集合结构跟字段表结构大致相同</li>
+<li>如果父类分方法没有被子类重写,方法表集合中就不会出现父类方法的信息.</li>
+</ul>
+<h4 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h4><ul>
+<li>虚拟机规范预定义的属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>使用位置</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td>方法表</td>
+<td>Java代码编译成的字节码指令</td>
+</tr>
+<tr>
+<td>ConstantValue</td>
+<td>字段表</td>
+<td>final关键字定义的常量值</td>
+</tr>
+<tr>
+<td>Deprecated</td>
+<td>类,方法表字段表</td>
+<td>被声明为deprecated的方法和字段</td>
+</tr>
+<tr>
+<td>Exceptions</td>
+<td>方法表</td>
+<td>方法抛出的异常</td>
+</tr>
+<tr>
+<td>EbcloseingMethod</td>
+<td>类文件</td>
+<td>仅当一个类为局部类或者匿名类时才能拥有这个属性,这个属性用于标识这个类所在的外围方法.</td>
+</tr>
+<tr>
+<td>InnerClasses</td>
+<td>类文件</td>
+<td>内部类列表</td>
+</tr>
+<tr>
+<td>LineNumberTable</td>
+<td>Code属性</td>
+<td>Java源码的行号与字节码指令对应的关系</td>
+</tr>
+<tr>
+<td>LocalVariableTable</td>
+<td>Code属性</td>
+<td>方法的局部属性描述</td>
+</tr>
+<tr>
+<td>StackMapTable</td>
+<td>Code属性</td>
+<td>JDK1.6中新增的属性, 供新的类型检查验证器检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配.</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>类,方法表,字段表</td>
+</tr>
+</tbody>
+</table>
+<p>待续…</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/09/29/Class类文件结构/" data-id="cj73byg0y0007mccj2xcxqiad" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/29/重拾Dagger2-使用Dagger2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            重拾Dagger2-使用Dagger2
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/Java内存分配与回收策略/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java内存分配与回收策略</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
+                            <p class="item-title"><a href="/2017/09/29/CustomView总结/" class="title">CustomView总结</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:42:35.837Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/计算机网络-运输层/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:34.246Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP拥塞控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/拥塞控制.jpeg)" alt="TCP拥塞控制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP拥塞控制/" class="title">TCP拥塞控制</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:09.014Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP滑动窗口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/滑动窗口.jpeg)" alt="TCP滑动窗口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP滑动窗口/" class="title">TCP滑动窗口</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:02.158Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/09/29/Class类文件结构/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

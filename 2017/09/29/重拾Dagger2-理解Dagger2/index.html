@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>重拾Dagger2-理解Dagger2 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Dagger2" />
+    
+    <meta name="description" content="Understanding  Dagger2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重拾Dagger2-理解Dagger2">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/09/29/重拾Dagger2-理解Dagger2/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="Understanding  Dagger2">
+<meta property="og:image" content="http://cristianoro7.github.io/img/dagger2/understanddagger2.jpg">
+<meta property="og:updated_time" content="2017-09-29T15:35:54.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重拾Dagger2-理解Dagger2">
+<meta name="twitter:description" content="Understanding  Dagger2">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/dagger2/understanddagger2.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Dagger2/">Dagger2</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-重拾Dagger2-理解Dagger2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        重拾Dagger2-理解Dagger2
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/29/重拾Dagger2-理解Dagger2/" class="article-date">
+            <time datetime="2017-09-29T15:35:54.150Z" itemprop="datePublished">2017-09-29</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Dagger2/">Dagger2</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p><a href="https://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">上一篇</a>我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实</p>
+<h3 id="API关系"><a href="#API关系" class="headerlink" title="API关系"></a>API关系</h3><ul>
+<li>Provider<t>: provider<t>是一个接口, 它的作用是包装被依赖的类</t></t></li>
+<li>Factory<t>: 继承于Provider, 作用是创建依赖的对应实例</t></li>
+<li>MembersInjector<t>:  也是一个接口, 作用是将依赖注入到需要依赖的地方, 其中的T为注入地点</t></li>
+</ul>
+<p>理解上面的接口的作用后, 我们来理解Dagger2不会太难啦</p>
+<h3 id="Inject注入解读"><a href="#Inject注入解读" class="headerlink" title="Inject注入解读"></a>Inject注入解读</h3><p>我们利用上篇中的Demo来解读Inject注入. Dagger2生成的源代码可以在app目录下的build目录中的apt目录找到.</p>
+<p>既然Component是注入依赖的桥梁, 那我们就先来看看它是怎么出入的吧. 回顾一下上次我们在StudentActivity注入的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    <span class="comment">//连接依赖方和被依赖方</span></div><div class="line">    DaggerStudentComponent.builder()</div><div class="line">            .build()</div><div class="line">            .inject(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">    <span class="comment">//之后就可以mStudent实例了</span></div><div class="line">    Toast.makeText(<span class="keyword">this</span>, mStudent.name(), Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在onCreate方法中进行了注入, 仔细看注入的代码, 我们可以大概猜测是用Builder模式创建StudentComponenet实例, 既然这样, 我们先进入build()方法研究一波</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> StudentComponent <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DaggerStudentComponent(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在build()中, 实例了DaggerStudentComponent, DaggerStudentComponent是StudentComponent具体的实现类, 我们顺着思路, 进入DaggerStudentComponent看看</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DaggerStudentComponent</span> <span class="keyword">implements</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> MembersInjector&lt;StudentActivity&gt; studentActivityMembersInjector;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">DaggerStudentComponent</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> builder != <span class="keyword">null</span>;</div><div class="line">    initialize(builder);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StudentComponent <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder().build();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">final</span> Builder builder)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.studentActivityMembersInjector =</div><div class="line">        StudentActivity_MembersInjector.create(Student_Factory.create());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span> </span>&#123;</div><div class="line">    studentActivityMembersInjector.injectMembers(activity);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>上面的代码中, 主要调用了initialize方法进行初始化, 在其中, 创建了StudentActivity_MemberInjector实例</p>
+<p>还记得我们在StudentActivity中调用了build()方法后, 还会调用inject(this)吗?  调用该方法后, 会调用我们刚刚在initialize方法中创建出来的StudentActivity_MemberInjector的injectMembers(activity), 我们看看对应的方法都干了什么事情</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">injectMembers</span><span class="params">(StudentActivity instance)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"Cannot inject members into a null reference"</span>);</div><div class="line">  &#125;</div><div class="line">  instance.mStudent = mStudentProvider.get();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看到上面的代码, 有没有一种熟悉的感觉? instance.mStudent正是我们在StudentActivity中需要注入的成员变量, 而给它赋值的又是谁?</p>
+<p>mStudentProvider变量是我们实例化StudentActivity_MemberInjector传进来的, 我们自然进入对应的类探究探究</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Student_Factory</span> <span class="keyword">implements</span> <span class="title">Factory</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Student_Factory INSTANCE = <span class="keyword">new</span> Student_Factory();</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Factory&lt;Student&gt; <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> INSTANCE;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>StudentFactory中的get()方法返回了对应的Student实例</p>
+<p>分析到这里, Inject注解已经完成了一次依赖注入, 因此我们来串联一下各个步骤吧</p>
+<p>首先提供依赖的是Stduent_Factory类, 它是Factory的具体实现类, 给我们需要依赖的地方new出实例,</p>
+<p>StudentActivity_MemberInjector, 它是MemberInjector的具体实现类, 它在injectMembers(StudentActivity中, 拿到我们需要依赖的实例, 并给被Inject标注的成员变量赋值, 而实例的来源正是我们刚才分析的</p>
+<p>讲到这里, 我想大家都对Component的作用加深了, Component就像一座桥梁, 将提供依赖的工厂类, 和需要依赖的地方联系起来, 从而完成依赖注入</p>
+<h3 id="Moduley依赖注入"><a href="#Moduley依赖注入" class="headerlink" title="Moduley依赖注入"></a>Moduley依赖注入</h3><p>Module依赖注入的讲解, 我们也是用Student的Demo来讲解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    <span class="comment">//连接依赖方和被依赖方</span></div><div class="line">    DaggerStudentComponent.builder()</div><div class="line">            .build()</div><div class="line">            .inject(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">    <span class="comment">//之后就可以mStudent实例了</span></div><div class="line">    Toast.makeText(<span class="keyword">this</span>, mStudent.name(), Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们按照来老套路, 进入build()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> StudentModule studentModule;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> StudentComponent <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (studentModule == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">this</span>.studentModule = <span class="keyword">new</span> StudentModule();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DaggerStudentComponent(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> Builder <span class="title">studentModule</span><span class="params">(StudentModule studentModule)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.studentModule = Preconditions.checkNotNull(studentModule);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还是熟悉的套路, 只不过这次多了一个StduentModule变量, StudentModule是我们事先写好用于提供依赖的类, 我们可以看到在build()方法中, 实例化了StudentModule和DaggerStduentComponent, 又是老套路, 进入DaggerStduentComponent看看</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DaggerStudentComponent</span> <span class="keyword">implements</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Provider&lt;Student&gt; providesStudentProvider;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> MembersInjector&lt;StudentActivity&gt; studentActivityMembersInjector;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">DaggerStudentComponent</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> builder != <span class="keyword">null</span>;</div><div class="line">    initialize(builder);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StudentComponent <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder().build();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">final</span> Builder builder)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.providesStudentProvider =</div><div class="line">        StudentModule_ProvidesStudentFactory.create(builder.studentModule);</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.studentActivityMembersInjector =</div><div class="line">        StudentActivity_MembersInjector.create(providesStudentProvider);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span> </span>&#123;</div><div class="line">    studentActivityMembersInjector.injectMembers(activity);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>跟我们上面分析Inject的代码差不多, 不同的是这次在initialize中创建的是StudentModule_ProvidesStudentFactory, 接下来的流程和Inject都差不多, 我们现在主要来分析StudentModule_providesStduentFactory怎么拿到依赖实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> Preconditions.checkNotNull(</div><div class="line">      <span class="keyword">module</span>.providesStudent(), <span class="string">"Cannot return null from a non-@Nullable @Provides method"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在get()方法中, 利用module.providesStudent() 提供实例, 这个方法是我们事先在StudentModule中定义的</p>
+<p>总体来说Module依赖注入的方式和Inject差不多, 只是提供依赖时生成的工厂方法不一样而已</p>
+<p>分析完了Inject和Module注入, 我们来看看Name注解是如何解决依赖迷失,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student1"</span>)</div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">providesStudent</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Named</span>(<span class="string">"student2"</span>)</div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="function">Student <span class="title">proStudnet</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们make一下工程, 再到app-&gt;build-&gt;source-&gt;apt-&gt;debug目录下, 可以看看这两个类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule_ProvidesStudentFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> StudentModule <span class="keyword">module</span>;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">StudentModule_ProvidesStudentFactory</span><span class="params">(StudentModule <span class="keyword">module</span>)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> <span class="keyword">module</span> != <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">this</span>.<span class="keyword">module</span> = <span class="keyword">module</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Preconditions.checkNotNull(</div><div class="line">        <span class="keyword">module</span>.providesStudent(), <span class="string">"Cannot return null from a non-@Nullable @Provides method"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Factory&lt;Student&gt; <span class="title">create</span><span class="params">(StudentModule <span class="keyword">module</span>)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StudentModule_ProvidesStudentFactory(<span class="keyword">module</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/** Proxies &#123;<span class="doctag">@link</span> StudentModule#providesStudent()&#125;. */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Student <span class="title">proxyProvidesStudent</span><span class="params">(StudentModule instance)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> instance.providesStudent();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentModule_ProStudnetFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> StudentModule <span class="keyword">module</span>;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">StudentModule_ProStudnetFactory</span><span class="params">(StudentModule <span class="keyword">module</span>)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> <span class="keyword">module</span> != <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">this</span>.<span class="keyword">module</span> = <span class="keyword">module</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Preconditions.checkNotNull(</div><div class="line">        <span class="keyword">module</span>.proStudnet(), <span class="string">"Cannot return null from a non-@Nullable @Provides method"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Factory&lt;Student&gt; <span class="title">create</span><span class="params">(StudentModule <span class="keyword">module</span>)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StudentModule_ProStudnetFactory(<span class="keyword">module</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/** Proxies &#123;<span class="doctag">@link</span> StudentModule#proStudnet()&#125;. */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Student <span class="title">proxyProStudnet</span><span class="params">(StudentModule instance)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> instance.proStudnet();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>相信聪明的你,已经知道Name注解解决的思路. 很简单, 就是每一个方法对应生成一个工厂类提供对应的依赖, 至于类的命名规则我就不说啦, 自己看</p>
+<h3 id="迷之Scope"><a href="#迷之Scope" class="headerlink" title="迷之Scope"></a>迷之Scope</h3><p>Scope是作用域, Singleton是被Scope包装的一个注解, 在Dagger2中如果被Singleton标注的话, 该依赖可以在一定程度上实现单例 只不过这种单例是需要条件的, 这个条件是什么? 代码是最好的老师, 我们还是来看看被Sington标注的依赖会生成什么代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DaggerStudentComponent</span> <span class="keyword">implements</span> <span class="title">StudentComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Provider&lt;Student&gt; proStudnetProvider;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> MembersInjector&lt;StudentActivity&gt; studentActivityMembersInjector;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">DaggerStudentComponent</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> builder != <span class="keyword">null</span>;</div><div class="line">    initialize(builder);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StudentComponent <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Builder().build();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">final</span> Builder builder)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.proStudnetProvider =</div><div class="line">        DoubleCheck.provider(StudentModule_ProStudnetFactory.create(builder.studentModule));</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.studentActivityMembersInjector =</div><div class="line">        StudentActivity_MembersInjector.create(proStudnetProvider);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(StudentActivity activity)</span> </span>&#123;</div><div class="line">    studentActivityMembersInjector.injectMembers(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> StudentModule studentModule;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> StudentComponent <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (studentModule == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.studentModule = <span class="keyword">new</span> StudentModule();</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> DaggerStudentComponent(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Builder <span class="title">studentModule</span><span class="params">(StudentModule studentModule)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.studentModule = Preconditions.checkNotNull(studentModule);</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>仔细观察上面代码, 我们看到唯一不同的provider赋值的时候, 多了一个DoubleCheck, 其中的奥妙</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleCheck</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Provider</span>&lt;<span class="title">T</span>&gt;, <span class="title">Lazy</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object UNINITIALIZED = <span class="keyword">new</span> Object();</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">volatile</span> Provider&lt;T&gt; provider;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">volatile</span> Object instance = UNINITIALIZED;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">DoubleCheck</span><span class="params">(Provider&lt;T&gt; provider)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> provider != <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">this</span>.provider = provider;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>) <span class="comment">// cast only happens when result comes from the provider</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">    Object result = instance;</div><div class="line">    <span class="keyword">if</span> (result == UNINITIALIZED) &#123;</div><div class="line">      <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">        result = instance;</div><div class="line">        <span class="keyword">if</span> (result == UNINITIALIZED) &#123;</div><div class="line">          result = provider.get();</div><div class="line">          <span class="comment">/* Get the current instance and test to see if the call to provider.get() has resulted</span></div><div class="line">           * in a recursive call.  If it returns the same instance, we'll allow it, but if the</div><div class="line">           * instances differ, throw. */</div><div class="line">          Object currentInstance = instance;</div><div class="line">          <span class="keyword">if</span> (currentInstance != UNINITIALIZED &amp;&amp; currentInstance != result) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Scoped provider was invoked recursively returning "</span></div><div class="line">                + <span class="string">"different results: "</span> + currentInstance + <span class="string">" &amp; "</span> + result + <span class="string">". This is likely "</span></div><div class="line">                + <span class="string">"due to a circular dependency."</span>);</div><div class="line">          &#125;</div><div class="line">          instance = result;</div><div class="line">          <span class="comment">/* Null out the reference to the provider. We are never going to need it again, so we</span></div><div class="line">           * can make it eligible for GC. */</div><div class="line">          provider = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (T) result;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/** Returns a &#123;<span class="doctag">@link</span> Provider&#125; that caches the value from the given delegate provider. */</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Provider&lt;T&gt; <span class="title">provider</span><span class="params">(Provider&lt;T&gt; delegate)</span> </span>&#123;</div><div class="line">    checkNotNull(delegate);</div><div class="line">    <span class="keyword">if</span> (delegate <span class="keyword">instanceof</span> DoubleCheck) &#123;</div><div class="line">      <span class="comment">/* This should be a rare case, but if we have a scoped @Binds that delegates to a scoped</span></div><div class="line">       * binding, we shouldn't cache the value again. */</div><div class="line">      <span class="keyword">return</span> delegate;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DoubleCheck&lt;T&gt;(delegate);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/** Returns a &#123;<span class="doctag">@link</span> Lazy&#125; that caches the value from the given provider. */</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Lazy&lt;T&gt; <span class="title">lazy</span><span class="params">(Provider&lt;T&gt; provider)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (provider <span class="keyword">instanceof</span> Lazy) &#123;</div><div class="line">      <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">      <span class="keyword">final</span> Lazy&lt;T&gt; lazy = (Lazy&lt;T&gt;) provider;</div><div class="line">      <span class="comment">// Avoids memoizing a value that is already memoized.</span></div><div class="line">      <span class="comment">// <span class="doctag">NOTE:</span> There is a pathological case where Provider&lt;P&gt; may implement Lazy&lt;L&gt;, but P and L</span></div><div class="line">      <span class="comment">// are different types using covariant return on get(). Right now this is used with</span></div><div class="line">      <span class="comment">// DoubleCheck&lt;T&gt; exclusively, which is implemented such that P and L are always</span></div><div class="line">      <span class="comment">// the same, so it will be fine for that case.</span></div><div class="line">      <span class="keyword">return</span> lazy;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DoubleCheck&lt;T&gt;(checkNotNull(provider));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DoubleCheck是Provider的具体体现类, 在provider方法中, 返回了DoubleCheck实例, DoubleCheck的精华主要是在get方法中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">SuppressWarnings(<span class="string">"unchecked"</span>) <span class="comment">// cast only happens when result comes from the provider</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">  Object result = instance;</div><div class="line">  <span class="keyword">if</span> (result == UNINITIALIZED) &#123;</div><div class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">      result = instance;</div><div class="line">      <span class="keyword">if</span> (result == UNINITIALIZED) &#123;</div><div class="line">        result = provider.get();</div><div class="line">        <span class="comment">/* Get the current instance and test to see if the call to provider.get() has resulted</span></div><div class="line">         * in a recursive call.  If it returns the same instance, we'll allow it, but if the</div><div class="line">         * instances differ, throw. */</div><div class="line">        Object currentInstance = instance;</div><div class="line">        <span class="keyword">if</span> (currentInstance != UNINITIALIZED &amp;&amp; currentInstance != result) &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Scoped provider was invoked recursively returning "</span></div><div class="line">              + <span class="string">"different results: "</span> + currentInstance + <span class="string">" &amp; "</span> + result + <span class="string">". This is likely "</span></div><div class="line">              + <span class="string">"due to a circular dependency."</span>);</div><div class="line">        &#125;</div><div class="line">        instance = result;</div><div class="line">        <span class="comment">/* Null out the reference to the provider. We are never going to need it again, so we</span></div><div class="line">         * can make it eligible for GC. */</div><div class="line">        provider = <span class="keyword">null</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> (T) result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>get()方法中的代码有没有很熟悉?? 咋一看, 我还以为是DCL单例模式, 其实不然, 它是利用DCL的思想, 将依赖对象缓存到DoubleCheck中, 下次提供依赖时, 直接从缓存拿. 说了这么多, 你可能会问: 究竟Singleton怎么实现单例啊? 其实这个问题在get()方法中已经体现出来了</p>
+<p>既然后一次提供依赖时会从缓存拿, 那我们只要保证DoubleCheck之会被初始化一次, 那么每次用到这个依赖时, 都是从缓存拿的, 也就变相的实现了单例, 为了保证DoubleCheck只会被初始化一次, 我们可以在Appication中实现注入, 那就保证整个应用中DoubleCheck只会被初始化一次.  </p>
+<p>细心的你可能会注意到, 有被Singleton标注的依赖都会在Component实例中被DoubleCheck包装, 而没有的依赖则会直接被工厂类创建出来. 那么我们可以自定义一个注解PerActivity, 那么它就可以管理依赖对象在需要注入依赖的Activity实现局部单例</p>
+<p>看完Dagger2这个实现单例的思想瞬间膜拜.</p>
+<p>总体来说, Scope注解还是很有用的, 利用它我们可以有效的管理依赖对象的生命周期, 让我们不用再去写一堆的单例类</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>本篇主要讲了Dagger注入依赖的原理, 重点讲了Scope实现单例的原理, 对于Component和SubComponent我想留到下一篇讲, 下篇我会针对Component和SubComponent来分析, 并利用他们有效的组织依赖注入. 今天就到这里啦…</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/09/29/重拾Dagger2-理解Dagger2/" data-id="cj73byg5y004amccj8og6qq8n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/29/重拾Dagger2-组织/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            重拾Dagger2-组织
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/重拾Dagger2-使用Dagger2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">重拾Dagger2-使用Dagger2</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
+                            <p class="item-title"><a href="/2017/09/29/CustomView总结/" class="title">CustomView总结</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:42:35.837Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/计算机网络-运输层/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:34.246Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP拥塞控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/拥塞控制.jpeg)" alt="TCP拥塞控制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP拥塞控制/" class="title">TCP拥塞控制</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:09.014Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP滑动窗口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/滑动窗口.jpeg)" alt="TCP滑动窗口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP滑动窗口/" class="title">TCP滑动窗口</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:02.158Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/09/29/重拾Dagger2-理解Dagger2/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

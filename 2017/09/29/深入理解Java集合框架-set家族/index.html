@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>深入理解Java集合框架-set家族 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java集合框架" />
+    
+    <meta name="description" content="Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
+UML
+
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解Java集合框架-set家族">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-set家族/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
+UML
+
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set">
+<meta property="og:image" content="http://cristianoro7.github.io/img/collection.jpeg">
+<meta property="og:updated_time" content="2017-09-29T15:24:33.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解Java集合框架-set家族">
+<meta name="twitter:description" content="Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
+UML
+
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/collection.jpeg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java集合框架/">Java集合框架</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-深入理解Java集合框架-set家族" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        深入理解Java集合框架-set家族
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/29/深入理解Java集合框架-set家族/" class="article-date">
+            <time datetime="2017-09-29T15:24:33.409Z" itemprop="datePublished">2017-09-29</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java集合框架/">Java集合框架</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><code>Set</code>集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在<code>Map</code>的基础上的. 换句话说: <code>Set</code>通过组合的模式, 在<code>Map</code>的基础上扩展了一些特性. 由于<code>Set</code>是建立在<code>Map</code>的基础上的. 如果理解了<code>Map</code>的话, <code>Set</code>会很好理解. 接下来我们来看看<code>Set</code>家族的UML</p>
+<blockquote>
+<h2 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h2></blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fizhykmqgzj30x10hwq3y.jpg" alt=""></p>
+<p><code>Set</code>接口对应<code>Map</code>接口, 定义了<code>Set</code>的一些方法. <code>AbstractSet</code>对应<code>AbstractMap</code>, 为<code>Set</code>家族提供了一些默认的实现. <code>HashSet</code>通过组合<code>HashMap</code>并且利用<code>HashMap</code>的Key值的唯一性, 来保证内部元素的唯一性. <code>LinkedHashSet</code>通过组合<code>LinkedHashMap</code>, 使得Set内部的元素是有序的. 同种道理, <code>TreeSet</code>也是基于<code>TreeMap</code>来实现的.</p>
+<blockquote>
+<h2 id="Set家族"><a href="#Set家族" class="headerlink" title="Set家族"></a>Set家族</h2></blockquote>
+<ul>
+<li><code>HashSet</code></li>
+<li><code>LinkedHashSet</code></li>
+<li><code>TreeSet</code></li>
+</ul>
+<blockquote>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</div><div class="line"></div><div class="line"><span class="comment">// Dummy value to associate with an Object in the backing Map</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
+<p>前面说过<code>Set</code>家族都是通过组合<code>Map</code>家族来实现的. 从上面的字段, 可以看出<code>HashSet</code>是基于<code>HashMap</code>来实现的. 而<code>PRESENT</code>则是一个虚假的值.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当向<code>HashSet</code>中添加元素时, 将元素作为map的key, 而value则是用一个虚假的值<code>PRESENT</code>. 由于<code>HashMap</code>中的Key是唯一的. 而<code>HashSet</code>中的元素是作为Key储存在<code>HashMap</code>中的.这样就保证了<code>HashSet</code>元素中没有重复的值.</p>
+<blockquote>
+<h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3></blockquote>
+<p><code>LinkedHashSet</code>继承于<code>HashSet</code>, 它对应<code>Map</code>家族的<code>LinkedHashMap</code>. 但是当你查看<code>LinkedHashSet</code>的时候, 可能会发现并没有<code>LinkedHashMap</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HashSet(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor, <span class="keyword">boolean</span> dummy) &#123;</div><div class="line">    map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这个构造函数是<code>HashSet</code>为<code>LinkedHashSet</code>预留的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.keySet().iterator();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>`LinkedHashSet</code>中还提供了一个迭代器接口, 迭代器遍历时是有序的遍历. 因为该迭代器是<code>LinkedHashMap</code>的一个实现.</p>
+<blockquote>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3></blockquote>
+<p><code>TreeSet</code>对应于<code>TreeMap</code>, <code>TreeSet</code>的实现思路跟前面两个<code>Set</code>差不多.. 这里不分析.</p>
+<blockquote>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2></blockquote>
+<p>到这里…不知不觉已经分析完了集合框架. 但是并没有包含并发的集合工具. 接下来准备看完并发后再来梳理并发集合工具.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-set家族/" data-id="cj73byg5k003vmccjrgxl9jm0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            深入理解Java集合框架-LinkHashMap
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/深入理解Java集合框架-TreeMap/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">深入理解Java集合框架-TreeMap</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
+                            <p class="item-title"><a href="/2017/09/29/CustomView总结/" class="title">CustomView总结</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:42:35.837Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/计算机网络-运输层/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:34.246Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP拥塞控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/拥塞控制.jpeg)" alt="TCP拥塞控制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP拥塞控制/" class="title">TCP拥塞控制</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:09.014Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP滑动窗口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/滑动窗口.jpeg)" alt="TCP滑动窗口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP滑动窗口/" class="title">TCP滑动窗口</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:02.158Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-set家族/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java内存区域 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JVM" />
+    
+    <meta name="description" content="Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
+
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java内存区域">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/09/29/Java内存区域/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
+
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理">
+<meta property="og:image" content="http://cristianoro7.github.io/img/jvm/jvm-1.jpeg">
+<meta property="og:updated_time" content="2017-09-29T15:29:34.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java内存区域">
+<meta name="twitter:description" content="Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
+
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/jvm/jvm-1.jpeg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JVM/">JVM</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Java内存区域" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java内存区域
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/29/Java内存区域/" class="article-date">
+            <time datetime="2017-09-29T15:29:34.646Z" itemprop="datePublished">2017-09-29</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JVM/">JVM</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>运行时数据区<ul>
+<li>程序计数器</li>
+<li>Java虚拟机栈</li>
+<li>本地方法栈</li>
+<li>Java堆</li>
+<li>方法区</li>
+<li>运行时常量池</li>
+</ul>
+</li>
+<li>HotSpot虚拟机对象探秘<ul>
+<li>对象的创建</li>
+<li>对象的内存布局</li>
+<li>对象的访问定位</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3></blockquote>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><ul>
+<li>程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。</li>
+<li>字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理，线程恢复等基础功能都需要依赖程序计数器来完成。</li>
+<li>如果线程正在执行的是一个Java方法，程序计数器记录的是正在执行的虚拟机字节码指令的地址;如果正在执行的方法是一个Native方法的，程序计数器的值为空（Undefine）。</li>
+<li>此内存是JVM唯一没有规定任何OOM的区域。</li>
+<li>程序计数器是线程私有的。</li>
+</ul>
+<h4 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h4><ul>
+<li>Java虚拟机栈是线程私有的。</li>
+<li>Java虚拟机栈指的是Java方法执行的内存模型：即每个方法在执行时都会创建一个栈帧（是方法运行时的一种基础数据结构），用于储存局部变量表，操作数栈，动态链接，方法出口等信息，每个方法从调用到执行完成的过程，对应着一个栈帧在虚拟机栈的入栈到出栈的过程。</li>
+<li>局部变量表存放了编译期可知的各种基本数据类型（boolean，byte，char，short，int，float，long，double），对象引用和returnAddress类型。</li>
+<li>局部变量表所需的内存空间在编译期完成分配，在方法运行期间不会改变局部变量表的大小。</li>
+<li>该区域会出现两种异常情况<ul>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常。</li>
+<li>如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError。</li>
+</ul>
+</li>
+</ul>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><ul>
+<li>发挥的作用与Java虚拟机栈相似。</li>
+<li>与Java虚拟机栈之间的区别：<ul>
+<li>虚拟机栈执行Java方法服务。</li>
+<li>本地方法栈执行本地方法服务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><ul>
+<li>Java虚拟机所管理的内存区域最大的一块。</li>
+<li>Java堆是在虚拟机启动时被创建，是被所有线程所共享。</li>
+<li>一般情况下：几乎所有对象实例和数组都是在堆上分配。</li>
+<li>如果在堆上没有内存完成实例分配，并且堆也无法扩展时，将抛出OOM。</li>
+</ul>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><ul>
+<li>与堆一样，是各个线程共享的内存区域。</li>
+<li>它用于储存已被虚拟机加载的类信息，常量，静态常量，即时编译器编译后的代码等数据。</li>
+<li>当方法区无法满足内存分配的需求时，将会抛出OOM。</li>
+</ul>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><ul>
+<li>运行时常量池是方法区的一部分。</li>
+<li>当运行时常量池无法满足内存分配的需求时，将会抛出OOM。</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="HotSpot虚拟机对象探秘"><a href="#HotSpot虚拟机对象探秘" class="headerlink" title="HotSpot虚拟机对象探秘"></a>HotSpot虚拟机对象探秘</h3></blockquote>
+<h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><ul>
+<li>当虚拟机遇到new指令时，首先检查这个指令的参数是否在常量池能定位到一个类的符号引用，并检查这个符号引用代表的类是否已经被加载，解析，初始化过。如果没有的话，那必须先进行类的加载</li>
+<li>类加载检查通过后，虚拟机将为新生对象分配内存。</li>
+<li>对象所需的内存在类加载完成后便完全可确定，为对象分配空间相当于在堆上划分一块内存出来。</li>
+<li>内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），如果使用TLAB，这一工作在TLAB分配时进行。这一步操作保证了对象的实例字段在Java代码可以不赋值就直接使用。程序能访问到这些字段的零值。</li>
+<li>接下来，虚拟机需要为对象进行必要的设置。例如：类的元数据信息，对象的哈希码，对象的GC分代年龄等信息。</li>
+</ul>
+<h4 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h4><p>在HotSpot虚拟机中，对象在内存中储存的布局可以分为3块区域：对象头，实例数据和对齐填充。</p>
+<h5 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h5><ul>
+<li>对象头包含两部分信息。</li>
+<li>第一部分用于储存对象自身的运行时数据，如哈希码，GC分代年龄，锁标记，线程持有的锁，偏向线程ID，偏向时间戳等。考虑到虚拟机的空间效率，Mark Word被设计成一个非固定的数据结构，它会根据对象的状态来复用自己的内存空间。例如，在32位的虚拟机中，如果对象处于未被锁定的情况下，那么 Mark Word的32bit空间中的25bit用于储存哈希码，4bit用于储存对象分代年龄，2bit储存锁标志，1bit固定为0。</li>
+<li>对象头的另一部分为类型指针，即对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</li>
+</ul>
+<h5 id="实例数据"><a href="#实例数据" class="headerlink" title="实例数据"></a>实例数据</h5><ul>
+<li>实例数据为对象真正储存的有效信息，也是代码中所定义的各种类型的字段内容。</li>
+</ul>
+<h5 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h5><ul>
+<li>对齐填充不是必然存在的，它仅仅起到占位符的作用</li>
+<li>由于HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍，也就是对象的大小必须是8字节的整数倍。</li>
+<li>对象头部分正好是8字节的倍数。</li>
+<li>当实例数据部分没有对齐时，就需要通过对齐填充来补全。</li>
+</ul>
+<h4 id="对象的访问定位"><a href="#对象的访问定位" class="headerlink" title="对象的访问定位"></a>对象的访问定位</h4><ul>
+<li>Java程序需要通过栈上的reference数据来操作堆上的具体对象。</li>
+<li>目前主流的访问方法有使用句柄和直接指针两种。</li>
+<li>如果使用句柄的话，那么Java堆将划分出一块内存来作为句柄池，reference中储存的就是对象的句柄地址，而句柄中包含了对象实例数据和类型数据各自的具体地址信息。</li>
+</ul>
+<p><img src="/uploads/jvm/java内存区域/句柄指针.png" alt=""></p>
+<ul>
+<li><p>如果使用指针访问，那么Java堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而reference中储存的直接就是对象地址。<br><img src="/uploads/jvm/java内存区域/直接指针.png" alt=""></p>
+</li>
+<li><p>两种访问方式的优缺：</p>
+<ul>
+<li>使用句柄的最大好处就是reference中储存的是稳定的句柄地址，在对象移动时只会改变句柄中的实例数据指针，而reference不需要修改。</li>
+<li>直接使用指针的最大好处就是速度更快，它节省了一次指针定位的时间开销。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考资料：《深入理解Java虚拟机》</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/09/29/Java内存区域/" data-id="cj73byg140009mccjkizeraxm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/29/java垃圾回收器/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java垃圾回收器
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">深入理解Java集合框架-LinkHashMap</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
+                            <p class="item-title"><a href="/2017/09/29/CustomView总结/" class="title">CustomView总结</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:42:35.837Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/计算机网络-运输层/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:34.246Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP拥塞控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/拥塞控制.jpeg)" alt="TCP拥塞控制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP拥塞控制/" class="title">TCP拥塞控制</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:09.014Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP滑动窗口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/滑动窗口.jpeg)" alt="TCP滑动窗口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP滑动窗口/" class="title">TCP滑动窗口</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:02.158Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/09/29/Java内存区域/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

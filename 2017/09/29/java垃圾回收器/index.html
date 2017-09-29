@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java垃圾回收器 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JVM" />
+    
+    <meta name="description" content="垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
+
+
+生存还是死亡
+回收方法区
+
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel Old">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java垃圾回收器">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/09/29/java垃圾回收器/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
+
+
+生存还是死亡
+回收方法区
+
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel Old">
+<meta property="og:image" content="http://cristianoro7.github.io/img/jvm/垃圾回收.jpeg">
+<meta property="og:updated_time" content="2017-09-29T15:29:46.698Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java垃圾回收器">
+<meta name="twitter:description" content="垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
+
+
+生存还是死亡
+回收方法区
+
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel Old">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/jvm/垃圾回收.jpeg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JVM/">JVM</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-java垃圾回收器" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java垃圾回收器
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/29/java垃圾回收器/" class="article-date">
+            <time datetime="2017-09-29T15:29:46.698Z" itemprop="datePublished">2017-09-29</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JVM/">JVM</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>判定对象存活<ul>
+<li>引用计数法</li>
+<li>可达性分析算法</li>
+<li>再谈引用<ul>
+<li>强引用</li>
+<li>软引用</li>
+<li>弱引用</li>
+<li>虚引用</li>
+</ul>
+</li>
+<li>生存还是死亡</li>
+<li>回收方法区</li>
+</ul>
+</li>
+<li>垃圾收集算法<ul>
+<li>标记-清除算法</li>
+<li>复制算法</li>
+<li>标记-整理算法</li>
+<li>分代收集算法</li>
+</ul>
+</li>
+<li>HotSpot的算法实现<ul>
+<li>枚举根节点</li>
+<li>安全点</li>
+<li>安全区域</li>
+</ul>
+</li>
+<li>垃圾收集器<ul>
+<li>Serial收集器</li>
+<li>ParNew收集器</li>
+<li>Parallel收集器</li>
+<li>Serial Old 收集器</li>
+<li>Parallel Old 收集器</li>
+<li>CMS收集器</li>
+<li>G1收集器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="判定对象的存活"><a href="#判定对象的存活" class="headerlink" title="判定对象的存活"></a>判定对象的存活</h3></blockquote>
+<h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><ul>
+<li>给一个对象添加一个计数器,每当有一处地方引用对象时,计数器值加1; 当引用失效时, 计数器值就减1; 任何时刻计数器为0对象就是不可能再被使用的.</li>
+<li>引用计数算法最大的缺点就是很难解决对象之间的循环引用.</li>
+</ul>
+<h4 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h4><ul>
+<li>通过一系列的称为 “ GC Root “ 对象作为起始点, 从这些节点开始向下搜索, 搜索走过的路径称为引用链, 当一个对象到” GC Root “ 没有任何引用链相连时,则证明此对象是不可用的.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/垃圾回收-1.png" alt=""></p>
+<ul>
+<li>在Java语言中, 可作为 GC Root的对象包括下面几种:<ul>
+<li>虚拟机栈(栈帧中的本地变量表)引用的对象</li>
+<li>方法区中的静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI(一般指Native方法)引用的对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="再谈引用"><a href="#再谈引用" class="headerlink" title="再谈引用"></a>再谈引用</h4><p>在JDK1.2后,Java对引用进行了扩充,将引用分强引用, 软引用, 弱引用和虚引用四种.</p>
+<h5 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h5><p>程序代码中普遍存在的,类似”Object obj = new Object()”这类引用, 只要强引用存在的话, 对象就永远不会被回收</p>
+<h5 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h5><p>软引用用于描述一些还有用但是又是非必需对象. 对于软引用关联着的对象, 在系统将要发生内存溢出之前, 将会把对象列进回收范围之中进行第二次回收, 如果这次回收没有足够的内存,才抛出内存溢出异常</p>
+<h5 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h5><p>弱引用也是用来描述非必需对象, 但是它的强度比软引用弱一些, 被弱引用关联的对象只能生存到下次垃圾收集发生之前.<br>当垃圾收集器工作时, 无论当前内存是否足够, 都会回收掉只被弱引用关联的对象.</p>
+<h5 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h5><ul>
+<li>它是最弱的一种引用关系.</li>
+<li>一个对象是否有虚引用的存在, 完全不会对其生存时间构成影响, 也无法通过虚引用来取得一个对象的实例</li>
+<li>一个对象虚引用关联的目的就是这个对象被收集器回收时收到一个系统通知.</li>
+</ul>
+<h4 id="生存还是死亡"><a href="#生存还是死亡" class="headerlink" title="生存还是死亡"></a>生存还是死亡</h4><ul>
+<li>一个对象需要至少经历两次标记才能宣告死亡</li>
+<li>如果一个对象在可达性分析后发现没有GC Roots相连接时, 那么它第一次被标记并且进行一次筛选, 筛选的条件是该对象是否有必要执行finalize()方法.当对象没有覆盖finalize()方法或者finalize()方法已经被虚拟机调用过一次, 这两种情况虚拟机都是视为不必要调用.</li>
+<li>如果这个对象被判定为需要执行finalize()方法的话, 那么对象将会被放置在F-Queue队列中, 稍后虚拟机会启动一个优先级较低的线程去执行它.</li>
+<li>执行finalize()方法时, 虚拟机并不会等待它执行结束, 这样做是为了避免执行finalize()方法缓慢或者发生死循环. 这样可能会导致F-Queue队列中的对象处于永久等待中,甚至导致整个内存回收崩溃.</li>
+<li>finalize()方法是对象逃脱死亡命运的最后一次机会, GC会在finalize()中进行第二次小规模的标记, 如果对象被第二次标记后,那么就宣告了一个对象的死亡.</li>
+</ul>
+<h4 id="回收方法区"><a href="#回收方法区" class="headerlink" title="回收方法区"></a>回收方法区</h4><ul>
+<li>方法区的回收主要回收两部分内容:废弃常量和无用的类.</li>
+<li>回收废弃常量和回收Java堆很相似.例如: 字符串 “abc” 已经进入了常量池, 但是当前系统没有一个String对象叫做”abc”的,也就是没有任何String对象引用常量池之中的”abc”, 如果这时候发生内存回收, 而且必要的话, 这个”abc”会被清除出常量池.常量池中的其他类(接口),方法,字段的符号引用也与此类似.</li>
+<li>一个类被视为无用的条件<ul>
+<li>该类的所有实例都已经被回收</li>
+<li>加载该类的ClassLoader已经被回收</li>
+<li>该类对应的java.lang.Class对象没有在任何地方被引用, 无法通过反射获取类的方法.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3></blockquote>
+<h4 id="标记-清除算法-Mark-Sweep"><a href="#标记-清除算法-Mark-Sweep" class="headerlink" title="标记-清除算法(Mark-Sweep)"></a>标记-清除算法(Mark-Sweep)</h4><ul>
+<li>首先标记出所有需要回收的对象,在完成标记后统一回收所有被标记的对象</li>
+<li>不足的地方<ul>
+<li>效率问题, 标记和清除的两个过程效率都不是很高</li>
+<li>空间问题, 标记清除后会产生大量不连续的内存碎片, 空间碎片太多可能会导致以后在程序运行过程中需要分配较大的对象时, 无法找到足够的连续内存而不得不提前触发另外一次GC</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/mark-sweep.png" alt=""></p>
+<h4 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法(Copying)"></a>复制算法(Copying)</h4><ul>
+<li>复制算法是为了解决标记-清除算法的效率问题而出现的</li>
+<li>它将内存按照容量划分为相等的两块, 每次只用其中一块.当这一块内存快用完了, 就将还存活的对象复制到另一块内存,然后再把空间一次清理掉</li>
+<li>复制算法的代价是将内存空间缩小为原来的一半.</li>
+<li>HotSpot虚拟机默认Eden和Survivor的大小比例为8:1,只有10%的内存空间会被浪费.</li>
+<li>如果另外一块Survivor空间没有足够的内存放上次新生代存活下来的对象时, 这些对象将直接通过分配担保直接进入老年代.</li>
+</ul>
+<h4 id="标记-整理算法-Mark-Compact"><a href="#标记-整理算法-Mark-Compact" class="headerlink" title="标记-整理算法(Mark-Compact)"></a>标记-整理算法(Mark-Compact)</h4><ul>
+<li>标记过程仍然与”标记-清除”算法一样, 但后续步骤不是直接对可回收对象进行清理, 而是让所有存活的对象都向一端移动, 然后直接清理掉边界以外的内存.</li>
+</ul>
+<h4 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h4><ul>
+<li>一般将Java堆划分为新生代和老年代, 这样就可以根据各个年代的特点采用适当的算法</li>
+<li>在新生代中,每次GC时,都发现大量对象死去, 只有少量对象存活, 那就选用复制算法.</li>
+<li>而老年代中因为对象的存活率高, 没有额外的空间进行担保,就必须使用”标记-清除”或者”标记-整理”.</li>
+</ul>
+<blockquote>
+<h3 id="HotSpot的算法实现"><a href="#HotSpot的算法实现" class="headerlink" title="HotSpot的算法实现"></a>HotSpot的算法实现</h3></blockquote>
+<p>在HotSpot上实现垃圾收集算法, 必须对算法的执行效率必须经过严格的考证, 才能保证虚拟机的执行效率</p>
+<h4 id="枚举根节点"><a href="#枚举根节点" class="headerlink" title="枚举根节点"></a>枚举根节点</h4><ul>
+<li>目前主流的Java虚拟机使用的都是标准式的GC, 所以当执行系统停顿下来时, 并不需要一个不漏的检查完所有执行上下文和全局的引用位置, 虚拟机使用一组称为OopMap的数据结构来得知哪些地方存放着对象引用.</li>
+</ul>
+<h4 id="安全点"><a href="#安全点" class="headerlink" title="安全点"></a>安全点</h4><ul>
+<li>HotSpot没有为每条指令都生成OopMap, 它只是在特定的位置记录了”这些信息”,这些位置被称为安全点(Safepoint),即程序并非在所有的地方都能停下来GC, 只有在安全点时才能停下来</li>
+<li>安全点的选定基本上是以程序”是否具有让程序长时间执行的特征”为标准选定.”长时间执行”的最明显特征就是指令序列复用,例如方法调用,循环引用,循环跳转,异常跳转等,具有这些功能的指令才会生成Safepoint.</li>
+<li>对于Safepoint,需要考虑的另外一个问题是如何让GC发生时停止所有线程时,所有线程都跑到安全点. 这里有两种方案可供选择:抢先式中断和主动式中断.<ul>
+<li>抢先式中断不需要线程的配合,在发生GC时,首先把所有线程全部中断,如果发现有线程中断在不安全点上, 就恢复线程,让它跑到安全点上. 现在几乎没有虚拟机是这样实现的.</li>
+<li>主动式的中断是思想是当GC需要中断线程的时候, 不直接对线程进行操作,仅仅简单的设置一个标志, 各个线程执行时主动去轮询这个标志,发现中断标志为真时就自己挂起.轮询标志的地方和安全点是重合的.</li>
+</ul>
+</li>
+</ul>
+<h4 id="安全区域"><a href="#安全区域" class="headerlink" title="安全区域"></a>安全区域</h4><ul>
+<li>安全区域是指在一段代码之中,引用关系不会发生变化. 在这个区域中的任何地方开始GC都是安全的.</li>
+<li>线程执行到Safe Region时, 首先标识自己已经进入安全区域, 那样当在这段时间内JVM要发起GC时,就不用管已经标识为安全区域状态的线程. 在线程要离开安全区域时, 它首先要检查系统是否已经完成了根节点枚举, 如果完成了,就继续执行,否则它就要等到收到安全离开的信号为止.</li>
+</ul>
+<blockquote>
+<h3 id="垃圾收集器-1"><a href="#垃圾收集器-1" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3></blockquote>
+<p><img src="/uploads/jvm/垃圾回收/垃圾回收器.png" alt=""></p>
+<h4 id="Senial-收集器"><a href="#Senial-收集器" class="headerlink" title="Senial 收集器"></a>Senial 收集器</h4><ul>
+<li>Serial 收集器在进行垃圾回收时,必须暂停其他所有的工作线程,直到它收集结束</li>
+<li>下面是Serial/Serial Old收集器的工作过程</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/Serial.png" alt=""></p>
+<ul>
+<li>优点: 简单高效, 对于限定单CPU的环境来说, Serial收集器由于没有线程交互的开销, 专心做垃圾收集自然可以获得最高的单线程收集效率.</li>
+<li>使用场景: 在用户的桌面应用场景中, 分配给虚拟机管理内存不会很大, 停顿时间可控制在10几到100多毫秒, 只要不频繁发生,这点的停顿还是可以接受的. 因此, Serial收集器对于运行在Client模式下的虚拟机来说是一个很好的选择.</li>
+</ul>
+<h4 id="ParNew-收集器"><a href="#ParNew-收集器" class="headerlink" title="ParNew 收集器"></a>ParNew 收集器</h4><ul>
+<li>ParNew收集器其实就是多线程版本的Serial收集器.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/ParNew.png" alt=""></p>
+<h4 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h4><ul>
+<li>Parallel Scavenge收集器的特点是它关注点与其他的收集器不同, CMS等收集器关注点是尽可能缩短垃圾收集时用户线程的停顿时间, 而Parallel Scavenge收集器目的是达到一个可控的吞吐量, 所谓吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值.</li>
+<li>停顿时间越短越适合需要与用户交互的程序; 高吞吐量则可以高效率地利用CPU时间, 尽快完成程序运算任务, 主要适合后台运算而不需要太多交互的任务.</li>
+</ul>
+<h4 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h4><ul>
+<li>Serial Old是Serial收集器的老年代版本, 使用”标记-整理”算法, 这个收集器的主要意义是给Client模式下的虚拟机使用.</li>
+<li>如果在Server模式下, 那么它有两大主要用途:<ul>
+<li>在JDK1.5及之前的版本中与Parallel Scavenge收集器搭配使用.</li>
+<li>作为CMS收集器的后备预案,在并发收集发生 Concurrent Mode Failure时使用.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Parallel-Old-收集器"><a href="#Parallel-Old-收集器" class="headerlink" title="Parallel Old 收集器"></a>Parallel Old 收集器</h4><ul>
+<li>Parallel Old 是Parallel Scavenge收集器的老年代版本.</li>
+<li>在吞吐量以及CPU资源敏感的场合, 都可以优先考虑Parallel Scavenge加Parallel Old收集器.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/ParallelOld.png" alt=""></p>
+<h4 id="CMS-收集器-Concurrent-Mark-Sweep"><a href="#CMS-收集器-Concurrent-Mark-Sweep" class="headerlink" title="CMS 收集器(Concurrent Mark Sweep)"></a>CMS 收集器(Concurrent Mark Sweep)</h4><ul>
+<li>CMS收集器是一种以获取最短回收停顿时间为目标的收集器.</li>
+<li>CMS 收集器是基于 “标记-清除”算法实现,整个过程分为4个步骤:<ul>
+<li>初始化标记:仅仅只是标记一下GC Roots能直接关联到的对象, 速度很快.</li>
+<li>并发标记:进行GC Roots Tracing的过程.</li>
+<li>重新标记:为了修正并发标记期间因用户程序继续运行导致标记产生变动的那一部分对象标记记录,这个阶段的停顿时间一般会比初始化阶段稍微长一些,但远比并发标记的时间短.</li>
+<li>并发清除: 清除标记.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/cms.png" alt=""></p>
+<ul>
+<li><p>CMS 收集器明显的3个缺点:</p>
+<ul>
+<li><p>CMS收集器对CPU资源非常敏感,在并发阶段,它虽然不会导致用户线程中断,但是会因为占用了一部分CPU资源而导致应用程序变慢,总吞吐量降低.</p>
+</li>
+<li><p>CMS 收集器无法处理浮动垃圾, 可能出现 “Concurrent Mode Failure”失败而导致另一次Full GC产生.浮动垃圾指的是CMS并发清理阶段用户线程还在运行, 这期间产生的垃圾.CMS无法像其他收集器那样等到老年代几乎完全被填满时才收集, 需要预留一部分的空间提供并发手机时的程序运行使用.要是CMS运行期间预留内存无法满足程序需要, 就会出现一次”Concurrent Mode Failure” 失败. 这时虚拟机启动后备预案: 临时启动Serial Old收集器重新进行老年代垃圾收集, 这样停顿的时间就变长了.</p>
+</li>
+<li><p>由于CMS是基于”标记-清除”算法实现的, 这意味者收集结束时会有大量空间碎片产生.空间碎片太多会给大对象分配带来麻烦,因为无法找到连续足够大的空间来给大对象分配,这就不得不提前触发一次Full GC 了. 为了解决这个问题, CMS收集器提供了一个 -XX:+UseCMSCompactAtFullCollection开关参数,用户在CMS收集器顶不住要进行FullGC时开启内存碎片的合并过程整理, 内存整理无法并发进行, 因此会导致停顿时间变长. 虚拟机设计者还提供了一个参数-XX:CMSFullGCsBeforeCompaction,这个参数用于设置执行多少次不压缩的Full GC后,就跟着一次带压缩的(默认值为0,表示每次进入Full GC时都进行碎片整理)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h4><p>G1收集器的使命是在未来替代掉JDK1.5之中发布的CMS收集器,与其他收集器相比, G1具有的特点:</p>
+<h5 id="并行与并发"><a href="#并行与并发" class="headerlink" title="并行与并发"></a>并行与并发</h5><p>G1能充分利用多CPU,多核环境下的硬件优势, 使用多个CPU来缩短Stop-The-World停顿时间</p>
+<h5 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h5><p>虽然G1可以不需要其他收集器配合就能管理整个GC堆,但他能够采用不同的方式去处理新创建的对象和已经存活一段时间,熬过多次GC的旧对象以获取更好的收集效果.</p>
+<h5 id="空间整合"><a href="#空间整合" class="headerlink" title="空间整合"></a>空间整合</h5><p>G1整体来看是基于”标记-整理”算法实现的收集器,从局部上来看是基于复制算法实现的.</p>
+<h5 id="可预测的停顿"><a href="#可预测的停顿" class="headerlink" title="可预测的停顿"></a>可预测的停顿</h5><p>G1除了要求停顿降低外,还能建立可预测的停顿时间模型,能让使用者明确指定在一个长度为M毫秒的时间片段内,消耗在垃圾收集上的时间不得超过N毫秒.</p>
+<p>如果不计算维护Remembered Set操作,G1收集器的运作大致可划分为以下几个步骤:</p>
+<ul>
+<li>初始标记:标记一下GC Roots能直接关联到的对象并且修改TAMS的值,让下一阶段用户程序并发运行时,能在正确可用的Region中创建新对象,这个阶段需要停顿线程,但耗时很短.</li>
+<li>并发标记:从GC Roots开始对堆中对象进行可达性分析, 找出存活对象,这阶段耗时很长,但可用与用户程序并发运行.</li>
+<li>最终标记:为了修正在并发标记期间因用户程序继续运作而导致标记产生百年动的那一部分标记记录,虚拟机将这阶段对象变化记录在线程Remembered Set中, 这阶段需要停顿线程,但可并行执行.</li>
+<li>筛选回收:首先对各个Region的回收价值和成本进行排行,根据用户所期望的GC停顿时间来指定回收计划.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/g1.png" alt=""></p>
+<blockquote>
+<p>参考资料：《深入理解Java虚拟机》</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/09/29/java垃圾回收器/" data-id="cj73byg2c0015mccjhlu6qt2i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/29/Java内存分配与回收策略/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java内存分配与回收策略
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/Java内存区域/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java内存区域</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
+                            <p class="item-title"><a href="/2017/09/29/CustomView总结/" class="title">CustomView总结</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:42:35.837Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/计算机网络-运输层/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:34.246Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP拥塞控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/拥塞控制.jpeg)" alt="TCP拥塞控制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP拥塞控制/" class="title">TCP拥塞控制</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:09.014Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/29/TCP滑动窗口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/滑动窗口.jpeg)" alt="TCP滑动窗口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/09/29/TCP滑动窗口/" class="title">TCP滑动窗口</a></p>
+                            <p class="item-date"><time datetime="2017-09-29T15:40:02.158Z" itemprop="datePublished">2017-09-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/09/29/java垃圾回收器/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
