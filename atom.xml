@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-09-29T15:42:35.837Z</updated>
+  <updated>2017-10-01T08:17:58.032Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -17,12 +17,14 @@
   
   <entry>
     <title>CustomView总结</title>
-    <link href="http://cristianoro7.github.io/2017/09/29/CustomView%E6%80%BB%E7%BB%93/"/>
-    <id>http://cristianoro7.github.io/2017/09/29/CustomView总结/</id>
-    <published>2017-09-29T15:42:35.837Z</published>
-    <updated>2017-09-29T15:42:35.837Z</updated>
+    <link href="http://cristianoro7.github.io/2017/10/01/CustomView%E6%80%BB%E7%BB%93/"/>
+    <id>http://cristianoro7.github.io/2017/10/01/CustomView总结/</id>
+    <published>2017-10-01T08:17:58.032Z</published>
+    <updated>2017-10-01T08:17:58.032Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fk2tf8bzggj30zk0nqtbj.jpg" alt=""></p>
+<p><br></p>
+<blockquote>
 <h2 id="LayoutParams认知"><a href="#LayoutParams认知" class="headerlink" title="LayoutParams认知"></a>LayoutParams认知</h2></blockquote>
 <h3 id="Q-什么是LayoutParams-它跟view的关系是什么"><a href="#Q-什么是LayoutParams-它跟view的关系是什么" class="headerlink" title="Q: 什么是LayoutParams? 它跟view的关系是什么?"></a>Q: 什么是LayoutParams? 它跟view的关系是什么?</h3><blockquote>
 <h4 id="什么是LayoutParams"><a href="#什么是LayoutParams" class="headerlink" title="什么是LayoutParams?"></a>什么是LayoutParams?</h4></blockquote>
@@ -364,8 +366,10 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;h2 id=&quot;LayoutParams认知&quot;&gt;&lt;a href=&quot;#LayoutParams认知&quot; class=&quot;headerlink&quot; title=&quot;LayoutParams认知&quot;&gt;&lt;/a&gt;LayoutParams认知&lt;/h2&gt;&lt;/blockquote
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006VdOYcgy1fk2tf8bzggj30zk0nqtbj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&quot;LayoutParams认知&quot;&gt;
     
     </summary>
     
@@ -378,10 +382,10 @@
   
   <entry>
     <title>计算机网络-运输层</title>
-    <link href="http://cristianoro7.github.io/2017/09/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
-    <id>http://cristianoro7.github.io/2017/09/29/计算机网络-运输层/</id>
-    <published>2017-09-29T15:40:34.246Z</published>
-    <updated>2017-09-29T15:40:34.246Z</updated>
+    <link href="http://cristianoro7.github.io/2017/10/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    <id>http://cristianoro7.github.io/2017/10/01/计算机网络-运输层/</id>
+    <published>2017-10-01T08:03:05.601Z</published>
+    <updated>2017-10-01T08:03:05.601Z</updated>
     
     <content type="html"><![CDATA[<h1 id="计算机网络-运输层"><a href="#计算机网络-运输层" class="headerlink" title="计算机网络-运输层"></a>计算机网络-运输层</h1><blockquote>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
@@ -423,12 +427,12 @@
 <p>下面给出运输层的知识梳理图:</p>
 <p><img src="/uploads/计网/运输层/运输层梳理.png" alt=""></p>
 <p>其中TCP协议涉及的内容比较多,归纳起来可以分为:</p>
-<p><a href="https://cristianoro7.github.io/2017/05/22/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">可靠传输的工作原理</a></p>
-<p><a href="https://cristianoro7.github.io/2017/05/22/TCP%E9%A6%96%E9%83%A8/">TCP首部</a></p>
-<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">TCP滑动窗口</a></p>
-<p><a href="https://cristianoro7.github.io/2017/05/23/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/">TCP流量控制</a></p>
-<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">TCP拥塞控制</a></p>
-<p><a href="https://cristianoro7.github.io/2017/05/24/TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">TCP连接管理</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">可靠传输的工作原理</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/TCP%E9%A6%96%E9%83%A8/">TCP首部</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/TCP%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">TCP滑动窗口</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/">TCP流量控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">TCP拥塞控制</a></p>
+<p><a href="https://cristianoro7.github.io/2017/09/29/TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">TCP连接管理</a></p>
 <blockquote>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络</p>
 </blockquote>
@@ -445,6 +449,36 @@
     
     
       <category term="计算机网络#运输层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%BE%93%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重拾Dagger2</title>
+    <link href="http://cristianoro7.github.io/2017/10/01/Dagger2%E7%9B%AE%E5%BD%95/"/>
+    <id>http://cristianoro7.github.io/2017/10/01/Dagger2目录/</id>
+    <published>2017-10-01T08:00:47.460Z</published>
+    <updated>2017-10-01T08:00:47.460Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
+<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
+<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
+<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
+<blockquote>
+<p><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      meet with dagger2
+    
+    </summary>
+    
+      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
+    
+    
+      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
     
   </entry>
   
@@ -1495,36 +1529,6 @@
     
     
       <category term="计算机网络#网络层" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重拾Dagger2</title>
-    <link href="http://cristianoro7.github.io/2017/09/29/Dagger2%E7%9B%AE%E5%BD%95/"/>
-    <id>http://cristianoro7.github.io/2017/09/29/Dagger2目录/</id>
-    <published>2017-09-29T15:36:16.058Z</published>
-    <updated>2017-09-29T15:36:16.058Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
-<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
-<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
-<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
-<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
-<blockquote>
-<p><a href="https://cristianoro7.github.io/2017/03/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/03/30/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      meet with dagger2
-    
-    </summary>
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/categories/Dagger2/"/>
-    
-    
-      <category term="Dagger2" scheme="http://cristianoro7.github.io/tags/Dagger2/"/>
     
   </entry>
   

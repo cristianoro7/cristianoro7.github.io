@@ -3,16 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签：: 自定义View | Desperado</title>
+    <title>重拾Dagger2 | Desperado</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Desperado">
-<meta property="og:url" content="http://cristianoro7.github.io/tags/自定义View/index.html">
+        <meta name="keywords" content="Dagger2" />
+    
+    <meta name="description" content="meet with dagger2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重拾Dagger2">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/10/01/Dagger2目录/index.html">
 <meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="meet with dagger2">
+<meta property="og:image" content="http://cristianoro7.github.io/img/dagger2/startdagger2.jpeg">
+<meta property="og:updated_time" content="2017-10-01T08:00:47.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Desperado">
+<meta name="twitter:title" content="重拾Dagger2">
+<meta name="twitter:description" content="meet with dagger2">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/dagger2/startdagger2.jpeg">
     
 
     
@@ -123,80 +131,130 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>自定义View</em>
+    <a class="page-title-link" href="/categories/Dagger2/">Dagger2</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-Dagger2目录" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/01/CustomView总结/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/01/CustomView总结/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/自定义View/">自定义View</a>
-            </div>
-            <div class="date"><time datetime="2017-10-01T08:17:58.032Z" itemprop="datePublished">2017-10-01</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/01/CustomView总结/">CustomView总结</a>
+        重拾Dagger2
         </h1>
     
 
-        <p class="article-excerpt">
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/10/01/Dagger2目录/" class="article-date">
+            <time datetime="2017-10-01T08:00:47.460Z" itemprop="datePublished">2017-10-01</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Dagger2/">Dagger2</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2</p>
+<h3 id="Dagger2是什么"><a href="#Dagger2是什么" class="headerlink" title="Dagger2是什么?"></a>Dagger2是什么?</h3><p>Dagger2是之前由Square公司开源的Dagger的分支, 它运行在Android或者Java上的编译时注入依赖的框架, 关于什么是依赖注入,这里就不多说啦</p>
+<h3 id="为什么要使用Dagger2"><a href="#为什么要使用Dagger2" class="headerlink" title="为什么要使用Dagger2"></a>为什么要使用Dagger2</h3><p>回想一下, 在我们的项目中, 什么代码是有用的? 什么代码是没什么用但我们必须要写的? 这个问题真的值得思考.举个例子, 平常我们实现网络请求的功能, 我们为了解耦, 会写一堆工厂类将网络请求的各个组件连接起来, 在这个场景中,我们真正关注的是网络请求, 而那些将网络请求连接起来的工厂类我们其实对它并不感兴趣, 它只是我们实现网络请求的一个工具而已. 面对这样的问题, Dagger利用依赖注入的模式来替代工厂类, 将我们从编写一堆的工厂类中解放出来,从而让我们把精力放在我们感兴趣的代码</p>
+<h3 id="使用Dagger2的好处"><a href="#使用Dagger2的好处" class="headerlink" title="使用Dagger2的好处"></a>使用Dagger2的好处</h3><p>利用Dagger2, 能让我们从一堆的引用模板代码中解放出来, 将更多的精力放在业务需求上; 由于Dagger2会帮我们自动生成需要依赖的代码, 这能极大的减少我们的工作量. 更有趣的是:Dagger2帮我们管理依被赖对象的生命周期, 比如使用Singleton注解就能实现单例, 不过这个单例实现是有条件的, 通过Dagger2管理被依赖的对象能让我们的项目结构更清晰</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>接下来, 我会写一下系列的Dagger2文章</p>
+<blockquote>
+<p><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/">重拾Dagger2-使用Dagger2</a><br><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/">重拾Dagger2-理解Dagger2</a><br><a href="https://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/">重拾Dagger2-组织依赖注入</a></p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
             
 
 
-LayoutParams认知
-Q: 什么是LayoutParams? 它跟view的关系是什么?
-什么是LayoutParams?
-我们在XML布局中定义的layout_xx属性,最终都会以Java代码的形式展现出来, 而LayoutParams就是这些layout_xx属性在Java层的映射, 也就是说LayoutParams是view在xml布局中layout_xx的属性容器.
-可见, 
-        </p>
+
+    <a data-url="http://cristianoro7.github.io/2017/10/01/Dagger2目录/" data-id="cj88glvx90003o6cjc6fkdjuq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -217,6 +275,29 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/01/计算机网络-运输层/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            计算机网络-运输层
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/09/29/TCP连接管理/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">TCP连接管理</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -426,11 +507,13 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://cristianoro7.github.io/2017/10/01/Dagger2目录/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
