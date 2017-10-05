@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[CustomView总结]]></title>
-      <url>http://cristianoro7.github.io/2017/10/01/CustomView%E6%80%BB%E7%BB%93/</url>
+      <url>http://cristianoro7.github.io/2017/10/05/CustomView%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fk2tf8bzggj30zk0nqtbj.jpg" alt=""></p>
 <p><br></p>
 <blockquote>
@@ -168,11 +168,31 @@
 <li><p>当父View的mode为<code>MeasureSpec.AT_MOST</code>时, 根据子View的LayoutParams, 分为三种情况:</p>
 <ol>
 <li>当子View在xml文件中声明的宽为确定的值时, resultSize为子View在xml文件中声明的宽度(也就是xxdp), resultMode为<code>MeasureSpec.EXACTLY</code>, 然后再打包为一个MeasureSpec.</li>
-<li>当子View在xml文件中声明的宽为<code>LayoutParams.MATCH_PARENT</code>时, 表明子View想要占有父View的宽度, 但是由于父View的测量模式为<figure class="highlight plain"><figcaption><span>所以resultMode只能为```MeasureSpec.AT_MOST``(因为父View自身也不知道自己多大), resultSize设置为父Viw的大小.</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">   3. 当子View在xml文件中声明的宽为``LayoutParams.AT_MOST``时表明子View想要根据自己的内容来决定大小, 所以resultSize设置为父View的size,用来表示不能操过这个值, resultMode设置为``MeasureSpec.AT_MOST``.</div><div class="line"></div><div class="line">* 分析到这里, 我们可以总结出View的MeasureSpec是由哪些因素决定的</div><div class="line"> * 对于顶级View的MeasureSpec, 是由窗口的大小和自身的LayoutParams来决定的(可以会看之前分析的代码)</div><div class="line"> * 对于非顶级View的MeasureSpec, 是由父View的MeasureSpec(其中的mode)和子View自身的LayoutParams(也就是在xml文件声明的layout_xx的属性)</div><div class="line"></div><div class="line">* 上面我们针对宽度来进行了分析, 对于高度而言, 过程跟宽度一样</div><div class="line"></div><div class="line">* 最后调用子View的``measure(int, int)``, 将在``getChildMeasureSpec``中得到的宽和高对应的MeasureSpec(也就是我们上面以宽度为例子来分析的情况),传递给子View,接下去的过程跟我们前面在分析子View的情况一样.</div><div class="line"></div><div class="line">* 现在我们可以更加确定了这样一个事实: View的onMeasure(int, int)中的widthMeasureSpec和heightMeasureSpec是由父View根据自身的MeasureSpec和子View的LayoutParams产生并传递给子View的.</div><div class="line"></div><div class="line">* 如果你仔细总结的话,会发现:只要子View的的宽或高设置为``LayoutParams``设置为WRAP_CONTENT时, 生成MeasureSpec中的size都是父View的size(一般是父View剩下的size),而mode为AT_MOST.</div><div class="line"></div><div class="line">* 我们现在继续调到子View的measure方法中的onMeasure(), 我们再来看看getDefaultSize()这个方法:</div><div class="line"></div><div class="line">```java</div><div class="line">public static int getDefaultSize(int size, int measureSpec) &#123;</div><div class="line">        int result = size;</div><div class="line">        int specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">        int specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">        switch (specMode) &#123;</div><div class="line">        case MeasureSpec.UNSPECIFIED:</div><div class="line">            result = size;</div><div class="line">            break;</div><div class="line">        case MeasureSpec.AT_MOST:</div><div class="line">        case MeasureSpec.EXACTLY:</div><div class="line">            result = specSize;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></li>
+<li>当子View在xml文件中声明的宽为<code>LayoutParams.MATCH_PARENT</code>时, 表明子View想要占有父View的宽度, 但是由于父View的测量模式为<code>MeasureSpec.AT_MOST</code>(表示,父View也是要根据自身的内容来设定大小), 所以resultMode只能为<code>MeasureSpec.AT_MOST</code>(因为父View自身也不知道自己多大), resultSize设置为父Viw的大小.</li>
+<li>当子View在xml文件中声明的宽为<code>LayoutParams.AT_MOST</code>时表明子View想要根据自己的内容来决定大小, 所以resultSize设置为父View的size,用来表示不能操过这个值, resultMode设置为<code>MeasureSpec.AT_MOST</code>.</li>
 </ol>
 </li>
 </ul>
 </li>
+<li><p>分析到这里, 我们可以总结出View的MeasureSpec是由哪些因素决定的</p>
+<ul>
+<li>对于顶级View的MeasureSpec, 是由窗口的大小和自身的LayoutParams来决定的(可以会看之前分析的代码)</li>
+<li>对于非顶级View的MeasureSpec, 是由父View的MeasureSpec(其中的mode)和子View自身的LayoutParams(也就是在xml文件声明的layout_xx的属性)</li>
+</ul>
+</li>
+<li><p>上面我们针对宽度来进行了分析, 对于高度而言, 过程跟宽度一样</p>
+</li>
+<li><p>最后调用子View的<code>measure(int, int)</code>, 将在<code>getChildMeasureSpec</code>中得到的宽和高对应的MeasureSpec(也就是我们上面以宽度为例子来分析的情况),传递给子View,接下去的过程跟我们前面在分析子View的情况一样.</p>
+</li>
+<li><p>现在我们可以更加确定了这样一个事实: View的onMeasure(int, int)中的widthMeasureSpec和heightMeasureSpec是由父View根据自身的MeasureSpec和子View的LayoutParams产生并传递给子View的.</p>
+</li>
+<li><p>如果你仔细总结的话,会发现:只要子View的的宽或高设置为<code>LayoutParams</code>设置为WRAP_CONTENT时, 生成MeasureSpec中的size都是父View的size(一般是父View剩下的size),而mode为AT_MOST.</p>
+</li>
+<li><p>我们现在继续调到子View的measure方法中的onMeasure(), 我们再来看看getDefaultSize()这个方法:</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getDefaultSize</span><span class="params">(<span class="keyword">int</span> size, <span class="keyword">int</span> measureSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> result = size;</div><div class="line">        <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">        <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (specMode) &#123;</div><div class="line">        <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</div><div class="line">            result = size;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> MeasureSpec.AT_MOST:</div><div class="line">        <span class="keyword">case</span> MeasureSpec.EXACTLY:</div><div class="line">            result = specSize;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
 <li><p>首先解包出由父View传递下来的MeasureSpec, 通过上面的分析, 当子View在xml文件中将layout_width设置为WRAP_CONTENT时, 对应的SpecMode为AT_MOST, 此时进入switch语句, 得到的大小其实是父View的大小, 这也解释了,在自定义View(继承View)时,如果没有重写onMeasure(int, int)时,当这个自定义View的宽度或者高度设置为<code>WRAP_CONTENT</code>时,会变成占有父View的全部高度和宽度.</p>
 </li>
 <li><p>分析到这里, 已经基本分析完了测量过程,我们还是总结一下,再进入下一个流程.</p>
