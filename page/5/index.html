@@ -142,17 +142,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/CustomView总结/" class="thumbnail">
+        <a href="/2017/10/31/深入理解Java集合框架-set家族/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/CustomView总结/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-set家族/">0</span>
     
 </span>
 
@@ -163,285 +163,282 @@
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
+            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T08:55:52.274Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:01:09.713Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/CustomView总结/">CustomView总结</a>
+        <a href="/2017/10/31/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
+UML
+
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-TreeMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:01:00.490Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
+
+UML
+
+跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkHashMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:56.142Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
+
+UML
+
+从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合-HashMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合-HashMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合-HashMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:51.934Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合-HashMap/">深入理解Java集合-HashMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前两篇文章分别介绍了ArrayList和LinkedList, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看HashMap的UML
+
+UML
+
+HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和序列化. Map接口提供了一系列接口和三个视图. AbstractMap则是实现了Map接
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkedList/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:43.662Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
+
+UML
+
+我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
+
+LinkedList继承AbstractS
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-ArrayList" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-ArrayList/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:39.690Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/">深入理解Java集合框架-ArrayList</a>
         </h1>
     
 
         <p class="article-excerpt">
             
+UML
 
-
-LayoutParams认知
-Q: 什么是LayoutParams? 它跟view的关系是什么?
-什么是LayoutParams?
-我们在XML布局中定义的layout_xx属性,最终都会以Java代码的形式展现出来, 而LayoutParams就是这些layout_xx属性在Java层的映射, 也就是说LayoutParams是view在xml布局中layout_xx的属性容器.
-可见, 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Dagger2目录/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/startdagger2.jpeg)" alt="重拾Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Dagger2目录/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:27.258Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Dagger2目录/">重拾Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Square公
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:12.582Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/understanddagger2.jpg)" alt="重拾Dagger2-理解Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-理解Dagger2/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:06.934Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/">重拾Dagger2-理解Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要依赖的
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/dagger2.jpeg)" alt="重拾Dagger2-使用Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-使用Dagger2/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:00.434Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/">重拾Dagger2-使用Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Picasso中值得学习的技巧/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso中值得学习的技巧/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:54:25.154Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Picasso中值得学习的技巧/">Picasso中值得学习的技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Picasso中的线程池
-Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
-
-分析:
-首先在Picasso中,定义了一个优先级枚举类型:
-
-12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   */  public enum Priority &#123;    LOW,    NORMAL,    HIGH  &#125;
+从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cl
         </p>
     </div>
 </article>
@@ -490,30 +487,10 @@ Picasso中的线程池主要是对对网络状态进行了监听,并且包装了
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+                            <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
     
     
 </a>
@@ -522,55 +499,15 @@ Picasso中的线程池主要是对对网络状态进行了监听,并且包装了
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-title"><a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="title">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:58:15.503Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/java基础/" class="thumbnail">
+                            <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -581,9 +518,69 @@ Picasso中的线程池主要是对对网络状态进行了监听,并且包装了
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="title">图解HTTP-返回结果的状态码-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:58.722Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/图解HTTP-网络基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-网络基础/" class="title">图解HTTP-网络基础-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:52.659Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AsyncTask源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AsyncTask源码浅析/" class="title">AsyncTask源码浅析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:36.959Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="title">安卓开发艺术探索-View的事件体系-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:56:12.992Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 

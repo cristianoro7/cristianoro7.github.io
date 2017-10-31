@@ -142,6 +142,53 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T13:53:49.571Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/2017/10/31/Dagger2目录/" class="thumbnail">
     
     
@@ -177,53 +224,6 @@
         <p class="article-excerpt">
             最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
 Dagger2是什么?Dagger2是之前由Square公
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:12.582Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
         </p>
     </div>
 </article>
@@ -376,30 +376,10 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+                            <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
     
     
 </a>
@@ -408,55 +388,15 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-title"><a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="title">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:58:15.503Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/java基础/" class="thumbnail">
+                            <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -467,9 +407,69 @@ InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="title">图解HTTP-返回结果的状态码-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:58.722Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/图解HTTP-网络基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-网络基础/" class="title">图解HTTP-网络基础-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:52.659Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AsyncTask源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AsyncTask源码浅析/" class="title">AsyncTask源码浅析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:36.959Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="title">安卓开发艺术探索-View的事件体系-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:56:12.992Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 

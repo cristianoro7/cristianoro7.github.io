@@ -142,17 +142,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/" class="thumbnail">
+        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-set家族/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
     
 </span>
 
@@ -163,23 +163,20 @@
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:01:09.713Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T13:53:49.571Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
+        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
         </h1>
     
 
         <p class="article-excerpt">
-            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
-
-UML
-
-Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
         </p>
     </div>
 </article>
@@ -192,17 +189,17 @@ Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应Abstract
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
+        <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/J.U.C中的并发工具类/">0</span>
     
 </span>
 
@@ -215,22 +212,21 @@ Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应Abstract
             <div class="category">
             <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:01:04.877Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a>
+        <a href="/2017/10/31/J.U.C中的并发工具类/">J.U.C中的并发工具类</a>
         </h1>
     
 
         <p class="article-excerpt">
             
-WeakHashMap
-WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key是弱引用类型, WeakHashMap内部的Key是会被自动回收的. 另外需要关注的是, WeakHashMap并没有向HashMap那样, 在1.8做了优化.
+在Java的J.U.C包中提供了几个并发编程中非常有用工具类, 例如: Semaphore, CountDownLatch和CyclicBarrier. 这次准备来介绍这三个工具类.
 
-弱引用Key
-123456789101112131415161718192021222324252627282
+Semaphore
+Semaphore中文意思为: 信号量. 它主要用来维护一组有限的资源. 比如数据库连接, Socket连接. 信号量的使用方式很简单, 在构造函数中, 传入你需要维护的有限资源的数量, 每次
         </p>
     </div>
 </article>
@@ -247,17 +243,17 @@ WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key�
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/" class="thumbnail">
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-TreeMap/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">0</span>
     
 </span>
 
@@ -270,21 +266,19 @@ WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key�
             <div class="category">
             <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:01:00.490Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">ReentrantLock和ReentrantReadWriteLock详解</a>
         </h1>
     
 
         <p class="article-excerpt">
-            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
-
-UML
-
-跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
+            
+ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和
         </p>
     </div>
 </article>
@@ -297,17 +291,17 @@ UML
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkHashMap/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">0</span>
     
 </span>
 
@@ -320,21 +314,18 @@ UML
             <div class="category">
             <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:00:56.142Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">AbstractQueuedSynchronizer中的ConditionObject剖析</a>
         </h1>
     
 
         <p class="article-excerpt">
-            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
-
-UML
-
-从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
+            AbstractQueuedSynchronizer中的ConditionObject剖析
+在多线程环境中, 有时候, 一个线程的执行是需要等待一个条件发生后才能执行的. 在经典的生产者和消费者模式中, 如果缓冲区满后, 生产者是不能向缓冲区投放item的, 它需要等待一个条件: 缓冲区不为满的状态. 同理, 如果缓冲区为空时, 消费者是不能消费item的, 它需要等待一个条件: 缓冲区不为空. 
         </p>
     </div>
 </article>
@@ -351,17 +342,17 @@ UML
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合-HashMap/" class="thumbnail">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合-HashMap" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合-HashMap/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer剖析/">0</span>
     
 </span>
 
@@ -374,21 +365,19 @@ UML
             <div class="category">
             <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:00:51.934Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合-HashMap/">深入理解Java集合-HashMap</a>
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/">AbstractQueuedSynchronizer剖析</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前两篇文章分别介绍了ArrayList和LinkedList, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看HashMap的UML
-
-UML
-
-HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和序列化. Map接口提供了一系列接口和三个视图. AbstractMap则是实现了Map接
+            
+AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS)前, 我们先来看看一个不安全的锁, 然后引出构建安全锁需要处理哪些情况.
+123456789101112131415161718typedef struct lock_t &#123;    int flag;&#125; lock_t;void init(lock_
         </p>
     </div>
 </article>
@@ -401,17 +390,17 @@ HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/" class="thumbnail">
+        <a href="/2017/10/31/java基础/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkedList/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/java基础/">0</span>
     
 </span>
 
@@ -424,23 +413,29 @@ HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和
             <div class="category">
             <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:00:43.662Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
+        <a href="/2017/10/31/java基础/">java基础</a>
         </h1>
     
 
         <p class="article-excerpt">
-            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
+            字符串使用+连接字符串
+使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
 
-UML
+StringBuilder
+该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
 
-我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
+StringBuffer
+StringBuilder可以保证线程安全，但是也因此效率变得低
 
-LinkedList继承AbstractS
+总结
+如果只需要简单的拼接字符串的话，可以直接使用+号拼接
+如果需要频繁拼接而且无需考虑线程安全的，可以使用StringBuilder
+如果需要频繁拼接但要考虑到线程安全的话，可以使用StringBuffer
         </p>
     </div>
 </article>
@@ -489,30 +484,10 @@ LinkedList继承AbstractS
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+                            <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
     
     
 </a>
@@ -521,55 +496,15 @@ LinkedList继承AbstractS
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-title"><a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="title">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:58:15.503Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/java基础/" class="thumbnail">
+                            <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -580,9 +515,69 @@ LinkedList继承AbstractS
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="title">图解HTTP-返回结果的状态码-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:58.722Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/图解HTTP-网络基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/10/31/图解HTTP-网络基础/" class="title">图解HTTP-网络基础-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:52.659Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AsyncTask源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AsyncTask源码浅析/" class="title">AsyncTask源码浅析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:57:36.959Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="title">安卓开发艺术探索-View的事件体系-笔记</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T13:56:12.992Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
