@@ -150,6 +150,207 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/J.U.C中的并发工具类/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T15:33:44.648Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/J.U.C中的并发工具类/">J.U.C中的并发工具类</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+在Java的J.U.C包中提供了几个并发编程中非常有用工具类, 例如: Semaphore, CountDownLatch和CyclicBarrier. 这次准备来介绍这三个工具类.
+
+Semaphore
+Semaphore中文意思为: 信号量. 它主要用来维护一组有限的资源. 比如数据库连接, Socket连接. 信号量的使用方式很简单, 在构造函数中, 传入你需要维护的有限资源的数量, 每次
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T15:33:33.368Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">ReentrantLock和ReentrantReadWriteLock详解</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T15:33:18.156Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">AbstractQueuedSynchronizer中的ConditionObject剖析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            AbstractQueuedSynchronizer中的ConditionObject剖析
+在多线程环境中, 有时候, 一个线程的执行是需要等待一个条件发生后才能执行的. 在经典的生产者和消费者模式中, 如果缓冲区满后, 生产者是不能向缓冲区投放item的, 它需要等待一个条件: 缓冲区不为满的状态. 同理, 如果缓冲区为空时, 消费者是不能消费item的, 它需要等待一个条件: 缓冲区不为空. 
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer剖析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T15:33:14.724Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/">AbstractQueuedSynchronizer剖析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS)前, 我们先来看看一个不安全的锁, 然后引出构建安全锁需要处理哪些情况.
+123456789101112131415161718typedef struct lock_t &#123;    int flag;&#125; lock_t;void init(lock_
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
     
     
@@ -774,207 +975,6 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
         <p class="article-excerpt">
             回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
 Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/J.U.C中的并发工具类/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/J.U.C中的并发工具类/">J.U.C中的并发工具类</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-在Java的J.U.C包中提供了几个并发编程中非常有用工具类, 例如: Semaphore, CountDownLatch和CyclicBarrier. 这次准备来介绍这三个工具类.
-
-Semaphore
-Semaphore中文意思为: 信号量. 它主要用来维护一组有限的资源. 比如数据库连接, Socket连接. 信号量的使用方式很简单, 在构造函数中, 传入你需要维护的有限资源的数量, 每次
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">ReentrantLock和ReentrantReadWriteLock详解</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
-他们的一个共同点是: 都支持公平和
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">AbstractQueuedSynchronizer中的ConditionObject剖析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            AbstractQueuedSynchronizer中的ConditionObject剖析
-在多线程环境中, 有时候, 一个线程的执行是需要等待一个条件发生后才能执行的. 在经典的生产者和消费者模式中, 如果缓冲区满后, 生产者是不能向缓冲区投放item的, 它需要等待一个条件: 缓冲区不为满的状态. 同理, 如果缓冲区为空时, 消费者是不能消费item的, 它需要等待一个条件: 缓冲区不为空. 
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer剖析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/">AbstractQueuedSynchronizer剖析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS)前, 我们先来看看一个不安全的锁, 然后引出构建安全锁需要处理哪些情况.
-123456789101112131415161718typedef struct lock_t &#123;    int flag;&#125; lock_t;void init(lock_
         </p>
     </div>
 </article>
@@ -2312,6 +2312,86 @@ UDP协议
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T15:33:44.648Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T15:33:33.368Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T15:33:18.156Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T15:33:14.724Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
     
     
@@ -2326,86 +2406,6 @@ UDP协议
                             <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
                             <p class="item-title"><a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="title">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a></p>
                             <p class="item-date"><time datetime="2017-10-31T13:58:15.503Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="title">图解HTTP-返回结果的状态码-笔记</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T13:57:58.722Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/图解HTTP-网络基础/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/10/31/图解HTTP-网络基础/" class="title">图解HTTP-网络基础-笔记</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T13:57:52.659Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/AsyncTask源码浅析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
-                            <p class="item-title"><a href="/2017/10/31/AsyncTask源码浅析/" class="title">AsyncTask源码浅析</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T13:57:36.959Z" itemprop="datePublished">2017-10-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
-                            <p class="item-title"><a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="title">安卓开发艺术探索-View的事件体系-笔记</a></p>
-                            <p class="item-date"><time datetime="2017-10-31T13:56:12.992Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
