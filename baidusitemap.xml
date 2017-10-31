@@ -4,19 +4,39 @@
 
     
   <url>
-    <loc>http://cristianoro7.github.io/2017/10/29/ReentrantLock%E5%92%8CReentrantReadWriteLock%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-10-29T08:28:09.149Z</lastmod>
+    <loc>http://cristianoro7.github.io/2017/10/31/J.U.C%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/</loc>
+    <lastmod>2017-10-31T09:43:21.911Z</lastmod>
+    <data>
+        <display>
+        <title>J.U.C中的并发工具类</title>
+        <pubTime>2017-10-31T09:43:21.911Z</pubTime>
+        
+        <tag>Java并发包#工具类</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/ReentrantLock%E5%92%8CReentrantReadWriteLock%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-10-31T09:09:28.487Z</lastmod>
     <data>
         <display>
         <title>ReentrantLock和ReentrantReadWriteLock详解</title>
-        <pubTime>2017-10-29T08:28:09.149Z</pubTime>
+        <pubTime>2017-10-31T09:09:28.487Z</pubTime>
         
         <tag>Java并发包#Lock</tag>
          
          
            
              
-              <breadCrumb title="Java并发包" url="http://cristianoro7.github.io/categories/Java%E5%B9%B6%E5%8F%91%E5%8C%85/"/>
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
           
         </display>
     </data>
@@ -24,19 +44,19 @@
 
     
   <url>
-    <loc>http://cristianoro7.github.io/2017/10/24/AbstractQueuedSynchronizer%E4%B8%AD%E7%9A%84ConditionObject%E5%89%96%E6%9E%90/</loc>
-    <lastmod>2017-10-24T12:36:29.470Z</lastmod>
+    <loc>http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer%E4%B8%AD%E7%9A%84ConditionObject%E5%89%96%E6%9E%90/</loc>
+    <lastmod>2017-10-31T09:09:23.612Z</lastmod>
     <data>
         <display>
         <title>AbstractQueuedSynchronizer中的ConditionObject剖析</title>
-        <pubTime>2017-10-24T12:36:29.470Z</pubTime>
+        <pubTime>2017-10-31T09:09:23.612Z</pubTime>
         
         <tag>Java并发包#AQS</tag>
          
          
            
              
-              <breadCrumb title="Java并发包" url="http://cristianoro7.github.io/categories/Java%E5%B9%B6%E5%8F%91%E5%8C%85/"/>
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
           
         </display>
     </data>
@@ -44,19 +64,19 @@
 
     
   <url>
-    <loc>http://cristianoro7.github.io/2017/10/24/AbstractQueuedSynchronizer%E5%89%96%E6%9E%90/</loc>
-    <lastmod>2017-10-24T06:57:02.028Z</lastmod>
+    <loc>http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer%E5%89%96%E6%9E%90/</loc>
+    <lastmod>2017-10-31T09:09:19.644Z</lastmod>
     <data>
         <display>
         <title>AbstractQueuedSynchronizer剖析</title>
-        <pubTime>2017-10-24T06:57:02.028Z</pubTime>
+        <pubTime>2017-10-31T09:09:19.644Z</pubTime>
         
         <tag>Java并发包#AQS</tag>
          
          
            
              
-              <breadCrumb title="Java并发包" url="http://cristianoro7.github.io/categories/Java%E5%B9%B6%E5%8F%91%E5%8C%85/"/>
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
           
         </display>
     </data>
@@ -64,19 +84,699 @@
 
     
   <url>
-    <loc>http://cristianoro7.github.io/2017/10/05/CustomView%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2017-10-05T15:16:34.134Z</lastmod>
+    <loc>http://cristianoro7.github.io/2017/10/31/java%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-10-31T09:06:42.339Z</lastmod>
     <data>
         <display>
-        <title>CustomView总结</title>
-        <pubTime>2017-10-05T15:16:34.134Z</pubTime>
+        <title>java基础</title>
+        <pubTime>2017-10-31T09:06:42.339Z</pubTime>
         
-        <tag>自定义View</tag>
+        <tag>Java#基础概念</tag>
          
          
            
              
-              <breadCrumb title="自定义View" url="http://cristianoro7.github.io/categories/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%9B%BE%E8%A7%A3HTTP-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-31T09:06:30.759Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-简单的HTTP协议-笔记</title>
+        <pubTime>2017-10-31T09:06:30.759Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%9B%BE%E8%A7%A3HTTP-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-31T09:04:50.769Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-返回结果的状态码-笔记</title>
+        <pubTime>2017-10-31T09:04:50.769Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2017-10-31T09:03:42.347Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-与HTTP协议的Web服务器-笔记</title>
+        <pubTime>2017-10-31T09:03:42.347Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/</loc>
+    <lastmod>2017-10-31T09:02:46.340Z</lastmod>
+    <data>
+        <display>
+        <title>Java垃圾回收器</title>
+        <pubTime>2017-10-31T09:02:46.340Z</pubTime>
+        
+        <tag>Java#JVM</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Java%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/</loc>
+    <lastmod>2017-10-31T09:02:36.800Z</lastmod>
+    <data>
+        <display>
+        <title>Java内存分配与回收策略</title>
+        <pubTime>2017-10-31T09:02:36.800Z</pubTime>
+        
+        <tag>Java#JVM</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</loc>
+    <lastmod>2017-10-31T09:02:31.104Z</lastmod>
+    <data>
+        <display>
+        <title>Java内存区域</title>
+        <pubTime>2017-10-31T09:02:31.104Z</pubTime>
+        
+        <tag>Java#JVM</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Class%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2017-10-31T09:01:55.505Z</lastmod>
+    <data>
+        <display>
+        <title>类文件结构</title>
+        <pubTime>2017-10-31T09:01:55.505Z</pubTime>
+        
+        <tag>Java#JVM</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-set%E5%AE%B6%E6%97%8F/</loc>
+    <lastmod>2017-10-31T09:01:09.713Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-set家族</title>
+        <pubTime>2017-10-31T09:01:09.713Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-WeakHashMap,%20IdentityHashMap%20%E5%92%8C%20HashTable/</loc>
+    <lastmod>2017-10-31T09:01:04.877Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</title>
+        <pubTime>2017-10-31T09:01:04.877Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-TreeMap/</loc>
+    <lastmod>2017-10-31T09:01:00.490Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-TreeMap</title>
+        <pubTime>2017-10-31T09:01:00.490Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkHashMap/</loc>
+    <lastmod>2017-10-31T09:00:56.142Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-LinkHashMap</title>
+        <pubTime>2017-10-31T09:00:56.142Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88-HashMap/</loc>
+    <lastmod>2017-10-31T09:00:51.934Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合-HashMap</title>
+        <pubTime>2017-10-31T09:00:51.934Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedList/</loc>
+    <lastmod>2017-10-31T09:00:43.662Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-LinkedList</title>
+        <pubTime>2017-10-31T09:00:43.662Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-ArrayList/</loc>
+    <lastmod>2017-10-31T09:00:39.690Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java集合框架-ArrayList</title>
+        <pubTime>2017-10-31T09:00:39.690Z</pubTime>
+        
+        <tag>Java集合框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cristianoro7.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</loc>
+    <lastmod>2017-10-31T08:59:20.011Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-确保Web安全的HTTPS-笔记</title>
+        <pubTime>2017-10-31T08:59:20.011Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-31T08:59:12.315Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-确认访问用户的身份-笔记</title>
+        <pubTime>2017-10-31T08:59:12.315Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-31T08:58:58.515Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-报文信息-笔记</title>
+        <pubTime>2017-10-31T08:58:58.515Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%9B%BE%E8%A7%A3HTTP-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-10-31T08:58:19.940Z</lastmod>
+    <data>
+        <display>
+        <title>图解HTTP-网络基础-笔记</title>
+        <pubTime>2017-10-31T08:58:19.940Z</pubTime>
+        
+        <tag>计算机网络#HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/AsyncTask%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
+    <lastmod>2017-10-31T08:56:04.258Z</lastmod>
+    <data>
+        <display>
+        <title>AsyncTask源码浅析</title>
+        <pubTime>2017-10-31T08:56:04.258Z</pubTime>
+        
+        <tag>异步框架#AsyncTask</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/CustomView%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-10-31T08:55:52.274Z</lastmod>
+    <data>
+        <display>
+        <title>CustomView总结</title>
+        <pubTime>2017-10-31T08:55:52.274Z</pubTime>
+        
+        <tag>Android#自定义View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Dagger2%E7%9B%AE%E5%BD%95/</loc>
+    <lastmod>2017-10-31T08:55:27.258Z</lastmod>
+    <data>
+        <display>
+        <title>重拾Dagger2</title>
+        <pubTime>2017-10-31T08:55:27.258Z</pubTime>
+        
+        <tag>Android#Dagger2</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/</loc>
+    <lastmod>2017-10-31T08:55:12.582Z</lastmod>
+    <data>
+        <display>
+        <title>重拾Dagger2-组织</title>
+        <pubTime>2017-10-31T08:55:12.582Z</pubTime>
+        
+        <tag>Android#Dagger2</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/</loc>
+    <lastmod>2017-10-31T08:55:06.934Z</lastmod>
+    <data>
+        <display>
+        <title>重拾Dagger2-理解Dagger2</title>
+        <pubTime>2017-10-31T08:55:06.934Z</pubTime>
+        
+        <tag>Android#Dagger2</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/</loc>
+    <lastmod>2017-10-31T08:55:00.434Z</lastmod>
+    <data>
+        <display>
+        <title>重拾Dagger2-使用Dagger2</title>
+        <pubTime>2017-10-31T08:55:00.434Z</pubTime>
+        
+        <tag>Android#Dagger2</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2017-10-31T08:54:25.154Z</lastmod>
+    <data>
+        <display>
+        <title>Picasso中值得学习的技巧</title>
+        <pubTime>2017-10-31T08:54:25.154Z</pubTime>
+        
+        <tag>图片加载框架#Picasso</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Picasso%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%8F%8A%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
+    <lastmod>2017-10-31T08:54:21.071Z</lastmod>
+    <data>
+        <display>
+        <title>Picasso基本用法及源码浅析</title>
+        <pubTime>2017-10-31T08:54:21.071Z</pubTime>
+        
+        <tag>图片加载框架#Picasso</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/universal-image-loader%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/</loc>
+    <lastmod>2017-10-31T08:53:59.627Z</lastmod>
+    <data>
+        <display>
+        <title>universal-image-loader缓存策略</title>
+        <pubTime>2017-10-31T08:53:59.627Z</pubTime>
+        
+        <tag>图片加载框架#universal-image-loader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/universal-image-loader%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
+    <lastmod>2017-10-31T08:53:55.703Z</lastmod>
+    <data>
+        <display>
+        <title>universal-image-loader源码浅读</title>
+        <pubTime>2017-10-31T08:53:55.703Z</pubTime>
+        
+        <tag>图片加载框架#universal-image-loader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-31T08:52:56.823Z</lastmod>
+    <data>
+        <display>
+        <title>安卓开发艺术探索-View的事件体系-笔记</title>
+        <pubTime>2017-10-31T08:52:56.823Z</pubTime>
+        
+        <tag>安卓开发艺术探索笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/</loc>
+    <lastmod>2017-10-31T08:52:46.343Z</lastmod>
+    <data>
+        <display>
+        <title>安卓开发艺术探索-自定义View的思想-笔记</title>
+        <pubTime>2017-10-31T08:52:46.343Z</pubTime>
+        
+        <tag>安卓开发艺术探索笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</loc>
+    <lastmod>2017-10-31T08:52:42.243Z</lastmod>
+    <data>
+        <display>
+        <title>安卓开发艺术探索-View的工作原理（一）-笔记</title>
+        <pubTime>2017-10-31T08:52:42.243Z</pubTime>
+        
+        <tag>安卓开发艺术探索笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Volley--%E9%98%9F%E5%88%97%E6%8E%A7%E5%88%B6/</loc>
+    <lastmod>2017-10-31T08:51:32.519Z</lastmod>
+    <data>
+        <display>
+        <title>Volley--队列控制</title>
+        <pubTime>2017-10-31T08:51:32.519Z</pubTime>
+        
+        <tag>Android#网络框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Volley--%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E5%92%8C%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2017-10-31T08:50:57.535Z</lastmod>
+    <data>
+        <display>
+        <title>Volley--网络优化和缓存</title>
+        <pubTime>2017-10-31T08:50:57.535Z</pubTime>
+        
+        <tag>Android#网络框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cristianoro7.github.io/2017/10/31/Volley%E6%B5%85%E8%AF%BB/</loc>
+    <lastmod>2017-10-31T08:50:19.675Z</lastmod>
+    <data>
+        <display>
+        <title>Volley浅读</title>
+        <pubTime>2017-10-31T08:50:19.675Z</pubTime>
+        
+        <tag>Android#网络框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cristianoro7.github.io/categories/Android/"/>
           
         </display>
     </data>
@@ -97,26 +797,6 @@
            
              
               <breadCrumb title="计算机网络" url="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/10/01/Dagger2%E7%9B%AE%E5%BD%95/</loc>
-    <lastmod>2017-10-01T08:00:47.460Z</lastmod>
-    <data>
-        <display>
-        <title>重拾Dagger2</title>
-        <pubTime>2017-10-01T08:00:47.460Z</pubTime>
-        
-        <tag>Dagger2</tag>
-         
-         
-           
-             
-              <breadCrumb title="Dagger2" url="http://cristianoro7.github.io/categories/Dagger2/"/>
           
         </display>
     </data>
@@ -344,286 +1024,6 @@
 
     
   <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%BB%84%E7%BB%87/</loc>
-    <lastmod>2017-09-29T15:35:58.510Z</lastmod>
-    <data>
-        <display>
-        <title>重拾Dagger2-组织</title>
-        <pubTime>2017-09-29T15:35:58.510Z</pubTime>
-        
-        <tag>Dagger2</tag>
-         
-         
-           
-             
-              <breadCrumb title="Dagger2" url="http://cristianoro7.github.io/categories/Dagger2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E7%90%86%E8%A7%A3Dagger2/</loc>
-    <lastmod>2017-09-29T15:35:54.150Z</lastmod>
-    <data>
-        <display>
-        <title>重拾Dagger2-理解Dagger2</title>
-        <pubTime>2017-09-29T15:35:54.150Z</pubTime>
-        
-        <tag>Dagger2</tag>
-         
-         
-           
-             
-              <breadCrumb title="Dagger2" url="http://cristianoro7.github.io/categories/Dagger2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E9%87%8D%E6%8B%BEDagger2-%E4%BD%BF%E7%94%A8Dagger2/</loc>
-    <lastmod>2017-09-29T15:35:43.430Z</lastmod>
-    <data>
-        <display>
-        <title>重拾Dagger2-使用Dagger2</title>
-        <pubTime>2017-09-29T15:35:43.430Z</pubTime>
-        
-        <tag>Dagger2</tag>
-         
-         
-           
-             
-              <breadCrumb title="Dagger2" url="http://cristianoro7.github.io/categories/Dagger2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/Class%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2017-09-29T15:31:08.566Z</lastmod>
-    <data>
-        <display>
-        <title>类文件结构</title>
-        <pubTime>2017-09-29T15:31:08.566Z</pubTime>
-        
-        <tag>JVM</tag>
-         
-         
-           
-             
-              <breadCrumb title="JVM" url="http://cristianoro7.github.io/categories/JVM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/Java%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/</loc>
-    <lastmod>2017-09-29T15:29:50.478Z</lastmod>
-    <data>
-        <display>
-        <title>Java内存分配与回收策略</title>
-        <pubTime>2017-09-29T15:29:50.478Z</pubTime>
-        
-        <tag>JVM</tag>
-         
-         
-           
-             
-              <breadCrumb title="JVM" url="http://cristianoro7.github.io/categories/JVM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/</loc>
-    <lastmod>2017-09-29T15:29:46.698Z</lastmod>
-    <data>
-        <display>
-        <title>Java垃圾回收器</title>
-        <pubTime>2017-09-29T15:29:46.698Z</pubTime>
-        
-        <tag>JVM</tag>
-         
-         
-           
-             
-              <breadCrumb title="JVM" url="http://cristianoro7.github.io/categories/JVM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</loc>
-    <lastmod>2017-09-29T15:29:34.646Z</lastmod>
-    <data>
-        <display>
-        <title>Java内存区域</title>
-        <pubTime>2017-09-29T15:29:34.646Z</pubTime>
-        
-        <tag>JVM</tag>
-         
-         
-           
-             
-              <breadCrumb title="JVM" url="http://cristianoro7.github.io/categories/JVM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkHashMap/</loc>
-    <lastmod>2017-09-29T15:24:34.505Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-LinkHashMap</title>
-        <pubTime>2017-09-29T15:24:34.505Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-set%E5%AE%B6%E6%97%8F/</loc>
-    <lastmod>2017-09-29T15:24:33.409Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-set家族</title>
-        <pubTime>2017-09-29T15:24:33.409Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-TreeMap/</loc>
-    <lastmod>2017-09-29T15:24:32.353Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-TreeMap</title>
-        <pubTime>2017-09-29T15:24:32.353Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-WeakHashMap,%20IdentityHashMap%20%E5%92%8C%20HashTable/</loc>
-    <lastmod>2017-09-29T15:24:26.585Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</title>
-        <pubTime>2017-09-29T15:24:26.585Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedList/</loc>
-    <lastmod>2017-09-29T15:24:03.801Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-LinkedList</title>
-        <pubTime>2017-09-29T15:24:03.801Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-ArrayList/</loc>
-    <lastmod>2017-09-29T15:23:54.481Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合框架-ArrayList</title>
-        <pubTime>2017-09-29T15:23:54.481Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/09/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88-HashMap/</loc>
-    <lastmod>2017-09-29T15:22:57.925Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解Java集合-HashMap</title>
-        <pubTime>2017-09-29T15:22:57.925Z</pubTime>
-        
-        <tag>Java集合框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java集合框架" url="http://cristianoro7.github.io/categories/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cristianoro7.github.io/2017/06/29/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/</loc>
     <lastmod>2017-06-29T14:40:50.497Z</lastmod>
     <data>
@@ -685,7 +1085,6 @@
     
     
     
-    
   <url>
     <loc>http://cristianoro7.github.io/2017/05/21/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</loc>
     <lastmod>2017-05-21T05:36:30.311Z</lastmod>
@@ -721,386 +1120,6 @@
            
              
               <breadCrumb title="数据结构" url="http://cristianoro7.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/03/03/java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2017-03-03T15:20:56.338Z</lastmod>
-    <data>
-        <display>
-        <title>java基础</title>
-        <pubTime>2017-03-03T15:20:56.338Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://cristianoro7.github.io/categories/java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/21/%E7%A1%AE%E8%AE%A4%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E7%9A%84%E8%BA%AB%E4%BB%BD-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-02-21T07:31:23.465Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-确认访问用户的身份-笔记</title>
-        <pubTime>2017-02-21T07:31:23.465Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-02-17T14:21:11.008Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-报文信息-笔记</title>
-        <pubTime>2017-02-17T14:21:11.008Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/Picasso%E4%B8%AD%E5%80%BC%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2017-02-17T14:12:33.277Z</lastmod>
-    <data>
-        <display>
-        <title>Picasso中值得学习的技巧</title>
-        <pubTime>2017-02-17T14:12:33.277Z</pubTime>
-        
-        <tag>图片加载框架#Picasso</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-02-17T14:05:49.619Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-简单的HTTP协议-笔记</title>
-        <pubTime>2017-02-17T14:05:49.619Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E7%A1%AE%E4%BF%9DWeb%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</loc>
-    <lastmod>2017-02-17T13:45:23.687Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-确保Web安全的HTTPS-笔记</title>
-        <pubTime>2017-02-17T13:45:23.687Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E4%B8%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2017-02-17T13:40:15.798Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-与HTTP协议的Web服务器-笔记</title>
-        <pubTime>2017-02-17T13:40:15.798Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-02-17T13:35:17.757Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-返回结果的状态码-笔记</title>
-        <pubTime>2017-02-17T13:35:17.757Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/Picasso%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%8F%8A%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
-    <lastmod>2017-02-17T13:33:48.997Z</lastmod>
-    <data>
-        <display>
-        <title>Picasso基本用法及源码浅析</title>
-        <pubTime>2017-02-17T13:33:48.997Z</pubTime>
-        
-        <tag>图片加载框架#Picasso</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/02/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2017-02-17T12:25:00.852Z</lastmod>
-    <data>
-        <display>
-        <title>图解HTTP-网络基础-笔记</title>
-        <pubTime>2017-02-17T12:25:00.852Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/universal-image-loader%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
-    <lastmod>2016-11-26T14:39:47.107Z</lastmod>
-    <data>
-        <display>
-        <title>universal-image-loader源码浅读</title>
-        <pubTime>2017-01-13T04:43:01.335Z</pubTime>
-        
-        <tag>图片加载框架#universal-image-loader</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/universal-image-loader%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/</loc>
-    <lastmod>2016-11-26T14:39:39.651Z</lastmod>
-    <data>
-        <display>
-        <title>universal-image-loader缓存策略</title>
-        <pubTime>2017-01-13T04:43:01.347Z</pubTime>
-        
-        <tag>图片加载框架#universal-image-loader</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/AsyncTask%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</loc>
-    <lastmod>2016-11-13T02:57:22.709Z</lastmod>
-    <data>
-        <display>
-        <title>AsyncTask源码浅析</title>
-        <pubTime>2017-01-13T04:43:01.299Z</pubTime>
-        
-        <tag>异步框架#AsyncTask</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/Volley--%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E5%92%8C%E7%BC%93%E5%AD%98/</loc>
-    <lastmod>2016-11-01T10:42:47.738Z</lastmod>
-    <data>
-        <display>
-        <title>Volley--网络优化和缓存</title>
-        <pubTime>2017-01-13T04:43:01.315Z</pubTime>
-        
-        <tag>网络框架#Volley</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/Volley--%E9%98%9F%E5%88%97%E6%8E%A7%E5%88%B6/</loc>
-    <lastmod>2016-11-01T01:57:47.166Z</lastmod>
-    <data>
-        <display>
-        <title>Volley--队列控制</title>
-        <pubTime>2017-01-13T04:43:01.279Z</pubTime>
-        
-        <tag>网络框架#Volley</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/Volley%E6%B5%85%E8%AF%BB/</loc>
-    <lastmod>2016-10-30T14:40:46.838Z</lastmod>
-    <data>
-        <display>
-        <title>Volley浅读</title>
-        <pubTime>2017-01-13T04:43:01.235Z</pubTime>
-        
-        <tag>网络框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="android" url="http://cristianoro7.github.io/categories/android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</loc>
-    <lastmod>2016-10-12T13:57:13.401Z</lastmod>
-    <data>
-        <display>
-        <title>安卓开发艺术探索-View的工作原理（一）-笔记</title>
-        <pubTime>2017-01-13T04:43:01.259Z</pubTime>
-        
-        <tag>安卓开发艺术探索笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2016-10-12T13:55:55.833Z</lastmod>
-    <data>
-        <display>
-        <title>安卓开发艺术探索-View的事件体系-笔记</title>
-        <pubTime>2017-01-13T04:43:01.247Z</pubTime>
-        
-        <tag>安卓开发艺术探索笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cristianoro7.github.io/2017/01/13/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/</loc>
-    <lastmod>2016-10-11T09:09:16.074Z</lastmod>
-    <data>
-        <display>
-        <title>安卓开发艺术探索-自定义View的思想-笔记</title>
-        <pubTime>2017-01-13T04:43:01.251Z</pubTime>
-        
-        <tag>安卓开发艺术探索笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="booknote" url="http://cristianoro7.github.io/categories/booknote/"/>
           
         </display>
     </data>

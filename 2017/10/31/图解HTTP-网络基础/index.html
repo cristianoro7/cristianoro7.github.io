@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>图解HTTP-网络基础-笔记 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="计算机网络#HTTP" />
+    
+    <meta name="description" content="网络基础 TCP/IPTCP/IP协议族
+我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
+TCP/IP是互联网各类协议族的总称, 如图:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解HTTP-网络基础-笔记">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/10/31/图解HTTP-网络基础/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="网络基础 TCP/IPTCP/IP协议族
+我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
+TCP/IP是互联网各类协议族的总称, 如图:">
+<meta property="og:image" content="http://cristianoro7.github.io/uploads/图解HTTP/网络基础01.jpg">
+<meta property="og:updated_time" content="2017-10-31T08:58:19.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解HTTP-网络基础-笔记">
+<meta name="twitter:description" content="网络基础 TCP/IPTCP/IP协议族
+我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
+TCP/IP是互联网各类协议族的总称, 如图:">
+<meta name="twitter:image" content="http://cristianoro7.github.io/uploads/图解HTTP/网络基础01.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机网络/">计算机网络</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-图解HTTP-网络基础" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        图解HTTP-网络基础-笔记
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/10/31/图解HTTP-网络基础/" class="article-date">
+            <time datetime="2017-10-31T08:58:19.940Z" itemprop="datePublished">2017-10-31</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h4 id="网络基础-TCP-IP"><a href="#网络基础-TCP-IP" class="headerlink" title="网络基础 TCP/IP"></a>网络基础 TCP/IP</h4><h5 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h5><ul>
+<li>我们通常使用到的网络是在<strong>TCP/IP</strong>协议族的基础上运作的。而HTTP属于它内部的一个子集。</li>
+<li>TCP/IP是互联网各类协议族的总称, 如图:<br><img src="/uploads/图解HTTP/网络基础01.jpg" alt=""><a id="more"></a></li>
+<li>协议中存在各式各样的内容,从电缆的规格到 IP 地址的选定方法、寻找异地用户的方法、双方建立通信的顺序,以及 Web 页面显示需要处理的步骤,等等。像这样把互联网通信的相关协议集合起来的协议族就叫做TCP/IP协议</li>
+</ul>
+<h5 id="TCP-IP的分层管理"><a href="#TCP-IP的分层管理" class="headerlink" title="TCP/IP的分层管理"></a>TCP/IP的分层管理</h5><ul>
+<li>TCP/IP中一个重要的点就是分层设计。</li>
+<li>层次: 应用层,传输层,网路层,链路层</li>
+<li>分层设计的好处:<ul>
+<li>利于修改:这样不会因某些地方要修改而导致整个协议都得修改,只需要各层把借口规范好,需要改动的时候就在相应的层次改动</li>
+<li>各层只需完成自己的任务,无需关注其他层次。比如:应用层不需知道怎么传输和接收方在哪里</li>
+</ul>
+</li>
+<li><strong>TCP/IP协议族各层的作用</strong><ul>
+<li>应用层: 该层决定了想用户提供服务时的通信活动。TCP/IP协议族中预存了各类通用的应用服务,比如, FTP(File Transfer Protocol, 文件传输协议) 和 DNS (Domain Name System, 域名解析系统), HTTP协议处于应用层。</li>
+<li>传输层: 该层对上层应用层, 提供处于网络连接中的两台计算机之间的数据传输。传输层中有两个性质不同的协议:<strong>TCP(Transmission Control Protocol, 传输控制协议) 和 UDP(User Data Protocol, 用户数据报协议)</strong></li>
+<li>网络层(网路互连层): 该层用来处理在网络上流动的数据包, 数据包是在网络传输时的最小数据单位, 网络层规定了通过怎么样的路径到达对方的计算机,并把数据包发给对方</li>
+<li>链路层(有名:数据链路层, 网络接口层):用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC(Network Interface Card,网络适配器,即网卡),及光纤等物理可见部分(还包括连接器等一切传输媒介)。硬件上的范畴均在<br>链路层的作用范围之内。</li>
+</ul>
+</li>
+</ul>
+<h5 id="TCP-IP通信传输流"><a href="#TCP-IP通信传输流" class="headerlink" title="TCP/IP通信传输流"></a>TCP/IP通信传输流</h5><p><img src="/uploads/图解HTTP/网络基础02.jpg" alt=""></p>
+<ul>
+<li>从上图,我们可以清楚:使用TCP/IP协议进行网络通信时,发送端是从应用层往下走,接收端是往应用层上走</li>
+<li>我们用 HTTP 举例来说明,首先作为发送端的客户端在应用层(HTTP 协议)发出一个想看某个 Web 页面的 HTTP 请求。接着,为了传输方便,在传输层(TCP 协议)把从应用层处收到的数据(HTTP 请求报文)进行分割,并在各个报文上打上标记序号及端口号后转发给网络层。在网络层(IP 协议),增加作为通信目的地的 MAC地址后转发给链路层。这样一来,发往网络的通信请求就准备齐全了。接收端的服务器在链路层接收到数据,按序往上层发送,一直到应用层。当传输到应用层,才能算真正接收到由客户端发送过来的 HTTP请求。</li>
+</ul>
+<p><img src="/uploads/图解HTTP/网络基础03.jpg" alt=""></p>
+<ul>
+<li>发送端在层与层之间传输数据时,每经过一层时必定会被打上一个该层所属的首部信息。反之,接收端在层与层传输数据时,经过一层时会把对应的首部消去。</li>
+</ul>
+<h5 id="与HTTP关系密切的协议-TCP-IP-DNS"><a href="#与HTTP关系密切的协议-TCP-IP-DNS" class="headerlink" title="与HTTP关系密切的协议: TCP IP DNS"></a>与HTTP关系密切的协议: TCP IP DNS</h5><ul>
+<li>负责传输的IP协议:<br>1.按层次分,IP(Internet Protocol)网际协议位于网络层。<br>2.IP协议的作用是把各种数据包发送给对方,其中发送成功的;两个重要条件时:IP地址和MAC地址(Media Access Control Address)<br>3.MAC地址所指的是网卡地址,不可以改变,而IP地址则可以变换<br>4.在网络条通信中,双方同时位于同一个局域网内的情况是很少的,通常是是经过多台计算机和网络设备中转才能连接到对方。而在进行中转时,会利用下一站中转设备的 MAC地址来搜索下一个中转目标。这时,会采用 ARP 协议(AddressResolution Protocol)。ARP 是一种用以解析地址的协议,根据通信方的 IP 地址就可以反查出对应的 MAC 地址。<br>5.无论哪台计算机、哪台网络设备,它们都无法全面掌握互联网中的细节。</li>
+</ul>
+<p><img src="/uploads/图解HTTP/网络基础04.jpg" alt=""></p>
+<ul>
+<li>确保可靠性的TCP协议</li>
+</ul>
+<ol>
+<li>按层次分,TCP 位于传输层,提供可靠的字节流服务。所谓的字节流服务(Byte Stream Service)是指,为了方便传输,将大<br>块数据分割成以报文段(segment)为单位的数据包进行管理。而可靠的传输服务是指,能够把数据准确可靠地传给对方。一言以蔽之,TCP 协议为了更容易传送大数据才把数据分割,而且 TCP 协议能够确认数据最终是否送达到对方。</li>
+<li>TCP协议采用三次握手(three-way-handshaking)策略来保证数据能准确无误的送达</li>
+<li>握手过程中使用了 TCP 的标志(flag) —— SYN(synchronize) 和ACK(acknowledgement)。</li>
+<li>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后,回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后,发送端再回传一个带ACK标志的数据包,代表“握手”结束。若在握手过程中某个阶段莫名中断,TCP协议会再次以相同的顺序发送相同的数据包。</li>
+<li>除了上面的三次握手,TCP协议还有其他的协议来保证通信的可靠。</li>
+</ol>
+<p><img src="/uploads/图解HTTP/网络基础05.jpg" alt=""></p>
+<ul>
+<li>DNS:</li>
+</ul>
+<ol>
+<li>DNS 服务应运而生。DNS 协议提供通过域名查找 IP 地址,或逆向从 IP 地址反查域名的服务。</li>
+</ol>
+<p><img src="/uploads/图解HTTP/网络基础06.jpg" alt=""></p>
+<h5 id="各种协议与HTTP协议的关系"><a href="#各种协议与HTTP协议的关系" class="headerlink" title="各种协议与HTTP协议的关系"></a>各种协议与HTTP协议的关系</h5><p><img src="/uploads/图解HTTP/网络基础07.jpg" alt=""></p>
+<blockquote>
+<p>以上笔记来源于图解HTTP一书</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/10/31/图解HTTP-网络基础/" data-id="cj9fd4vj6002lqfcj9xiwvgnm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/31/图解HTTP-报文信息-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            图解HTTP-报文信息-笔记
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/31/AsyncTask源码浅析/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">AsyncTask源码浅析</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/10/31/图解HTTP-网络基础/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

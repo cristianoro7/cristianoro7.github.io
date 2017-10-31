@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>图解HTTP-确保Web安全的HTTPS-笔记 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="计算机网络#HTTP" />
+    
+    <meta name="description" content="HTTP存在的不足
+通信使用明文(不加密), 内容可能会被窃听
+不验证对方身份,因此有可能遭遇伪装
+无法证明报文的完整性,所以有可能遭到篡改
+
+通信使用明文可能会被窃听
+HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
+如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解HTTP-确保Web安全的HTTPS-笔记">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="HTTP存在的不足
+通信使用明文(不加密), 内容可能会被窃听
+不验证对方身份,因此有可能遭遇伪装
+无法证明报文的完整性,所以有可能遭到篡改
+
+通信使用明文可能会被窃听
+HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
+如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
+<meta property="og:image" content="http://cristianoro7.github.io/uploads/图解HTTP/确保Web安全的HTTPS01.jpg">
+<meta property="og:updated_time" content="2017-10-31T08:59:20.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解HTTP-确保Web安全的HTTPS-笔记">
+<meta name="twitter:description" content="HTTP存在的不足
+通信使用明文(不加密), 内容可能会被窃听
+不验证对方身份,因此有可能遭遇伪装
+无法证明报文的完整性,所以有可能遭到篡改
+
+通信使用明文可能会被窃听
+HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
+如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
+<meta name="twitter:image" content="http://cristianoro7.github.io/uploads/图解HTTP/确保Web安全的HTTPS01.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机网络/">计算机网络</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-确保Web安全的HTTPS" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        图解HTTP-确保Web安全的HTTPS-笔记
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/10/31/确保Web安全的HTTPS/" class="article-date">
+            <time datetime="2017-10-31T08:59:20.011Z" itemprop="datePublished">2017-10-31</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="HTTP存在的不足"><a href="#HTTP存在的不足" class="headerlink" title="HTTP存在的不足"></a>HTTP存在的不足</h3><ul>
+<li>通信使用明文(不加密), 内容可能会被窃听</li>
+<li>不验证对方身份,因此有可能遭遇伪装</li>
+<li>无法证明报文的完整性,所以有可能遭到篡改</li>
+</ul>
+<h4 id="通信使用明文可能会被窃听"><a href="#通信使用明文可能会被窃听" class="headerlink" title="通信使用明文可能会被窃听"></a>通信使用明文可能会被窃听</h4><ul>
+<li>HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.</li>
+<li>如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容</li>
+</ul>
+<a id="more"></a>
+<h4 id="不验证通信对方就有可能在遇到伪装"><a href="#不验证通信对方就有可能在遇到伪装" class="headerlink" title="不验证通信对方就有可能在遇到伪装"></a>不验证通信对方就有可能在遇到伪装</h4><ul>
+<li>HTTP 协议的实现本身非常简单,不论是谁发送过来的请求都会返回响应,因此不确认通信方,会存在以下各种隐患。<ul>
+<li>无法确定请求发送至目标的 Web 服务器是否是按真实意图返回响应的那台服务器。有可能是已伪装的 Web 服务器。</li>
+<li>无法确定响应返回到的客户端是否是按真实意图接收响应的那个客户端。有可能是已伪装的客户端。</li>
+<li>无法确定正在通信的对方是否具备访问权限。因为某些Web 服务器上保存着重要的信息,只想发给特定用户通信的权限。</li>
+<li>无法判定请求是来自何方、出自谁手。</li>
+<li>即使是无意义的请求也会照单全收。无法阻止海量请求下的 DoS 攻击(Denial of Service,拒绝服务攻击)。</li>
+</ul>
+</li>
+<li>查明对手的证书<ul>
+<li>虽然使用 HTTP 协议无法确定通信方,但如果使用 SSL 则可以。SSL 不仅提供加密处理,而且还使用了一种被称为证书的手段,可用于确定方。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
+<h4 id="无法证明报文完整性-可能已遭篡改"><a href="#无法证明报文完整性-可能已遭篡改" class="headerlink" title="无法证明报文完整性,可能已遭篡改"></a>无法证明报文完整性,可能已遭篡改</h4><h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+ 加密 + 认证 + 完整性保护=HTTPS"></a>HTTP+ 加密 + 认证 + 完整性保护=HTTPS</h3><h4 id="HTTPS-是身披-SSL-外壳的-HTTP"><a href="#HTTPS-是身披-SSL-外壳的-HTTP" class="headerlink" title="HTTPS 是身披 SSL 外壳的 HTTP"></a>HTTPS 是身披 SSL 外壳的 HTTP</h4><ul>
+<li>HTTPS 并非是应用层的一种新协议。只是 HTTP 通信接口部分用SSL(Secure Socket Layer)和 TLS(Transport Layer Security)协议代替而已。</li>
+<li>通常,HTTP 直接和 TCP 通信。当使用 SSL 时,则演变成先和 SSL 通信,再由 SSL 和 TCP 通信了。简言之,所谓 HTTPS,其实就是身披SSL 协议这层外壳的 HTTP。</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS02.jpg" alt=""></p>
+<h4 id="相互交换密钥的公开密钥加密技术"><a href="#相互交换密钥的公开密钥加密技术" class="headerlink" title="相互交换密钥的公开密钥加密技术"></a>相互交换密钥的公开密钥加密技术</h4><h5 id="共享密钥加密的困境"><a href="#共享密钥加密的困境" class="headerlink" title="共享密钥加密的困境"></a>共享密钥加密的困境</h5><ul>
+<li>加密和解密同用一个密钥的方式称为共享密钥加密(Common keycrypto system),也被叫做对称密钥加密。</li>
+<li>以共享密钥方式加密时必须将密钥也发给对方。可究竟怎样才能安全地转交?在互联网上转发密钥时,如果通信被监听那么密钥就可会落入攻击者之手,同时也就失去了加密的意<br>义。另外还得设法安全地保管接收到的密钥。</li>
+</ul>
+<h5 id="使用两把密钥的公开密钥加密"><a href="#使用两把密钥的公开密钥加密" class="headerlink" title="使用两把密钥的公开密钥加密"></a>使用两把密钥的公开密钥加密</h5><ul>
+<li>公开密钥加密使用一对非对称的密钥。一把叫做私有密钥(private key),另一把叫做公开密钥(public key)。顾名思义,私有密钥不能让其他任何人知道,而公开密钥则可以随意发<br>布,任何人都可以获得。</li>
+<li>使用公开密钥加密方式,发送密文的一方使用对方的公开密钥进行加密处理,对方收到被加密的信息后,再使用自己的私有密钥进行解密。利用这种方式,不需要发送用来解密的私有密钥,也<br>不必担心密钥被攻击者窃听而盗走。</li>
+</ul>
+<h5 id="HTTPS-采用混合加密机制"><a href="#HTTPS-采用混合加密机制" class="headerlink" title="HTTPS 采用混合加密机制"></a>HTTPS 采用混合加密机制</h5><ul>
+<li>HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密机制。</li>
+<li>采用混合加密的机制是因为公开密钥加密的速度慢</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS03.jpg" alt=""></p>
+<h4 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a>证明公开密钥正确性的证书</h4><ul>
+<li>公开密钥加密方式还是存在一些问题的。那就是无法证明公开密钥本身就是货真价实的公开密钥。</li>
+<li>为了解决这个问题,可以使用由数字证书认证机构(CA,Certificate Authority)和其相关机关颁发的公开密钥证书</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS04.jpg" alt=""></p>
+<h4 id="HTTPS-的安全通信机制"><a href="#HTTPS-的安全通信机制" class="headerlink" title="HTTPS 的安全通信机制"></a>HTTPS 的安全通信机制</h4><p><img src="/uploads/图解HTTP/确保Web安全的HTTPS05.jpg" alt=""></p>
+<ul>
+<li><p>步骤 1: 客户端通过发送 Client Hello 报文开始 SSL 通信。报文中包含客户端支持的 SSL 的指定版本、加密组件(Cipher Suite)列表(所使用的加密算法及密钥长度等)。</p>
+</li>
+<li><p>步骤 2: 服务器可进行 SSL 通信时,会以 Server Hello 报文作为应154答。和客户端一样,在报文中包含 SSL 版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。</p>
+</li>
+<li><p>步骤 3: 之后服务器发送 Certificate 报文。报文中包含公开密钥证书。</p>
+</li>
+<li><p>步骤 4: 最后服务器发送 Server Hello Done 报文通知客户端,最初阶段的 SSL 握手协商部分结束。</p>
+</li>
+<li><p>步骤 5: SSL 第一次握手结束之后,客户端以 Client Key Exchange 报文作为回应。报文中包含通信加密中使用的一种被称为 Pre-mastersecret 的随机密码串。该报文已用步骤 3 中的公开密钥进行加密。</p>
+</li>
+<li><p>步骤 6: 接着客户端继续发送 Change Cipher Spec 报文。该报文会提示服务器,在此报文之后的通信会采用 Pre-master secret 密钥加密。</p>
+</li>
+<li><p>步骤 7: 客户端发送 Finished 报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功,要以服务器是否能够正确解密该报文作为判定标准。</p>
+</li>
+<li><p>步骤 8: 服务器同样发送 Change Cipher Spec 报文。</p>
+</li>
+<li><p>步骤 9: 服务器同样发送 Finished 报文。</p>
+</li>
+<li><p>步骤 10: 服务器和客户端的 Finished 报文交换完毕之后,SSL 连接就算建立完成。当然,通信会受到 SSL 的保护。从此处开始进行应用层协议的通信,即发送 HTTP 请求。</p>
+</li>
+<li><p>步骤 11: 应用层协议通信,即发送 HTTP 响应。</p>
+</li>
+<li><p>步骤 12: 最后由客户端断开连接。断开连接时,发送 close_notify 报文。上图做了一些省略,这步之后再发送 TCP FIN 报文来关闭与 TCP的通信。</p>
+</li>
+</ul>
+<h4 id="HTTPS存在的不足"><a href="#HTTPS存在的不足" class="headerlink" title="HTTPS存在的不足"></a>HTTPS存在的不足</h4><ul>
+<li>HTTPS使用了SSL,因此速度会变慢</li>
+</ul>
+<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS06.jpg" alt=""></p>
+<ul>
+<li>SSL 的慢分两种。一种是指通信慢。另一种是指由于大量消耗CPU 及内存等资源,导致处理速度变慢。<ul>
+<li>和使用 HTTP 相比,网络负载可能会变慢 2 到 100 倍。除去和TCP 连接、发送 HTTP 请求 • 响应以外,还必须进行 SSL 通信,因此整体上处理通信量不可避免会增加。</li>
+</ul>
+</li>
+<li>另一点是 SSL 必须进行加密处理。在服务器和客户端都需要进行加密和解密的运算处理。因此从结果上讲,比起 HTTP 会更多地消耗服务器和客户端的硬件资源,导致负载增强。</li>
+</ul>
+<blockquote>
+<p>以上笔记来源于图解HTTP一书</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/" data-id="cj9fd4vlj004bqfcjq5018kmh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            深入理解Java集合框架-ArrayList
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/31/确认访问用户的身份-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">图解HTTP-确认访问用户的身份-笔记</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

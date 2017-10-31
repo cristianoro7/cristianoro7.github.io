@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>ReentrantLock和ReentrantReadWriteLock详解 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java并发包#Lock" />
+    
+    <meta name="description" content="ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReentrantLock和ReentrantReadWriteLock详解">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg">
+<meta property="og:updated_time" content="2017-10-31T09:09:28.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReentrantLock和ReentrantReadWriteLock详解">
+<meta name="twitter:description" content="ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java/">Java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-ReentrantLock和ReentrantReadWriteLock详解" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        ReentrantLock和ReentrantReadWriteLock详解
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="article-date">
+            <time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg" alt=""></p>
+<p><code>ReentrantLock</code>和<code>ReentrantReadWriteLock</code>是<code>Java</code>并发包中提供的锁, 他们都属于可重入锁.但是<code>ReentrantLock</code>是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而<code>ReentrantReadWriteLock</code>是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.</p>
+<p>他们的一个共同点是: 都支持公平和非公平性的获取锁.</p>
+<blockquote>
+<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a><code>ReentrantLock</code></h2></blockquote>
+<p>前面分析过<code>AQS</code>, 它是并发包中的锁的基本骨架. 所以<code>ReentrantLock</code>内部也是基于<code>AQS</code>实现的. <code>ReentrantLock</code>内部将获取锁和释放锁的方法都代理给其内部类: <code>Sync</code>, 而<code>Sync</code>是继承<code>AQS</code>的, 为了支持公平性和非公平性的锁, <code>Sync</code>有两个子类, 分别为<code>NonfairSync</code>和<code>FairSync</code>, 他们都重写了<code>tryAcquire(int)</code>方法来实现自己公平和非公平获取锁的逻辑, 由于释放锁的逻辑都一样, 因此<code>tryRelease(int)</code>由<code>Sync</code>重写.</p>
+<p>既然<code>ReentrantLock</code>基于<code>AQS</code>实现的, 所以它支持三种方式获取锁:</p>
+<ul>
+<li><p><code>lock()</code>: 不支持中断的获取锁</p>
+</li>
+<li><p><code>lockInterruptibly()</code>: 响应中断地获取锁</p>
+</li>
+<li><p><code>tryLock(long timeout, TimeUnit unit)</code>: 响应中断并且支持超时获取锁.</p>
+</li>
+</ul>
+<p>由于三种方式在<code>AQS</code>中已经分析过, 所以这里只分析<code>lock()</code>. 主要分析公平性和非公平性地获取锁的逻辑</p>
+<blockquote>
+<h3 id="NonfairSync-非公平锁"><a href="#NonfairSync-非公平锁" class="headerlink" title="NonfairSync: 非公平锁"></a>NonfairSync: 非公平锁</h3></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">nonfairTryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</div><div class="line">    <span class="keyword">int</span> c = getState();</div><div class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, acquires)) &#123;</div><div class="line">            setExclusiveOwnerThread(current);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</div><div class="line">        <span class="keyword">int</span> nextc = c + acquires;</div><div class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>) <span class="comment">// overflow</span></div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</div><div class="line">        setState(nextc);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是非公平性获取锁的逻辑: 如果同步状态为0的话, 证明锁还没被获取, 所以利用<code>CAS</code>来获取同步状态, 成功的话, 设置当前线程持有锁. 如果同步状态不为0的话, 判断获取锁的线程是否为当前线程, 如果是的话, 更新同步状态, 从这里也可以看出来<code>ReentrantLock</code>是可重入锁.</p>
+<blockquote>
+<h3 id="FairSync-公平锁"><a href="#FairSync-公平锁" class="headerlink" title="FairSync: 公平锁"></a>FairSync: 公平锁</h3></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</div><div class="line">    <span class="keyword">int</span> c = getState();</div><div class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;</div><div class="line">            compareAndSetState(<span class="number">0</span>, acquires)) &#123;</div><div class="line">            setExclusiveOwnerThread(current);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</div><div class="line">        <span class="keyword">int</span> nextc = c + acquires;</div><div class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</div><div class="line">        setState(nextc);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>公平和非公平的区别是: 公平性意味着哪个线程等待的时间更长, 就应该首先让它获取锁, 也就是获取锁的顺序必须是<code>FIFO</code>. 所以每次获取同步状态时, 都会调用<code>hasQueuedPredecessors()</code>判断当前节点是不是有前驱节点, 如果有的话, 证明已经有线程在等待, 因此不获取同步状态, 这样就实现了公平性地获取锁.<br>至于其他逻辑和前面的大致一样.</p>
+<blockquote>
+<h3 id="tryRelease-int-releases"><a href="#tryRelease-int-releases" class="headerlink" title="tryRelease(int releases)"></a>tryRelease(int releases)</h3></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> c = getState() - releases;</div><div class="line">    <span class="keyword">if</span> (Thread.currentThread() != getExclusiveOwnerThread())</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException();</div><div class="line">    <span class="keyword">boolean</span> free = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">        free = <span class="keyword">true</span>;</div><div class="line">        setExclusiveOwnerThread(<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    setState(c);</div><div class="line">    <span class="keyword">return</span> free;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>公平锁和非公平锁的释放锁的逻辑都是一样的, 由于<code>ReentrantLock</code>是可重入的, 因此只有当同步状态为0的时候才需要将当前持有锁的线程设置为<code>null</code>, 也就是释放锁.</p>
+<blockquote>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3></blockquote>
+<p><code>ReentrantLock</code>内部默认是非公平锁, 因为非公平锁的吞吐量会比公平锁高, 这是由于非公平锁每次获取锁的时候, 不需要理会当前节点是否有前驱节点, 也就是前面有线程在等待, 只要被唤醒了, 并且能够获取同步状态的话, 就可以获取. 而公平锁每次获取锁时, 当前节点必须是头节点, 也就是它的前面没有线程在等待. 在这种情况下, 如果非头结点的线程被唤醒的话或者是刚刚释放锁的线程又立刻获取锁, 是不能获取锁的, 只能再进行多一次调度. 因此, 非公平锁的吞吐量会比公平锁的高.</p>
+<blockquote>
+<h2 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h2></blockquote>
+<p>与<code>ReentrantLock</code>不同,  <code>ReentrantReadWriteLock</code>的伸缩性要强一些, 因为它将读写锁分离. 在进行读操作的时候, 多个线程是可以同时获取锁的, 这样能更大地提高并发度. 下面是<code>ReentrantReadWriteLock</code>的特性</p>
+<ul>
+<li><p>公平性: 与<code>ReentrantLock</code>一样, <code>ReentrantReadWriteLock</code>内部也是支持公平性和非公平性锁, 默认是非公平性的锁.</p>
+</li>
+<li><p>可重入: <code>ReentrantReadWriteLock</code>支持一个线程多次获取锁.</p>
+</li>
+<li><p>读写分离: <code>ReentrantReadWriteLock</code>内部维护两个锁, 一个是读锁, 另外一个是写锁. 在读多写少的情况下, <code>ReentrantReadWriteLock</code>能发挥更大的并发度.  因为<code>ReentrantReadWriteLock</code>支持多个读线程同时获取锁. <code>ReentrantReadWriteLock</code>的读写规则: 当一个写线程获得锁后, 其他线程不能获取锁. 当读线程获得锁后, 其他的读线程可以获得锁, 但是写线程不能.</p>
+</li>
+<li><p>锁降级: 当一个线程持有写锁后, 再获取读锁, 然后释放写锁, 这个过程称为一个锁的降级. <code>ReentrantReadWriteLock</code>不支持锁的升级, 因为锁的升级有可能带来竞争条件的问题.</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="读写同步状态设计"><a href="#读写同步状态设计" class="headerlink" title="读写同步状态设计"></a>读写同步状态设计</h3></blockquote>
+<p><code>ReentrantReadWriteLock</code>内部也是基于<code>AQS</code>实现的, 但是<code>AQS</code>内只有一个<code>int</code>类型的变量, 那么<code>ReentrantReadWriteLock</code>怎么表示两个同步状态呢? 答案是通过位运算来处理.</p>
+<p><code>int</code>类型有32位, <code>ReentrantReadWriteLock</code>将高16位作为读状态, 低16位作为写状态. 这样每次通过一定的位运算来获取高16位或者低16位.</p>
+<blockquote>
+<h3 id="WriteLock"><a href="#WriteLock" class="headerlink" title="WriteLock"></a>WriteLock</h3></blockquote>
+<p>写锁是一种互斥锁, 同一个时刻锁只能被一个线程获取.</p>
+<blockquote>
+<h4 id="非公平性写锁"><a href="#非公平性写锁" class="headerlink" title="非公平性写锁"></a>非公平性写锁</h4></blockquote>
+<p>跟<code>ReentrantLock</code>一样, <code>ReentrantReadWriteLock</code>内部支持三种类型的获取, 因此下面只分析一种.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</div><div class="line">    sync.acquire(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>lock()</code>方法中, 会调用<code>AQS</code>的<code>acquire(int)</code>, 在<code>acquire(int)</code>中又会回调子类重写的模板方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     * Walkthrough:</div><div class="line">     * 1. If read count nonzero or write count nonzero</div><div class="line">     *    and owner is a different thread, fail.</div><div class="line">     * 2. If count would saturate, fail. (This can only</div><div class="line">     *    happen if count is already nonzero.)</div><div class="line">     * 3. Otherwise, this thread is eligible for lock if</div><div class="line">     *    it is either a reentrant acquire or</div><div class="line">     *    queue policy allows it. If so, update state</div><div class="line">     *    and set owner.</div><div class="line">     */</div><div class="line">    Thread current = Thread.currentThread();</div><div class="line">    <span class="keyword">int</span> c = getState();</div><div class="line">    <span class="keyword">int</span> w = exclusiveCount(c); <span class="comment">//获取写的同步状态</span></div><div class="line">    <span class="keyword">if</span> (c != <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">// (Note: if c != 0 and w == 0 then shared count != 0)</span></div><div class="line">        <span class="keyword">if</span> (w == <span class="number">0</span> || current != getExclusiveOwnerThread())</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span> (w + exclusiveCount(acquires) &gt; MAX_COUNT)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</div><div class="line">        <span class="comment">// Reentrant acquire</span></div><div class="line">        setState(c + acquires);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (writerShouldBlock() ||</div><div class="line">        !compareAndSetState(c, c + acquires))</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    setExclusiveOwnerThread(current);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果<code>c != 0</code>且 <code>w(写状态)</code>为0的话, 证明读状态不为0, 说明此时获得锁的是读线程, 所以会直接返回<code>false</code>来表示获取失败. 如果<code>w != 0</code>的话, 说明此时写线程拥有锁, 此时如果拥有锁是当前线程的话, 会更新同步状态来支持可重入的特性, 可重入的次数为65535.</p>
+<p>如果<code>c == 0</code>的话, 说明同步状态还没被获取, 此时应该会先调用<code>writerShouldBlock()</code>, 在非公平的写锁的实现为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">writerShouldBlock</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// writers can always barge</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非公平性的写锁默认是返回<code>false</code>, 接着利用<code>CAS</code>更新同步状态, 如果成功的话, 设置当前线程为执行线程, 否则的话返回<code>false</code>, 进入<code>AQS</code>中排队.</p>
+<blockquote>
+<h4 id="非公平性写锁-1"><a href="#非公平性写锁-1" class="headerlink" title="非公平性写锁"></a>非公平性写锁</h4></blockquote>
+<p>公平锁和非公平锁获取锁的基本一样, 不一样的话<code>writerShouldBlock()</code>的实现不一样.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">hasQueuedPredecessors</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// The correctness of this depends on head being initialized</span></div><div class="line">    <span class="comment">// before tail and on head.next being accurate if the current</span></div><div class="line">    <span class="comment">// thread is first in queue.</span></div><div class="line">    Node t = tail; <span class="comment">// Read fields in reverse initialization order</span></div><div class="line">    Node h = head;</div><div class="line">    Node s;</div><div class="line">    <span class="keyword">return</span> h != t &amp;&amp;</div><div class="line">        ((s = h.next) == <span class="keyword">null</span> || s.thread != Thread.currentThread());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>公平锁每次获取锁时, 为了保证公平性, 都需要看看同步队列中是否有比当前线程等待时间更长的线程, 如果有的话, 就不能获取.</p>
+<blockquote>
+<h4 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h4></blockquote>
+<p><code>ReentrantReadWriteLock</code>释放锁的逻辑跟<code>ReentrantLock</code>一样.</p>
+<blockquote>
+<h3 id="读锁"><a href="#读锁" class="headerlink" title="读锁"></a>读锁</h3></blockquote>
+<p>读锁是一种共享锁, 多个读线程可以同时获取锁. 但是当读线程持有锁时, 写线程是不能持有锁的.</p>
+<blockquote>
+<p>非公平读锁</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tryAcquireShared</span><span class="params">(<span class="keyword">int</span> unused)</span> </span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     * Walkthrough:</div><div class="line">     * 1. If write lock held by another thread, fail.</div><div class="line">     * 2. Otherwise, this thread is eligible for</div><div class="line">     *    lock wrt state, so ask if it should block</div><div class="line">     *    because of queue policy. If not, try</div><div class="line">     *    to grant by CASing state and updating count.</div><div class="line">     *    Note that step does not check for reentrant</div><div class="line">     *    acquires, which is postponed to full version</div><div class="line">     *    to avoid having to check hold count in</div><div class="line">     *    the more typical non-reentrant case.</div><div class="line">     * 3. If step 2 fails either because thread</div><div class="line">     *    apparently not eligible or CAS fails or count</div><div class="line">     *    saturated, chain to version with full retry loop.</div><div class="line">     */</div><div class="line">    Thread current = Thread.currentThread();</div><div class="line">    <span class="keyword">int</span> c = getState();</div><div class="line">    <span class="keyword">if</span> (exclusiveCount(c) != <span class="number">0</span> &amp;&amp;</div><div class="line">        getExclusiveOwnerThread() != current)</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> r = sharedCount(c);</div><div class="line">    <span class="keyword">if</span> (!readerShouldBlock() &amp;&amp;</div><div class="line">        r &lt; MAX_COUNT &amp;&amp;</div><div class="line">        compareAndSetState(c, c + SHARED_UNIT)) &#123;</div><div class="line">        <span class="keyword">if</span> (r == <span class="number">0</span>) &#123;</div><div class="line">            firstReader = current;</div><div class="line">            firstReaderHoldCount = <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (firstReader == current) &#123;</div><div class="line">            firstReaderHoldCount++;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            HoldCounter rh = cachedHoldCounter;</div><div class="line">            <span class="keyword">if</span> (rh == <span class="keyword">null</span> || rh.tid != getThreadId(current))</div><div class="line">                cachedHoldCounter = rh = readHolds.get();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (rh.count == <span class="number">0</span>)</div><div class="line">                readHolds.set(rh);</div><div class="line">            rh.count++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> fullTryAcquireShared(current);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先获取写状态, 如果写状态为不0且持有写锁的线程是当前执行的线程, 说明这是一个锁降级的操作, 因此允许继续获取同步状态.</p>
+<p>如果写状态为0且<code>getExclusiveOwnerThread() != current</code>为<code>true</code>的话, 表示持有写锁的不是当前执行的线程, 所以返回-1表示失败.</p>
+<p>在尝试获取同步状态前, 会先调用<code>readerShouldBlock()</code>判断是否应该阻塞读线程, 这个方法在公平和非公平锁的实现不一样.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">readerShouldBlock</span><span class="params">()</span> </span>&#123;</div><div class="line">     <span class="comment">/* As a heuristic to avoid indefinite writer starvation,</span></div><div class="line">      * block if the thread that momentarily appears to be head</div><div class="line">      * of queue, if one exists, is a waiting writer.  This is</div><div class="line">      * only a probabilistic effect since a new reader will not</div><div class="line">      * block if there is a waiting writer behind other enabled</div><div class="line">      * readers that have not yet drained from the queue.</div><div class="line">      */</div><div class="line">     <span class="keyword">return</span> apparentlyFirstQueuedIsExclusive();</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">apparentlyFirstQueuedIsExclusive</span><span class="params">()</span> </span>&#123;</div><div class="line">     Node h, s;</div><div class="line">     <span class="keyword">return</span> (h = head) != <span class="keyword">null</span> &amp;&amp;</div><div class="line">         (s = h.next)  != <span class="keyword">null</span> &amp;&amp;</div><div class="line">         !s.isShared()         &amp;&amp;</div><div class="line">         s.thread != <span class="keyword">null</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>在非公平锁的实现中, 只要同步状态队列中有写线程正在等待的话, 就应该阻塞读线程, 不让其获取同步状态. 这样做是为了防止写线程出现饥饿现象.</p>
+<blockquote>
+<p>公平读锁</p>
+</blockquote>
+<p>公平读锁和非公平读锁的实现也是基本一样, 不一样的就是<code>readerShouldBlock()</code>实现不同.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">hasQueuedPredecessors</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// The correctness of this depends on head being initialized</span></div><div class="line">    <span class="comment">// before tail and on head.next being accurate if the current</span></div><div class="line">    <span class="comment">// thread is first in queue.</span></div><div class="line">    Node t = tail; <span class="comment">// Read fields in reverse initialization order</span></div><div class="line">    Node h = head;</div><div class="line">    Node s;</div><div class="line">    <span class="keyword">return</span> h != t &amp;&amp;</div><div class="line">        ((s = h.next) == <span class="keyword">null</span> || s.thread != Thread.currentThread());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了保持公平性, 每次都是让同步队列中的队头线程获取锁, 因为队头线程等待的时间最长.</p>
+<blockquote>
+<p>释放读锁</p>
+</blockquote>
+<p>忽略一些其他的操作的话, 读锁的释放逻辑跟写锁的差不多, 都是<code>CAS</code>来更新同步状态, 不同的是, 读锁是共享锁, 必须通过循环<code>CAS</code>来保证线程安全.</p>
+<blockquote>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3></blockquote>
+<p><code>ReentrantReadWriteLock</code>内部维护两个锁, 一个是写锁, 另外一个是读锁. 通过将读写锁分离, 在读多写少的情况下, 更够提高程序的并发程度, 因此, <code>ReentrantReadWriteLock</code>的伸缩性要好于<code>ReentrantLock</code>. 在读多写少的情况下, 应该使用<code>ReentrantReadWriteLock</code>更为合适.</p>
+<p><code>ReentrantReadWriteLock</code>只支持锁降级, 不支持锁升级. 因为锁升级有可能会出现条件竞争. 由于读锁是可以被多个线程持有的, 如果进行锁升级的话, 当写线程改变共享变量的状态时, 其他读线程有可能感知不到.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" data-id="cj9fd4vg3000pqfcj3a77h0d4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/31/J.U.C中的并发工具类/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            J.U.C中的并发工具类
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">AbstractQueuedSynchronizer中的ConditionObject剖析</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

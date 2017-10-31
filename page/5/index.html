@@ -64,12 +64,8 @@
                                     <a class="main-nav-list-link" href="/">主页</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java并发包/">Java并发包</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
                                     
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
-                                </li>
-                            
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
@@ -146,17 +142,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
+        <a href="/2017/10/31/CustomView总结/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-LinkHashMap/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/CustomView总结/">0</span>
     
 </span>
 
@@ -167,23 +163,26 @@
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:24:34.505Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:55:52.274Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
+        <a href="/2017/10/31/CustomView总结/">CustomView总结</a>
         </h1>
     
 
         <p class="article-excerpt">
-            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
+            
 
-UML
 
-从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
+LayoutParams认知
+Q: 什么是LayoutParams? 它跟view的关系是什么?
+什么是LayoutParams?
+我们在XML布局中定义的layout_xx属性,最终都会以Java代码的形式展现出来, 而LayoutParams就是这些layout_xx属性在Java层的映射, 也就是说LayoutParams是view在xml布局中layout_xx的属性容器.
+可见, 
         </p>
     </div>
 </article>
@@ -196,17 +195,17 @@ UML
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-set家族/" class="thumbnail">
+        <a href="/2017/10/31/Dagger2目录/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/dagger2/startdagger2.jpeg)" alt="重拾Dagger2" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-set家族/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Dagger2目录/">0</span>
     
 </span>
 
@@ -217,23 +216,20 @@ UML
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:24:33.409Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:55:27.258Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
+        <a href="/2017/10/31/Dagger2目录/">重拾Dagger2</a>
         </h1>
     
 
         <p class="article-excerpt">
-            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
-
-UML
-
-Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
+            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
+Dagger2是什么?Dagger2是之前由Square公
         </p>
     </div>
 </article>
@@ -250,17 +246,17 @@ Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应Abstract
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-TreeMap/" class="thumbnail">
+        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-TreeMap/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
     
 </span>
 
@@ -271,23 +267,20 @@ Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应Abstract
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:24:32.353Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:55:12.582Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
+        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
         </h1>
     
 
         <p class="article-excerpt">
-            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
-
-UML
-
-跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
         </p>
     </div>
 </article>
@@ -300,17 +293,17 @@ UML
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
+        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/dagger2/understanddagger2.jpg)" alt="重拾Dagger2-理解Dagger2" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-理解Dagger2/">0</span>
     
 </span>
 
@@ -321,24 +314,23 @@ UML
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:24:26.585Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:55:06.934Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a>
+        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/">重拾Dagger2-理解Dagger2</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-WeakHashMap
-WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key是弱引用类型, WeakHashMap内部的Key是会被自动回收的. 另外需要关注的是, WeakHashMap并没有向HashMap那样, 在1.8做了优化.
-
-弱引用Key
-123456789101112131415161718192021222324252627282
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要依赖的
         </p>
     </div>
 </article>
@@ -355,17 +347,17 @@ WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key�
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-LinkedList/" class="thumbnail">
+        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/dagger2/dagger2.jpeg)" alt="重拾Dagger2-使用Dagger2" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-LinkedList/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-使用Dagger2/">0</span>
     
 </span>
 
@@ -376,25 +368,28 @@ WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key�
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:24:03.801Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:55:00.434Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
+        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/">重拾Dagger2-使用Dagger2</a>
         </h1>
     
 
         <p class="article-excerpt">
-            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
+            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
 
-UML
+Inject
+Provides
+Module
+Component
+Qualifiers
+Scope
 
-我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
-
-LinkedList继承AbstractS
+InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当
         </p>
     </div>
 </article>
@@ -407,17 +402,17 @@ LinkedList继承AbstractS
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/深入理解Java集合框架-ArrayList/" class="thumbnail">
+        <a href="/2017/10/31/Picasso中值得学习的技巧/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-ArrayList" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-ArrayList/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso中值得学习的技巧/">0</span>
     
 </span>
 
@@ -428,22 +423,25 @@ LinkedList继承AbstractS
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
+            <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-09-29T15:23:54.481Z" itemprop="datePublished">2017-09-29</time></div>
+            <div class="date"><time datetime="2017-10-31T08:54:25.154Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-ArrayList/">深入理解Java集合框架-ArrayList</a>
+        <a href="/2017/10/31/Picasso中值得学习的技巧/">Picasso中值得学习的技巧</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-UML
+            Picasso中的线程池
+Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
 
-从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cl
+分析:
+首先在Picasso中,定义了一个优先级枚举类型:
+
+12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   */  public enum Priority &#123;    LOW,    NORMAL,    HIGH  &#125;
         </p>
     </div>
 </article>
@@ -492,7 +490,27 @@ UML
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
@@ -503,16 +521,16 @@ UML
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
-                            <p class="item-date"><time datetime="2017-10-29T08:28:09.149Z" itemprop="datePublished">2017-10-29</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
@@ -523,16 +541,16 @@ UML
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-24T12:36:29.470Z" itemprop="datePublished">2017-10-24</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/24/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
@@ -543,19 +561,19 @@ UML
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/24/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-24T06:57:02.028Z" itemprop="datePublished">2017-10-24</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/05/CustomView总结/" class="thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
     
 </a>
@@ -563,29 +581,9 @@ UML
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
-                            <p class="item-title"><a href="/2017/10/05/CustomView总结/" class="title">CustomView总结</a></p>
-                            <p class="item-date"><time datetime="2017-10-05T15:16:34.134Z" itemprop="datePublished">2017-10-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/01/计算机网络-运输层/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/10/01/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
-                            <p class="item-date"><time datetime="2017-10-01T08:03:05.601Z" itemprop="datePublished">2017-10-01</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
@@ -598,7 +596,7 @@ UML
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java并发包/">Java并发包</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -608,7 +606,7 @@ UML
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -618,7 +616,7 @@ UML
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -628,7 +626,7 @@ UML
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
         </div>
     </div>
 

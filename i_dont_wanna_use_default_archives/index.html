@@ -64,12 +64,8 @@
                                     <a class="main-nav-list-link" href="/">主页</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Dagger2/">Dagger2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JVM/">JVM</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java并发包/">Java并发包</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java集合框架/">Java集合框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/booknote/">booknote</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/java/">java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/自定义View/">自定义View</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
                                     
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
-                                </li>
-                            
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
@@ -146,17 +142,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+        <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/J.U.C中的并发工具类/">0</span>
     
 </span>
 
@@ -167,21 +163,23 @@
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java并发包/">Java并发包</a>
+            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-29T08:28:09.149Z" itemprop="datePublished">2017-10-29</time></div>
+            <div class="date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/">ReentrantLock和ReentrantReadWriteLock详解</a>
+        <a href="/2017/10/31/J.U.C中的并发工具类/">J.U.C中的并发工具类</a>
         </h1>
     
 
         <p class="article-excerpt">
             
-ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
-他们的一个共同点是: 都支持公平和
+在Java的J.U.C包中提供了几个并发编程中非常有用工具类, 例如: Semaphore, CountDownLatch和CyclicBarrier. 这次准备来介绍这三个工具类.
+
+Semaphore
+Semaphore中文意思为: 信号量. 它主要用来维护一组有限的资源. 比如数据库连接, Socket连接. 信号量的使用方式很简单, 在构造函数中, 传入你需要维护的有限资源的数量, 每次
         </p>
     </div>
 </article>
@@ -194,17 +192,17 @@ ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">0</span>
     
 </span>
 
@@ -215,20 +213,21 @@ ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java并发包/">Java并发包</a>
+            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-24T12:36:29.470Z" itemprop="datePublished">2017-10-24</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/">AbstractQueuedSynchronizer中的ConditionObject剖析</a>
+        <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/">ReentrantLock和ReentrantReadWriteLock详解</a>
         </h1>
     
 
         <p class="article-excerpt">
-            AbstractQueuedSynchronizer中的ConditionObject剖析
-在多线程环境中, 有时候, 一个线程的执行是需要等待一个条件发生后才能执行的. 在经典的生产者和消费者模式中, 如果缓冲区满后, 生产者是不能向缓冲区投放item的, 它需要等待一个条件: 缓冲区不为满的状态. 同理, 如果缓冲区为空时, 消费者是不能消费item的, 它需要等待一个条件: 缓冲区不为空. 
+            
+ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都属于可重入锁.但是ReentrantLock是一种悲观锁, 它总是假设竞争条件总是会发生, 所以它同一时刻只能有一个线程获得锁, 而ReentrantReadWriteLock是属于乐观锁, 它假设竞争条件并不会经常发生, 所以同一时刻能让多个线程执行.
+他们的一个共同点是: 都支持公平和
         </p>
     </div>
 </article>
@@ -245,17 +244,17 @@ ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/24/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/24/AbstractQueuedSynchronizer剖析/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">0</span>
     
 </span>
 
@@ -266,21 +265,20 @@ ReentrantLock和ReentrantReadWriteLock是Java并发包中提供的锁, 他们都
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java并发包/">Java并发包</a>
+            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-24T06:57:02.028Z" itemprop="datePublished">2017-10-24</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/24/AbstractQueuedSynchronizer剖析/">AbstractQueuedSynchronizer剖析</a>
+        <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/">AbstractQueuedSynchronizer中的ConditionObject剖析</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS)前, 我们先来看看一个不安全的锁, 然后引出构建安全锁需要处理哪些情况.
-123456789101112131415161718typedef struct lock_t &#123;    int flag;&#125; lock_t;void init(lock_
+            AbstractQueuedSynchronizer中的ConditionObject剖析
+在多线程环境中, 有时候, 一个线程的执行是需要等待一个条件发生后才能执行的. 在经典的生产者和消费者模式中, 如果缓冲区满后, 生产者是不能向缓冲区投放item的, 它需要等待一个条件: 缓冲区不为满的状态. 同理, 如果缓冲区为空时, 消费者是不能消费item的, 它需要等待一个条件: 缓冲区不为空. 
         </p>
     </div>
 </article>
@@ -293,17 +291,17 @@ AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/05/CustomView总结/" class="thumbnail">
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/05/CustomView总结/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AbstractQueuedSynchronizer剖析/">0</span>
     
 </span>
 
@@ -314,14 +312,1181 @@ AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/自定义View/">自定义View</a>
+            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-05T15:16:34.134Z" itemprop="datePublished">2017-10-05</time></div>
+            <div class="date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/05/CustomView总结/">CustomView总结</a>
+        <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/">AbstractQueuedSynchronizer剖析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+AbstractQueuedSynchronizer剖析在介绍AbstractQueuedSynchronizer(下面称AQS)前, 我们先来看看一个不安全的锁, 然后引出构建安全锁需要处理哪些情况.
+123456789101112131415161718typedef struct lock_t &#123;    int flag;&#125; lock_t;void init(lock_
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/java基础/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/java基础/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/java基础/">java基础</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            字符串使用+连接字符串
+使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
+
+StringBuilder
+该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
+
+StringBuffer
+StringBuilder可以保证线程安全，但是也因此效率变得低
+
+总结
+如果只需要简单的拼接字符串的话，可以直接使用+号拼接
+如果需要频繁拼接而且无需考虑线程安全的，可以使用StringBuilder
+如果需要频繁拼接但要考虑到线程安全的话，可以使用StringBuffer
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/图解HTTP-简单的HTTP协议-笔记/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/简单的HTTP协议01.jpg)" alt="图解HTTP-简单的HTTP协议-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/图解HTTP-简单的HTTP协议-笔记/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:06:30.759Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/图解HTTP-简单的HTTP协议-笔记/">图解HTTP-简单的HTTP协议-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            通过请求和响应来交换信息
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/图解HTTP-返回结果的状态码-笔记/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:04:50.769Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/图解HTTP-返回结果的状态码-笔记/">图解HTTP-返回结果的状态码-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务器错误状态码)    服务器处理请求出错
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/与HTTP协议的Web服务器/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg)" alt="图解HTTP-与HTTP协议的Web服务器-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/与HTTP协议的Web服务器/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:03:42.347Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/与HTTP协议的Web服务器/">图解HTTP-与HTTP协议的Web服务器-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            与HTTP协作的Web服务器通信数据转发程序:代理、网关、隧道
+在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作
+代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端
+网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉,自己的通信目标是一个网关。
+隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。
+
+代理
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/java垃圾回收器/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/垃圾回收.jpeg)" alt="Java垃圾回收器" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/java垃圾回收器/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:02:46.340Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/java垃圾回收器/">Java垃圾回收器</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            垃圾收集器目录
+判定对象存活
+引用计数法
+可达性分析算法
+再谈引用
+强引用
+软引用
+弱引用
+虚引用
+
+
+生存还是死亡
+回收方法区
+
+
+垃圾收集算法
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+
+HotSpot的算法实现
+枚举根节点
+安全点
+安全区域
+
+
+垃圾收集器
+Serial收集器
+ParNew收集器
+Parallel收集器
+Serial Old 收集器
+Parallel Old 
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Java内存分配与回收策略/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="Java内存分配与回收策略" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Java内存分配与回收策略/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:02:36.800Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Java内存分配与回收策略/">Java内存分配与回收策略</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            内存分配与回收策略目录
+对象优先在Eden分配
+大对象直接进入老年代
+长期存活对象将进入老年代
+动态对象年龄判定
+空间分配担保
+
+对象优先在Eden分配
+大多数情况下, 对象主要分配在新生代的Eden区上.
+当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
+
+大对象直接进入老年代
+大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及数组.
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Java内存区域/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/jvm-1.jpeg)" alt="Java内存区域" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Java内存区域/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:02:31.104Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Java内存区域/">Java内存区域</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Java内存区域目录
+运行时数据区
+程序计数器
+Java虚拟机栈
+本地方法栈
+Java堆
+方法区
+运行时常量池
+
+
+HotSpot虚拟机对象探秘
+对象的创建
+对象的内存布局
+对象的访问定位
+
+
+
+
+运行时数据区
+程序计数器
+程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Class类文件结构/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="类文件结构" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Class类文件结构/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:01:55.505Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Class类文件结构/">类文件结构</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            类文件结构
+目录
+
+Class类文件结构
+特殊字符串概念
+魔数与Class文件的版本
+常量池
+访问标志
+类索引,父类索引与接口索引集合
+字段表集合
+方法表集合
+属性表集合
+
+
+
+
+类文件结构
+Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-set家族/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-set家族/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:01:09.713Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
+
+UML
+
+Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:01:04.877Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+WeakHashMap
+WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key是弱引用类型, WeakHashMap内部的Key是会被自动回收的. 另外需要关注的是, WeakHashMap并没有向HashMap那样, 在1.8做了优化.
+
+弱引用Key
+123456789101112131415161718192021222324252627282
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-TreeMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:01:00.490Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
+
+UML
+
+跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkHashMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:56.142Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
+
+UML
+
+从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合-HashMap/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合-HashMap" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合-HashMap/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:51.934Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合-HashMap/">深入理解Java集合-HashMap</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前两篇文章分别介绍了ArrayList和LinkedList, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看HashMap的UML
+
+UML
+
+HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和序列化. Map接口提供了一系列接口和三个视图. AbstractMap则是实现了Map接
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkedList/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:43.662Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
+
+UML
+
+我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
+
+LinkedList继承AbstractS
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-ArrayList" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-ArrayList/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T09:00:39.690Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/">深入理解Java集合框架-ArrayList</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+UML
+
+从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cl
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/确保Web安全的HTTPS/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/确保Web安全的HTTPS01.jpg)" alt="图解HTTP-确保Web安全的HTTPS-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:59:20.011Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/确保Web安全的HTTPS/">图解HTTP-确保Web安全的HTTPS-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            HTTP存在的不足
+通信使用明文(不加密), 内容可能会被窃听
+不验证对方身份,因此有可能遭遇伪装
+无法证明报文的完整性,所以有可能遭到篡改
+
+通信使用明文可能会被窃听
+HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
+如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
+
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/确认访问用户的身份-笔记/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/确保Web安全的HTTPS01.jpg)" alt="图解HTTP-确认访问用户的身份-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/确认访问用户的身份-笔记/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:59:12.315Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/确认访问用户的身份-笔记/">图解HTTP-确认访问用户的身份-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            ﻿### HTTP使用的认证方式
+
+BASIC认证(基本认证)
+DIGEST(摘要认证)
+SSL客户端认证
+FormBase认证(基于表单认证)
+
+BASIC认证步骤
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/图解HTTP-报文信息-笔记/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/)" alt="图解HTTP-报文信息-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/图解HTTP-报文信息-笔记/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:58:58.515Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/图解HTTP-报文信息-笔记/">图解HTTP-报文信息-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            HTTP报文内的HTTP信息HTTP报文
+用于HTTP协议交互的信息被称为报文
+请求端（客户端）的HTTP报文称为请求报文
+相应端（服务器端）的HTTP报文称为响应报文
+HTTP报文分为报文首部和报文主体（不一定有报文主体）
+
+HTTP报文结构：
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/图解HTTP-网络基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/图解HTTP-网络基础/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:58:19.940Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/图解HTTP-网络基础/">图解HTTP-网络基础-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            网络基础 TCP/IPTCP/IP协议族
+我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
+TCP/IP是互联网各类协议族的总称, 如图:
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/AsyncTask源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/AsyncTask源码浅析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:56:04.258Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/AsyncTask源码浅析/">AsyncTask源码浅析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            源码浅析
+概述AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/CustomView总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/CustomView总结/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:55:52.274Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/CustomView总结/">CustomView总结</a>
         </h1>
     
 
@@ -338,6 +1503,53 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
     </div>
 </article>
     
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Dagger2目录/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/dagger2/startdagger2.jpeg)" alt="重拾Dagger2" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Dagger2目录/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:55:27.258Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Dagger2目录/">重拾Dagger2</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
+Dagger2是什么?Dagger2是之前由Square公
+        </p>
+    </div>
+</article>
+    
         </div>
     
 
@@ -346,6 +1558,659 @@ Q: 什么是LayoutParams? 它跟view的关系是什么?
     
     
         <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/重拾Dagger2-组织/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-组织/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:55:12.582Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/重拾Dagger2-组织/">重拾Dagger2-组织</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
+Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/dagger2/understanddagger2.jpg)" alt="重拾Dagger2-理解Dagger2" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-理解Dagger2/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:55:06.934Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/">重拾Dagger2-理解Dagger2</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
+API关系
+Provider: provider是一个接口, 它的作用是包装被依赖的类
+Factory: 继承于Provider, 作用是创建依赖的对应实例
+MembersInjector:  也是一个接口, 作用是将依赖注入到需要依赖的
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/dagger2/dagger2.jpeg)" alt="重拾Dagger2-使用Dagger2" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-使用Dagger2/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:55:00.434Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/">重拾Dagger2-使用Dagger2</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
+
+Inject
+Provides
+Module
+Component
+Qualifiers
+Scope
+
+InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Picasso中值得学习的技巧/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso中值得学习的技巧/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:54:25.154Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Picasso中值得学习的技巧/">Picasso中值得学习的技巧</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Picasso中的线程池
+Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
+
+分析:
+首先在Picasso中,定义了一个优先级枚举类型:
+
+12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   */  public enum Priority &#123;    LOW,    NORMAL,    HIGH  &#125;
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Picasso基本用法及源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso基本用法及源码浅析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:54:21.071Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Picasso基本用法及源码浅析/">Picasso基本用法及源码浅析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            基本用法：加载图片：
+picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
+123Picasso.with(this)                .load(uri)                .into(mImageView);
+
+以上是最简单的通用加载图片的方法
+
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/universal-image-loader内存缓存策略/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/universal-image-loader内存缓存策略/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:53:59.627Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/universal-image-loader内存缓存策略/">universal-image-loader缓存策略</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/universal-image-loader源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/universal-image-loader源码浅析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:53:55.703Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/universal-image-loader源码浅析/">universal-image-loader源码浅读</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            概述
+UIL是一款经典的图片加载框架，该类库的设计运用了多种设计模式，使得它的可拓展性增加，比如缓存的策略，如果默认的缓存策略不能够满足你的需求的话，你完全可以自己定制自己的缓存策略。
+使用者不必关心加载图片时会发生OOM，其中发生的概率还是很小的，因为类库中对图片进行了三级缓存，其中的内存缓存使用了双级缓存（强引用和弱引用）。
+库中考虑到用户可能会使用ListView，GridView或者RecyclerView来展示图片，因此在库中提供了一个PauseOnScrollListener来控制滑动时是否要加载图片。
+这次，简单来分析类库的使用流程
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/安卓开发艺术探索-第三章笔记/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:52:56.823Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/安卓开发艺术探索-第三章笔记/">安卓开发艺术探索-View的事件体系-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            第三章：View的事件体系View的位置参数：
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/安卓开发艺术探索-第四章笔记(二)/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/安卓开发艺术探索-第四章笔记(二)/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:52:46.343Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/安卓开发艺术探索-第四章笔记(二)/">安卓开发艺术探索-自定义View的思想-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            自定义View概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/安卓开发艺术探索-第四章笔记(一)/" class="thumbnail">
+    
+    
+        <span style="background-image:url(index_files/f78c4596-e57c-41be-a3ca-a75bdcd06778.jpg)" alt="安卓开发艺术探索-View的工作原理（一）-笔记" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/安卓开发艺术探索-第四章笔记(一)/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:52:42.243Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/安卓开发艺术探索-第四章笔记(一)/">安卓开发艺术探索-View的工作原理（一）-笔记</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            View的工作原理初始ViewRoot和DecorView
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Volley--队列控制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/Volley队列配合.png)" alt="Volley--队列控制" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Volley--队列控制/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:51:32.519Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Volley--队列控制/">Volley--队列控制</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Volley--网络优化和缓存/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Volley--网络优化和缓存/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:50:57.535Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Volley--网络优化和缓存/">Volley--网络优化和缓存</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            概述：volley的特点都大家很清楚，volley适合数据量小且通信频繁的请求，但是不适合数据量大的请求。volley有这样的特点是由其内部网络优化和缓存所决定的，这次分析其中的原理。
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/10/31/Volley浅读/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Volley浅读/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:50:19.675Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Volley浅读/">Volley浅读</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Velloy浅谈
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -396,53 +2261,6 @@ UDP协议
 当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.
 网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.
 在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在运输层
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/01/Dagger2目录/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/startdagger2.jpeg)" alt="重拾Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/01/Dagger2目录/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Dagger2/">Dagger2</a>
-            </div>
-            <div class="date"><time datetime="2017-10-01T08:00:47.460Z" itemprop="datePublished">2017-10-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/01/Dagger2目录/">重拾Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Square公
         </p>
     </div>
 </article>
@@ -1122,805 +2940,6 @@ IP地址是连接在因特网上的主机的唯一标识, 通过特定的IP地�
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/09/29/重拾Dagger2-组织/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/goodbyedagger2.png)" alt="重拾Dagger2-组织" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/重拾Dagger2-组织/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Dagger2/">Dagger2</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:35:58.510Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/重拾Dagger2-组织/">重拾Dagger2-组织</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾在上一篇中, 我们从源码的角度分析了Dagger的工作原理, 在这一篇中, 我们来重点讲解Dagger2依赖组织的方式, 在讲解之前, 我们先来理解Component dependencies和SubComponent
-Component dependencies VS SubComponent为了提高一个Component中代码的复用度, 我们可以利用 Component dependenc
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/重拾Dagger2-理解Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/understanddagger2.jpg)" alt="重拾Dagger2-理解Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/重拾Dagger2-理解Dagger2/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Dagger2/">Dagger2</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:35:54.150Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/重拾Dagger2-理解Dagger2/">重拾Dagger2-理解Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要依赖的
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/重拾Dagger2-使用Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/dagger2.jpeg)" alt="重拾Dagger2-使用Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/重拾Dagger2-使用Dagger2/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Dagger2/">Dagger2</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:35:43.430Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/重拾Dagger2-使用Dagger2/">重拾Dagger2-使用Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/Class类文件结构/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="类文件结构" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/Class类文件结构/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/JVM/">JVM</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:31:08.566Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/Class类文件结构/">类文件结构</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            类文件结构
-目录
-
-Class类文件结构
-特殊字符串概念
-魔数与Class文件的版本
-常量池
-访问标志
-类索引,父类索引与接口索引集合
-字段表集合
-方法表集合
-属性表集合
-
-
-
-
-类文件结构
-Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/Java内存分配与回收策略/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="Java内存分配与回收策略" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/Java内存分配与回收策略/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/JVM/">JVM</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:29:50.478Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/Java内存分配与回收策略/">Java内存分配与回收策略</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            内存分配与回收策略目录
-对象优先在Eden分配
-大对象直接进入老年代
-长期存活对象将进入老年代
-动态对象年龄判定
-空间分配担保
-
-对象优先在Eden分配
-大多数情况下, 对象主要分配在新生代的Eden区上.
-当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
-
-大对象直接进入老年代
-大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及数组.
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/java垃圾回收器/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/垃圾回收.jpeg)" alt="Java垃圾回收器" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/java垃圾回收器/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/JVM/">JVM</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:29:46.698Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/java垃圾回收器/">Java垃圾回收器</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            垃圾收集器目录
-判定对象存活
-引用计数法
-可达性分析算法
-再谈引用
-强引用
-软引用
-弱引用
-虚引用
-
-
-生存还是死亡
-回收方法区
-
-
-垃圾收集算法
-标记-清除算法
-复制算法
-标记-整理算法
-分代收集算法
-
-
-HotSpot的算法实现
-枚举根节点
-安全点
-安全区域
-
-
-垃圾收集器
-Serial收集器
-ParNew收集器
-Parallel收集器
-Serial Old 收集器
-Parallel Old 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/Java内存区域/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/jvm-1.jpeg)" alt="Java内存区域" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/Java内存区域/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/JVM/">JVM</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:29:34.646Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/Java内存区域/">Java内存区域</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Java内存区域目录
-运行时数据区
-程序计数器
-Java虚拟机栈
-本地方法栈
-Java堆
-方法区
-运行时常量池
-
-
-HotSpot虚拟机对象探秘
-对象的创建
-对象的内存布局
-对象的访问定位
-
-
-
-
-运行时数据区
-程序计数器
-程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-LinkHashMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:24:34.505Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
-
-UML
-
-从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-set家族/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-set家族/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:24:33.409Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
-
-UML
-
-Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-TreeMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-TreeMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:24:32.353Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
-
-UML
-
-跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:24:26.585Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable/">深入理解Java集合框架-WeakHashMap, IdentityHashMap 和 HashTable</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-WeakHashMap
-WeakHashMap总体实现和HashMap差不多, 不同的时, WeakHashMap中的Key是弱引用类型, WeakHashMap内部的Key是会被自动回收的. 另外需要关注的是, WeakHashMap并没有向HashMap那样, 在1.8做了优化.
-
-弱引用Key
-123456789101112131415161718192021222324252627282
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-LinkedList/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-LinkedList/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:24:03.801Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
-
-UML
-
-我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
-
-LinkedList继承AbstractS
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合框架-ArrayList/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-ArrayList" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合框架-ArrayList/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:23:54.481Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合框架-ArrayList/">深入理解Java集合框架-ArrayList</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-UML
-
-从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cl
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/深入理解Java集合-HashMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合-HashMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/深入理解Java集合-HashMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java集合框架/">Java集合框架</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:22:57.925Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/深入理解Java集合-HashMap/">深入理解Java集合-HashMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前两篇文章分别介绍了ArrayList和LinkedList, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看HashMap的UML
-
-UML
-
-HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和序列化. Map接口提供了一系列接口和三个视图. AbstractMap则是实现了Map接
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
         <a href="/2017/06/29/大话数据结构-栈/" class="thumbnail">
     
     
@@ -2201,979 +3220,6 @@ HashMap实现了Cloneable, Serializable, 所以HashMap支持克隆(浅克隆)和
         </div>
     
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/03/03/java基础/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/03/03/java基础/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/java/">java</a>
-            </div>
-            <div class="date"><time datetime="2017-03-03T15:20:56.338Z" itemprop="datePublished">2017-03-03</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/03/03/java基础/">java基础</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            字符串使用+连接字符串
-使用+连接字符串每次都会构建一个新的对象，在需要频繁拼接字符串的场景时，会比较耗时和浪费空间，因为String创建后就不可以再改变，因此+ 操作是线程安全的
-
-StringBuilder
-该类可以解决String拼接字符串时出现的问题，但是StringBuilder线程不安全。
-
-StringBuffer
-StringBuilder可以保证线程安全，但是也因此效率变得低
-
-总结
-如果只需要简单的拼接字符串的话，可以直接使用+号拼接
-如果需要频繁拼接而且无需考虑线程安全的，可以使用StringBuilder
-如果需要频繁拼接但要考虑到线程安全的话，可以使用StringBuffer
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/21/确认访问用户的身份-笔记/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/确保Web安全的HTTPS01.jpg)" alt="图解HTTP-确认访问用户的身份-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/21/确认访问用户的身份-笔记/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-21T07:31:23.465Z" itemprop="datePublished">2017-02-21</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/21/确认访问用户的身份-笔记/">图解HTTP-确认访问用户的身份-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            ﻿### HTTP使用的认证方式
-
-BASIC认证(基本认证)
-DIGEST(摘要认证)
-SSL客户端认证
-FormBase认证(基于表单认证)
-
-BASIC认证步骤
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/图解HTTP-报文信息-笔记/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/)" alt="图解HTTP-报文信息-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/图解HTTP-报文信息-笔记/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T14:21:11.008Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/图解HTTP-报文信息-笔记/">图解HTTP-报文信息-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HTTP报文内的HTTP信息HTTP报文
-用于HTTP协议交互的信息被称为报文
-请求端（客户端）的HTTP报文称为请求报文
-相应端（服务器端）的HTTP报文称为响应报文
-HTTP报文分为报文首部和报文主体（不一定有报文主体）
-
-HTTP报文结构：
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/Picasso中值得学习的技巧/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/Picasso中值得学习的技巧/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T14:12:33.277Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/Picasso中值得学习的技巧/">Picasso中值得学习的技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Picasso中的线程池
-Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
-
-分析:
-首先在Picasso中,定义了一个优先级枚举类型:
-
-12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   */  public enum Priority &#123;    LOW,    NORMAL,    HIGH  &#125;
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/简单的HTTP协议01.jpg)" alt="图解HTTP-简单的HTTP协议-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T14:05:49.619Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/图解HTTP-简单的HTTP协议-笔记/">图解HTTP-简单的HTTP协议-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            通过请求和响应来交换信息
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/确保Web安全的HTTPS/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/确保Web安全的HTTPS01.jpg)" alt="图解HTTP-确保Web安全的HTTPS-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/确保Web安全的HTTPS/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T13:45:23.687Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/确保Web安全的HTTPS/">图解HTTP-确保Web安全的HTTPS-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
-
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
-
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/与HTTP协议的Web服务器/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/与HTTP协议的Web服务器01.jpg)" alt="图解HTTP-与HTTP协议的Web服务器-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/与HTTP协议的Web服务器/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T13:40:15.798Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/与HTTP协议的Web服务器/">图解HTTP-与HTTP协议的Web服务器-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            与HTTP协作的Web服务器通信数据转发程序:代理、网关、隧道
-在HTTP通信时,代理、网关和隧道是用于通信数据的转发的应用程序,他们可以配合服务器进行工作
-代理就像一个中介,他接收客户端发来的信息继而转发给服务器,同时也可以接受服务器的信息转发给客户端
-网关是转发其他服务器通信数据的服务器,接收从客户端发送来的请求时,它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉,自己的通信目标是一个网关。
-隧道是在相隔甚远的客户端和服务器两者之间进行中转,并保持双方通信连接的应用程序。
-
-代理
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/图解HTTP-返回结果的状态码-笔记/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T13:35:17.757Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/图解HTTP-返回结果的状态码-笔记/">图解HTTP-返回结果的状态码-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            状态码类别：类别    原因短语1XX    Informational(信息性状态码)    接收的请求正在处理2XX    Success(成功状态码)    请求正常处理完毕3XX    Redirection(重定向状态码)    需要进行附加操作以完成请求4XX    Client Error(客户端错误状态码)    服务器无法处理请求5XX    Server Error(服务器错误状态码)    服务器处理请求出错
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/Picasso基本用法及源码浅析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/Picasso基本用法及源码浅析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T13:33:48.997Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/Picasso基本用法及源码浅析/">Picasso基本用法及源码浅析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            基本用法：加载图片：
-picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
-123Picasso.with(this)                .load(uri)                .into(mImageView);
-
-以上是最简单的通用加载图片的方法
-
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/02/17/图解HTTP-网络基础/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/网络基础01.jpg)" alt="图解HTTP-网络基础-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/02/17/图解HTTP-网络基础/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-02-17T12:25:00.852Z" itemprop="datePublished">2017-02-17</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/17/图解HTTP-网络基础/">图解HTTP-网络基础-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            网络基础 TCP/IPTCP/IP协议族
-我们通常使用到的网络是在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。
-TCP/IP是互联网各类协议族的总称, 如图:
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/universal-image-loader内存缓存策略/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/universal-image-loader内存缓存策略/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.347Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/universal-image-loader内存缓存策略/">universal-image-loader缓存策略</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/universal-image-loader源码浅析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/universal-image-loader源码浅析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.335Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/universal-image-loader源码浅析/">universal-image-loader源码浅读</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            概述
-UIL是一款经典的图片加载框架，该类库的设计运用了多种设计模式，使得它的可拓展性增加，比如缓存的策略，如果默认的缓存策略不能够满足你的需求的话，你完全可以自己定制自己的缓存策略。
-使用者不必关心加载图片时会发生OOM，其中发生的概率还是很小的，因为类库中对图片进行了三级缓存，其中的内存缓存使用了双级缓存（强引用和弱引用）。
-库中考虑到用户可能会使用ListView，GridView或者RecyclerView来展示图片，因此在库中提供了一个PauseOnScrollListener来控制滑动时是否要加载图片。
-这次，简单来分析类库的使用流程
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/Volley--网络优化和缓存/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/Volley--网络优化和缓存/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.315Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/Volley--网络优化和缓存/">Volley--网络优化和缓存</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            概述：volley的特点都大家很清楚，volley适合数据量小且通信频繁的请求，但是不适合数据量大的请求。volley有这样的特点是由其内部网络优化和缓存所决定的，这次分析其中的原理。
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/AsyncTask源码浅析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/AsyncTask源码浅析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.299Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/AsyncTask源码浅析/">AsyncTask源码浅析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            源码浅析
-概述AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/Volley--队列控制/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/Volley队列配合.png)" alt="Volley--队列控制" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/Volley--队列控制/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.279Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/Volley--队列控制/">Volley--队列控制</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Volley之四个队列的配合使用概述在Volley中，存在这四个重要的队列，这次想单独来分析一下这四个队列的配合使用。
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/" class="thumbnail">
-    
-    
-        <span style="background-image:url(index_files/f78c4596-e57c-41be-a3ca-a75bdcd06778.jpg)" alt="安卓开发艺术探索-View的工作原理（一）-笔记" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.259Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(一)/">安卓开发艺术探索-View的工作原理（一）-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            View的工作原理初始ViewRoot和DecorView
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.251Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/安卓开发艺术探索-第四章笔记(二)/">安卓开发艺术探索-自定义View的思想-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            自定义View概述：自定义是一项比较综合性的技术，它涉及到了View的层次结构，事件分发机制以及View的工原理
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/安卓开发艺术探索-第三章笔记/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/booknote/">booknote</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.247Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/安卓开发艺术探索-第三章笔记/">安卓开发艺术探索-View的事件体系-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            第三章：View的事件体系View的位置参数：
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/13/Volley浅读/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/01/13/Volley浅读/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/android/">android</a>
-            </div>
-            <div class="date"><time datetime="2017-01-13T04:43:01.235Z" itemprop="datePublished">2017-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/13/Volley浅读/">Volley浅读</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Velloy浅谈
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
 
     </div></section>
 
@@ -3210,7 +3256,27 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
@@ -3221,16 +3287,16 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/29/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
-                            <p class="item-date"><time datetime="2017-10-29T08:28:09.149Z" itemprop="datePublished">2017-10-29</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
@@ -3241,16 +3307,16 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/24/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-24T12:36:29.470Z" itemprop="datePublished">2017-10-24</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/24/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
     
     
         <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
@@ -3261,19 +3327,19 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java并发包/">Java并发包</a></p>
-                            <p class="item-title"><a href="/2017/10/24/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
-                            <p class="item-date"><time datetime="2017-10-24T06:57:02.028Z" itemprop="datePublished">2017-10-24</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/10/05/CustomView总结/" class="thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/customview.jpeg)" alt="CustomView总结" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
     
 </a>
@@ -3281,29 +3347,9 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/自定义View/">自定义View</a></p>
-                            <p class="item-title"><a href="/2017/10/05/CustomView总结/" class="title">CustomView总结</a></p>
-                            <p class="item-date"><time datetime="2017-10-05T15:16:34.134Z" itemprop="datePublished">2017-10-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/10/01/计算机网络-运输层/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/10/01/计算机网络-运输层/" class="title">计算机网络-运输层</a></p>
-                            <p class="item-date"><time datetime="2017-10-01T08:03:05.601Z" itemprop="datePublished">2017-10-01</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
                         </div>
                     </li>
                 
@@ -3316,7 +3362,7 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dagger2/">Dagger2</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java并发包/">Java并发包</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合框架/">Java集合框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/booknote/">booknote</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自定义View/">自定义View</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">12</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -3326,7 +3372,7 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/02/">二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -3336,7 +3382,7 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dagger2/">Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架/">网络框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络框架-Volley/">网络框架#Volley</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义View/">自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -3346,7 +3392,7 @@ UIL是一款经典的图片加载框架，该类库的设计运用了多种设�
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Dagger2/" style="font-size: 16px;">Dagger2</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络框架/" style="font-size: 10px;">网络框架</a> <a href="/tags/网络框架-Volley/" style="font-size: 12px;">网络框架#Volley</a> <a href="/tags/自定义View/" style="font-size: 10px;">自定义View</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
         </div>
     </div>
 

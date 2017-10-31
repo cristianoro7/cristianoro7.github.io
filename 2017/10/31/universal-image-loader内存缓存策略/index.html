@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>universal-image-loader缓存策略 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="图片加载框架#universal-image-loader" />
+    
+    <meta name="description" content="概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="universal-image-loader缓存策略">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/10/31/universal-image-loader内存缓存策略/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略">
+<meta property="og:updated_time" content="2017-10-31T08:53:59.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="universal-image-loader缓存策略">
+<meta name="twitter:description" content="概述有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Android/">Android</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-universal-image-loader内存缓存策略" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        universal-image-loader缓存策略
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/10/31/universal-image-loader内存缓存策略/" class="article-date">
+            <time datetime="2017-10-31T08:53:59.627Z" itemprop="datePublished">2017-10-31</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>有看过UIL源码的人都应该知道，库中缓存使用了策略模式来对bitmap进行缓存。这次来单独来分析其中的内存缓存策略<br><a id="more"></a></p>
+<h5 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h5><p>接口：</p>
+<ul>
+<li>MemoryCacheAware：底层接口，里面定义了基本的缓存操作方法</li>
+<li>MemoryCache：单纯继承了MemoryCacheAware接口</li>
+</ul>
+<p>抽象类：</p>
+<ul>
+<li>BaseMemoryCache：实现了MemoryCahce，运用弱引用包装Bitmap后缓存存在HashMap中。同时也实现了MemoryCacheAware中的接口的方法</li>
+<li>LimitedMemoryCache：这个类继承BaseMemoryCahce，并在类中扩展了一级强引用缓存，也就是说LimitedMemoryCache是拥有双级缓存的（强引用缓存，弱引用缓存）。<ul>
+<li>LimitedMemoryCache会限制内存的缓存大小，当达到缓存达到最大的内存缓存时，会移除缓存，至于移除的策略，库中有提供几个实现策略。</li>
+</ul>
+</li>
+</ul>
+<p>具体实现类：</p>
+<ul>
+<li>WeakMeoryCache：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeakMemoryCache</span> <span class="keyword">extends</span> <span class="title">BaseMemoryCache</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Reference&lt;Bitmap&gt; <span class="title">createReference</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WeakReference&lt;Bitmap&gt;(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>WeakMemoryCache是继承自BaseMemoryCache，并且只是重写了createReference，所有WeakMemoryCache只有弱引用的缓存。</p>
+<ul>
+<li>LruMemoryCache：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LruMemoryCache</span> <span class="keyword">implements</span> <span class="title">MemoryCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> LinkedHashMap&lt;String, Bitmap&gt; map;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> maxSize;</div><div class="line">    <span class="comment">/** Size of this cache in bytes */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@param</span> maxSize Maximum sum of the sizes of the Bitmaps in this cache */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LruMemoryCache</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (maxSize &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"maxSize &lt;= 0"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.maxSize = maxSize;</div><div class="line">        <span class="keyword">this</span>.map = <span class="keyword">new</span> LinkedHashMap&lt;String, Bitmap&gt;(<span class="number">0</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the Bitmap for &#123;<span class="doctag">@code</span> key&#125; if it exists in the cache. If a Bitmap was returned, it is moved to the head</div><div class="line">     * of the queue. This returns null if a Bitmap is not cached.</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Bitmap <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"key == null"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">return</span> map.get(key);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** Caches &#123;<span class="doctag">@code</span> Bitmap&#125; for &#123;<span class="doctag">@code</span> key&#125;. The Bitmap is moved to the head of the queue. */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"key == null || value == null"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            size += sizeOf(key, value);</div><div class="line">            Bitmap previous = map.put(key, value);</div><div class="line">            <span class="keyword">if</span> (previous != <span class="keyword">null</span>) &#123;</div><div class="line">                size -= sizeOf(key, previous);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        trimToSize(maxSize);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Remove the eldest entries until the total of remaining entries is at or below the requested size.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> maxSize the maximum size of the cache before returning. May be -1 to evict even 0-sized elements.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">trimToSize</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            String key;</div><div class="line">            Bitmap value;</div><div class="line">            <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (size &lt; <span class="number">0</span> || (map.isEmpty() &amp;&amp; size != <span class="number">0</span>)) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(getClass().getName() + <span class="string">".sizeOf() is reporting inconsistent results!"</span>);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (size &lt;= maxSize || map.isEmpty()) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                Map.Entry&lt;String, Bitmap&gt; toEvict = map.entrySet().iterator().next();</div><div class="line">                <span class="keyword">if</span> (toEvict == <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                key = toEvict.getKey();</div><div class="line">                value = toEvict.getValue();</div><div class="line">                map.remove(key);</div><div class="line">                size -= sizeOf(key, value);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** Removes the entry for &#123;<span class="doctag">@code</span> key&#125; if it exists. */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"key == null"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            Bitmap previous = map.remove(key);</div><div class="line">            <span class="keyword">if</span> (previous != <span class="keyword">null</span>) &#123;</div><div class="line">                size -= sizeOf(key, previous);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> previous;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;String&gt; <span class="title">keys</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> HashSet&lt;String&gt;(map.keySet());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        trimToSize(-<span class="number">1</span>); <span class="comment">// -1 will evict 0-sized elements</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the size &#123;<span class="doctag">@code</span> Bitmap&#125; in bytes.</div><div class="line">     * &lt;p/&gt;</div><div class="line">     * An entry's size must not change while it is in the cache.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value.getRowBytes() * value.getHeight();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> String.format(<span class="string">"LruCache[maxSize=%d]"</span>, maxSize);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>LruMemoryCache继承自MemoryCache，因此只有强引用的缓存，LruMemoryCache移除缓存的策略是使用最近最少使用算法，即每次通过get得到的Bitmap都会放在队列头，移除的时候就会先从队列尾移除，这样就保证了最少使用的最先被移除</p>
+<ul>
+<li>LimitedAgeMemoryCache：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LimitedAgeMemoryCache</span> <span class="keyword">implements</span> <span class="title">MemoryCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MemoryCache cache;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxAge;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Long&gt; loadingDates = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Long&gt;());</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> cache  Wrapped memory cache</div><div class="line">     * <span class="doctag">@param</span> maxAge Max object age &lt;b&gt;(in seconds)&lt;/b&gt;. If object age will exceed this value then it'll be removed from</div><div class="line">     *               cache on next treatment (and therefore be reloaded).</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LimitedAgeMemoryCache</span><span class="params">(MemoryCache cache, <span class="keyword">long</span> maxAge)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cache = cache;</div><div class="line">        <span class="keyword">this</span>.maxAge = maxAge * <span class="number">1000</span>; <span class="comment">// to milliseconds</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> putSuccesfully = cache.put(key, value);</div><div class="line">        <span class="keyword">if</span> (putSuccesfully) &#123;</div><div class="line">            loadingDates.put(key, System.currentTimeMillis());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> putSuccesfully;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        Long loadingDate = loadingDates.get(key);</div><div class="line">        <span class="keyword">if</span> (loadingDate != <span class="keyword">null</span> &amp;&amp; System.currentTimeMillis() - loadingDate &gt; maxAge) &#123;</div><div class="line">            cache.remove(key);</div><div class="line">            loadingDates.remove(key);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> cache.get(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        loadingDates.remove(key);</div><div class="line">        <span class="keyword">return</span> cache.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;String&gt; <span class="title">keys</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cache.keys();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        cache.clear();</div><div class="line">        loadingDates.clear();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>LimitedAgeMemoryCache是MemoryCache的装饰类，也就是说LimitedAgeMemoryCache可以装饰实现了MemoryCache接口的类，比如LruMemoryCache。那么装饰的新功能是什么？</li>
+<li><p>通过上面源码，可以清楚的得出，LimitedAgeMemoryCache是通过判断Bitmap的缓存时间是否超过在初始化传入时的缓存最大时间。超过的话就从内存中移除。</p>
+</li>
+<li><p>FuzzyKeyMemoryCache：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FuzzyKeyMemoryCache</span> <span class="keyword">implements</span> <span class="title">MemoryCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MemoryCache cache;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Comparator&lt;String&gt; keyComparator;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FuzzyKeyMemoryCache</span><span class="params">(MemoryCache cache, Comparator&lt;String&gt; keyComparator)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cache = cache;</div><div class="line">        <span class="keyword">this</span>.keyComparator = keyComparator;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="comment">// Search equal key and remove this entry</span></div><div class="line">        <span class="keyword">synchronized</span> (cache) &#123;</div><div class="line">            String keyToRemove = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">for</span> (String cacheKey : cache.keys()) &#123;</div><div class="line">                <span class="keyword">if</span> (keyComparator.compare(key, cacheKey) == <span class="number">0</span>) &#123;</div><div class="line">                    keyToRemove = cacheKey;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (keyToRemove != <span class="keyword">null</span>) &#123;</div><div class="line">                cache.remove(keyToRemove);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cache.put(key, value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cache.get(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cache.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        cache.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;String&gt; <span class="title">keys</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cache.keys();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>FuzzyKeyMemoryCache也是继承自MemoryCache，同时也是MemoryCache的装饰类，装饰的新功能是：</li>
+<li><p>当添加Bitmap进缓存时，如果添加进去的key跟之前添加过的key值相同的话，从内存移除之前key值对应的Bitmap，添加新传进来的Bitmap到内存。至于key相同的标准是什么,这个得根据自身的需求在重写Comparator对象并在初始化的时候传入。</p>
+</li>
+<li><p><strong>UsingFreqLimitedMemoryCache</strong>：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UsingFreqLimitedMemoryCache</span> <span class="keyword">extends</span> <span class="title">LimitedMemoryCache</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Contains strong references to stored objects (keys) and last object usage date (in milliseconds). If hard cache</div><div class="line">     * size will exceed limit then object with the least frequently usage is deleted (but it continue exist at</div><div class="line">     * &#123;<span class="doctag">@link</span> #softMap&#125; and can be collected by GC at any time)</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Bitmap, Integer&gt; usingCounts = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;Bitmap, Integer&gt;());</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UsingFreqLimitedMemoryCache</span><span class="params">(<span class="keyword">int</span> sizeLimit)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(sizeLimit);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">super</span>.put(key, value)) &#123;</div><div class="line">            usingCounts.put(value, <span class="number">0</span>);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        Bitmap value = <span class="keyword">super</span>.get(key);</div><div class="line">        <span class="comment">// Increment usage count for value if value is contained in hardCahe</span></div><div class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</div><div class="line">            Integer usageCount = usingCounts.get(value);</div><div class="line">            <span class="keyword">if</span> (usageCount != <span class="keyword">null</span>) &#123;</div><div class="line">                usingCounts.put(value, usageCount + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        Bitmap value = <span class="keyword">super</span>.get(key);</div><div class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</div><div class="line">            usingCounts.remove(value);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        usingCounts.clear();</div><div class="line">        <span class="keyword">super</span>.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value.getRowBytes() * value.getHeight();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">removeNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        Integer minUsageCount = <span class="keyword">null</span>;</div><div class="line">        Bitmap leastUsedValue = <span class="keyword">null</span>;</div><div class="line">        Set&lt;Entry&lt;Bitmap, Integer&gt;&gt; entries = usingCounts.entrySet();</div><div class="line">        <span class="keyword">synchronized</span> (usingCounts) &#123;</div><div class="line">            <span class="keyword">for</span> (Entry&lt;Bitmap, Integer&gt; entry : entries) &#123;</div><div class="line">                <span class="keyword">if</span> (leastUsedValue == <span class="keyword">null</span>) &#123;</div><div class="line">                    leastUsedValue = entry.getKey();</div><div class="line">                    minUsageCount = entry.getValue();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    Integer lastValueUsage = entry.getValue();</div><div class="line">                    <span class="keyword">if</span> (lastValueUsage &lt; minUsageCount) &#123;</div><div class="line">                        minUsageCount = lastValueUsage;</div><div class="line">                        leastUsedValue = entry.getKey();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        usingCounts.remove(leastUsedValue);</div><div class="line">        <span class="keyword">return</span> leastUsedValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Reference&lt;Bitmap&gt; <span class="title">createReference</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WeakReference&lt;Bitmap&gt;(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>UsingFreqLimitedMemoryCache继承自LimitedMemoryCache，所以他拥有双级缓存用能（强弱引用缓存）。</li>
+<li><p>UsingFreqLimitedMemoryCache的移除缓存的策略：每次使用get获得Bitmap时都会记录Bitmap使用的次数。要移除时，移除使用最少的次数的Bitmap，移除的只是强引用的缓存，弱引用中的缓存并不一定有被移除</p>
+</li>
+<li><p><strong>LRULimit</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRULimitedMemoryCache</span> <span class="keyword">extends</span> <span class="title">LimitedMemoryCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INITIAL_CAPACITY = <span class="number">10</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> LOAD_FACTOR = <span class="number">1.1f</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** Cache providing Least-Recently-Used logic */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Bitmap&gt; lruCache = Collections.synchronizedMap(<span class="keyword">new</span> LinkedHashMap&lt;String, Bitmap&gt;(INITIAL_CAPACITY, LOAD_FACTOR, <span class="keyword">true</span>));</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@param</span> maxSize Maximum sum of the sizes of the Bitmaps in this cache */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRULimitedMemoryCache</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(maxSize);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">super</span>.put(key, value)) &#123;</div><div class="line">            lruCache.put(key, value);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        lruCache.get(key); <span class="comment">// call "get" for LRU logic</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.get(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        lruCache.remove(key);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        lruCache.clear();</div><div class="line">        <span class="keyword">super</span>.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value.getRowBytes() * value.getHeight();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">removeNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        Bitmap mostLongUsedValue = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">synchronized</span> (lruCache) &#123;</div><div class="line">            Iterator&lt;Entry&lt;String, Bitmap&gt;&gt; it = lruCache.entrySet().iterator();</div><div class="line">            <span class="keyword">if</span> (it.hasNext()) &#123;</div><div class="line">                Entry&lt;String, Bitmap&gt; entry = it.next();</div><div class="line">                mostLongUsedValue = entry.getValue();</div><div class="line">                it.remove();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mostLongUsedValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Reference&lt;Bitmap&gt; <span class="title">createReference</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WeakReference&lt;Bitmap&gt;(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>LRULimitedMemoryCache继承自LimitedMemoryCache，同样也是具有两级缓存。而移除的策略是lru算法，这里不多分析。</p>
+</li>
+<li><p><strong>LargestLimitedMemoryCache</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LargestLimitedMemoryCache</span> <span class="keyword">extends</span> <span class="title">LimitedMemoryCache</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Contains strong references to stored objects (keys) and sizes of the objects. If hard cache</div><div class="line">     * size will exceed limit then object with the largest size is deleted (but it continue exist at</div><div class="line">     * &#123;<span class="doctag">@link</span> #softMap&#125; and can be collected by GC at any time)</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Bitmap, Integer&gt; valueSizes = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;Bitmap, Integer&gt;());</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LargestLimitedMemoryCache</span><span class="params">(<span class="keyword">int</span> sizeLimit)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(sizeLimit);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">super</span>.put(key, value)) &#123;</div><div class="line">            valueSizes.put(value, getSize(value));</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        Bitmap value = <span class="keyword">super</span>.get(key);</div><div class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</div><div class="line">            valueSizes.remove(value);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        valueSizes.clear();</div><div class="line">        <span class="keyword">super</span>.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value.getRowBytes() * value.getHeight();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">removeNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        Integer maxSize = <span class="keyword">null</span>;</div><div class="line">        Bitmap largestValue = <span class="keyword">null</span>;</div><div class="line">        Set&lt;Entry&lt;Bitmap, Integer&gt;&gt; entries = valueSizes.entrySet();</div><div class="line">        <span class="keyword">synchronized</span> (valueSizes) &#123;</div><div class="line">            <span class="keyword">for</span> (Entry&lt;Bitmap, Integer&gt; entry : entries) &#123;</div><div class="line">                <span class="keyword">if</span> (largestValue == <span class="keyword">null</span>) &#123;</div><div class="line">                    largestValue = entry.getKey();</div><div class="line">                    maxSize = entry.getValue();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    Integer size = entry.getValue();</div><div class="line">                    <span class="keyword">if</span> (size &gt; maxSize) &#123;</div><div class="line">                        maxSize = size;</div><div class="line">                        largestValue = entry.getKey();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        valueSizes.remove(largestValue);</div><div class="line">        <span class="keyword">return</span> largestValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Reference&lt;Bitmap&gt; <span class="title">createReference</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WeakReference&lt;Bitmap&gt;(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>LargestLimitedMemoryCache继承自LimitedMemoryCache，拥有双级缓存。移除缓存的策略是移除占内存最大的Bitmap</p>
+<ul>
+<li><strong>FIFOLimitedMemoryCache</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FIFOLimitedMemoryCache</span> <span class="keyword">extends</span> <span class="title">LimitedMemoryCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Bitmap&gt; queue = Collections.synchronizedList(<span class="keyword">new</span> LinkedList&lt;Bitmap&gt;());</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FIFOLimitedMemoryCache</span><span class="params">(<span class="keyword">int</span> sizeLimit)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(sizeLimit);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">put</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">super</span>.put(key, value)) &#123;</div><div class="line">            queue.add(value);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">remove</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        Bitmap value = <span class="keyword">super</span>.get(key);</div><div class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</div><div class="line">            queue.remove(value);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.remove(key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        queue.clear();</div><div class="line">        <span class="keyword">super</span>.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value.getRowBytes() * value.getHeight();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">removeNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> queue.remove(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Reference&lt;Bitmap&gt; <span class="title">createReference</span><span class="params">(Bitmap value)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WeakReference&lt;Bitmap&gt;(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同理也是具有双级缓存功能，移除缓存的策略是移除头部的Bitmap</p>
+<h5 id="内存缓存策略总结："><a href="#内存缓存策略总结：" class="headerlink" title="内存缓存策略总结："></a>内存缓存策略总结：</h5><ul>
+<li><p>类库中提供的三个接口：</p>
+<ul>
+<li>MemoryCache：实现该接口的类只有强引用的缓存功能</li>
+<li>BaseMemoryCache：实现该接口的类只有弱引用的缓存功能</li>
+<li>LimitedMemoryCache：实现该类的拥有两级缓存功能（强弱引用功能）</li>
+</ul>
+</li>
+<li><p>库中针对这三个接口，都给出了具体的实现类，我们可以根据自己的需求来设置缓存策略，默认的是LruMemoryCache</p>
+</li>
+<li>关于双级缓存：实现了LimitMemoryCache的类都具有双级缓存，但是为什么要使用双级缓存？<ul>
+<li>理解：缓存内存的最大值是固定的，超过这个值后，我们就得从内存中移除Bitmap，但是我们有时不是想要移除，只是内存不足了，我们被迫移除了Bitmap，所以增加了一级强引用的缓存，当内存不足 时，首先移除强引用的Bitmap，弱引用并没有被移除。这样下次如果请求相同的Bitmap时，就可以从弱引用的缓存中取出。但是这样做也有缺点，牺牲了内存。</li>
+<li>总体说就是双级缓存就是通过牺牲内存来提高响应速度。</li>
+</ul>
+</li>
+<li>如果觉得库中提供给我们的策略不符合自己的业务需求的话，可以根据自己的业务需求来定制缓存策略。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/10/31/universal-image-loader内存缓存策略/" data-id="cj9fd4vid001zqfcjjpa7dbn8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/31/Picasso基本用法及源码浅析/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Picasso基本用法及源码浅析
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/31/universal-image-loader源码浅析/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">universal-image-loader源码浅读</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/J.U.C中的并发工具类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fl1ikq8wyhj30m80b4qi7.jpg)" alt="J.U.C中的并发工具类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/J.U.C中的并发工具类/" class="title">J.U.C中的并发工具类</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:43:21.911Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fkz6p5rdydj30m80b47at.jpg)" alt="ReentrantLock和ReentrantReadWriteLock详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/ReentrantLock和ReentrantReadWriteLock详解/" class="title">ReentrantLock和ReentrantReadWriteLock详解</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:28.487Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktlv07v17j30jg0dwngp.jpg)" alt="AbstractQueuedSynchronizer中的ConditionObject剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer中的ConditionObject剖析/" class="title">AbstractQueuedSynchronizer中的ConditionObject剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:23.612Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fktbn58ux2j30m80b47l5.jpg)" alt="AbstractQueuedSynchronizer剖析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/AbstractQueuedSynchronizer剖析/" class="title">AbstractQueuedSynchronizer剖析</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:09:19.644Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/31/java基础/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/10/31/java基础/" class="title">java基础</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:06:42.339Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 10px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/10/31/universal-image-loader内存缓存策略/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
