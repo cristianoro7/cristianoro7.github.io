@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Desperado</title>
+    <title>标签：: Android#CustomView | Desperado</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Desperado">
-<meta property="og:url" content="http://cristianoro7.github.io/page/7/index.html">
+<meta property="og:url" content="http://cristianoro7.github.io/tags/Android-CustomView/index.html">
 <meta property="og:site_name" content="Desperado">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Desperado">
@@ -119,7 +119,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">主页</em>
+    <i class="icon fa fa-tag"></i>标签：: <em>Android#CustomView</em>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -142,17 +142,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/10/31/Dagger2目录/" class="thumbnail">
+        <a href="/2017/11/17/Android事件分发机制总结/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/dagger2/startdagger2.jpeg)" alt="重拾Dagger2" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg)" alt="Android事件分发机制总结" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Dagger2目录/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/11/17/Android事件分发机制总结/">0</span>
     
 </span>
 
@@ -165,293 +165,24 @@
             <div class="category">
             <a class="article-category-link" href="/categories/Android/">Android</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T08:55:27.258Z" itemprop="datePublished">2017-10-31</time></div>
+            <div class="date"><time datetime="2017-11-17T08:17:54.807Z" itemprop="datePublished">2017-11-17</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Dagger2目录/">重拾Dagger2</a>
+        <a href="/2017/11/17/Android事件分发机制总结/">Android事件分发机制总结</a>
         </h1>
     
 
         <p class="article-excerpt">
-            最近项目没什么bug,也没什么新的需求, 闲得有点慌(其实一直很闲…), 既然那么闲, 那就重新深入学习Dagger2吧. 之前虽然有学过Dagger2, 但是并没研究其中的原理, 用起来总感觉很不踏实, 于是借此机会研究了一波Dagger2, 并准备分为三篇来讲, 分别为: 使用篇, 原理篇和组织篇. 本篇的目的就指在介绍Dagger2
-Dagger2是什么?Dagger2是之前由Square公
-        </p>
-    </div>
-</article>
-    
+            
+关于Andorid事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/understanddagger2.jpg)" alt="重拾Dagger2-理解Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-理解Dagger2/">0</span>
-    
-</span>
+分发对象
+在Android中, 点击手势被封装成MotionEvent对象. 因此对于点击事件的分发, 实质上是对MotionEvent对象的分发.
+对于单点触控, 有下面两种情况的手势对应MotionEvent的状态:
 
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:06.934Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-理解Dagger2/">重拾Dagger2-理解Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            回顾上一篇我们主要介绍了如何用Dagger2在Android应用中进行依赖注入, 在这一篇中, 我们主要来理解Dagger2中的原理, 毕竟知己知彼后才用得踏实
-API关系
-Provider: provider是一个接口, 它的作用是包装被依赖的类
-Factory: 继承于Provider, 作用是创建依赖的对应实例
-MembersInjector:  也是一个接口, 作用是将依赖注入到需要依赖的
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/dagger2/dagger2.jpeg)" alt="重拾Dagger2-使用Dagger2" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/重拾Dagger2-使用Dagger2/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:55:00.434Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/重拾Dagger2-使用Dagger2/">重拾Dagger2-使用Dagger2</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            常用注解解释在学习Dagger2之前,我们最好就是将Dagger2中的常用的注解的含义捋清一遍, 这样上手Dagger2就不会显得那么难,所以下面我准备介绍Dagger2中常用的注解的含义,这些注解包括
-
-Inject
-Provides
-Module
-Component
-Qualifiers
-Scope
-
-InjectInject的中文意思是注射,在Dagger2中它在不同的地方代表不同的含义．当
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Picasso中值得学习的技巧/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso中值得学习的技巧/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:54:25.154Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Picasso中值得学习的技巧/">Picasso中值得学习的技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Picasso中的线程池
-Picasso中的线程池主要是对对网络状态进行了监听,并且包装了一个FutureTask实现请求的优先级比较。
-
-分析:
-首先在Picasso中,定义了一个优先级枚举类型:
-
-12345678910/**   * The priority of a request.   *   * @see RequestCreator#priority(Priority)   */  public enum Priority &#123;    LOW,    NORMAL,    HIGH  &#125;
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Picasso基本用法及源码浅析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso基本用法及源码浅析/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:54:21.071Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Picasso基本用法及源码浅析/">Picasso基本用法及源码浅析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            基本用法：加载图片：
-picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
-123Picasso.with(this)                .load(uri)                .into(mImageView);
-
-以上是最简单的通用加载图片的方法
-
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/01/计算机网络-运输层/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/运输层.jpeg)" alt="计算机网络-运输层" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/01/计算机网络-运输层/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
-            </div>
-            <div class="date"><time datetime="2017-10-01T08:03:05.601Z" itemprop="datePublished">2017-10-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/01/计算机网络-运输层/">计算机网络-运输层</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            计算机网络-运输层
-目录
-
-概述
-分用和复用
-UDP协议
-运输层梳理
-
-
-概述
-当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.
-网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.
-在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在运输层
+点击 -&gt; 松开 : ACTION_DOWN 
         </p>
     </div>
 </article>
@@ -462,11 +193,6 @@ UDP协议
 
     </div></section>
 
-
-    <nav id="page-nav">
-        <span class="pages">第 7 页，共 10 页</span>
-        <a class="extend prev" rel="prev" href="/page/6/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">&raquo;</a>
-    </nav>
 
 
                         </div>
