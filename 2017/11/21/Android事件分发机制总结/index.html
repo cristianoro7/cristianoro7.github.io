@@ -3,45 +3,42 @@
 <head>
     <meta charset="utf-8">
     
-    <title>图解HTTP-确保Web安全的HTTPS-笔记 | Desperado</title>
+    <title>Android事件分发机制总结 | Desperado</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="计算机网络#HTTP" />
+        <meta name="keywords" content="Android#自定义View" />
     
-    <meta name="description" content="HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
+    <meta name="description" content="关于Andorid事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.
 
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
+分发对象
+在Android中, 点击手势被封装成MotionEvent对象. 因此对于点击事件的分发, 实质上是对MotionEvent对象的分发.
+对于单点触控, 有下面两种情况的手势对应MotionEvent的状态:
+
+点击 -&amp;gt; 松开 : ACTION_DOWN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图解HTTP-确保Web安全的HTTPS-笔记">
-<meta property="og:url" content="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/index.html">
+<meta property="og:title" content="Android事件分发机制总结">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/11/21/Android事件分发机制总结/index.html">
 <meta property="og:site_name" content="Desperado">
-<meta property="og:description" content="HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
+<meta property="og:description" content="关于Andorid事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.
 
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
-<meta property="og:image" content="http://cristianoro7.github.io/uploads/图解HTTP/确保Web安全的HTTPS01.jpg">
-<meta property="og:updated_time" content="2017-10-31T08:59:20.011Z">
+分发对象
+在Android中, 点击手势被封装成MotionEvent对象. 因此对于点击事件的分发, 实质上是对MotionEvent对象的分发.
+对于单点触控, 有下面两种情况的手势对应MotionEvent的状态:
+
+点击 -&amp;gt; 松开 : ACTION_DOWN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg">
+<meta property="og:updated_time" content="2017-11-21T09:32:31.885Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图解HTTP-确保Web安全的HTTPS-笔记">
-<meta name="twitter:description" content="HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
+<meta name="twitter:title" content="Android事件分发机制总结">
+<meta name="twitter:description" content="关于Andorid事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.
 
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容">
-<meta name="twitter:image" content="http://cristianoro7.github.io/uploads/图解HTTP/确保Web安全的HTTPS01.jpg">
+分发对象
+在Android中, 点击手势被封装成MotionEvent对象. 因此对于点击事件的分发, 实质上是对MotionEvent对象的分发.
+对于单点触控, 有下面两种情况的手势对应MotionEvent的状态:
+
+点击 -&amp;gt; 松开 : ACTION_DOWN">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg">
     
 
     
@@ -148,18 +145,18 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/计算机网络/">计算机网络</a>
+    <a class="page-title-link" href="/categories/Android/">Android</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-确保Web安全的HTTPS" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Android事件分发机制总结" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        图解HTTP-确保Web安全的HTTPS-笔记
+        Android事件分发机制总结
         </h1>
     
 
@@ -169,109 +166,149 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/10/31/确保Web安全的HTTPS/" class="article-date">
-            <time datetime="2017-10-31T08:59:20.011Z" itemprop="datePublished">2017-10-31</time>
+        <a href="/2017/11/21/Android事件分发机制总结/" class="article-date">
+            <time datetime="2017-11-21T09:32:31.885Z" itemprop="datePublished">2017-11-21</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a>
+        <a class="tag-link" href="/tags/Android-自定义View/">Android#自定义View</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="HTTP存在的不足"><a href="#HTTP存在的不足" class="headerlink" title="HTTP存在的不足"></a>HTTP存在的不足</h3><ul>
-<li>通信使用明文(不加密), 内容可能会被窃听</li>
-<li>不验证对方身份,因此有可能遭遇伪装</li>
-<li>无法证明报文的完整性,所以有可能遭到篡改</li>
-</ul>
-<h4 id="通信使用明文可能会被窃听"><a href="#通信使用明文可能会被窃听" class="headerlink" title="通信使用明文可能会被窃听"></a>通信使用明文可能会被窃听</h4><ul>
-<li>HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.</li>
-<li>如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容</li>
-</ul>
-<a id="more"></a>
-<h4 id="不验证通信对方就有可能在遇到伪装"><a href="#不验证通信对方就有可能在遇到伪装" class="headerlink" title="不验证通信对方就有可能在遇到伪装"></a>不验证通信对方就有可能在遇到伪装</h4><ul>
-<li>HTTP 协议的实现本身非常简单,不论是谁发送过来的请求都会返回响应,因此不确认通信方,会存在以下各种隐患。<ul>
-<li>无法确定请求发送至目标的 Web 服务器是否是按真实意图返回响应的那台服务器。有可能是已伪装的 Web 服务器。</li>
-<li>无法确定响应返回到的客户端是否是按真实意图接收响应的那个客户端。有可能是已伪装的客户端。</li>
-<li>无法确定正在通信的对方是否具备访问权限。因为某些Web 服务器上保存着重要的信息,只想发给特定用户通信的权限。</li>
-<li>无法判定请求是来自何方、出自谁手。</li>
-<li>即使是无意义的请求也会照单全收。无法阻止海量请求下的 DoS 攻击(Denial of Service,拒绝服务攻击)。</li>
-</ul>
-</li>
-<li>查明对手的证书<ul>
-<li>虽然使用 HTTP 协议无法确定通信方,但如果使用 SSL 则可以。SSL 不仅提供加密处理,而且还使用了一种被称为证书的手段,可用于确定方。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS01.jpg" alt=""></p>
-<h4 id="无法证明报文完整性-可能已遭篡改"><a href="#无法证明报文完整性-可能已遭篡改" class="headerlink" title="无法证明报文完整性,可能已遭篡改"></a>无法证明报文完整性,可能已遭篡改</h4><h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+ 加密 + 认证 + 完整性保护=HTTPS"></a>HTTP+ 加密 + 认证 + 完整性保护=HTTPS</h3><h4 id="HTTPS-是身披-SSL-外壳的-HTTP"><a href="#HTTPS-是身披-SSL-外壳的-HTTP" class="headerlink" title="HTTPS 是身披 SSL 外壳的 HTTP"></a>HTTPS 是身披 SSL 外壳的 HTTP</h4><ul>
-<li>HTTPS 并非是应用层的一种新协议。只是 HTTP 通信接口部分用SSL(Secure Socket Layer)和 TLS(Transport Layer Security)协议代替而已。</li>
-<li>通常,HTTP 直接和 TCP 通信。当使用 SSL 时,则演变成先和 SSL 通信,再由 SSL 和 TCP 通信了。简言之,所谓 HTTPS,其实就是身披SSL 协议这层外壳的 HTTP。</li>
-</ul>
-<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS02.jpg" alt=""></p>
-<h4 id="相互交换密钥的公开密钥加密技术"><a href="#相互交换密钥的公开密钥加密技术" class="headerlink" title="相互交换密钥的公开密钥加密技术"></a>相互交换密钥的公开密钥加密技术</h4><h5 id="共享密钥加密的困境"><a href="#共享密钥加密的困境" class="headerlink" title="共享密钥加密的困境"></a>共享密钥加密的困境</h5><ul>
-<li>加密和解密同用一个密钥的方式称为共享密钥加密(Common keycrypto system),也被叫做对称密钥加密。</li>
-<li>以共享密钥方式加密时必须将密钥也发给对方。可究竟怎样才能安全地转交?在互联网上转发密钥时,如果通信被监听那么密钥就可会落入攻击者之手,同时也就失去了加密的意<br>义。另外还得设法安全地保管接收到的密钥。</li>
-</ul>
-<h5 id="使用两把密钥的公开密钥加密"><a href="#使用两把密钥的公开密钥加密" class="headerlink" title="使用两把密钥的公开密钥加密"></a>使用两把密钥的公开密钥加密</h5><ul>
-<li>公开密钥加密使用一对非对称的密钥。一把叫做私有密钥(private key),另一把叫做公开密钥(public key)。顾名思义,私有密钥不能让其他任何人知道,而公开密钥则可以随意发<br>布,任何人都可以获得。</li>
-<li>使用公开密钥加密方式,发送密文的一方使用对方的公开密钥进行加密处理,对方收到被加密的信息后,再使用自己的私有密钥进行解密。利用这种方式,不需要发送用来解密的私有密钥,也<br>不必担心密钥被攻击者窃听而盗走。</li>
-</ul>
-<h5 id="HTTPS-采用混合加密机制"><a href="#HTTPS-采用混合加密机制" class="headerlink" title="HTTPS 采用混合加密机制"></a>HTTPS 采用混合加密机制</h5><ul>
-<li>HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密机制。</li>
-<li>采用混合加密的机制是因为公开密钥加密的速度慢</li>
-</ul>
-<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS03.jpg" alt=""></p>
-<h4 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a>证明公开密钥正确性的证书</h4><ul>
-<li>公开密钥加密方式还是存在一些问题的。那就是无法证明公开密钥本身就是货真价实的公开密钥。</li>
-<li>为了解决这个问题,可以使用由数字证书认证机构(CA,Certificate Authority)和其相关机关颁发的公开密钥证书</li>
-</ul>
-<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS04.jpg" alt=""></p>
-<h4 id="HTTPS-的安全通信机制"><a href="#HTTPS-的安全通信机制" class="headerlink" title="HTTPS 的安全通信机制"></a>HTTPS 的安全通信机制</h4><p><img src="/uploads/图解HTTP/确保Web安全的HTTPS05.jpg" alt=""></p>
+            <p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg" alt=""></p>
+<p>关于<code>Andorid</code>事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.</p>
+<blockquote>
+<h2 id="分发对象"><a href="#分发对象" class="headerlink" title="分发对象"></a>分发对象</h2></blockquote>
+<p>在<code>Android</code>中, 点击手势被封装成<code>MotionEvent</code>对象. 因此对于点击事件的分发, 实质上是对<code>MotionEvent</code>对象的分发.</p>
+<p>对于单点触控, 有下面两种情况的手势对应<code>MotionEvent</code>的状态:</p>
 <ul>
-<li><p>步骤 1: 客户端通过发送 Client Hello 报文开始 SSL 通信。报文中包含客户端支持的 SSL 的指定版本、加密组件(Cipher Suite)列表(所使用的加密算法及密钥长度等)。</p>
+<li><p>点击 -&gt; 松开 : <code>ACTION_DOWN</code> -&gt; <code>ACTION_UP</code></p>
 </li>
-<li><p>步骤 2: 服务器可进行 SSL 通信时,会以 Server Hello 报文作为应154答。和客户端一样,在报文中包含 SSL 版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。</p>
+<li><p>点击 -&gt; 移动 -&gt; 移动 -&gt; …-&gt; 松开 :　<code>ACTION_DOWN</code> -&gt; <code>ACTION_MOVE</code> -&gt; <code>ACTION_MOVE</code> -&gt; … -&gt; <code>ACTION_UP</code></p>
 </li>
-<li><p>步骤 3: 之后服务器发送 Certificate 报文。报文中包含公开密钥证书。</p>
-</li>
-<li><p>步骤 4: 最后服务器发送 Server Hello Done 报文通知客户端,最初阶段的 SSL 握手协商部分结束。</p>
-</li>
-<li><p>步骤 5: SSL 第一次握手结束之后,客户端以 Client Key Exchange 报文作为回应。报文中包含通信加密中使用的一种被称为 Pre-mastersecret 的随机密码串。该报文已用步骤 3 中的公开密钥进行加密。</p>
-</li>
-<li><p>步骤 6: 接着客户端继续发送 Change Cipher Spec 报文。该报文会提示服务器,在此报文之后的通信会采用 Pre-master secret 密钥加密。</p>
-</li>
-<li><p>步骤 7: 客户端发送 Finished 报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功,要以服务器是否能够正确解密该报文作为判定标准。</p>
-</li>
-<li><p>步骤 8: 服务器同样发送 Change Cipher Spec 报文。</p>
-</li>
-<li><p>步骤 9: 服务器同样发送 Finished 报文。</p>
-</li>
-<li><p>步骤 10: 服务器和客户端的 Finished 报文交换完毕之后,SSL 连接就算建立完成。当然,通信会受到 SSL 的保护。从此处开始进行应用层协议的通信,即发送 HTTP 请求。</p>
-</li>
-<li><p>步骤 11: 应用层协议通信,即发送 HTTP 响应。</p>
-</li>
-<li><p>步骤 12: 最后由客户端断开连接。断开连接时,发送 close_notify 报文。上图做了一些省略,这步之后再发送 TCP FIN 报文来关闭与 TCP的通信。</p>
-</li>
-</ul>
-<h4 id="HTTPS存在的不足"><a href="#HTTPS存在的不足" class="headerlink" title="HTTPS存在的不足"></a>HTTPS存在的不足</h4><ul>
-<li>HTTPS使用了SSL,因此速度会变慢</li>
-</ul>
-<p><img src="/uploads/图解HTTP/确保Web安全的HTTPS06.jpg" alt=""></p>
-<ul>
-<li>SSL 的慢分两种。一种是指通信慢。另一种是指由于大量消耗CPU 及内存等资源,导致处理速度变慢。<ul>
-<li>和使用 HTTP 相比,网络负载可能会变慢 2 到 100 倍。除去和TCP 连接、发送 HTTP 请求 • 响应以外,还必须进行 SSL 通信,因此整体上处理通信量不可避免会增加。</li>
-</ul>
-</li>
-<li>另一点是 SSL 必须进行加密处理。在服务器和客户端都需要进行加密和解密的运算处理。因此从结果上讲,比起 HTTP 会更多地消耗服务器和客户端的硬件资源,导致负载增强。</li>
 </ul>
 <blockquote>
-<p>以上笔记来源于图解HTTP一书</p>
+<h2 id="事件的传递顺序"><a href="#事件的传递顺序" class="headerlink" title="事件的传递顺序"></a>事件的传递顺序</h2></blockquote>
+<p>点击事件发生后, 事件的传递顺序为: <code>Activity</code> -&gt; <code>PhoneWindow</code> -&gt; <code>DecorView</code> -&gt; <code>ViewGroup</code> …. -&gt; <code>View</code></p>
+<blockquote>
+<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2></blockquote>
+<p><code>Android</code>事件分发机制的设计思想是基于责任链模式. 事件在传递的过程中, 先从上层传递到下层, 在这个过程中, 如果该事件你需要处理的话, 可以拦截下来处理, 如果不需要的话, 交给下层处理. 当事件传递到底层且底层不处理事件的话, 事件会从底层往上层传递. 如果上传的过程中, 事件没有被消费的话, 最终由<code>Activity</code>消费.</p>
+<blockquote>
+<h2 id="分发过程中涉及的方法"><a href="#分发过程中涉及的方法" class="headerlink" title="分发过程中涉及的方法"></a>分发过程中涉及的方法</h2></blockquote>
+<p>事件分发的过程中, 事件需要被传递, 被分发, 分消费, 这些操作涉及到下面的方法:</p>
+<p><code>public boolean dispatchTouchEvent(MotionEvent ev)</code> : 用来分发事件</p>
+<p><code>public boolean onInterceptTouchEvent(MotionEvent ev)</code> : 用来判断是否拦截事件, 如果当前<code>View</code>拦截了某个事件, 那么同一个事件序列当中, 此方法不会被调用. 换句话说, 该方法不是每次都会被调用.</p>
+<p><code>public boolean onTouchEvent(MotionEvent ev)</code> : 用来处理点击事件.</p>
+<p>上面的三个方法的关系可以用下面的伪代码来表示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">  <span class="keyword">boolean</span> isConsume = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (onInterceptTouchEvent(ev)) &#123; <span class="comment">//判断是否要拦截</span></div><div class="line">      isConsume = onTouchEvent(ev); <span class="comment">//是的话, 自己处理点击事件</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">      isConsume = child.dispatchTouchEvent(ev); <span class="comment">//不是的话, 传递给下一层处理</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> isConsume;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: 事件的消费与否是通过<code>boolean</code>来标识的, <code>true</code>表示消费事件, <code>false</code>表示不消费事件. 事件的消费与否与是否使用了<code>MotionEvent</code>对象无关.</p>
+</blockquote>
+<p>前面说过, 事件的传递顺序为 : <code>Activity</code> -&gt; <code>PhoneWindow</code> -&gt; <code>DecorView</code> -&gt; <code>ViewGroup</code> …. -&gt; <code>View</code>. 下面我们来看看<code>Activity</code>, <code>ViewGroup</code>和<code>View</code>中是否有上面的三个方法:</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>方法</th>
+<th>Activity</th>
+<th>ViewGroup</th>
+<th>View</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事件分发</td>
+<td>dispatchTouchEvent</td>
+<td>存在</td>
+<td>存在</td>
+<td>存在</td>
+</tr>
+<tr>
+<td>事件拦截</td>
+<td>onInterceptTouchEvent</td>
+<td>不存在</td>
+<td>存在</td>
+<td>不存在</td>
+</tr>
+<tr>
+<td>事件消费</td>
+<td>onTouchEvent</td>
+<td>存在</td>
+<td>存在</td>
+<td>存在</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>从上表可以看出: <code>Activity</code>和<code>View</code>是不存在事件拦截的.</p>
+<h2 id="事件分发的总体流程"><a href="#事件分发的总体流程" class="headerlink" title="事件分发的总体流程"></a>事件分发的总体流程</h2></blockquote>
+<p>一个点击时事件总是先到达<code>Activity</code>, 然后传给<code>Window</code>, 接着<code>Window</code>传给顶级<code>View</code>, 最后按照事件分发机制去分发. 分发的流程图如下:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fll2pjny8dj30jb0u3jtj.jpg" alt=""></p>
+<blockquote>
+<h2 id="监听器的优先级"><a href="#监听器的优先级" class="headerlink" title="监听器的优先级"></a>监听器的优先级</h2></blockquote>
+<p>当一个<code>View</code>设置了<code>OnTouchListener</code>, 那么<code>OnTouchListener</code>的<code>onTouch</code>会先被调用. 如果<code>OnTouch</code>返回<code>true</code>的话, 事件被消费. 如果返回<code>false</code>的话, 当前<code>View</code>的<code>onTouEvent</code>会被调用. 而在<code>onTouchEvent</code>中, 会根据事件类型来调用<code>OnLongClickListener</code>或者<code>OnClickListener</code>监听器的监听方法.</p>
+<p>换句话说, 监听器的优先级为: <code>OnTouchListener</code> -&gt; <code>OnLongClickListener</code> -&gt; <code>OnClickListener</code>.</p>
+<blockquote>
+<h2 id="View默认的消费事件行为"><a href="#View默认的消费事件行为" class="headerlink" title="View默认的消费事件行为"></a>View默认的消费事件行为</h2></blockquote>
+<p>如果<code>View</code>的<code>clickable</code>属性为<code>true</code>的话, 该<code>View</code>会默认消费事件.</p>
+<p>如果给<code>View</code>设置了<code>onClickListener</code>、<code>onLongClickListener</code>、<code>OnContextClickListener</code>其中一个监听器, 或者<code>android:clickable=&quot;true&quot;</code>的话, 该<code>View</code>是可点击的, 也就是<code>clickable</code>为<code>true</code>.</p>
+<p>有些控件默认是可点击的, 比如:<code>Button</code>. 不可点击的控件: <code>TextView</code>.</p>
+<blockquote>
+<p>注意: <code>View</code>的<code>enable</code>属性并不会影响事件的分发.</p>
+</blockquote>
+<h2 id="事件分发小总结"><a href="#事件分发小总结" class="headerlink" title="事件分发小总结"></a>事件分发小总结</h2><ul>
+<li><p>正常情况下, 一个事件序列, 只能被一个<code>View</code>拦截并且消费. 因为如果一个<code>View</code>拦截了一个事件, 那么后续的事件将交给它处理.</p>
+</li>
+<li><p>如果一个<code>View</code>不消费<code>ACTION_DOWN</code>事件的话, 后续的事件就不会传递给它. 事件将交给父元素处理, 即使父元素的<code>OnTouchEvent</code>会被调用.</p>
+</li>
+<li><p><code>ViewGroup</code>默认不拦截任何事件.</p>
+</li>
+<li><p>事件总是先传给父元素, 再传给子元素. 子元素可以通过<code>requestDisallowInterceptTouchEvent</code>来干预父元素的拦截, 但是对于<code>ACTION_DOWN</code>事件, 子元素不能干预父元素的拦截.</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="View的滑动冲突"><a href="#View的滑动冲突" class="headerlink" title="View的滑动冲突"></a>View的滑动冲突</h2></blockquote>
+<p>常见的滑动冲突有三种:</p>
+<ol>
+<li><p>外部和内部的滑动方向不一样</p>
+</li>
+<li><p>外部和内部的滑动方向一样.</p>
+</li>
+<li><p>上面两种情况的嵌套.</p>
+</li>
+</ol>
+<blockquote>
+<h3 id="处理规则"><a href="#处理规则" class="headerlink" title="处理规则"></a>处理规则</h3></blockquote>
+<p>场景1: 当用户左右滑动时, 让外部的<code>View</code>拦截点击事件; 当用户上下滑动时, 让内部的<code>View</code>拦截点击事件. 可以根据<code>View</code>滑动的水平距离和垂直距离差或角度差来判断用户是左右还是水平滑动.</p>
+<p>场景2: 这种情况只能根据业务逻辑来拦截事件.</p>
+<p>场景3: 跟场景2一样.</p>
+<blockquote>
+<h3 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h3></blockquote>
+<p>处理冲突的方法可以分为两种:</p>
+<ul>
+<li><p>外部拦截法: 事件总是先经过父元素, 如果父元素需要的话, 就拦截下来.</p>
+</li>
+<li><p>内部拦截法: 父容器默认不拦截事件, 所有事件先交给子元素处理, 如果子元素需要的话, 就消费掉, 不需要的话, 交给父元素处理.</p>
+</li>
+</ul>
+<p>下面是这两种方法的模板代码:</p>
+<blockquote>
+<p>外部拦截法:</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    <span class="keyword">boolean</span> intercepted = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">int</span> x = (<span class="keyword">int</span>) ev.getX();</div><div class="line">    <span class="keyword">int</span> y = (<span class="keyword">int</span>) ev.getY();</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (ev.getAction()) &#123;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">            intercepted = <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">            <span class="keyword">if</span> (父容器需要当前点击事件) &#123;</div><div class="line">                intercepted = <span class="keyword">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                intercepted = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">            intercepted = <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        mLastXIntercepted = x;</div><div class="line">        mLastYIntercepted = y;</div><div class="line">        <span class="keyword">return</span> intercepted;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>内部拦截法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//子元素</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> x = (<span class="keyword">int</span>) ev.getX();</div><div class="line">    <span class="keyword">int</span> y = (<span class="keyword">int</span>) ev.getY();</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (ev.getAction()) &#123;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">            getParent().requestDisallowInterceptTouchEvent(<span class="keyword">true</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">            <span class="keyword">if</span> (父容器需要此点击事件) &#123;</div><div class="line">                getParent().requestDisallowInterceptTouchEvent(<span class="keyword">false</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    mLastX = x;</div><div class="line">    mLastY = y;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//父元素:</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> action = ev.getAction();</div><div class="line">    <span class="keyword">if</span> (action == MotionEvent.ACTION_DOWN) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Android开发艺术探索</p>
+<p><a href="http://www.gcssloop.com/customview/dispatch-touchevent-source" target="_blank" rel="external">http://www.gcssloop.com/customview/dispatch-touchevent-source</a></p>
 </blockquote>
 
         </div>
@@ -280,7 +317,7 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
 
 
 
-    <a data-url="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/" data-id="cja9doofe003k1xcj0q620ykn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://cristianoro7.github.io/2017/11/21/Android事件分发机制总结/" data-id="cja9dooaj00011xcjjtp94ba4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -377,20 +414,20 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
         
 <nav id="article-nav">
     
-        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/11/21/Android动画框架总结/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            深入理解Java集合框架-ArrayList
+            Android动画框架总结
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2017/10/31/确认访问用户的身份-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/11/14/SP解读/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">图解HTTP-确认访问用户的身份-笔记</p>
+        <p class="article-nav-title">SP解析</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -605,7 +642,7 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/';
+    var disqus_url = 'http://cristianoro7.github.io/2017/11/21/Android事件分发机制总结/';
     
     (function() {
     var dsq = document.createElement('script');
