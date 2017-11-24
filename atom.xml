@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-11-24T15:33:23.925Z</updated>
+  <updated>2017-11-24T15:49:29.592Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>java反射基础</title>
     <link href="http://cristianoro7.github.io/2017/11/24/Java%E5%8F%8D%E5%B0%84%E5%9F%BA%E7%A1%80/"/>
     <id>http://cristianoro7.github.io/2017/11/24/Java反射基础/</id>
-    <published>2017-11-24T15:33:23.925Z</published>
-    <updated>2017-11-24T15:33:23.925Z</updated>
+    <published>2017-11-24T15:49:29.592Z</published>
+    <updated>2017-11-24T15:49:29.592Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg" alt=""></p>
 <blockquote>
@@ -141,7 +141,9 @@
 <h4 id="获取方法返回值的参数类型"><a href="#获取方法返回值的参数类型" class="headerlink" title="获取方法返回值的参数类型"></a>获取方法返回值的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Method method = TClass.class.getMethod(<span class="string">"getList"</span>, <span class="keyword">null</span>);</div><div class="line">Type type = method.getGenericReturnType();</div><div class="line"><span class="keyword">if</span> (type <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">    ParameterizedType parameterizedType = (ParameterizedType) type;</div><div class="line">    Type[] ts = parameterizedType.getActualTypeArguments();</div><div class="line">    <span class="keyword">for</span> (Type t : ts) &#123;</div><div class="line">        Class c = (Class) t;</div><div class="line">        System.out.println(c.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="获取方法参数的参数类型"><a href="#获取方法参数的参数类型" class="headerlink" title="获取方法参数的参数类型"></a>获取方法参数的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Field field = TClass.class.getDeclaredField(<span class="string">"stringList"</span>);</div><div class="line">Type t = field.getGenericType();</div><div class="line"><span class="keyword">if</span> (t <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">    ParameterizedType pt = (ParameterizedType) t;</div><div class="line">    Type[] types = pt.getActualTypeArguments();</div><div class="line">    <span class="keyword">for</span> (Type ty : types) &#123;</div><div class="line">        Class c = (Class) ty;</div><div class="line">        System.out.println(c.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="获取字段的参数类型"><a href="#获取字段的参数类型" class="headerlink" title="获取字段的参数类型"></a>获取字段的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Method method = TClass.class.getMethod(<span class="string">"setList"</span>, List.class);</div><div class="line">Type[] type = method.getGenericParameterTypes();</div><div class="line"><span class="keyword">for</span> (Type parT : type) &#123;</div><div class="line">    <span class="keyword">if</span> (parT <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">        ParameterizedType parameterizedType = (ParameterizedType) parT;</div><div class="line">        Type[] types = parameterizedType.getActualTypeArguments();</div><div class="line">        <span class="keyword">for</span> (Type ty: types) &#123;</div><div class="line">            Class c = (Class) ty;</div><div class="line">            System.out.println(c.getName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
+<blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h3></blockquote>
+<h3 id="Java核心编程思想"><a href="#Java核心编程思想" class="headerlink" title="Java核心编程思想"></a>Java核心编程思想</h3><h3 id="http-ifeve-com-java-reflection-9-generics"><a href="#http-ifeve-com-java-reflection-9-generics" class="headerlink" title="http://ifeve.com/java-reflection-9-generics/"></a><a href="http://ifeve.com/java-reflection-9-generics/" target="_blank" rel="external">http://ifeve.com/java-reflection-9-generics/</a></h3>]]></content>
     
     <summary type="html">
     
