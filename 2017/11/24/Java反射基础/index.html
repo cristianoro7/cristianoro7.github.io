@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>java反射基础 | Desperado</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java#基础" />
+    
+    <meta name="description" content="什么是反射
+在Java中, 每一个对象都对应有一个Class对象, 这个Class对象记录着对象的类型信息, 也就是类的内部结构.
+我们知道, 我们编写的.java文件, 是需要被编译成.class文件, 然后才能被虚拟机加载执行. 正常情况下, .class是在编译期生成并且被JVM识别. 而反射机制则将.class文件的打开和检查推迟到运行时.
+简单的说, 反射机制能让你在运行时操作一个类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java反射基础">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/11/24/Java反射基础/index.html">
+<meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="什么是反射
+在Java中, 每一个对象都对应有一个Class对象, 这个Class对象记录着对象的类型信息, 也就是类的内部结构.
+我们知道, 我们编写的.java文件, 是需要被编译成.class文件, 然后才能被虚拟机加载执行. 正常情况下, .class是在编译期生成并且被JVM识别. 而反射机制则将.class文件的打开和检查推迟到运行时.
+简单的说, 反射机制能让你在运行时操作一个类">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg">
+<meta property="og:updated_time" content="2017-11-24T15:33:23.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java反射基础">
+<meta name="twitter:description" content="什么是反射
+在Java中, 每一个对象都对应有一个Class对象, 这个Class对象记录着对象的类型信息, 也就是类的内部结构.
+我们知道, 我们编写的.java文件, 是需要被编译成.class文件, 然后才能被虚拟机加载执行. 正常情况下, .class是在编译期生成并且被JVM识别. 而反射机制则将.class文件的打开和检查推迟到运行时.
+简单的说, 反射机制能让你在运行时操作一个类">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Do one thing every day that scares you.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Android/">Android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/数据结构/">数据结构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机组成原理/">计算机组成原理</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java/">Java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Java反射基础" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        java反射基础
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/11/24/Java反射基础/" class="article-date">
+            <time datetime="2017-11-24T15:33:23.925Z" itemprop="datePublished">2017-11-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java-基础/">Java#基础</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg" alt=""></p>
+<blockquote>
+<h3 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h3></blockquote>
+<p>在<code>Java</code>中, 每一个对象都对应有一个<code>Class</code>对象, 这个<code>Class</code>对象记录着对象的类型信息, 也就是类的内部结构.</p>
+<p>我们知道, 我们编写的<code>.java</code>文件, 是需要被编译成<code>.class</code>文件, 然后才能被虚拟机加载执行. 正常情况下, <code>.class</code>是在编译期生成并且被<code>JVM</code>识别. 而反射机制则将<code>.class</code>文件的打开和检查推迟到运行时.</p>
+<p>简单的说, 反射机制能让你在运行时操作一个类, 这些操作可以是: 实例化该类的对象, 调用对象方法和修改对象的属性值. 至于操作的类的<code>.class</code>文件可以是编译期未知.</p>
+<blockquote>
+<h3 id="反射的概述"><a href="#反射的概述" class="headerlink" title="反射的概述"></a>反射的概述</h3></blockquote>
+<p>一个类的元素可以被拆分为下面几个元素:</p>
+<ul>
+<li><p><code>Class</code>: 一个类对象</p>
+</li>
+<li><p><code>Constructor</code>: 构造器对象, 可以通过<code>Class</code>对象获得</p>
+</li>
+<li><p><code>Method</code>: 方法对象, 可以通过<code>Class</code>对象获得</p>
+</li>
+<li><p><code>Fields</code>: 字段对象, 可以通过<code>Class</code>对象获得</p>
+</li>
+<li><p><code>Annotation</code>: 注解对象, 可以通过<code>Class</code>对象获得</p>
+</li>
+</ul>
+<p>从上面的元素可以看出, 我们如果要进行反射的话, 首先得获得类的<code>Class</code>对象, 进而才可以操作类的字段, 方法和构造器等.</p>
+<blockquote>
+<h3 id="获取Class对象"><a href="#获取Class对象" class="headerlink" title="获取Class对象"></a>获取Class对象</h3></blockquote>
+<p>要进行反射, 我们首先要获得需要反射的类的<code>Class</code>对象. 而获取的方法有下面三种:</p>
+<ul>
+<li><p><code>Class class2 = Class.forName(&quot;com.desperado.reflaction.Bean&quot;)</code>: 调用<code>Class</code>类的<code>forName(String)</code>方法, 参数为类的全限定符号. 如果运行时找不到该类的话, 会报<code>ClassNotFoundException</code>异常. 这种方法一般用于编译期不能获得<code>.class</code>文件的情形.</p>
+</li>
+<li><p><code>Class class1 = Bean.class</code>: 通过类字面量来获取<code>Class</code>对象.</p>
+</li>
+<li><p><code>Bean bean = new Bean(); Class class3 = bean.getClass();</code>: 通过对象来获取<code>Class</code>对象.</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="获取Constructor"><a href="#获取Constructor" class="headerlink" title="获取Constructor"></a>获取Constructor</h3></blockquote>
+<p>得到<code>Class</code>对象后, 我们可以利用这个<code>Class</code>对象来获取类的构造函数, 以此来创建实例.</p>
+<p>获取构造方法的方法有:</p>
+<ul>
+<li><p><code>getConstructors()</code>: 获取所有被<code>public</code>修饰的构造方法.</p>
+</li>
+<li><p><code>getConstructor(Class&lt;?&gt;... parameterTypes)</code>: 返回指定参数类型的构造方法, 并且构造方法是被<code>public</code>修饰的.</p>
+</li>
+<li><p><code>getDeclaredConstructors()</code>: 获取所有的构造方法, 与权限修饰符无关.</p>
+</li>
+<li><p><code>getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>: 获取指定类型的构造方法, 与权限修饰符无关.</p>
+</li>
+</ul>
+<blockquote>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class beanClass = Bean.class;</div><div class="line">Bean  b = (Bean) beanClass.newInstance();</div></pre></td></tr></table></figure>
+<p><code>newInstance()</code>这个方法会调用类无参的构造函数, 如果类没有无参构造函数的话, 会报异常.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Human</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Class&lt;?&gt; c = Human.class;</div><div class="line">Constructor constructor = c.getConstructor(String.class);</div><div class="line">Human human = (Human) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">Constructor priCon = c.getDeclaredConstructor(String.class, <span class="keyword">int</span>.class);</div><div class="line">priCon.setAccessible(<span class="keyword">true</span>);</div><div class="line">Human h = (Human) priCon.newInstance(<span class="string">"xiaohong"</span>, <span class="number">18</span>);</div></pre></td></tr></table></figure>
+<p>利用<code>getConstructor</code>方法, 调用了<code>Human</code>中带有<code>String</code>参数的构造方法.<code>getDeclaredConstructor</code>可以获取私有构造方法.</p>
+<blockquote>
+<h3 id="获取Method"><a href="#获取Method" class="headerlink" title="获取Method"></a>获取Method</h3></blockquote>
+<p>利用<code>Class</code>对象, 我们可以获得<code>Method</code>来调用Class的方法. 获得<code>Method</code>的方法有:</p>
+<ul>
+<li><p><code>getMethods()</code>: 获取所有被<code>public</code>修饰的方法, 包含父类和接口中的方法</p>
+</li>
+<li><p><code>getMethod(String name, Class&lt;?&gt;... parameterTypes)</code>: 获取指定<code>name</code>的<code>public</code>方法. 包含父类的方法.</p>
+</li>
+<li><p><code>getDeclaredMethods()</code>:  获取所有的方法, 包括<code>private</code>. 但是不包括父类的方法</p>
+</li>
+<li><p><code>getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)</code>: 获取指定的方法, 包括<code>private</code>. 但是不包括父类的方法.</p>
+</li>
+</ul>
+<blockquote>
+<h4 id="getMethods和getMethod"><a href="#getMethods和getMethod" class="headerlink" title="getMethods和getMethod"></a>getMethods和getMethod</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Human</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">humanPubMethod</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"humanPubMethod"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">humanPriMethod</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"humanPriMethod"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XiaoHong</span> <span class="keyword">extends</span> <span class="title">Human</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name = <span class="string">"xiaohong"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">XiaoHong</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">priMethod</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"priMethod"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException,</span></div><div class="line">              InstantiationException, NoSuchMethodException,InvocationTargetException &#123;</div><div class="line"></div><div class="line">    Class&lt;?&gt; c = XiaoHong.class;</div><div class="line">    Constructor constructor = c.getConstructor(String.class);</div><div class="line">    XiaoHong xiaoHong = (XiaoHong) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">    Method method = c.getMethod(<span class="string">"humanPubMethod"</span>, <span class="keyword">null</span>);</div><div class="line">    method.invoke(xiaoHong, <span class="keyword">null</span>); <span class="comment">//调用方法</span></div><div class="line"></div><div class="line">    Method[] methods = c.getMethods();</div><div class="line">    <span class="keyword">for</span> (Method m : methods) &#123; <span class="comment">//遍历方法</span></div><div class="line">        System.out.println(m.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="getDeclaredMethod和getDeclaredMethods"><a href="#getDeclaredMethod和getDeclaredMethods" class="headerlink" title="getDeclaredMethod和getDeclaredMethods"></a>getDeclaredMethod和getDeclaredMethods</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException </span>&#123;</div><div class="line"></div><div class="line">    Class&lt;?&gt; c = XiaoHong.class;</div><div class="line">    Constructor constructor = c.getConstructor(String.class);</div><div class="line">    XiaoHong xiaoHong = (XiaoHong) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">    Method method = c.getDeclaredMethod(<span class="string">"priMethod"</span>, <span class="keyword">null</span>);</div><div class="line">    method.setAccessible(<span class="keyword">true</span>);</div><div class="line">    method.invoke(xiaoHong, <span class="keyword">null</span>);</div><div class="line"></div><div class="line">    Method[] methods = c.getDeclaredMethods();</div><div class="line">    <span class="keyword">for</span> (Method m : methods)&#123;</div><div class="line">        System.out.println(m.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="获取Fields"><a href="#获取Fields" class="headerlink" title="获取Fields"></a>获取Fields</h3></blockquote>
+<p>利用<code>Class</code>对象, 我们同样可以获得类的字段, 并且可以<code>set</code>和<code>get</code>字段的值. 我们可以通过下面的方法获取<code>Field</code>对象</p>
+<ul>
+<li><p><code>getFields()</code>: 获取类的所有被<code>public</code>修饰的字段, 包括父类中的.</p>
+</li>
+<li><p><code>getField(String name)</code>: 获取类的指定被<code>public</code>修饰的字段, 包括父类中的.</p>
+</li>
+<li><p><code>getDeclaredFields()</code>: 获取类的所有字段, 包括被<code>private</code>修饰的字段. 但是不包括父类中的.</p>
+</li>
+<li><p><code>getDeclaredField(String name)</code>: 获取类的指定字段, 包括被<code>private</code>修饰的字段. 但是不包括父类中的.</p>
+</li>
+</ul>
+<blockquote>
+<h4 id="getFields和getField"><a href="#getFields和getField" class="headerlink" title="getFields和getField"></a>getFields和getField</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException </span>&#123;</div><div class="line"></div><div class="line">    Class&lt;?&gt; c = XiaoHong.class;</div><div class="line">    Constructor constructor = c.getConstructor(String.class);</div><div class="line">    XiaoHong xiaoHong = (XiaoHong) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">    Field field = c.getField(<span class="string">"pubName"</span>);</div><div class="line">    String pubName = (String) field.get(xiaoHong);</div><div class="line">    System.out.println(pubName);</div><div class="line"></div><div class="line">    Field[] fields = c.getFields();</div><div class="line">    <span class="keyword">for</span> (Field f : fields) &#123;</div><div class="line">      System.out.println(f.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="getDeclaredFields和getDeclaredField"><a href="#getDeclaredFields和getDeclaredField" class="headerlink" title="getDeclaredFields和getDeclaredField"></a>getDeclaredFields和getDeclaredField</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException </span>&#123;</div><div class="line"></div><div class="line">    Class&lt;?&gt; c = XiaoHong.class;</div><div class="line">    Constructor constructor = c.getConstructor(String.class);</div><div class="line">    XiaoHong xiaoHong = (XiaoHong) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">    Field field = c.getDeclaredField(<span class="string">"name"</span>);</div><div class="line">    field.setAccessible(<span class="keyword">true</span>);</div><div class="line">    System.out.println(field.get(xiaoHong));</div><div class="line"></div><div class="line">    Field[] fields = c.getDeclaredFields();</div><div class="line">    <span class="keyword">for</span> (Field f : fields) &#123;</div><div class="line">      System.out.println(f.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="获得Annotation"><a href="#获得Annotation" class="headerlink" title="获得Annotation"></a>获得Annotation</h3></blockquote>
+<p>由于注解可以用来标注类, 方法, 字段, 参数, 所以, <code>Annotation</code>可以通过这些来获取.下面以<code>Class</code>对象为例子. 可以通过下面两个方法获取:</p>
+<ul>
+<li><p><code>getAnnotation(Class&lt;A&gt; annotationClass)</code>: 获取类指定的注解</p>
+</li>
+<li><p><code>getAnnotations()</code>: 获取类标注的所有注解</p>
+</li>
+</ul>
+<blockquote>
+<h4 id="getAnnotations和getAnnotation-Class-annotationClass"><a href="#getAnnotations和getAnnotation-Class-annotationClass" class="headerlink" title="getAnnotations和getAnnotation(Class annotationClass)"></a>getAnnotations和getAnnotation(Class<a> annotationClass)</a></h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException </span>&#123;</div><div class="line"></div><div class="line">    Class&lt;?&gt; c = XiaoHong.class;</div><div class="line">    Constructor constructor = c.getConstructor(String.class);</div><div class="line">    XiaoHong xiaoHong = (XiaoHong) constructor.newInstance(<span class="string">"xiaohong"</span>);</div><div class="line"></div><div class="line">    BindView bindView = c.getAnnotation(BindView.class);</div><div class="line">    <span class="keyword">if</span> (bindView != <span class="keyword">null</span>) &#123;</div><div class="line">        System.out.println(bindView.value());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Annotation[] annotations = c.getAnnotations();</div><div class="line">    <span class="keyword">for</span> (Annotation a : annotations) &#123;</div><div class="line">        <span class="keyword">if</span> (a.annotationType().equals(BindView.class)) &#123;</div><div class="line">            System.out.println(<span class="string">"equal"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="利用反射处理数组"><a href="#利用反射处理数组" class="headerlink" title="利用反射处理数组"></a>利用反射处理数组</h3></blockquote>
+<p><code>Java</code>反射机制通过<code>java.lang.reflect.Array</code>这个类来处理数组。</p>
+<h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>[] ints = (<span class="keyword">int</span>[]) Array.newInstance(<span class="keyword">int</span>.class, <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<p>上面是一个创建数组的例子, <code>newInstance</code>方法的第一个参数为: 数组存放的类型, 第二个为数组的长度.</p>
+<h4 id="访问数组"><a href="#访问数组" class="headerlink" title="访问数组"></a>访问数组</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = Array.getInt(ints, <span class="number">0</span>);</div><div class="line">Array.setInt(ints,<span class="number">1</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<p>对于基本类型, <code>Array</code>中提供了<code>setXX</code>和<code>getXX</code>方法来访问数组, 对于普通对象, 可以调用<code>get</code>和<code>set</code>方法.</p>
+<h4 id="数组Class对象"><a href="#数组Class对象" class="headerlink" title="数组Class对象"></a>数组Class对象</h4><p>对于获取数组的<code>Class</code>对象, 可以先实例化对于的数组, 再得到它的<code>Class</code>对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class aClass = Class.forName(<span class="string">"com.desperado.reflaction.XiaoHong"</span>); <span class="comment">//先获得class对象</span></div><div class="line">Class classArray = Array.newInstance(aClass, <span class="number">0</span>).getClass(); <span class="comment">//再创建class对象数组, 最后获取数组class对象</span></div></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="反射和泛型"><a href="#反射和泛型" class="headerlink" title="反射和泛型"></a>反射和泛型</h3></blockquote>
+<p>由于泛型会在编译期被擦除, 所以我们是不能在运行时获得泛型类的参数类型的. 但是我们却可以通过使用了参数类型的字段或者返回了带有类型参数的方法来获得一个泛型类的类型信息.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TClass</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stringList;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.stringList = list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取方法返回值的参数类型"><a href="#获取方法返回值的参数类型" class="headerlink" title="获取方法返回值的参数类型"></a>获取方法返回值的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Method method = TClass.class.getMethod(<span class="string">"getList"</span>, <span class="keyword">null</span>);</div><div class="line">Type type = method.getGenericReturnType();</div><div class="line"><span class="keyword">if</span> (type <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">    ParameterizedType parameterizedType = (ParameterizedType) type;</div><div class="line">    Type[] ts = parameterizedType.getActualTypeArguments();</div><div class="line">    <span class="keyword">for</span> (Type t : ts) &#123;</div><div class="line">        Class c = (Class) t;</div><div class="line">        System.out.println(c.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取方法参数的参数类型"><a href="#获取方法参数的参数类型" class="headerlink" title="获取方法参数的参数类型"></a>获取方法参数的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Field field = TClass.class.getDeclaredField(<span class="string">"stringList"</span>);</div><div class="line">Type t = field.getGenericType();</div><div class="line"><span class="keyword">if</span> (t <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">    ParameterizedType pt = (ParameterizedType) t;</div><div class="line">    Type[] types = pt.getActualTypeArguments();</div><div class="line">    <span class="keyword">for</span> (Type ty : types) &#123;</div><div class="line">        Class c = (Class) ty;</div><div class="line">        System.out.println(c.getName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取字段的参数类型"><a href="#获取字段的参数类型" class="headerlink" title="获取字段的参数类型"></a>获取字段的参数类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Method method = TClass.class.getMethod(<span class="string">"setList"</span>, List.class);</div><div class="line">Type[] type = method.getGenericParameterTypes();</div><div class="line"><span class="keyword">for</span> (Type parT : type) &#123;</div><div class="line">    <span class="keyword">if</span> (parT <span class="keyword">instanceof</span> ParameterizedType) &#123;</div><div class="line">        ParameterizedType parameterizedType = (ParameterizedType) parT;</div><div class="line">        Type[] types = parameterizedType.getActualTypeArguments();</div><div class="line">        <span class="keyword">for</span> (Type ty: types) &#123;</div><div class="line">            Class c = (Class) ty;</div><div class="line">            System.out.println(c.getName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://cristianoro7.github.io/2017/11/24/Java反射基础/" data-id="cjae2egvx000m40cjh9c23zap" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/cristianoro7" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/11/22/Java注解基础/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java注解基础</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/24/Java反射基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg)" alt="java反射基础" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/11/24/Java反射基础/" class="title">java反射基础</a></p>
+                            <p class="item-date"><time datetime="2017-11-24T15:33:23.925Z" itemprop="datePublished">2017-11-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/22/Java注解基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1flr4xe3496j30m80b47mn.jpg)" alt="Java注解基础" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/11/22/Java注解基础/" class="title">Java注解基础</a></p>
+                            <p class="item-date"><time datetime="2017-11-22T12:34:53.714Z" itemprop="datePublished">2017-11-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/21/Android动画框架总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1flpsxet776j30m80b4tf9.jpg)" alt="Android动画框架总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/11/21/Android动画框架总结/" class="title">Android动画框架总结</a></p>
+                            <p class="item-date"><time datetime="2017-11-21T09:32:34.677Z" itemprop="datePublished">2017-11-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/21/Android事件分发机制总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg)" alt="Android事件分发机制总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/11/21/Android事件分发机制总结/" class="title">Android事件分发机制总结</a></p>
+                            <p class="item-date"><time datetime="2017-11-21T09:32:31.885Z" itemprop="datePublished">2017-11-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/14/SP解读/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1flhnrmq40dj30m80b4q9b.jpg)" alt="SP解析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/2017/11/14/SP解读/" class="title">SP解析</a></p>
+                            <p class="item-date"><time datetime="2017-11-14T08:00:59.799Z" itemprop="datePublished">2017-11-14</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成原理/">计算机组成原理</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Dagger2/">Android#Dagger2</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-数据持久化-SP/">Android#数据持久化#SP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-网络框架/">Android#网络框架</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义View/">Android#自定义View</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-JVM/">Java#JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础/">Java#基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-基础概念/">Java#基础概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-AQS/">Java并发包#AQS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-Lock/">Java并发包#Lock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java并发包-工具类/">Java并发包#工具类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java集合框架/">Java集合框架</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-Picasso/">图片加载框架#Picasso</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片加载框架-universal-image-loader/">图片加载框架#universal-image-loader</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓开发艺术探索笔记/">安卓开发艺术探索笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步框架-AsyncTask/">异步框架#AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成原理/">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-HTTP/">计算机网络#HTTP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-网络层/">计算机网络#网络层</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android-Dagger2/" style="font-size: 16px;">Android#Dagger2</a> <a href="/tags/Android-数据持久化-SP/" style="font-size: 10px;">Android#数据持久化#SP</a> <a href="/tags/Android-网络框架/" style="font-size: 14px;">Android#网络框架</a> <a href="/tags/Android-自定义View/" style="font-size: 14px;">Android#自定义View</a> <a href="/tags/Java-JVM/" style="font-size: 16px;">Java#JVM</a> <a href="/tags/Java-基础/" style="font-size: 12px;">Java#基础</a> <a href="/tags/Java-基础概念/" style="font-size: 10px;">Java#基础概念</a> <a href="/tags/Java并发包-AQS/" style="font-size: 12px;">Java并发包#AQS</a> <a href="/tags/Java并发包-Lock/" style="font-size: 10px;">Java并发包#Lock</a> <a href="/tags/Java并发包-工具类/" style="font-size: 10px;">Java并发包#工具类</a> <a href="/tags/Java集合框架/" style="font-size: 20px;">Java集合框架</a> <a href="/tags/图片加载框架-Picasso/" style="font-size: 12px;">图片加载框架#Picasso</a> <a href="/tags/图片加载框架-universal-image-loader/" style="font-size: 12px;">图片加载框架#universal-image-loader</a> <a href="/tags/安卓开发艺术探索笔记/" style="font-size: 14px;">安卓开发艺术探索笔记</a> <a href="/tags/异步框架-AsyncTask/" style="font-size: 10px;">异步框架#AsyncTask</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/计算机组成原理/" style="font-size: 12px;">计算机组成原理</a> <a href="/tags/计算机网络-HTTP/" style="font-size: 20px;">计算机网络#HTTP</a> <a href="/tags/计算机网络-网络层/" style="font-size: 18px;">计算机网络#网络层</a> <a href="/tags/计算机网络-运输层/" style="font-size: 20px;">计算机网络#运输层</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://kimZLeung.github.io">kimZLeung</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://aymaxli.cn/">Aymaxli</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://Yves0.github.io">Yves0</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.eyestide.com">eyestide</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Desperado</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://cristianoro7.github.io/2017/11/24/Java反射基础/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
