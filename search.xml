@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title><![CDATA[TCP首部]]></title>
+      <url>http://cristianoro7.github.io/2017/12/07/TCP%E9%A6%96%E9%83%A8/</url>
+      <content type="html"><![CDATA[<h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
+<p>TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
+<p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm87lbwl34j30fd0flt98.jpg" alt=""></p>
+<h3 id="源端口和目的端口"><a href="#源端口和目的端口" class="headerlink" title="源端口和目的端口"></a>源端口和目的端口</h3><p>各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.</p>
+<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><p>占4个字节.TCP是面向字节流的,在一个TCP连接中传送的字节流中的每一个字节都按顺序编号.序号字段值是用来指定本报文段所发送的数据的第一个字节的序号.</p>
+<h3 id="确认号"><a href="#确认号" class="headerlink" title="确认号"></a>确认号</h3><p>占4字节.是接收方期望收到发送方下一个报文段的第一个数据字节序号.例如:B正确接收了A发送过来的一个报文段,其序号字段为501,数据长度为200字节,表明B正确接收了501~700的序号的数据.因此,B期望收到A的下一个数据序号是701, 于是B在发送给A的确认报文中把确认号置为701.</p>
+<h3 id="首部长度"><a href="#首部长度" class="headerlink" title="首部长度"></a>首部长度</h3><p>占4位, 该字段是以32位Bit为单位, 它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远.这个字段实际上是指出TCP首部的长度. 所以<code>TCP</code>的首部长度为最多60字节.</p>
+<h3 id="保留"><a href="#保留" class="headerlink" title="保留"></a>保留</h3><p>占4位, 保留为今后使用, 目前应置为0</p>
+<h3 id="8个标志位"><a href="#8个标志位" class="headerlink" title="8个标志位"></a>8个标志位</h3><ul>
+<li><p>拥塞创窗口减<code>CWR</code>: 告知发送方, 降低发送速率.</p>
+</li>
+<li><p><code>CEC</code>: 发送方接收到了一个更早的拥塞通告.</p>
+</li>
+<li><p>紧急URG: 当URG = 1时, 表明紧急指针字段有效.它告诉系统,当前报文段有紧急数据,应当尽快传送.</p>
+</li>
+<li><p>确认<code>ACK</code>: 仅当ACK = 1时确认号字段才有效.当ACK = 0时,确认号无效. TCP规定,在连接建立后所有传送的报文段都必须把ACK置为1.</p>
+</li>
+<li><p>推送<code>PSH</code>: 当发送方将PSH置为1,并立即创建一个报文段发送出去.接收方TCP收到PSH = 1的报文段时,就尽快地交付接收应用程序,而不再等到整个缓存填满了再向上交付.</p>
+</li>
+<li><p>复位(RST): 当RST = 1 时, 表明TCP连接出现严重错误,必须释放连接,然后再重新建立连接.</p>
+</li>
+<li><p>同步<code>SYN</code>: 在连接建立时用来同步序号. 当SYN = 1 时而ACK = 0 时表示这是一个连接请求报文段.若对方同意连接后, 则应在响应报文中使SYN = 1和ACK = 1.实际上SYN = 1 时表示这是一个连接请求或接受报文.</p>
+</li>
+<li><p>终止<code>FIN</code>: 用来释放一个连接. 当FIN = 1 时, 表明此报文段的发送数据已发送完毕,并要求释放连接.</p>
+</li>
+</ul>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>占2字节.窗口指的是发送报文段一方的接收窗口.窗口值告诉对方:接收方目前允许对方发送的数据量. 由于窗口占2个字节, 所以窗口最大为: 65535. 但这不是绝对的, 因为在<code>TCP</code>的选项字段中, 含有一个窗口缩放字段, 可以用来扩大窗口的值.</p>
+<h3 id="检验和"><a href="#检验和" class="headerlink" title="检验和"></a>检验和</h3><p>检验和字段检验的范围包括首部和数据这两部分.</p>
+<h3 id="紧急指针"><a href="#紧急指针" class="headerlink" title="紧急指针"></a>紧急指针</h3><p>占2字节. 当URG = 1 时才有意义, 它指出本报文段中的紧急数据字节数.</p>
+<h3 id="TCP选项"><a href="#TCP选项" class="headerlink" title="TCP选项"></a>TCP选项</h3><p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm87xjwuqbj30t00ji759.jpg" alt=""></p>
+<p><code>TCP</code>的每一个选项字段的头字节为<code>种类(kind)</code>, 它指明了选项的类型. 除了<code>无操作</code>和<code>选项表结束</code>没有长度字段外, 其他的选项都有一个<code>len</code>字段来说明该选项的长度.</p>
+<ul>
+<li><p>选项列表结束(EOL): 指出了选项列表的结尾, 说明无需对此选项列表再进行处理.</p>
+</li>
+<li><p>无操作(NOP): 填充字段. 因为TCP的首部单位是4个字节. 所以当选项字段不是4字节的倍数时, 可以用NOP来进行字段的填充.</p>
+</li>
+<li><p>最大报文段长度(MSS): 告知通信方, 自己接受的最大报文的长度(不包括TCP和IP的首部). 默认情况下, 最大段大小为: 536. 因为任务主机能够处理至少为576字节的<code>IPV4</code>报文段. 由于536是不包括<code>TCP</code>首部和<code>IP</code>首部的, 所以当加上<code>TCP</code>20字节和<code>IP</code>首部20字节的话, 刚好是576.</p>
+</li>
+<li><p>窗口缩放(WSCALE或WSOPT): 能够将窗口字段从14位扩大到30位. 该选项字段只能出现于一个<code>SYN</code>报文段中. 主动打开连接的一方可以在<code>SYN</code>指定这个字段, 被动打开的一方可以在<code>ACK SYN</code>报文中指定该选项. 假设现在正在使用该字段. 发送出去的<code>WSCALE</code>为<code>s</code>的话, 并且接收到对方的<code>WSCALE</code>为<code>r</code>. 这样, 当接收到通信方的窗口时, 我们需要将该窗口值左移<code>r</code>为得到真正的窗口大小. 当我们要告知对方窗口值的大小时, 会将实际的大小右移<code>s</code>位, 然后再发送出去.</p>
+</li>
+<li><p>时间戳选项(TSOPT): 该字段指用于记录每收到一个<code>ACK</code>的往返时间(RTT). 该选项必须在双方建立连接时协商好, 并且需要双方都开启才有效.</p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java知识体系]]></title>
       <url>http://cristianoro7.github.io/2017/12/01/Java%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</url>
       <content type="html"><![CDATA[<p>总结自己的编程知识体系. 该体系动态更新.</p>
@@ -5115,33 +5166,6 @@
 <p>上面的两种方法可以交替使用.</p>
 <blockquote>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络</p>
-</blockquote>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[TCP首部]]></title>
-      <url>http://cristianoro7.github.io/2017/09/29/TCP%E9%A6%96%E9%83%A8/</url>
-      <content type="html"><![CDATA[<h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
-<p>TCP的全部功能都体现在其首部中的各个字段的作用.因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
-<p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项.因此,TCP首部的最小长度为20字节.</p>
-<h3 id="源端口和目的端口"><a href="#源端口和目的端口" class="headerlink" title="源端口和目的端口"></a>源端口和目的端口</h3><p>各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.</p>
-<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><p>占4个字节.TCP是面向字节流的,在一个TCP连接中传送的字节流中的每一个字节都按顺序编号.序号字段值是用来指定本报文段所发送的数据的第一个字节的序号.</p>
-<h3 id="确认号"><a href="#确认号" class="headerlink" title="确认号"></a>确认号</h3><p>占4字节.是接收方期望收到发送方下一个报文段的第一个数据字节序号.例如:B正确接收了A发送过来的一个报文段,其序号字段为501,数据长度为200字节,表明B正确接收了501~700的序号的数据.因此,B期望收到A的下一个数据序号是701, 于是B在发送给A的确认报文中把确认号置为701.</p>
-<h3 id="数据偏移"><a href="#数据偏移" class="headerlink" title="数据偏移"></a>数据偏移</h3><p>占4位, 它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远.这个字段实际上是指出TCP首部的长度.</p>
-<h3 id="保留"><a href="#保留" class="headerlink" title="保留"></a>保留</h3><p>占6位, 保留为今后使用, 但目前应置为0</p>
-<h3 id="紧急URG"><a href="#紧急URG" class="headerlink" title="紧急URG"></a>紧急URG</h3><p>当URG = 1时, 表明紧急指针字段有效.它告诉系统,当前报文段有紧急数据,应当尽快传送.</p>
-<h3 id="确认ACK"><a href="#确认ACK" class="headerlink" title="确认ACK"></a>确认ACK</h3><p>仅当ACK = 1时确认号字段才有效.当ACK = 0时,确认号无效. TCP规定,在连接建立后所有传送的报文段都必须把ACK置为1.</p>
-<h3 id="推送PSH"><a href="#推送PSH" class="headerlink" title="推送PSH"></a>推送PSH</h3><p>当发送方将PSH置为1,并立即创建一个报文段发送出去.接收方TCP收到PSH = 1的报文段时,就尽快地交付接收应用程序,而不再等到整个缓存填满了再向上交付.</p>
-<h3 id="复位-RST"><a href="#复位-RST" class="headerlink" title="复位(RST)"></a>复位(RST)</h3><p>当RST = 1 时, 表明TCP连接出现严重错误,必须释放连接,然后再重新建立连接.</p>
-<h3 id="同步SYN"><a href="#同步SYN" class="headerlink" title="同步SYN"></a>同步SYN</h3><p>在连接建立时用来同步序号. 当SYN = 1 时而ACK = 0 时表示这是一个连接请求报文段.若对方同意连接后, 则应在响应报文中使SYN = 1和ACK = 1.实际上SYN = 1 时表示这是一个连接请求或接受报文.</p>
-<h3 id="终止FIN"><a href="#终止FIN" class="headerlink" title="终止FIN"></a>终止FIN</h3><p>用来释放一个连接. 当FIN = 1 时, 表明此报文段的发送数据已发送完毕,并要求释放连接.</p>
-<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>占2字节.窗口指的是发送报文段一方的接收窗口.窗口值告诉对方:接收方目前允许对方发送的数据量.</p>
-<h3 id="检验和"><a href="#检验和" class="headerlink" title="检验和"></a>检验和</h3><p>检验和字段检验的范围包括首部和数据这两部分.</p>
-<h3 id="紧急指针"><a href="#紧急指针" class="headerlink" title="紧急指针"></a>紧急指针</h3><p>占2字节. 当URG = 1 时才有意义, 它指出本报文段中的紧急数据字节数.</p>
-<blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>计算机网络(谢希仁)</p>
 </blockquote>
 ]]></content>
     </entry>

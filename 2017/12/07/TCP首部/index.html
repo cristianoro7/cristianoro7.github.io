@@ -3,16 +3,42 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Desperado</title>
+    <title>TCP首部 | Desperado</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Desperado">
-<meta property="og:url" content="http://cristianoro7.github.io/page/6/index.html">
+        <meta name="keywords" content="计算机网络#运输层" />
+    
+    <meta name="description" content="TCP首部
+概述
+TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
+
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP首部">
+<meta property="og:url" content="http://cristianoro7.github.io/2017/12/07/TCP首部/index.html">
 <meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="TCP首部
+概述
+TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
+
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流">
+<meta property="og:image" content="http://cristianoro7.github.io/img/计网/TCP首部.jpeg">
+<meta property="og:updated_time" content="2017-12-07T08:57:08.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Desperado">
+<meta name="twitter:title" content="TCP首部">
+<meta name="twitter:description" content="TCP首部
+概述
+TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
+
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/计网/TCP首部.jpeg">
     
 
     
@@ -119,378 +145,167 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">主页</em>
+    <a class="page-title-link" href="/categories/计算机网络/">计算机网络</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-TCP首部" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Java内存分配与回收策略/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="Java内存分配与回收策略" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Java内存分配与回收策略/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:02:36.800Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Java内存分配与回收策略/">Java内存分配与回收策略</a>
+        TCP首部
         </h1>
     
 
-        <p class="article-excerpt">
-            内存分配与回收策略目录
-对象优先在Eden分配
-大对象直接进入老年代
-长期存活对象将进入老年代
-动态对象年龄判定
-空间分配担保
-
-对象优先在Eden分配
-大多数情况下, 对象主要分配在新生代的Eden区上.
-当Eden区没有足够的空间进行分配时, 虚拟机将进行一次 Minor GC
-
-大对象直接进入老年代
-大对象指的是需要大量连续内存空间的Java对象,最典型的大对象就是那种很长的字符串以及数组.
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/07/TCP首部/" class="article-date">
+            <time datetime="2017-12-07T08:57:08.609Z" itemprop="datePublished">2017-12-07</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Java内存区域/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/jvm-1.jpeg)" alt="Java内存区域" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Java内存区域/">0</span>
-    
-</span>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a>
+    </div>
 
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:02:31.104Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Java内存区域/">Java内存区域</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
+<p>TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
+<p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm87lbwl34j30fd0flt98.jpg" alt=""></p>
+<h3 id="源端口和目的端口"><a href="#源端口和目的端口" class="headerlink" title="源端口和目的端口"></a>源端口和目的端口</h3><p>各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.</p>
+<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><p>占4个字节.TCP是面向字节流的,在一个TCP连接中传送的字节流中的每一个字节都按顺序编号.序号字段值是用来指定本报文段所发送的数据的第一个字节的序号.</p>
+<h3 id="确认号"><a href="#确认号" class="headerlink" title="确认号"></a>确认号</h3><p>占4字节.是接收方期望收到发送方下一个报文段的第一个数据字节序号.例如:B正确接收了A发送过来的一个报文段,其序号字段为501,数据长度为200字节,表明B正确接收了501~700的序号的数据.因此,B期望收到A的下一个数据序号是701, 于是B在发送给A的确认报文中把确认号置为701.</p>
+<h3 id="首部长度"><a href="#首部长度" class="headerlink" title="首部长度"></a>首部长度</h3><p>占4位, 该字段是以32位Bit为单位, 它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远.这个字段实际上是指出TCP首部的长度. 所以<code>TCP</code>的首部长度为最多60字节.</p>
+<h3 id="保留"><a href="#保留" class="headerlink" title="保留"></a>保留</h3><p>占4位, 保留为今后使用, 目前应置为0</p>
+<h3 id="8个标志位"><a href="#8个标志位" class="headerlink" title="8个标志位"></a>8个标志位</h3><ul>
+<li><p>拥塞创窗口减<code>CWR</code>: 告知发送方, 降低发送速率.</p>
+</li>
+<li><p><code>CEC</code>: 发送方接收到了一个更早的拥塞通告.</p>
+</li>
+<li><p>紧急URG: 当URG = 1时, 表明紧急指针字段有效.它告诉系统,当前报文段有紧急数据,应当尽快传送.</p>
+</li>
+<li><p>确认<code>ACK</code>: 仅当ACK = 1时确认号字段才有效.当ACK = 0时,确认号无效. TCP规定,在连接建立后所有传送的报文段都必须把ACK置为1.</p>
+</li>
+<li><p>推送<code>PSH</code>: 当发送方将PSH置为1,并立即创建一个报文段发送出去.接收方TCP收到PSH = 1的报文段时,就尽快地交付接收应用程序,而不再等到整个缓存填满了再向上交付.</p>
+</li>
+<li><p>复位(RST): 当RST = 1 时, 表明TCP连接出现严重错误,必须释放连接,然后再重新建立连接.</p>
+</li>
+<li><p>同步<code>SYN</code>: 在连接建立时用来同步序号. 当SYN = 1 时而ACK = 0 时表示这是一个连接请求报文段.若对方同意连接后, 则应在响应报文中使SYN = 1和ACK = 1.实际上SYN = 1 时表示这是一个连接请求或接受报文.</p>
+</li>
+<li><p>终止<code>FIN</code>: 用来释放一个连接. 当FIN = 1 时, 表明此报文段的发送数据已发送完毕,并要求释放连接.</p>
+</li>
+</ul>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>占2字节.窗口指的是发送报文段一方的接收窗口.窗口值告诉对方:接收方目前允许对方发送的数据量. 由于窗口占2个字节, 所以窗口最大为: 65535. 但这不是绝对的, 因为在<code>TCP</code>的选项字段中, 含有一个窗口缩放字段, 可以用来扩大窗口的值.</p>
+<h3 id="检验和"><a href="#检验和" class="headerlink" title="检验和"></a>检验和</h3><p>检验和字段检验的范围包括首部和数据这两部分.</p>
+<h3 id="紧急指针"><a href="#紧急指针" class="headerlink" title="紧急指针"></a>紧急指针</h3><p>占2字节. 当URG = 1 时才有意义, 它指出本报文段中的紧急数据字节数.</p>
+<h3 id="TCP选项"><a href="#TCP选项" class="headerlink" title="TCP选项"></a>TCP选项</h3><p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm87xjwuqbj30t00ji759.jpg" alt=""></p>
+<p><code>TCP</code>的每一个选项字段的头字节为<code>种类(kind)</code>, 它指明了选项的类型. 除了<code>无操作</code>和<code>选项表结束</code>没有长度字段外, 其他的选项都有一个<code>len</code>字段来说明该选项的长度.</p>
+<ul>
+<li><p>选项列表结束(EOL): 指出了选项列表的结尾, 说明无需对此选项列表再进行处理.</p>
+</li>
+<li><p>无操作(NOP): 填充字段. 因为TCP的首部单位是4个字节. 所以当选项字段不是4字节的倍数时, 可以用NOP来进行字段的填充.</p>
+</li>
+<li><p>最大报文段长度(MSS): 告知通信方, 自己接受的最大报文的长度(不包括TCP和IP的首部). 默认情况下, 最大段大小为: 536. 因为任务主机能够处理至少为576字节的<code>IPV4</code>报文段. 由于536是不包括<code>TCP</code>首部和<code>IP</code>首部的, 所以当加上<code>TCP</code>20字节和<code>IP</code>首部20字节的话, 刚好是576.</p>
+</li>
+<li><p>窗口缩放(WSCALE或WSOPT): 能够将窗口字段从14位扩大到30位. 该选项字段只能出现于一个<code>SYN</code>报文段中. 主动打开连接的一方可以在<code>SYN</code>指定这个字段, 被动打开的一方可以在<code>ACK SYN</code>报文中指定该选项. 假设现在正在使用该字段. 发送出去的<code>WSCALE</code>为<code>s</code>的话, 并且接收到对方的<code>WSCALE</code>为<code>r</code>. 这样, 当接收到通信方的窗口时, 我们需要将该窗口值左移<code>r</code>为得到真正的窗口大小. 当我们要告知对方窗口值的大小时, 会将实际的大小右移<code>s</code>位, 然后再发送出去.</p>
+</li>
+<li><p>时间戳选项(TSOPT): 该字段指用于记录每收到一个<code>ACK</code>的往返时间(RTT). 该选项必须在双方建立连接时协商好, 并且需要双方都开启才有效.</p>
+</li>
+</ul>
 
-        <p class="article-excerpt">
-            Java内存区域目录
-运行时数据区
-程序计数器
-Java虚拟机栈
-本地方法栈
-Java堆
-方法区
-运行时常量池
-
-
-HotSpot虚拟机对象探秘
-对象的创建
-对象的内存布局
-对象的访问定位
+        </div>
+        <footer class="article-footer">
+            
 
 
 
+    <a data-url="http://cristianoro7.github.io/2017/12/07/TCP首部/" data-id="cjaw8uwz2001w6ecje3vtow36" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
 
-运行时数据区
-程序计数器
-程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-字节码解释器通过改变程序计数器的值来选取下一条需要执行的字节码指令，分支，循环，跳转，异常处理
-        </p>
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/Class类文件结构/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="类文件结构" class="thumbnail-image"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Class类文件结构/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:01:55.505Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/Class类文件结构/">类文件结构</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            类文件结构
-目录
-
-Class类文件结构
-特殊字符串概念
-魔数与Class文件的版本
-常量池
-访问标志
-类索引,父类索引与接口索引集合
-字段表集合
-方法表集合
-属性表集合
-
-
-
-
-类文件结构
-Class文件结构只有两种数据类型:无符号和表.无符号数属于基本的数据类型,以u1,u2,u4,u8分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
 
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-set家族/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:01:09.713Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
-
-UML
-
-Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-TreeMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:01:00.490Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
-
-UML
-
-跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkHashMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:00:56.142Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
-
-UML
-
-从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">第 6 页，共 11 页</span>
-        <a class="extend prev" rel="prev" href="/page/5/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/">&raquo;</a>
-    </nav>
+    </section>
 
 
                         </div>
@@ -511,6 +326,19 @@ UML
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/12/01/Java知识体系/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java知识体系</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -720,11 +548,13 @@ UML
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://cristianoro7.github.io/2017/12/07/TCP首部/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
