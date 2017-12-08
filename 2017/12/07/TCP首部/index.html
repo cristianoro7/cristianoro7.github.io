@@ -9,35 +9,32 @@
     
         <meta name="keywords" content="计算机网络#运输层" />
     
-    <meta name="description" content="TCP首部
-概述
+    <meta name="description" content="概述
 TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
 TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
 
 源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
-序号占4个字节.TCP是面向字节流">
+序号占4个字节.TCP是面向字节流的,在一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP首部">
 <meta property="og:url" content="http://cristianoro7.github.io/2017/12/07/TCP首部/index.html">
 <meta property="og:site_name" content="Desperado">
-<meta property="og:description" content="TCP首部
-概述
+<meta property="og:description" content="概述
 TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
 TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
 
 源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
-序号占4个字节.TCP是面向字节流">
+序号占4个字节.TCP是面向字节流的,在一个">
 <meta property="og:image" content="http://cristianoro7.github.io/img/计网/TCP首部.jpeg">
-<meta property="og:updated_time" content="2017-12-07T08:57:08.609Z">
+<meta property="og:updated_time" content="2017-12-07T12:23:11.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP首部">
-<meta name="twitter:description" content="TCP首部
-概述
+<meta name="twitter:description" content="概述
 TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
 TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
 
 源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
-序号占4个字节.TCP是面向字节流">
+序号占4个字节.TCP是面向字节流的,在一个">
 <meta name="twitter:image" content="http://cristianoro7.github.io/img/计网/TCP首部.jpeg">
     
 
@@ -167,7 +164,7 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
                 
     <div class="article-date">
         <a href="/2017/12/07/TCP首部/" class="article-date">
-            <time datetime="2017-12-07T08:57:08.609Z" itemprop="datePublished">2017-12-07</time>
+            <time datetime="2017-12-07T12:23:11.399Z" itemprop="datePublished">2017-12-07</time>
         </a>
     </div>
 
@@ -181,7 +178,7 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h1><blockquote>
+            <blockquote>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></blockquote>
 <p>TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.</p>
 <p>TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.</p>
@@ -226,6 +223,16 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
 <li><p>时间戳选项(TSOPT): 该字段指用于记录每收到一个<code>ACK</code>的往返时间(RTT). 该选项必须在双方建立连接时协商好, 并且需要双方都开启才有效.</p>
 </li>
 </ul>
+<blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3></blockquote>
+<ul>
+<li><p>计算机网络(谢希仁)</p>
+</li>
+<li><p>计算机网络-自顶向下方法</p>
+</li>
+<li><p>TCP/IP详解</p>
+</li>
+</ul>
 
         </div>
         <footer class="article-footer">
@@ -233,7 +240,7 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
 
 
 
-    <a data-url="http://cristianoro7.github.io/2017/12/07/TCP首部/" data-id="cjaw8uwz2001w6ecje3vtow36" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://cristianoro7.github.io/2017/12/07/TCP首部/" data-id="cjaxx69e30022fucjdpumaf9w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -330,6 +337,16 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
         
 <nav id="article-nav">
     
+        <a href="/2017/12/08/TCP连接管理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            TCP连接管理
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2017/12/01/Java知识体系/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
@@ -352,6 +369,26 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/12/08/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/12/08/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-12-08T13:14:06.854Z" itemprop="datePublished">2017-12-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/12/07/TCP首部/" class="thumbnail">
     
     
@@ -365,7 +402,7 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
                             <p class="item-title"><a href="/2017/12/07/TCP首部/" class="title">TCP首部</a></p>
-                            <p class="item-date"><time datetime="2017-12-07T08:57:08.609Z" itemprop="datePublished">2017-12-07</time></p>
+                            <p class="item-date"><time datetime="2017-12-07T12:23:11.399Z" itemprop="datePublished">2017-12-07</time></p>
                         </div>
                     </li>
                 
@@ -429,26 +466,6 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/11/24/Java反射基础/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg)" alt="java反射基础" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/11/24/Java反射基础/" class="title">java反射基础</a></p>
-                            <p class="item-date"><time datetime="2017-11-24T15:54:14.613Z" itemprop="datePublished">2017-11-24</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -468,7 +485,7 @@ TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 

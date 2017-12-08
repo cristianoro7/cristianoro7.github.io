@@ -142,6 +142,58 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/2017/10/31/Picasso基本用法及源码浅析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/Picasso基本用法及源码浅析/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Android/">Android</a>
+            </div>
+            <div class="date"><time datetime="2017-10-31T08:54:21.071Z" itemprop="datePublished">2017-10-31</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/10/31/Picasso基本用法及源码浅析/">Picasso基本用法及源码浅析</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            基本用法：加载图片：
+picasso支持从Resource，MediaStore，content，contacts，url 加载图片。
+123Picasso.with(this)                .load(uri)                .into(mImageView);
+
+以上是最简单的通用加载图片的方法
+
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/2017/10/01/计算机网络-运输层/" class="thumbnail">
     
     
@@ -188,63 +240,6 @@ UDP协议
 当网络的边缘部分中的两个主机使用网络的核心部分功能进行通信时,只有主机的协议栈才有运输层,而网络的核心部分中的路由器在转发分组时都只用到下三层的功能.
 网络层是为主机之间提供逻辑通信,而运输层为应用进程之间提供端到端的逻辑通信.
 在网络层中, IP数据报首部的检验和字段只检验首部是否出现差错而不检查数据部分.而在运输层
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/29/TCP连接管理/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/09/29/TCP连接管理/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
-            </div>
-            <div class="date"><time datetime="2017-09-29T15:40:12.994Z" itemprop="datePublished">2017-09-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/29/TCP连接管理/">TCP连接管理</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            TCP连接管理
-目录
-
-TCP连接
-TCP连接释放
-
-
-TCP连接
-
-上图为TCP连接建立的过程
-B的TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
-A的TCP客户端进程首先创建传输控制块, 然后向B发送连接请求的报文段,此时首部SYN = 1,同时选择一个seq = x. TCP规定,SYN报文段不能携带数据,但要也要消耗一个序号.这次TCP客户端进程进入SYN-SEND状态
         </p>
     </div>
 </article>
@@ -539,6 +534,26 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/12/08/TCP连接管理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
+                            <p class="item-title"><a href="/2017/12/08/TCP连接管理/" class="title">TCP连接管理</a></p>
+                            <p class="item-date"><time datetime="2017-12-08T13:14:06.854Z" itemprop="datePublished">2017-12-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/12/07/TCP首部/" class="thumbnail">
     
     
@@ -552,7 +567,7 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
                             <p class="item-title"><a href="/2017/12/07/TCP首部/" class="title">TCP首部</a></p>
-                            <p class="item-date"><time datetime="2017-12-07T08:57:08.609Z" itemprop="datePublished">2017-12-07</time></p>
+                            <p class="item-date"><time datetime="2017-12-07T12:23:11.399Z" itemprop="datePublished">2017-12-07</time></p>
                         </div>
                     </li>
                 
@@ -616,26 +631,6 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/11/24/Java反射基础/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fltld849k4j30m80b47gy.jpg)" alt="java反射基础" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/11/24/Java反射基础/" class="title">java反射基础</a></p>
-                            <p class="item-date"><time datetime="2017-11-24T15:54:14.613Z" itemprop="datePublished">2017-11-24</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -655,7 +650,7 @@ TCP发送的报文段是交给IP层传送的, 但是IP层只能提供尽最大�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
