@@ -4,6 +4,97 @@
   
     
     <entry>
+      <title><![CDATA[Java知识体系]]></title>
+      <url>http://cristianoro7.github.io/2017/12/14/Java%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</url>
+      <content type="html"><![CDATA[<p>总结自己的编程知识体系. 该体系动态更新.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm1geo0sukj30mw120go2.jpg" alt=""></p>
+<blockquote>
+<h3 id="抽象和接口"><a href="#抽象和接口" class="headerlink" title="抽象和接口"></a>抽象和接口</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3></blockquote>
+<p>未启动</p>
+<blockquote>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3></blockquote>
+<p>注解主要分为两个部分:</p>
+<ul>
+<li><p>内置注解: <code>Java</code>提供给我们的三个内置注解</p>
+</li>
+<li><p>自定义注解: 这个包括元注解和注解元素支持的类型</p>
+</li>
+<li><p>注解处理器: 开发一个处理器分为两个步骤: 1. 继承<code>AbstractProcessor</code>并重写其中的4个方法. 2. 注册注解处理器.</p>
+</li>
+</ul>
+<p>详情:</p>
+<ul>
+<li><p><a href="https://cristianoro7.github.io/2017/11/22/Java%E6%B3%A8%E8%A7%A3%E5%9F%BA%E7%A1%80/">java注解基础</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/11/30/Java%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%A6%E8%A7%A3/">Java注解处理器实战</a></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3></blockquote>
+<p>反射也是分为两部分:</p>
+<ul>
+<li><p>基础: 主要描述如何在运行时, 检查一个类的元素. 这些元素可以是: <code>Class</code>对象, <code>Method</code>对象等.</p>
+</li>
+<li><p>应用: 反射的一个强大用法: 动态代理和运行时处理注解(这个在PC端用得比较多.). 反射的缺点: 破坏性强. 比如: 破坏单例或者是绕开编译时的泛型类型限定.</p>
+</li>
+</ul>
+<p>详情:</p>
+<ul>
+<li><p><a href="https://cristianoro7.github.io/2017/11/24/Java%E5%8F%8D%E5%B0%84%E5%9F%BA%E7%A1%80/">Java反射基础</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/11/25/Java%E5%8F%8D%E5%B0%84%E5%BA%94%E7%94%A8/">Java反射的运用</a></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="异常体系"><a href="#异常体系" class="headerlink" title="异常体系"></a>异常体系</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3></blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fmgmhamgyrj31r3216b29.jpg" alt=""></p>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><ul>
+<li><p><a href="https://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-ArrayList/">ArrayList</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedList/">LinkedList</a></p>
+</li>
+</ul>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><ul>
+<li><p><a href="https://cristianoro7.github.io/2017/12/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88-HashMap/">HashMap</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkHashMap/">LinkHashMap</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-TreeMap/">TreeMap</a></p>
+</li>
+<li><p><a href="https://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-WeakHashMap,%20IdentityHashMap%20和%20HashTable/">WeakHashMap, IdentityHashMap 和 HashTable</a></p>
+</li>
+</ul>
+<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><ul>
+<li><a href="https://cristianoro7.github.io/2017/10/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-set%E5%AE%B6%E6%97%8F/">Set家族</a></li>
+</ul>
+<blockquote>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3></blockquote>
+<p>未启动…</p>
+<blockquote>
+<h3 id="IO系统"><a href="#IO系统" class="headerlink" title="IO系统"></a>IO系统</h3></blockquote>
+<p>未完成…</p>
+<blockquote>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3></blockquote>
+<p>差不多完成…</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[深入理解Java集合-HashMap]]></title>
       <url>http://cristianoro7.github.io/2017/12/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E9%9B%86%E5%90%88-HashMap/</url>
       <content type="html"><![CDATA[<p>前两篇文章分别介绍了<code>ArrayList</code>和<code>LinkedList</code>, 这次我们来分析另外一个key-value键值对的映射集合-HashMap.按照前面的习惯,我们先来看看<code>HashMap</code>的UML</p>
@@ -248,78 +339,6 @@
 <li><p>TCP/IP详解</p>
 </li>
 </ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Java知识体系]]></title>
-      <url>http://cristianoro7.github.io/2017/12/01/Java%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</url>
-      <content type="html"><![CDATA[<p>总结自己的编程知识体系. 该体系动态更新.</p>
-<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm1geo0sukj30mw120go2.jpg" alt=""></p>
-<blockquote>
-<h3 id="抽象和接口"><a href="#抽象和接口" class="headerlink" title="抽象和接口"></a>抽象和接口</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3></blockquote>
-<p>未启动</p>
-<blockquote>
-<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3></blockquote>
-<p>注解主要分为两个部分:</p>
-<ul>
-<li><p>内置注解: <code>Java</code>提供给我们的三个内置注解</p>
-</li>
-<li><p>自定义注解: 这个包括元注解和注解元素支持的类型</p>
-</li>
-<li><p>注解处理器: 开发一个处理器分为两个步骤: 1. 继承<code>AbstractProcessor</code>并重写其中的4个方法. 2. 注册注解处理器.</p>
-</li>
-</ul>
-<p>详情:</p>
-<ul>
-<li><p><a href="https://cristianoro7.github.io/2017/11/22/Java%E6%B3%A8%E8%A7%A3%E5%9F%BA%E7%A1%80/">java注解基础</a></p>
-</li>
-<li><p><a href="https://cristianoro7.github.io/2017/11/30/Java%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%A6%E8%A7%A3/">Java注解处理器实战</a></p>
-</li>
-</ul>
-<blockquote>
-<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3></blockquote>
-<p>反射也是分为两部分:</p>
-<ul>
-<li><p>基础: 主要描述如何在运行时, 检查一个类的元素. 这些元素可以是: <code>Class</code>对象, <code>Method</code>对象等.</p>
-</li>
-<li><p>应用: 反射的一个强大用法: 动态代理和运行时处理注解(这个在PC端用得比较多.). 反射的缺点: 破坏性强. 比如: 破坏单例或者是绕开编译时的泛型类型限定.</p>
-</li>
-</ul>
-<p>详情:</p>
-<ul>
-<li><p><a href="https://cristianoro7.github.io/2017/11/24/Java%E5%8F%8D%E5%B0%84%E5%9F%BA%E7%A1%80/">Java反射基础</a></p>
-</li>
-<li><p><a href="https://cristianoro7.github.io/2017/11/25/Java%E5%8F%8D%E5%B0%84%E5%BA%94%E7%94%A8/">Java反射的运用</a></p>
-</li>
-</ul>
-<blockquote>
-<h3 id="异常体系"><a href="#异常体系" class="headerlink" title="异常体系"></a>异常体系</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3></blockquote>
-<p>编写中…</p>
-<blockquote>
-<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3></blockquote>
-<p>未启动…</p>
-<blockquote>
-<h3 id="IO系统"><a href="#IO系统" class="headerlink" title="IO系统"></a>IO系统</h3></blockquote>
-<p>未完成…</p>
-<blockquote>
-<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3></blockquote>
-<p>差不多完成…</p>
 ]]></content>
     </entry>
     
