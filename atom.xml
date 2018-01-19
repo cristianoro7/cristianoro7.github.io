@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cristianoro7.github.io/"/>
-  <updated>2017-12-15T15:08:12.341Z</updated>
+  <updated>2018-01-19T12:47:25.812Z</updated>
   <id>http://cristianoro7.github.io/</id>
   
   <author>
@@ -14,6 +14,819 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类文件结构</title>
+    <link href="http://cristianoro7.github.io/2018/01/19/Class%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/"/>
+    <id>http://cristianoro7.github.io/2018/01/19/Class类文件结构/</id>
+    <published>2018-01-19T12:47:25.812Z</published>
+    <updated>2018-01-19T12:47:25.812Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li>Class类文件结构<ul>
+<li>特殊字符串概念</li>
+<li>魔数与Class文件的版本</li>
+<li>常量池</li>
+<li>访问标志</li>
+<li>类索引,父类索引与接口索引集合</li>
+<li>字段表集合</li>
+<li>方法表集合</li>
+<li>属性表集合</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="类文件结构-1"><a href="#类文件结构-1" class="headerlink" title="类文件结构"></a>类文件结构</h3></blockquote>
+<ul>
+<li>Class文件结构只有两种数据类型:无符号数和表.</li>
+</ul>
+<p>无符号数属于基本的数据类型,以<code>u1</code>, <code>u2</code>, <code>u4</code>, <code>u8</code>分别代表1个字节,2个字节,4个字节和8个字节的无符号数,它用来描述数字,索引引用,数量值或者UTF-8编码构成字符串值.<br>表是由多个无符号数或者其他表作为数据项构成的复合数据类型,所有表都习惯以<code>_info</code>结尾.</p>
+<p>整个<code>class</code>文件本质就是一张表:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>u4</code></td>
+<td style="text-align:center"><code>magic</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>minor_version</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>major_version</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>constant_pool_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>cp_info</code></td>
+<td style="text-align:center"><code>constant_pool</code></td>
+<td style="text-align:center"><code>constant_pool_count</code>-1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>access_flag</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>this_class</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>super_class</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>interface_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>interface</code></td>
+<td style="text-align:center"><code>interface_count</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>fields_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>field_info</code></td>
+<td style="text-align:center"><code>fields</code></td>
+<td style="text-align:center"><code>fields_count</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>methods_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>method_info</code></td>
+<td style="text-align:center"><code>methods</code></td>
+<td style="text-align:center"><code>methods_count</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>attribute_info</code></td>
+<td style="text-align:center"><code>attributes</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="特殊字符串的概念"><a href="#特殊字符串的概念" class="headerlink" title="特殊字符串的概念"></a>特殊字符串的概念</h4><ul>
+<li><p>全限定名: 把类的全名中的<code>.</code>替换成<code>/</code>,最后再加上<code>;</code></p>
+</li>
+<li><p>简单名称: 没有类型和参数修饰的方法或者字段名称.</p>
+</li>
+<li><p>方法和字段的描述符: 描述符的作用是用来描述字段的数据类型,方法参数列表和返回值.</p>
+</li>
+<li><p>描述符标识字符含义:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标识字符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>B</code></td>
+<td style="text-align:center">基本类型<code>byte</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>C</code></td>
+<td style="text-align:center">基本类型<code>char</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>D</code></td>
+<td style="text-align:center">基本类型<code>double</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>F</code></td>
+<td style="text-align:center">基本类型<code>float</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>I</code></td>
+<td style="text-align:center">基本类型<code>int</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:center">基本类型<code>long</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S</code></td>
+<td style="text-align:center">基本类型<code>short</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Z</code></td>
+<td style="text-align:center">基本类型<code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:center">特殊类型<code>void</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>L</code></td>
+<td style="text-align:center">对象类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="魔数与Class文件版本"><a href="#魔数与Class文件版本" class="headerlink" title="魔数与Class文件版本"></a>魔数与Class文件版本</h4><ul>
+<li><p>每个<code>Class</code>文件的头4个字节称为魔数,它的唯一作用是确定这个文件是否为一个能被虚拟机接受的class文件.</p>
+</li>
+<li><p>紧接魔数后面的4个字节储存的是<code>Class</code>文件的版本号: 第5,6个字节是此版本号<code>(Minor Version)</code>,第7和第8个字节是主版本号. <code>JDK</code>的版本号是从45开始的.</p>
+</li>
+</ul>
+<h4 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h4><ul>
+<li><p>常量池可以理解为<code>Class</code>文件之中的资源仓库,它同时是<code>Class</code>文件关联其他项目最多的数据类型,也是占用<code>Class</code>文件空间最大的数据项目之一.</p>
+</li>
+<li><p>由于常量池中的常量是不固定的,所以需要在常量池入口放置一项<code>u2</code>类型的数据,代表常量池容量计数值.</p>
+</li>
+<li><p>常量池中主要储存两大类常量:字面量和符号引用．字面量比较接近<code>Java</code>语言层面的常量概念,如字符串,声明为<code>final</code>常量值等. 而符号引用则属于编译原理方面的概念,主要包含了下面三类常量:</p>
+<ul>
+<li><p>类和接口的全称限定名</p>
+</li>
+<li><p>字段的名称和描述符</p>
+</li>
+<li><p>方法的名称和描述符</p>
+</li>
+</ul>
+</li>
+<li><p>常量池的项目类型:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">标志</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Utf_info</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>UTF-8</code>编码的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Integer_info</code></td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">整型字面量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Float_info</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">浮点型字面量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Long_info</code></td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">长整类型字面量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Double_info</code></td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">双精度浮点型字面量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Class_info</code></td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">类或接口的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_String_info</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">字符串类型字面量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Fieldref_info</code></td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">字段的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_Methodref_info</code></td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">类中方法的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_InterfaceMethodref_info</code></td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">接口中方法的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_NameAndType_info</code></td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">字段或者方法的部分符号引用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_MethodHandle_info</code></td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">表示方法句柄</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_MethodType_info</code></td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">标识方法类型</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CONSTANT_InvokeType_info</code></td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">表示一个动态方法调用点</td>
+</tr>
+</tbody>
+</table>
+<h4 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h4><ul>
+<li><code>access_flags</code>用于识别一些类或者接口层次的访问信息.例如:这个<code>class</code>是类还是接口;是否定义为<code>public</code>类型;是否定义为<code>abstract</code>类型等. 具体标记:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标志名称</th>
+<th style="text-align:center">标志值</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ACC_PUBLIC</code></td>
+<td style="text-align:center">0x0001</td>
+<td style="text-align:center">是否为<code>public</code>类型</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_FINAL</code></td>
+<td style="text-align:center">0x0010</td>
+<td style="text-align:center">是否被声明为<code>final</code>,只有类可设置</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_SUPER</code></td>
+<td style="text-align:center">0x0020</td>
+<td style="text-align:center">是否允许使用<code>invokespecial</code>字节码指令新语意</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_INTERFACE</code></td>
+<td style="text-align:center">0x0200</td>
+<td style="text-align:center">标识这是一个接口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_ABSTRACT</code></td>
+<td style="text-align:center">0x0400</td>
+<td style="text-align:center">是否为<code>abstact</code>类型, 对于接口或者抽象类来说, 这个标志为真,其他值为假</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_SYNTHETIC</code></td>
+<td style="text-align:center">0x1000</td>
+<td style="text-align:center">标识这个类并非由用户代码生成</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_ANNOTION</code></td>
+<td style="text-align:center">0x2000</td>
+<td style="text-align:center">标识这是一个注解</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ACC_ENUM</code></td>
+<td style="text-align:center">0x4000</td>
+<td style="text-align:center">标识这个一个枚举</td>
+</tr>
+</tbody>
+</table>
+<h4 id="类索引-父类索引与接口索引集合"><a href="#类索引-父类索引与接口索引集合" class="headerlink" title="类索引,父类索引与接口索引集合"></a>类索引,父类索引与接口索引集合</h4><ul>
+<li><p>类索引用于确定这个类的全限定名</p>
+</li>
+<li><p>父类索引用于确定这个类的父类的全限定名</p>
+</li>
+<li><p>接口索引集合用于描述这个类实现了哪些接口</p>
+</li>
+</ul>
+<h4 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h4><ul>
+<li><p>字段表集合用于描述接口或者类中声明的变量.</p>
+</li>
+<li><p>字段包括类级变量和实例级变量, 但不包括在方法内的局部变量</p>
+</li>
+<li><p>字段表结构:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>access_flags</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>name_index</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>descriptor</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>attribute_info</code></td>
+<td style="text-align:center"><code>attributes</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h4><ul>
+<li>方法表结构:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>access_flags</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>name_index</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>descriptor</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>u2</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>attribute_info</code></td>
+<td style="text-align:center"><code>attributes</code></td>
+<td style="text-align:center"><code>attributes_count</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法表集合结构跟字段表结构大致相同</li>
+<li>如果父类分方法没有被子类重写,方法表集合中就不会出现父类方法的信息.</li>
+</ul>
+<h4 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h4><ul>
+<li><p>在<code>Class</code>文件, 字段表, 方法表都可以携带自己的属性表集合, 用于描述特定场景的专有信息.</p>
+</li>
+<li><p>虚拟机规范预定义的属性</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>使用位置</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Code</code></td>
+<td>方法表</td>
+<td style="text-align:center"><code>Java</code>代码编译成的字节码指令</td>
+</tr>
+<tr>
+<td><code>ConstantValue</code></td>
+<td>字段表</td>
+<td style="text-align:center"><code>final</code>关键字定义的常量值</td>
+</tr>
+<tr>
+<td><code>Deprecated</code></td>
+<td>类,方法表字段表</td>
+<td style="text-align:center">被声明为<code>deprecated</code>的方法和字段</td>
+</tr>
+<tr>
+<td><code>Exceptions</code></td>
+<td>方法表</td>
+<td style="text-align:center">方法抛出的异常</td>
+</tr>
+<tr>
+<td><code>EncloseingMethod</code></td>
+<td>类文件</td>
+<td style="text-align:center">仅当一个类为局部类或者匿名类时才能拥有这个属性,这个属性用于标识这个类所在的外围方法.</td>
+</tr>
+<tr>
+<td><code>InnerClasses</code></td>
+<td>类文件</td>
+<td style="text-align:center">内部类列表</td>
+</tr>
+<tr>
+<td><code>LineNumberTable</code></td>
+<td><code>Code</code>属性</td>
+<td style="text-align:center">Java源码的行号与字节码指令对应的关系</td>
+</tr>
+<tr>
+<td><code>LocalVariableTable</code></td>
+<td><code>Code</code>属性</td>
+<td style="text-align:center">方法的局部属性描述</td>
+</tr>
+<tr>
+<td><code>StackMapTable</code></td>
+<td><code>Code</code>属性</td>
+<td style="text-align:center"><code>JDK1.6</code>中新增的属性, 供新的类型检查验证器检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配.</td>
+</tr>
+<tr>
+<td><code>Signature</code></td>
+<td>类,方法表,字段表</td>
+<td style="text-align:center">用于支持泛型情况下的方法签名, 记录这泛型中的相关信息.</td>
+</tr>
+<tr>
+<td><code>SourceFile</code></td>
+<td>类文件</td>
+<td style="text-align:center">记录源文件的名称</td>
+</tr>
+<tr>
+<td><code>SourceDebugFile</code></td>
+<td>类文件</td>
+<td style="text-align:center">储存额外的调试信息</td>
+</tr>
+<tr>
+<td><code>Synthetic</code></td>
+<td>类, 方法表, 字段表</td>
+<td style="text-align:center">标识方法和字段为编译器生成</td>
+</tr>
+<tr>
+<td><code>LocalVariableTypeTable</code></td>
+<td>类</td>
+<td style="text-align:center">为了引入泛型语法之后能够描述泛型参数化类型而添加的</td>
+</tr>
+<tr>
+<td><code>RuntimeVisibleAnnotations</code></td>
+<td>类, 方法表,字段表</td>
+<td style="text-align:center">为动态注解提供支持, 用于指定哪些注解运行时是可见的</td>
+</tr>
+<tr>
+<td><code>RuntimeInvisibleAnnotations</code></td>
+<td>类, 方法表, 字段表</td>
+<td style="text-align:center">与<code>RuntimeVisibleAnnotations</code>的作用相反</td>
+</tr>
+<tr>
+<td><code>RuntimeVisibleParameterAnnotations</code></td>
+<td>方法表</td>
+<td style="text-align:center">与<code>RuntimeVisibleAnnotations</code>的作用相似</td>
+</tr>
+<tr>
+<td><code>RuntimeInvisibleParameterAnnotations</code></td>
+<td>方法表</td>
+<td style="text-align:center">与<code>RuntimeInvisibleAnnotations</code>的作用相似</td>
+</tr>
+<tr>
+<td><code>AnnotationDefault</code></td>
+<td>方法表</td>
+<td style="text-align:center">记录注解类的默认值</td>
+</tr>
+<tr>
+<td><code>BootstrapMethods</code></td>
+<td>类文件</td>
+<td style="text-align:center">用于保存<code>invokedynamic</code>指令引用的引导方法限定符</td>
+</tr>
+</tbody>
+</table>
+<p>待续…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;类文件结构&quot;&gt;&lt;a href=&quot;#类文件结构&quot; class=&quot;headerlink&quot; title=&quot;类文件结构&quot;&gt;&lt;/a&gt;类文件结构&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; tit
+    
+    </summary>
+    
+      <category term="Java" scheme="http://cristianoro7.github.io/categories/Java/"/>
+    
+    
+      <category term="Java#JVM" scheme="http://cristianoro7.github.io/tags/Java-JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java垃圾回收器</title>
+    <link href="http://cristianoro7.github.io/2018/01/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/"/>
+    <id>http://cristianoro7.github.io/2018/01/19/java垃圾回收器/</id>
+    <published>2018-01-19T11:19:26.721Z</published>
+    <updated>2018-01-19T11:19:26.721Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>判定对象存活<ul>
+<li>引用计数法</li>
+<li>可达性分析算法</li>
+<li>再谈引用<ul>
+<li>强引用</li>
+<li>软引用</li>
+<li>弱引用</li>
+<li>虚引用</li>
+</ul>
+</li>
+<li>生存还是死亡</li>
+<li>回收方法区</li>
+</ul>
+</li>
+<li>垃圾收集算法<ul>
+<li>标记-清除算法</li>
+<li>复制算法</li>
+<li>标记-整理算法</li>
+<li>分代收集算法</li>
+</ul>
+</li>
+<li>HotSpot的算法实现<ul>
+<li>枚举根节点</li>
+<li>安全点</li>
+<li>安全区域</li>
+</ul>
+</li>
+<li>垃圾收集器<ul>
+<li>Serial收集器</li>
+<li>ParNew收集器</li>
+<li>Parallel收集器</li>
+<li>Serial Old 收集器</li>
+<li>Parallel Old 收集器</li>
+<li>CMS收集器</li>
+<li>G1收集器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="判定对象的存活"><a href="#判定对象的存活" class="headerlink" title="判定对象的存活"></a>判定对象的存活</h3></blockquote>
+<h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><ul>
+<li>给一个对象添加一个计数器,每当有一处地方引用对象时,计数器值加1; 当引用失效时, 计数器值就减1; 任何时刻计数器为0对象就是不可能再被使用的.</li>
+<li>引用计数算法最大的缺点就是很难解决对象之间的循环引用.</li>
+</ul>
+<h4 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h4><ul>
+<li>通过一系列的称为 “ GC Root “ 对象作为起始点, 从这些节点开始向下搜索, 搜索走过的路径称为引用链, 当一个对象到” GC Root “ 没有任何引用链相连时,则证明此对象是不可用的.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/垃圾回收-1.png" alt=""></p>
+<ul>
+<li>在Java语言中, 可作为 GC Root的对象包括下面几种:<ul>
+<li>虚拟机栈(栈帧中的本地变量表)引用的对象</li>
+<li>方法区中的静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI(一般指Native方法)引用的对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="再谈引用"><a href="#再谈引用" class="headerlink" title="再谈引用"></a>再谈引用</h4><p>在JDK1.2后,Java对引用进行了扩充,将引用分强引用, 软引用, 弱引用和虚引用四种.</p>
+<h5 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h5><p>程序代码中普遍存在的,类似”Object obj = new Object()”这类引用, 只要强引用存在的话, 对象就永远不会被回收</p>
+<h5 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h5><p>软引用用于描述一些还有用但是又是非必需对象. 对于软引用关联着的对象, 在系统将要发生内存溢出之前, 将会把对象列进回收范围之中进行第二次回收, 如果这次回收没有足够的内存,才抛出内存溢出异常</p>
+<h5 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h5><p>弱引用也是用来描述非必需对象, 但是它的强度比软引用弱一些, 被弱引用关联的对象只能生存到下次垃圾收集发生之前.<br>当垃圾收集器工作时, 无论当前内存是否足够, 都会回收掉只被弱引用关联的对象.</p>
+<h5 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h5><ul>
+<li>它是最弱的一种引用关系.</li>
+<li>一个对象是否有虚引用的存在, 完全不会对其生存时间构成影响, 也无法通过虚引用来取得一个对象的实例</li>
+<li>一个对象虚引用关联的目的就是这个对象被收集器回收时收到一个系统通知.</li>
+</ul>
+<h4 id="生存还是死亡"><a href="#生存还是死亡" class="headerlink" title="生存还是死亡"></a>生存还是死亡</h4><ul>
+<li>一个对象需要至少经历两次标记才能宣告死亡</li>
+<li>如果一个对象在可达性分析后发现没有GC Roots相连接时, 那么它第一次被标记并且进行一次筛选, 筛选的条件是该对象是否有必要执行finalize()方法.当对象没有覆盖finalize()方法或者finalize()方法已经被虚拟机调用过一次, 这两种情况虚拟机都是视为不必要调用.</li>
+<li>如果这个对象被判定为需要执行finalize()方法的话, 那么对象将会被放置在F-Queue队列中, 稍后虚拟机会启动一个优先级较低的线程去执行它.</li>
+<li>执行finalize()方法时, 虚拟机并不会等待它执行结束, 这样做是为了避免执行finalize()方法缓慢或者发生死循环. 这样可能会导致F-Queue队列中的对象处于永久等待中,甚至导致整个内存回收崩溃.</li>
+<li>finalize()方法是对象逃脱死亡命运的最后一次机会, GC会在finalize()中进行第二次小规模的标记, 如果对象被第二次标记后,那么就宣告了一个对象的死亡.</li>
+</ul>
+<h4 id="回收方法区"><a href="#回收方法区" class="headerlink" title="回收方法区"></a>回收方法区</h4><ul>
+<li>方法区的回收主要回收两部分内容:废弃常量和无用的类.</li>
+<li>回收废弃常量和回收Java堆很相似.例如: 字符串 “abc” 已经进入了常量池, 但是当前系统没有一个String对象叫做”abc”的,也就是没有任何String对象引用常量池之中的”abc”, 如果这时候发生内存回收, 而且必要的话, 这个”abc”会被清除出常量池.常量池中的其他类(接口),方法,字段的符号引用也与此类似.</li>
+<li>一个类被视为无用的条件<ul>
+<li>该类的所有实例都已经被回收</li>
+<li>加载该类的ClassLoader已经被回收</li>
+<li>该类对应的java.lang.Class对象没有在任何地方被引用, 无法通过反射获取类的方法.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3></blockquote>
+<h4 id="标记-清除算法-Mark-Sweep"><a href="#标记-清除算法-Mark-Sweep" class="headerlink" title="标记-清除算法(Mark-Sweep)"></a>标记-清除算法(Mark-Sweep)</h4><ul>
+<li>首先标记出所有需要回收的对象,在完成标记后统一回收所有被标记的对象</li>
+<li>不足的地方<ul>
+<li>效率问题, 标记和清除的两个过程效率都不是很高</li>
+<li>空间问题, 标记清除后会产生大量不连续的内存碎片, 空间碎片太多可能会导致以后在程序运行过程中需要分配较大的对象时, 无法找到足够的连续内存而不得不提前触发另外一次GC</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/mark-sweep.png" alt=""></p>
+<h4 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法(Copying)"></a>复制算法(Copying)</h4><ul>
+<li>复制算法是为了解决标记-清除算法的效率问题而出现的</li>
+<li>它将内存按照容量划分为相等的两块, 每次只用其中一块.当这一块内存快用完了, 就将还存活的对象复制到另一块内存,然后再把空间一次清理掉</li>
+<li>复制算法的代价是将内存空间缩小为原来的一半.</li>
+<li>HotSpot虚拟机默认Eden和Survivor的大小比例为8:1,只有10%的内存空间会被浪费.</li>
+<li>如果另外一块Survivor空间没有足够的内存放上次新生代存活下来的对象时, 这些对象将直接通过分配担保直接进入老年代.</li>
+<li>使用于对象存活率低的场景, 例如新生代.</li>
+</ul>
+<h4 id="标记-整理算法-Mark-Compact"><a href="#标记-整理算法-Mark-Compact" class="headerlink" title="标记-整理算法(Mark-Compact)"></a>标记-整理算法(Mark-Compact)</h4><ul>
+<li><p>复制算法在对象存活率高时就要进行较多的复制操作, 效率会变低.</p>
+</li>
+<li><p>如果不想浪费50%的空间的话, 就需要额外的空间进行担保, 以应对所有对象都存活的极端场景.</p>
+</li>
+<li><p>标记过程仍然与”标记-清除”算法一样, 但后续步骤不是直接对可回收对象进行清理, 而是让所有存活的对象都向一端移动, 然后直接清理掉边界以外的内存.</p>
+</li>
+<li><p>该算法适用于老年代.</p>
+</li>
+<li><p>该算法解决了<code>标记-清除</code>算法的内存碎片问题.</p>
+</li>
+</ul>
+<h4 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h4><ul>
+<li>一般将Java堆划分为新生代和老年代, 这样就可以根据各个年代的特点采用适当的算法</li>
+<li>在新生代中,每次GC时,都发现大量对象死去, 只有少量对象存活, 那就选用复制算法.</li>
+<li>而老年代中因为对象的存活率高, 没有额外的空间进行担保,就必须使用”标记-清除”或者”标记-整理”.</li>
+</ul>
+<blockquote>
+<h3 id="HotSpot的算法实现"><a href="#HotSpot的算法实现" class="headerlink" title="HotSpot的算法实现"></a>HotSpot的算法实现</h3></blockquote>
+<p>在HotSpot上实现垃圾收集算法, 必须对算法的执行效率必须经过严格的考证, 才能保证虚拟机的执行效率</p>
+<h4 id="枚举根节点"><a href="#枚举根节点" class="headerlink" title="枚举根节点"></a>枚举根节点</h4><ul>
+<li><p>利用可达性算法来判定对象的存活, 首先得找出所有的全局引用, 也就是<code>GC-Root</code>.</p>
+</li>
+<li><p>另外, 可达性分析这项工作必须在一个一致性的快照中进行(引用关系不变), 这样才能够保证分析结果的准确性.</p>
+</li>
+<li><p>目前主流的Java虚拟机使用的都是标准式的GC, 所以当执行系统停顿下来时, 并不需要一个不漏的检查完所有执行上下文和全局的引用位置, 虚拟机使用一组称为OopMap的数据结构来得知哪些地方存放着对象引用.</p>
+</li>
+</ul>
+<h4 id="安全点"><a href="#安全点" class="headerlink" title="安全点"></a>安全点</h4><ul>
+<li><p>HotSpot没有为每条指令都生成OopMap, 它只是在特定的位置记录了”这些信息”,这些位置被称为安全点(Safepoint),即程序并非在所有的地方都能停下来GC, 只有在安全点时才能停下来</p>
+</li>
+<li><p>安全点的选定基本上是以程序”是否具有让程序长时间执行的特征”为标准选定.”长时间执行”的最明显特征就是指令序列复用,例如方法调用,循环引用,循环跳转,异常跳转等,具有这些功能的指令才会生成Safepoint.</p>
+</li>
+<li><p>对于Safepoint,需要考虑的另外一个问题是如何让GC发生时停止所有线程时,所有线程都跑到安全点. 这里有两种方案可供选择:抢先式中断和主动式中断.</p>
+<ul>
+<li><p>抢先式中断不需要线程的配合,在发生GC时,首先把所有线程全部中断,如果发现有线程中断在不安全点上, 就恢复线程,让它跑到安全点上. 现在几乎没有虚拟机是这样实现的.</p>
+</li>
+<li><p>主动式的中断是思想是当GC需要中断线程的时候, 不直接对线程进行操作,仅仅简单的设置一个标志, 各个线程执行时主动去轮询这个标志,发现中断标志为真时就自己挂起.轮询标志的地方和安全点是重合的.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="安全区域"><a href="#安全区域" class="headerlink" title="安全区域"></a>安全区域</h4><ul>
+<li><p>安全区域是指在一段代码之中,引用关系不会发生变化. 在这个区域中的任何地方开始GC都是安全的.</p>
+</li>
+<li><p>线程执行到Safe Region时, 首先标识自己已经进入安全区域, 那样当在这段时间内JVM要发起GC时,就不用管已经标识为安全区域状态的线程. 在线程要离开安全区域时, 它首先要检查系统是否已经完成了根节点枚举, 如果完成了,就继续执行,否则它就要等到收到安全离开的信号为止.</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="垃圾收集器-1"><a href="#垃圾收集器-1" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3></blockquote>
+<p><img src="/uploads/jvm/垃圾回收/垃圾回收器.png" alt=""></p>
+<h4 id="Senial-收集器"><a href="#Senial-收集器" class="headerlink" title="Senial 收集器"></a>Senial 收集器</h4><ul>
+<li>Serial 收集器在进行垃圾回收时,必须暂停其他所有的工作线程,直到它收集结束</li>
+<li>下面是Serial/Serial Old收集器的工作过程</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/Serial.png" alt=""></p>
+<ul>
+<li>优点: 简单高效, 对于限定单CPU的环境来说, Serial收集器由于没有线程交互的开销, 专心做垃圾收集自然可以获得最高的单线程收集效率.</li>
+<li>使用场景: 在用户的桌面应用场景中, 分配给虚拟机管理内存不会很大, 停顿时间可控制在10几到100多毫秒, 只要不频繁发生,这点的停顿还是可以接受的. 因此, Serial收集器对于运行在Client模式下的虚拟机来说是一个很好的选择.</li>
+</ul>
+<h4 id="ParNew-收集器"><a href="#ParNew-收集器" class="headerlink" title="ParNew 收集器"></a>ParNew 收集器</h4><ul>
+<li>ParNew收集器其实就是多线程版本的Serial收集器.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/ParNew.png" alt=""></p>
+<h4 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h4><ul>
+<li>Parallel Scavenge收集器的特点是它关注点与其他的收集器不同, CMS等收集器关注点是尽可能缩短垃圾收集时用户线程的停顿时间, 而Parallel Scavenge收集器目的是达到一个可控的吞吐量, 所谓吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值.</li>
+<li>停顿时间越短越适合需要与用户交互的程序; 高吞吐量则可以高效率地利用CPU时间, 尽快完成程序运算任务, 主要适合后台运算而不需要太多交互的任务.</li>
+</ul>
+<h4 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h4><ul>
+<li>Serial Old是Serial收集器的老年代版本, 使用”标记-整理”算法, 这个收集器的主要意义是给Client模式下的虚拟机使用.</li>
+<li>如果在Server模式下, 那么它有两大主要用途:<ul>
+<li>在JDK1.5及之前的版本中与Parallel Scavenge收集器搭配使用.</li>
+<li>作为CMS收集器的后备预案,在并发收集发生 Concurrent Mode Failure时使用.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Parallel-Old-收集器"><a href="#Parallel-Old-收集器" class="headerlink" title="Parallel Old 收集器"></a>Parallel Old 收集器</h4><ul>
+<li>Parallel Old 是Parallel Scavenge收集器的老年代版本.</li>
+<li>在吞吐量以及CPU资源敏感的场合, 都可以优先考虑Parallel Scavenge加Parallel Old收集器.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/ParallelOld.png" alt=""></p>
+<h4 id="CMS-收集器-Concurrent-Mark-Sweep"><a href="#CMS-收集器-Concurrent-Mark-Sweep" class="headerlink" title="CMS 收集器(Concurrent Mark Sweep)"></a>CMS 收集器(Concurrent Mark Sweep)</h4><ul>
+<li>CMS收集器是一种以获取最短回收停顿时间为目标的收集器.</li>
+<li>CMS 收集器是基于 “标记-清除”算法实现,整个过程分为4个步骤:<ul>
+<li>初始化标记:仅仅只是标记一下GC Roots能直接关联到的对象, 速度很快.</li>
+<li>并发标记:进行GC Roots Tracing的过程.</li>
+<li>重新标记:为了修正并发标记期间因用户程序继续运行导致标记产生变动的那一部分对象标记记录,这个阶段的停顿时间一般会比初始化阶段稍微长一些,但远比并发标记的时间短.</li>
+<li>并发清除: 清除标记.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/cms.png" alt=""></p>
+<ul>
+<li><p>CMS 收集器明显的3个缺点:</p>
+<ul>
+<li><p>CMS收集器对CPU资源非常敏感,在并发阶段,它虽然不会导致用户线程中断,但是会因为占用了一部分CPU资源而导致应用程序变慢,总吞吐量降低.</p>
+</li>
+<li><p>CMS 收集器无法处理浮动垃圾, 可能出现 “Concurrent Mode Failure”失败而导致另一次Full GC产生.浮动垃圾指的是CMS并发清理阶段用户线程还在运行, 这期间产生的垃圾.CMS无法像其他收集器那样等到老年代几乎完全被填满时才收集, 需要预留一部分的空间提供并发手机时的程序运行使用.要是CMS运行期间预留内存无法满足程序需要, 就会出现一次”Concurrent Mode Failure” 失败. 这时虚拟机启动后备预案: 临时启动Serial Old收集器重新进行老年代垃圾收集, 这样停顿的时间就变长了.</p>
+</li>
+<li><p>由于CMS是基于”标记-清除”算法实现的, 这意味者收集结束时会有大量空间碎片产生.空间碎片太多会给大对象分配带来麻烦,因为无法找到连续足够大的空间来给大对象分配,这就不得不提前触发一次Full GC 了. 为了解决这个问题, CMS收集器提供了一个 -XX:+UseCMSCompactAtFullCollection开关参数,用户在CMS收集器顶不住要进行FullGC时开启内存碎片的合并过程整理, 内存整理无法并发进行, 因此会导致停顿时间变长. 虚拟机设计者还提供了一个参数-XX:CMSFullGCsBeforeCompaction,这个参数用于设置执行多少次不压缩的Full GC后,就跟着一次带压缩的(默认值为0,表示每次进入Full GC时都进行碎片整理)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h4><p>G1收集器的使命是在未来替代掉JDK1.5之中发布的CMS收集器,与其他收集器相比, G1具有的特点:</p>
+<h5 id="并行与并发"><a href="#并行与并发" class="headerlink" title="并行与并发"></a>并行与并发</h5><p>G1能充分利用多CPU,多核环境下的硬件优势, 使用多个CPU来缩短Stop-The-World停顿时间</p>
+<h5 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h5><p>虽然G1可以不需要其他收集器配合就能管理整个GC堆,但他能够采用不同的方式去处理新创建的对象和已经存活一段时间,熬过多次GC的旧对象以获取更好的收集效果.</p>
+<h5 id="空间整合"><a href="#空间整合" class="headerlink" title="空间整合"></a>空间整合</h5><p>G1整体来看是基于”标记-整理”算法实现的收集器,从局部上来看是基于复制算法实现的.</p>
+<h5 id="可预测的停顿"><a href="#可预测的停顿" class="headerlink" title="可预测的停顿"></a>可预测的停顿</h5><p>G1除了要求停顿降低外,还能建立可预测的停顿时间模型,能让使用者明确指定在一个长度为M毫秒的时间片段内,消耗在垃圾收集上的时间不得超过N毫秒.</p>
+<p>如果不计算维护Remembered Set操作,G1收集器的运作大致可划分为以下几个步骤:</p>
+<ul>
+<li>初始标记:标记一下GC Roots能直接关联到的对象并且修改TAMS的值,让下一阶段用户程序并发运行时,能在正确可用的Region中创建新对象,这个阶段需要停顿线程,但耗时很短.</li>
+<li>并发标记:从GC Roots开始对堆中对象进行可达性分析, 找出存活对象,这阶段耗时很长,但可用与用户程序并发运行.</li>
+<li>最终标记:为了修正在并发标记期间因用户程序继续运作而导致标记产生百年动的那一部分标记记录,虚拟机将这阶段对象变化记录在线程Remembered Set中, 这阶段需要停顿线程,但可并行执行.</li>
+<li>筛选回收:首先对各个Region的回收价值和成本进行排行,根据用户所期望的GC停顿时间来指定回收计划.</li>
+</ul>
+<p><img src="/uploads/jvm/垃圾回收/g1.png" alt=""></p>
+<blockquote>
+<p>参考资料：《深入理解Java虚拟机》</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;垃圾收集器&quot;&gt;&lt;a href=&quot;#垃圾收集器&quot; class=&quot;headerlink&quot; title=&quot;垃圾收集器&quot;&gt;&lt;/a&gt;垃圾收集器&lt;/h1&gt;&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目
+    
+    </summary>
+    
+      <category term="Java" scheme="http://cristianoro7.github.io/categories/Java/"/>
+    
+    
+      <category term="Java#JVM" scheme="http://cristianoro7.github.io/tags/Java-JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>Java知识体系</title>
@@ -1976,175 +2789,6 @@
     
     
       <category term="计算机网络#HTTP" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图解HTTP-网络基础-笔记</title>
-    <link href="http://cristianoro7.github.io/2017/10/31/%E5%9B%BE%E8%A7%A3HTTP-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
-    <id>http://cristianoro7.github.io/2017/10/31/图解HTTP-网络基础/</id>
-    <published>2017-10-31T13:57:52.659Z</published>
-    <updated>2017-10-31T13:57:52.659Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="网络基础-TCP-IP"><a href="#网络基础-TCP-IP" class="headerlink" title="网络基础 TCP/IP"></a>网络基础 TCP/IP</h4><h5 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h5><ul>
-<li>我们通常使用到的网络是在<strong>TCP/IP</strong>协议族的基础上运作的。而HTTP属于它内部的一个子集。</li>
-<li>TCP/IP是互联网各类协议族的总称, 如图:<br><img src="/uploads/图解HTTP/网络基础01.jpg" alt=""><a id="more"></a></li>
-<li>协议中存在各式各样的内容,从电缆的规格到 IP 地址的选定方法、寻找异地用户的方法、双方建立通信的顺序,以及 Web 页面显示需要处理的步骤,等等。像这样把互联网通信的相关协议集合起来的协议族就叫做TCP/IP协议</li>
-</ul>
-<h5 id="TCP-IP的分层管理"><a href="#TCP-IP的分层管理" class="headerlink" title="TCP/IP的分层管理"></a>TCP/IP的分层管理</h5><ul>
-<li>TCP/IP中一个重要的点就是分层设计。</li>
-<li>层次: 应用层,传输层,网路层,链路层</li>
-<li>分层设计的好处:<ul>
-<li>利于修改:这样不会因某些地方要修改而导致整个协议都得修改,只需要各层把借口规范好,需要改动的时候就在相应的层次改动</li>
-<li>各层只需完成自己的任务,无需关注其他层次。比如:应用层不需知道怎么传输和接收方在哪里</li>
-</ul>
-</li>
-<li><strong>TCP/IP协议族各层的作用</strong><ul>
-<li>应用层: 该层决定了想用户提供服务时的通信活动。TCP/IP协议族中预存了各类通用的应用服务,比如, FTP(File Transfer Protocol, 文件传输协议) 和 DNS (Domain Name System, 域名解析系统), HTTP协议处于应用层。</li>
-<li>传输层: 该层对上层应用层, 提供处于网络连接中的两台计算机之间的数据传输。传输层中有两个性质不同的协议:<strong>TCP(Transmission Control Protocol, 传输控制协议) 和 UDP(User Data Protocol, 用户数据报协议)</strong></li>
-<li>网络层(网路互连层): 该层用来处理在网络上流动的数据包, 数据包是在网络传输时的最小数据单位, 网络层规定了通过怎么样的路径到达对方的计算机,并把数据包发给对方</li>
-<li>链路层(有名:数据链路层, 网络接口层):用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC(Network Interface Card,网络适配器,即网卡),及光纤等物理可见部分(还包括连接器等一切传输媒介)。硬件上的范畴均在<br>链路层的作用范围之内。</li>
-</ul>
-</li>
-</ul>
-<h5 id="TCP-IP通信传输流"><a href="#TCP-IP通信传输流" class="headerlink" title="TCP/IP通信传输流"></a>TCP/IP通信传输流</h5><p><img src="/uploads/图解HTTP/网络基础02.jpg" alt=""></p>
-<ul>
-<li>从上图,我们可以清楚:使用TCP/IP协议进行网络通信时,发送端是从应用层往下走,接收端是往应用层上走</li>
-<li>我们用 HTTP 举例来说明,首先作为发送端的客户端在应用层(HTTP 协议)发出一个想看某个 Web 页面的 HTTP 请求。接着,为了传输方便,在传输层(TCP 协议)把从应用层处收到的数据(HTTP 请求报文)进行分割,并在各个报文上打上标记序号及端口号后转发给网络层。在网络层(IP 协议),增加作为通信目的地的 MAC地址后转发给链路层。这样一来,发往网络的通信请求就准备齐全了。接收端的服务器在链路层接收到数据,按序往上层发送,一直到应用层。当传输到应用层,才能算真正接收到由客户端发送过来的 HTTP请求。</li>
-</ul>
-<p><img src="/uploads/图解HTTP/网络基础03.jpg" alt=""></p>
-<ul>
-<li>发送端在层与层之间传输数据时,每经过一层时必定会被打上一个该层所属的首部信息。反之,接收端在层与层传输数据时,经过一层时会把对应的首部消去。</li>
-</ul>
-<h5 id="与HTTP关系密切的协议-TCP-IP-DNS"><a href="#与HTTP关系密切的协议-TCP-IP-DNS" class="headerlink" title="与HTTP关系密切的协议: TCP IP DNS"></a>与HTTP关系密切的协议: TCP IP DNS</h5><ul>
-<li>负责传输的IP协议:<br>1.按层次分,IP(Internet Protocol)网际协议位于网络层。<br>2.IP协议的作用是把各种数据包发送给对方,其中发送成功的;两个重要条件时:IP地址和MAC地址(Media Access Control Address)<br>3.MAC地址所指的是网卡地址,不可以改变,而IP地址则可以变换<br>4.在网络条通信中,双方同时位于同一个局域网内的情况是很少的,通常是是经过多台计算机和网络设备中转才能连接到对方。而在进行中转时,会利用下一站中转设备的 MAC地址来搜索下一个中转目标。这时,会采用 ARP 协议(AddressResolution Protocol)。ARP 是一种用以解析地址的协议,根据通信方的 IP 地址就可以反查出对应的 MAC 地址。<br>5.无论哪台计算机、哪台网络设备,它们都无法全面掌握互联网中的细节。</li>
-</ul>
-<p><img src="/uploads/图解HTTP/网络基础04.jpg" alt=""></p>
-<ul>
-<li>确保可靠性的TCP协议</li>
-</ul>
-<ol>
-<li>按层次分,TCP 位于传输层,提供可靠的字节流服务。所谓的字节流服务(Byte Stream Service)是指,为了方便传输,将大<br>块数据分割成以报文段(segment)为单位的数据包进行管理。而可靠的传输服务是指,能够把数据准确可靠地传给对方。一言以蔽之,TCP 协议为了更容易传送大数据才把数据分割,而且 TCP 协议能够确认数据最终是否送达到对方。</li>
-<li>TCP协议采用三次握手(three-way-handshaking)策略来保证数据能准确无误的送达</li>
-<li>握手过程中使用了 TCP 的标志(flag) —— SYN(synchronize) 和ACK(acknowledgement)。</li>
-<li>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后,回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后,发送端再回传一个带ACK标志的数据包,代表“握手”结束。若在握手过程中某个阶段莫名中断,TCP协议会再次以相同的顺序发送相同的数据包。</li>
-<li>除了上面的三次握手,TCP协议还有其他的协议来保证通信的可靠。</li>
-</ol>
-<p><img src="/uploads/图解HTTP/网络基础05.jpg" alt=""></p>
-<ul>
-<li>DNS:</li>
-</ul>
-<ol>
-<li>DNS 服务应运而生。DNS 协议提供通过域名查找 IP 地址,或逆向从 IP 地址反查域名的服务。</li>
-</ol>
-<p><img src="/uploads/图解HTTP/网络基础06.jpg" alt=""></p>
-<h5 id="各种协议与HTTP协议的关系"><a href="#各种协议与HTTP协议的关系" class="headerlink" title="各种协议与HTTP协议的关系"></a>各种协议与HTTP协议的关系</h5><p><img src="/uploads/图解HTTP/网络基础07.jpg" alt=""></p>
-<blockquote>
-<p>以上笔记来源于图解HTTP一书</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;网络基础-TCP-IP&quot;&gt;&lt;a href=&quot;#网络基础-TCP-IP&quot; class=&quot;headerlink&quot; title=&quot;网络基础 TCP/IP&quot;&gt;&lt;/a&gt;网络基础 TCP/IP&lt;/h4&gt;&lt;h5 id=&quot;TCP-IP协议族&quot;&gt;&lt;a href=&quot;#TCP-IP协议族&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP协议族&quot;&gt;&lt;/a&gt;TCP/IP协议族&lt;/h5&gt;&lt;ul&gt;
-&lt;li&gt;我们通常使用到的网络是在&lt;strong&gt;TCP/IP&lt;/strong&gt;协议族的基础上运作的。而HTTP属于它内部的一个子集。&lt;/li&gt;
-&lt;li&gt;TCP/IP是互联网各类协议族的总称, 如图:&lt;br&gt;&lt;img src=&quot;/uploads/图解HTTP/网络基础01.jpg&quot; alt=&quot;&quot;&gt;
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://cristianoro7.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络#HTTP" scheme="http://cristianoro7.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AsyncTask源码浅析</title>
-    <link href="http://cristianoro7.github.io/2017/10/31/AsyncTask%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/"/>
-    <id>http://cristianoro7.github.io/2017/10/31/AsyncTask源码浅析/</id>
-    <published>2017-10-31T13:57:36.959Z</published>
-    <updated>2017-10-31T13:57:36.959Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h5><ul>
-<li>概述<br>AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。<a id="more"></a></li>
-<li>我们知道，使用AsyncTask的要先实例化该类再调用其中的execute（）方法，那么自然先要来看其中的构造方法都初始化了哪些操作：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Creates a new asynchronous task. This constructor must be invoked on the UI thread.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">AsyncTask</span><span class="params">()</span> </span>&#123;</div><div class="line">       mWorker = <span class="keyword">new</span> WorkerRunnable&lt;Params, Result&gt;() &#123;</div><div class="line">           <span class="function"><span class="keyword">public</span> Result <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">               mTaskInvoked.set(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">               Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</div><div class="line">               <span class="comment">//noinspection unchecked</span></div><div class="line">               Result result = doInBackground(mParams);</div><div class="line">               Binder.flushPendingCommands();</div><div class="line">               <span class="keyword">return</span> postResult(result);</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line"></div><div class="line">       mFuture = <span class="keyword">new</span> FutureTask&lt;Result&gt;(mWorker) &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">()</span> </span>&#123;</div><div class="line">               <span class="keyword">try</span> &#123;</div><div class="line">                   postResultIfNotInvoked(get());</div><div class="line">               &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                   android.util.Log.w(LOG_TAG, e);</div><div class="line">               &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</div><div class="line">                   <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"An error occurred while executing doInBackground()"</span>,</div><div class="line">                           e.getCause());</div><div class="line">               &#125; <span class="keyword">catch</span> (CancellationException e) &#123;</div><div class="line">                   postResultIfNotInvoked(<span class="keyword">null</span>);</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>上面的代码中，分别实例化了WorkRunnable对象和FutureTask对象，其中，WorkRunnable是一个内部类，我们来看看该内部类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WorkerRunnable</span>&lt;<span class="title">Params</span>, <span class="title">Result</span>&gt; <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Result</span>&gt; </span>&#123;</div><div class="line">       Params[] mParams;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>该类实现了Callable接口，其中保存了Params参数，也就是AsyncTask传入的参数</p>
-</li>
-<li><p>我们接下去看看execute（Params)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@MainThread</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> AsyncTask&lt;Params, Progress, Result&gt; <span class="title">execute</span><span class="params">(Params... params)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> executeOnExecutor(sDefaultExecutor, params);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>该方法返回AsyncTask本身，调用者可以根据需要保持对其的引用</p>
-</li>
-<li><p>execute（Params… params）executeOnExecutor(sDefaultExecutor, params)；我们点进该方法中看看</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@MainThread</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> AsyncTask&lt;Params, Progress, Result&gt; <span class="title">executeOnExecutor</span><span class="params">(Executor exec,</span></span></div><div class="line">            Params... params) &#123;</div><div class="line">        <span class="keyword">if</span> (mStatus != Status.PENDING) &#123;</div><div class="line">            <span class="keyword">switch</span> (mStatus) &#123;</div><div class="line">                <span class="keyword">case</span> RUNNING:</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Cannot execute task:"</span></div><div class="line">                            + <span class="string">" the task is already running."</span>);</div><div class="line">                <span class="keyword">case</span> FINISHED:</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Cannot execute task:"</span></div><div class="line">                            + <span class="string">" the task has already been executed "</span></div><div class="line">                            + <span class="string">"(a task can be executed only once)"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        mStatus = Status.RUNNING;</div><div class="line"></div><div class="line">        onPreExecute();</div><div class="line"></div><div class="line">        mWorker.mParams = params;</div><div class="line">        exec.execute(mFuture);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Status是类中的枚举，作用是记录Task的运行状态。onPreExecute()，我们可以在该方法中做一些UI线程的初始化操作</p>
-</li>
-<li>接着将传进的参数赋值给mWork.parmas,也就是在构造函数初始化的WorkRunnable对象，保存了传入的参数</li>
-<li>最后调用了传入的线程池的execute（Runnable）并且返回本身</li>
-<li>传入的线程池是里面默认的线程池，该线程池是一个串行执行的</li>
-<li><p>我们来看看该默认的线程池：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SerialExecutor</span> <span class="keyword">implements</span> <span class="title">Executor</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> ArrayDeque&lt;Runnable&gt; mTasks = <span class="keyword">new</span> ArrayDeque&lt;Runnable&gt;();</div><div class="line">        Runnable mActive;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(<span class="keyword">final</span> Runnable r)</span> </span>&#123;</div><div class="line">            mTasks.offer(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        r.run();</div><div class="line">                    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                        scheduleNext();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">if</span> (mActive == <span class="keyword">null</span>) &#123;</div><div class="line">                scheduleNext();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">scheduleNext</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> ((mActive = mTasks.poll()) != <span class="keyword">null</span>) &#123;</div><div class="line">                THREAD_POOL_EXECUTOR.execute(mActive);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>内部类中，将传入的Runnable对象添加到mTask队列中，并且在scheduleNext()方法中从mTask队列中拿出头元素，将该元素在后台线程池中执行</p>
-</li>
-<li>讲到这里，我们可以看出AsyncTask中的串行执行是通过在默认的线程池中进行队列控制，真正执行的是在后台线程池中执行，并且在执行完再安排下一个任务到后台线程池，这样就巧妙的完成了串行运行</li>
-<li>我们回来execute（Runnable），传入的参数是mFutureTask，该对象是在之前构造函数实例化的，让我们回到构造函数：<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">AsyncTask</span><span class="params">()</span> </span>&#123;</div><div class="line">       mWorker = <span class="keyword">new</span> WorkerRunnable&lt;Params, Result&gt;() &#123;</div><div class="line">           <span class="function"><span class="keyword">public</span> Result <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">               mTaskInvoked.set(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">               Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</div><div class="line">               <span class="comment">//noinspection unchecked</span></div><div class="line">               Result result = doInBackground(mParams);</div><div class="line">               Binder.flushPendingCommands();</div><div class="line">               <span class="keyword">return</span> postResult(result);</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line"></div><div class="line">       mFuture = <span class="keyword">new</span> FutureTask&lt;Result&gt;(mWorker) &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">()</span> </span>&#123;</div><div class="line">               <span class="keyword">try</span> &#123;</div><div class="line">                   postResultIfNotInvoked(get());</div><div class="line">               &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                   android.util.Log.w(LOG_TAG, e);</div><div class="line">               &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</div><div class="line">                   <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"An error occurred while executing doInBackground()"</span>,</div><div class="line">                           e.getCause());</div><div class="line">               &#125; <span class="keyword">catch</span> (CancellationException e) &#123;</div><div class="line">                   postResultIfNotInvoked(<span class="keyword">null</span>);</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在FutureTask中，将callable对象出传入，现在看看mWorker其中的操作</p>
-<ul>
-<li>首先设置一个任务被调用的标记</li>
-<li>接着调用doInBackground(mParams);该方法是我们重写的方法</li>
-<li>最后将结果传入postResult(Result)中</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> Result <span class="title">postResult</span><span class="params">(Result result)</span> </span>&#123;</div><div class="line">       <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">       Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,</div><div class="line">               <span class="keyword">new</span> AsyncTaskResult&lt;Result&gt;(<span class="keyword">this</span>, result));</div><div class="line">       message.sendToTarget();</div><div class="line">       <span class="keyword">return</span> result;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>方法中的逻主要是通过handler发送一条消息，该消息是包含结果对象的消息</li>
-<li><p>我们先来看看内部类AsyncTaskResult<result>：</result></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"RawUseOfParameterizedType"</span>&#125;)</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncTaskResult</span>&lt;<span class="title">Data</span>&gt; </span>&#123;</div><div class="line">        <span class="keyword">final</span> AsyncTask mTask;</div><div class="line">        <span class="keyword">final</span> Data[] mData;</div><div class="line"></div><div class="line">        AsyncTaskResult(AsyncTask task, Data... data) &#123;</div><div class="line">            mTask = task;</div><div class="line">            mData = data;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>类中主要是保存了传入的结果以及AsyncTask自身</p>
-</li>
-<li>接着来看看InternalHandler()：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InternalHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="title">InternalHandler</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="keyword">super</span>(Looper.getMainLooper());</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"unchecked"</span>, <span class="string">"RawUseOfParameterizedType"</span>&#125;)</div><div class="line">       <span class="meta">@Override</span></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">           AsyncTaskResult&lt;?&gt; result = (AsyncTaskResult&lt;?&gt;) msg.obj;</div><div class="line">           <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">               <span class="keyword">case</span> MESSAGE_POST_RESULT:</div><div class="line">                   <span class="comment">// There is only one result</span></div><div class="line">                   result.mTask.finish(result.mData[<span class="number">0</span>]);</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">               <span class="keyword">case</span> MESSAGE_POST_PROGRESS:</div><div class="line">                   result.mTask.onProgressUpdate(result.mData);</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>该内部类重写的Handler是运行在线程的handler，在handleMessage中接收处理消息</p>
-</li>
-<li><p>分析完了这两个内部类，我们回到postResult中发送消息，消息到达的是InternalHandler的 handleMessage，</p>
-</li>
-<li>result.mTask.finish(result.mData[0])，该语句调用了finish。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">finish</span><span class="params">(Result result)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (isCancelled()) &#123;</div><div class="line">           onCancelled(result);</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           onPostExecute(result);</div><div class="line">       &#125;</div><div class="line">       mStatus = Status.FINISHED;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>方法中会先判断任务是不是被取消，如果没有的话，就地调用onPostExecute(result);也就是我们重写的结果方法</p>
-</li>
-<li><p>以上就是AsyncTask的执行流程。publishProgress方法的执行跟postResult差不多，这里不分析</p>
-</li>
-<li><p>关于AsyncTask现在支持并行运行，如果想要并且并行运行的话，可以调用executeOnExecutor(THREAD_POOL_EXECUTOR,<br>Params… params)。</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;源码浅析&quot;&gt;&lt;a href=&quot;#源码浅析&quot; class=&quot;headerlink&quot; title=&quot;源码浅析&quot;&gt;&lt;/a&gt;源码浅析&lt;/h5&gt;&lt;ul&gt;
-&lt;li&gt;概述&lt;br&gt;AsyncTask是一个执行异步任务的小型框架，里面封装了Handler，使得使用者不必关心线程之间的切换，虽然现在执行异步任务都不会用AsyncTask，用得更多的是Bolt Tasks 和RxJava，但是AsyncTask中的设计思想还是很多值得学习的，比如：内部中，串行运行任务时的队列控制，handler的将结果回调回主线程，以及如何取消正在执行的任务等。。
-    
-    </summary>
-    
-      <category term="Android" scheme="http://cristianoro7.github.io/categories/Android/"/>
-    
-    
-      <category term="异步框架#AsyncTask" scheme="http://cristianoro7.github.io/tags/%E5%BC%82%E6%AD%A5%E6%A1%86%E6%9E%B6-AsyncTask/"/>
     
   </entry>
   

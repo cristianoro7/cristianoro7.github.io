@@ -142,6 +142,121 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/2017/12/07/TCP首部/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/计网/TCP首部.jpeg)" alt="TCP首部" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/12/07/TCP首部/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+            </div>
+            <div class="date"><time datetime="2017-12-07T12:23:11.399Z" itemprop="datePublished">2017-12-07</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/12/07/TCP首部/">TCP首部</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+概述
+TCP的全部功能都体现在其首部中的各个字段. 因此, 只有弄清TCP首部各个字段的作用才能理解TCP的工作原理.
+TCP首部的前20个字节是固定的,后面有4n字节是根据需要而增加的选项, TCP首部的最小长度为20字节, 最多为60字节.
+
+源端口和目的端口各占2个字节, 分别写入源端口号和目的端口号. TCP的分用和复用功能是通过端口实现的.
+序号占4个字节.TCP是面向字节流的,在一个
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/11/30/Java注解处理器详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fm0c4an974j30m80b4qhy.jpg)" alt="Java注解处理器实战" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/11/30/Java注解处理器详解/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-11-30T11:42:21.159Z" itemprop="datePublished">2017-11-30</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/11/30/Java注解处理器详解/">Java注解处理器实战</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+
+注解处理器
+注解强大的地方在于: 我们可以在运行时或者编译时处理注解. 在编译时或者运行时处理注解的机制都可以称为一个注解处理器.
+
+注解处理器的类型
+注解处理器的类型分为两大类:
+
+运行时处理器: 这种机制是在程序运行时利用反射机制去处理注解.
+
+编译时处理器: 这种机制是在程序编译时利用javac提供的一个apt工具来处理注解.
+
+
+运行时处理器的特点: 该机制基于反射机制, 因此灵活性很
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/2017/11/25/Java反射应用/" class="thumbnail">
     
     
@@ -357,117 +472,6 @@ View Animation的作用对象是整个View对象, 它只支持4种动画效果: 
         </div>
     
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/11/21/Android事件分发机制总结/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1fll5g8ssmmj30m80b4aiv.jpg)" alt="Android事件分发机制总结" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/11/21/Android事件分发机制总结/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-11-21T09:32:31.885Z" itemprop="datePublished">2017-11-21</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/11/21/Android事件分发机制总结/">Android事件分发机制总结</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-关于Andorid事件分发机制的解析, 网上一堆文章, 并且写得很详细, 因此这里只写写一些总结, 不涉及原理的解析.
-
-分发对象
-在Android中, 点击手势被封装成MotionEvent对象. 因此对于点击事件的分发, 实质上是对MotionEvent对象的分发.
-对于单点触控, 有下面两种情况的手势对应MotionEvent的状态:
-
-点击 -&gt; 松开 : ACTION_DOWN 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/11/14/SP解读/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww1.sinaimg.cn/large/006VdOYcgy1flhnrmq40dj30m80b4q9b.jpg)" alt="SP解析" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/11/14/SP解读/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Android/">Android</a>
-            </div>
-            <div class="date"><time datetime="2017-11-14T08:00:59.799Z" itemprop="datePublished">2017-11-14</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/11/14/SP解读/">SP解析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-
-概述
-SharedPreferences是Android中的数据持久化技术中的一种. 它将Key-Value键值对储存在一个XMl文件中. 它比较适用储存小量的数据. 比如一些应用的配置信息.
-
-使用
-SharedPreferences的被设计成读写分离的模式,  SharedPreferences用来读取数据, SharedPreferences.Editor则是用来写数据.
-
-获取Shar
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
 
     </div></section>
 
@@ -505,6 +509,46 @@ SharedPreferences的被设计成读写分离的模式,  SharedPreferences用来�
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/19/Class类文件结构/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/内存分配策略.jpg)" alt="类文件结构" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2018/01/19/Class类文件结构/" class="title">类文件结构</a></p>
+                            <p class="item-date"><time datetime="2018-01-19T12:47:25.812Z" itemprop="datePublished">2018-01-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/19/java垃圾回收器/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/jvm/垃圾回收.jpeg)" alt="Java垃圾回收器" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2018/01/19/java垃圾回收器/" class="title">Java垃圾回收器</a></p>
+                            <p class="item-date"><time datetime="2018-01-19T11:19:26.721Z" itemprop="datePublished">2018-01-19</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -566,46 +610,6 @@ SharedPreferences的被设计成读写分离的模式,  SharedPreferences用来�
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/12/08/TCP连接管理/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/连接管理.jpeg)" alt="TCP连接管理" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/12/08/TCP连接管理/" class="title">TCP连接管理</a></p>
-                            <p class="item-date"><time datetime="2017-12-08T13:14:06.854Z" itemprop="datePublished">2017-12-08</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/12/07/TCP首部/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/计网/TCP首部.jpeg)" alt="TCP首部" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/计算机网络/">计算机网络</a></p>
-                            <p class="item-title"><a href="/2017/12/07/TCP首部/" class="title">TCP首部</a></p>
-                            <p class="item-date"><time datetime="2017-12-07T12:23:11.399Z" itemprop="datePublished">2017-12-07</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -625,7 +629,7 @@ SharedPreferences的被设计成读写分离的模式,  SharedPreferences用来�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/11/">十一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/10/">十月 2017</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/06/">六月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/i_dont_wanna_use_default_archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -693,7 +697,7 @@ SharedPreferences的被设计成读写分离的模式,  SharedPreferences用来�
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2017 Desperado</p>
+                <p>&copy; 2018 Desperado</p>
                 <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
             </div>
         </div>
