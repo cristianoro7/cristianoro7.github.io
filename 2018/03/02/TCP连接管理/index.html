@@ -3,16 +3,93 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Desperado</title>
+    <title>TCP连接管理 | Desperado</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Desperado">
-<meta property="og:url" content="http://cristianoro7.github.io/page/7/index.html">
+        <meta name="keywords" content="计算机网络#运输层" />
+    
+    <meta name="description" content="TCP连接管理
+目录
+
+TCP连接
+
+TCP连接释放
+
+TCP三次握手的原因
+
+初始序号的选择
+
+同时打开和关闭
+
+连接建立超时
+
+TIME-WAIT
+
+
+
+TCP连接
+
+上图为TCP连接建立的过程
+TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
+TCP客户端进程首先创建传输控制块, 然后向TCP服务器发送连接请求的报文段,此时首部标志位SYN = 1,同时选择一个初始序号se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP连接管理">
+<meta property="og:url" content="http://cristianoro7.github.io/2018/03/02/TCP连接管理/index.html">
 <meta property="og:site_name" content="Desperado">
+<meta property="og:description" content="TCP连接管理
+目录
+
+TCP连接
+
+TCP连接释放
+
+TCP三次握手的原因
+
+初始序号的选择
+
+同时打开和关闭
+
+连接建立超时
+
+TIME-WAIT
+
+
+
+TCP连接
+
+上图为TCP连接建立的过程
+TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
+TCP客户端进程首先创建传输控制块, 然后向TCP服务器发送连接请求的报文段,此时首部标志位SYN = 1,同时选择一个初始序号se">
+<meta property="og:image" content="http://cristianoro7.github.io/img/计网/连接管理.jpeg">
+<meta property="og:updated_time" content="2018-03-02T08:28:53.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Desperado">
+<meta name="twitter:title" content="TCP连接管理">
+<meta name="twitter:description" content="TCP连接管理
+目录
+
+TCP连接
+
+TCP连接释放
+
+TCP三次握手的原因
+
+初始序号的选择
+
+同时打开和关闭
+
+连接建立超时
+
+TIME-WAIT
+
+
+
+TCP连接
+
+上图为TCP连接建立的过程
+TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.
+TCP客户端进程首先创建传输控制块, 然后向TCP服务器发送连接请求的报文段,此时首部标志位SYN = 1,同时选择一个初始序号se">
+<meta name="twitter:image" content="http://cristianoro7.github.io/img/计网/连接管理.jpeg">
     
 
     
@@ -119,345 +196,222 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">主页</em>
+    <a class="page-title-link" href="/categories/计算机网络/">计算机网络</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-TCP连接管理" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-set家族" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-set家族/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:01:09.713Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-set家族/">深入理解Java集合框架-set家族</a>
+        TCP连接管理
         </h1>
     
 
-        <p class="article-excerpt">
-            Set集合的最大特点是能够保证内部的元素唯一性. 这种特性是建立在Map的基础上的. 换句话说: Set通过组合的模式, 在Map的基础上扩展了一些特性. 由于Set是建立在Map的基础上的. 如果理解了Map的话, Set会很好理解. 接下来我们来看看Set家族的UML
-
-UML
-
-Set接口对应Map接口, 定义了Set的一些方法. AbstractSet对应AbstractMap, 为Set
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/03/02/TCP连接管理/" class="article-date">
+            <time datetime="2018-03-02T08:28:53.283Z" itemprop="datePublished">2018-03-02</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-TreeMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-TreeMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:01:00.490Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-TreeMap/">深入理解Java集合框架-TreeMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            这次要介绍的Map跟之前介绍的Map有点不一样. 之前的Map, 例如: HashMap, LinkedHashMap都是基于散列技术. 而这次要介绍的TreeMap则不同, TreeMap是基于一种叫红黑树的数据结构. 接下来, 我们先看看TreeMap的UML图片
-
-UML
-
-跟之前介绍过的Map一样, TreeMap实现了Cloneable和Serializable, 因此它支持克隆(浅克隆
-        </p>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络-运输层/">计算机网络#运输层</a>
     </div>
-</article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkHashMap" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkHashMap/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
             </div>
-            <div class="date"><time datetime="2017-10-31T09:00:56.142Z" itemprop="datePublished">2017-10-31</time></div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h1><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2></blockquote>
+<ul>
+<li><p>TCP连接</p>
+</li>
+<li><p>TCP连接释放</p>
+</li>
+<li><p>TCP三次握手的原因</p>
+</li>
+<li><p>初始序号的选择</p>
+</li>
+<li><p>同时打开和关闭</p>
+</li>
+<li><p>连接建立超时</p>
+</li>
+<li><p>TIME-WAIT</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h3></blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm8jblqwjvj30kl0fc3zp.jpg" alt=""></p>
+<p>上图为TCP连接建立的过程</p>
+<p>TCP服务器进程首先创建传输控制块,准备接收客户端进程的连接请求.</p>
+<p><code>TCP</code>客户端进程首先创建传输控制块, 然后向<code>TCP</code>服务器发送连接请求的报文段,此时首部标志位<code>SYN = 1</code>,同时选择一个初始序号<code>seq = x</code>. <code>TCP</code>规定,<code>SYN</code>报文段不能携带数据,但要也要消耗一个序号.这次TCP客户端进程进入SYN-SEND状态.</p>
+<p><code>TCP</code>服务器收到连接请求后, 如同意连接, 则向客户端发送确认. 并且为<code>TCP</code>连接分配缓存和变量. 在确认的报文段中<code>SYN</code>和<code>ACK</code>都置为1,确认号<code>ack = x + 1</code>, 同时也为自己选定一个初始序号<code>seq = y</code>.注意:这个报文段也不能携带数据,但是要消耗一个序号.此时<code>TCP</code>服务器进入<code>SYN-RCVD</code>状态.</p>
+<p><code>TCP</code>客户端收到服务器的确认后, 还要向服务器发送<code>ACK</code>确认, 然后为<code>TCP</code>连接分配缓存和变量. 确认的报文段的<code>ACK</code>置1,确认号<code>ack = y+1</code>,而自己的序号<code>seq = x + 1</code>. 注意:<code>ACK</code>报文可以携带数据.如果不携带数据就不用消耗序号.此时<code>TCP</code>连接已经建立.客户端进入<code>ESTALISHED</code>状态.</p>
+<p>当服务器收到客户端的<code>ACK</code>确认后, 也进入<code>ESTABLISHED</code>状态.</p>
+<p>上面的连接建立过程叫做三次握手.</p>
+<blockquote>
+<p>注意: TCP连接前两次握手是不可以携带数据的. 因为此时双方都还没准备好缓存和变量. 第三次握手是可以携带数据的, 因为此时双方的缓存和变量已经分配好了.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>关于服务端缓存变量分配的时机. 为了防止SYN攻击. 服务端通常会维护一个半连接队列. 如果该队列没满的话, 收到一个连接请求时, 会为该连接发送一个SYNACK报文并且分配缓存和变量. 如果这个队列满后, 服务端为了防止SYN攻击, 是不会为该连接请求分配缓存和变量. 它会先将源和目的IP和端口经过一个hash函数后得到一个数(称为cookie), 然后将这个数作为服务端的初始序号发送给客户端. 如果此时客户端不是恶意攻击的话, 它会返回会一个ACK报文. 然后服务端将初始序号-1, 得到上次发送的Cookie, 最后经过解析, 得到源和目的端口和IP, 最后分配缓存和变量.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<h3 id="TCP连接释放"><a href="#TCP连接释放" class="headerlink" title="TCP连接释放"></a>TCP连接释放</h3></blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm8jbxmhz5j30lp0mtgnk.jpg" alt=""></p>
+<p>上图为TCP连接释放过程</p>
+<p><code>TCP</code>客户端的应用首先让其<code>TCP</code>发出连接释放的报文段, 并停止发送数据,主动关闭连接.客户端把连接释放报文段首部<code>FIN</code>置为1,其序号<code>seq = u</code>.这时客户端进入<code>FIN-WAIT-1</code>状态,等待<code>TCP</code>服务器的确认.注意:<code>FIN</code>报文段即使不携带数据也要消耗一个序号.</p>
+<p><code>TCP</code>服务器收到连接释放的请求后即发出确认,确认号为<code>ack = u + 1</code>,而这个报文段的序号为<code>y</code>.然后服务器进入<code>CLOSE-WAIT</code>状态. <code>TCP</code>服务器此时通知应用进程, 因此客户端到服务器的连接已经释放掉了,即客户端到服务器的这条连接已经没有数据要发送了. 这时<code>TCP</code>连接处于半释放状态. 但A仍然接收数据,因为服务器到客户端的连接还没有释放.</p>
+<p>客户端收到服务器的确认后.进入<code>FIN-WAIT-2</code>状态,等待服务器发送连接释放报文段, 以此来关闭服务器到客户端的这条连接.</p>
+<p>若服务器已经没有数据要发送了, 其应用进程会通知<code>TCP</code>释放连接.这时服务器发出的来连接释放报文段必须时<code>FIN</code>被置1. 这时服务器就进入了<code>LAST-ACK</code>状态,等待客户端的确认.</p>
+<p>客户端收到服务器的连接释放报文后,必须对此报文发出确认<code>ACK</code>. 然后进入<code>TIME-WAIT</code>状态. 现在<code>TCP</code>连接还没有释放.必须经过时间等待计时器设置的时间2MSL后, 客户端才进入<code>CLOSED</code>状态.</p>
+<p>上面的连接释放过程也称为4次挥手.</p>
+<blockquote>
+<h3 id="TCP三次握手的原因"><a href="#TCP三次握手的原因" class="headerlink" title="TCP三次握手的原因"></a>TCP三次握手的原因</h3></blockquote>
+<p><code>TCP</code>连接为什么是3次? 而不是2次, 1次或者是大于3次?</p>
+<p>回答这个问题, 可以从下面的两个角度来考虑.</p>
+<ul>
+<li><p>可靠性: 确保双方都收到连接建立的请求.</p>
+</li>
+<li><p>高效性: 在确保可靠的情况下, 也需要注重一下性能的问题.</p>
+</li>
+</ul>
+<h4 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性:"></a>可靠性:</h4><p>三次握手的原因是为了防止延迟的客户端连接请求报文段传送到服务器,因此产生错误.</p>
+<p>现在假定客户端发送出去的第一个连接请求报文段在某些网络结点长时间滞留了,以致延误到连接释放后的某个时间才到达服务器. 本来这个是一个已经失效的报文段.但是服务器收到此有效的报文段后, 就误认为客户端又发出了<br>一次连接请求. 于是向客户端发送确认报文段,同意建立连接. 如果假设不采用三次握手, 那么服务器发出确认, 新的连接就建立了. 由于客户端并没有发出建立连接的请求, 因此不理睬服务器的确认, 也不会向服务器发送数据. 但服务器却以为新的连接已经建立,一直等待客户端发送数据.这样服务器的许多资源就白白浪费了.</p>
+<p>如果采用三次握手的话, 客户端不会向服务器发出确认.服务器由于收不到确认, 过一定的时间后, 就会释放缓存和变量等资源.</p>
+<h4 id="高效性"><a href="#高效性" class="headerlink" title="高效性"></a>高效性</h4><p>从表面上看: TCP建立时, 需要告知双方的初始序号. 为了保证可靠性, 发送方发送一个初始序号给接收方, 然后接收方发送一个<code>ACK</code>来表示请求接收到. 这样一来一回, 总共需要4次握手. 那么为什么<code>TCP</code>是3次? 这是因为接收方把<code>SYN</code>和<code>ACK</code>一起发送出去了. 这样就把4次握手优化为3次握手. 因此为了保证高效性, 3次握手就可以保证连接已经连接. 不必再协商4次或者5次握手.</p>
+<blockquote>
+<h3 id="初始序号的选择"><a href="#初始序号的选择" class="headerlink" title="初始序号的选择"></a>初始序号的选择</h3></blockquote>
+<p>在一个连接中, 报文段可能会存在延迟到达的问题, 这样延迟到达的报文段有可能会被同一个连接的另外一个实例给错误的接收了. 为了解决这个问题, 需要仔细选择初始序号.</p>
+<p>[RFC0793]指出初始序号可以看做是一个32位的计数器. 该计数器每4微妙加1. 这样做的目的是为了防止一个连接的序号与其他连接的序号重叠. 尤其是同一个连接的不同实例.</p>
+<blockquote>
+<h3 id="同时打开和同时关闭"><a href="#同时打开和同时关闭" class="headerlink" title="同时打开和同时关闭"></a>同时打开和同时关闭</h3></blockquote>
+<p>假如主机A的一个应用程序通过本地端口7777向主机B的8888端口发出一个主动连接的请求, 于此同时, 主机B通过8888端口向主机A的7777端口发送一个主动连接的请求. 这种情况称为同时打开. 同时打开需要交换4个报文, 并且没有客户端和服务器之分. 同时关闭跟同时打开没有太大区别. 下面是同时关闭和打开的示意图:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006VdOYcgy1fm9fdgmqatj30bb0ntdgs.jpg" alt=""></p>
+<blockquote>
+<h3 id="连接建立超时"><a href="#连接建立超时" class="headerlink" title="连接建立超时"></a>连接建立超时</h3></blockquote>
+<p>当客户端主动发起一个<code>TCP</code>连接时, 如果在规定的时间没有收到对方的回应的话, 客户端会重新发送<code>SYN</code>报文.</p>
+<p>发送的时间间隔规律: 每一次重试的时间会前一个的2倍.</p>
+<blockquote>
+<h3 id="TIME-WAIT"><a href="#TIME-WAIT" class="headerlink" title="TIME-WAIT"></a>TIME-WAIT</h3></blockquote>
+<p>主动关闭的一方收到被动关闭的<code>FIN</code>报文段时, 会进入<code>TIME-WAIT</code>状态, 该状态的语义: 等待<code>2MSL</code>的时间后才进入<code>CLOSE</code>状态.</p>
+<p><code>MSL</code>是报文段的最大生存时间. [RFC0793]将<code>MSL</code>设置为2分钟. 然而在实际的实现中, <code>MSL</code>可被设置为30秒, 1分钟.</p>
+<p><code>TIME-WAIT</code>状态存在的原因:</p>
+<ul>
+<li><p>确保发送<code>ACK</code>能够被对方收到. 这样在最后发送的<code>ACK</code>丢失的话, 被动关闭方会重发<code>FIN</code>报文. 此时处于<code>TIME-WAIT</code>状态的主动关闭方可以重传<code>ACK</code>. 如果没有该状态的话, 当被动关闭方重传<code>FIN</code>时, 主动关闭方是不能识别该报文的.</p>
+</li>
+<li><p>防止延迟失效的报文段被相同的连接给接收. 假设有A发送给B的报文被延迟了, 然后A断开和B的连接, 接着又以相同的<code>IP</code>和端口进行重连. 此时延迟失效的报文就有可能被新的连接给接收. 如果有<code>TIME-WAIT</code>这个状态的话, 等待<code>2MSL</code>后, 所有延迟的报文都会失效, 因此在新的连接中不会收到延迟的报文.</p>
+</li>
+</ul>
+<h4 id="TIME-WAIT产生的影响"><a href="#TIME-WAIT产生的影响" class="headerlink" title="TIME-WAIT产生的影响"></a>TIME-WAIT产生的影响</h4><p>由于处于<code>TIME-WAIT</code>状态的连接(客户端ip和端口 服务器ip和端口)是不可用的. 所以当主机处于该状态时, 会对主机有一定的影响.</p>
+<ul>
+<li><p>对服务器: 一般而言, 服务器都是使用一些系统端口(例如HTTP使用80端口), 所以当服务器关闭后, 是不能被立刻重启的, 因为端口处于<code>TIME-WAIT</code>状态, 必须等待2<code>MSL</code>后才能重启.</p>
+</li>
+<li><p>对客户端: 一般而言, 该状态对客户端是没什么影响的, 因为客户端的并发连接数不多, 并且端口都是操作系统随机分配的. 但是如果客户端在短时间内向同一个服务器建立大量连接后断开, 此时就有可能出现端口耗尽. 因为客户端短时间出现了大量的<code>TIME-WAIT</code>状态. 处于<code>TIME-WAIT</code>状态的端口是不能被使用的, 由于无法找到新的端口来建立新的连接, 因此会出现端口耗尽的现象.</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3></blockquote>
+<ul>
+<li><p>计算机网络(谢希仁)</p>
+</li>
+<li><p>计算机网络-自顶向下的方法</p>
+</li>
+<li><p>TCP/IP协议详解</p>
+</li>
+</ul>
+
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-LinkHashMap/">深入理解Java集合框架-LinkHashMap</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            上篇我们分析了HashMap, 知道了遍历HashMap时, 顺序是不能够保证的.如果遍历时需要顺序, 那么应该用LinkedHashMap, 也就是我们这次要来分析的另外一个集合类.
-
-UML
-
-从UML图来看, LinkedHashMap的继承于HashMap, 可见LinkedHashMap是基于HashMap来扩展的. 如果理解了HashMap的话, 那LinkedHashMap应该算是很
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-LinkedList" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-LinkedList/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:00:43.662Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-LinkedList/">深入理解Java集合框架-LinkedList</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            上篇文章中我们学了ArrayList, 知道了ArrayList比较适合需要频繁访问元素的场景. 但是在插入和删除元素时, 表现得效率低下. 这次, 我们来分析适合使用在频繁插入和删除元素的场景的集合: LinkedList.
-
-UML
-
-我们先来看看UML图, LinkedList在继承关系上, 跟ArrayList基本相同. 我们这里只分析不同点.
-
-LinkedList继承AbstractS
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/img/collection.jpeg)" alt="深入理解Java集合框架-ArrayList" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/深入理解Java集合框架-ArrayList/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T09:00:39.690Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/深入理解Java集合框架-ArrayList/">深入理解Java集合框架-ArrayList</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
+        <footer class="article-footer">
             
-UML
 
-从上面的UML图, 我们可以看出 ArrayList实现了三个标记接口, 他们分别是:RandomAccess, Serializable, Cloneable. RandomAccess接口表示ArrayList支持随机访问其中的元素, 也就是ArrayList可以随机访问其中的元素, 并且时间复杂度为O(1). Serializable接口表示ArrayList可以被序列化. Cl
-        </p>
+
+
+    <a data-url="http://cristianoro7.github.io/2018/03/02/TCP连接管理/" data-id="cje9ohplh001tfhcjxno9nwdn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/10/31/确保Web安全的HTTPS/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/uploads/图解HTTP/确保Web安全的HTTPS01.jpg)" alt="图解HTTP-确保Web安全的HTTPS-笔记" class="thumbnail-image"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://cristianoro7.github.io/2017/10/31/确保Web安全的HTTPS/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
-            </div>
-            <div class="date"><time datetime="2017-10-31T08:59:20.011Z" itemprop="datePublished">2017-10-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/10/31/确保Web安全的HTTPS/">图解HTTP-确保Web安全的HTTPS-笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HTTP存在的不足
-通信使用明文(不加密), 内容可能会被窃听
-不验证对方身份,因此有可能遭遇伪装
-无法证明报文的完整性,所以有可能遭到篡改
-
-通信使用明文可能会被窃听
-HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文传输.
-如何采用明文进行传输的话,内容可以通过抓取传输时的数据包,再由工具进行解析,就可以得到通信的内容
-
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
+
     
-        </div>
-    
-
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">第 7 页，共 11 页</span>
-        <a class="extend prev" rel="prev" href="/page/6/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">&raquo;</a>
-    </nav>
+    </section>
 
 
                         </div>
@@ -478,6 +432,19 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/01/19/Class类文件结构/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">类文件结构</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -687,11 +654,13 @@ HTTP本身是不具备加密的功能的,因此在发送报文时是采用明文
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://cristianoro7.github.io/2018/03/02/TCP连接管理/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
